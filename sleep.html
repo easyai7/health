@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>수면 장애 가이드</title>
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="수면 장애 가이드">
+<meta property="og:description" content="노인 불면증 — 원인부터 수면 위생, 약 의존 탈출까지 실용 지식">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="수면 장애 가이드">
+<meta name="twitter:description" content="노인 불면증 — 원인부터 수면 위생, 약 의존 탈출까지 실용 지식">
+<meta name="description" content="노인 수면 장애 — 불면증 원인, 수면 위생, 낮잠 관리, 수면제 탈출, 일주기리듬 회복까지">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="수면 장애 가이드">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#0e161e">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700;900&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #0e161e;
+  --surface: #121e2a;
+  --surface2: #192736;
+  --border: #2a4060;
+  --blue: #4a7fa8;
+  --blue-light: #80b4d8;
+  --blue-dim: #1e4060;
+  --gold: #c9a84c;
+  --gold-light: #e8c870;
+  --red: #7a3a50;
+  --cream: #f0ece0;
+  --text: #e0ecf4;
+  --text-muted: #7aaac8;
+  --text-dim: #3a6080;
+  --serif: 'Noto Serif KR', serif;
+  --sans: 'Noto Sans KR', sans-serif;
+  --fs: 26px;
+  --fs-sm: 24px;
+  --fs-xs: 20px;
+  --fs-lg: 30px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--serif);
+  font-size: var(--fs);
+  line-height: 1.85;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 15% 20%, rgba(74,127,168,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse at 85% 80%, rgba(201,168,76,0.05) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.wrapper {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 8px 60px;
+  position: relative;
+  z-index: 1;
+}
+
+.header-icon-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 40px 24px 0;
+}
+.header-icon-bg {
+  width: 120px; height: 120px;
+  border-radius: 32px;
+  background: linear-gradient(135deg, var(--blue-dim) 0%, #0e2030 100%);
+  border: 2px solid var(--blue);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 8px 32px rgba(74,127,168,0.25), 0 2px 8px rgba(0,0,0,0.4);
+}
+.header-icon-bg svg { width: 64px; height: 64px; color: var(--blue-light); }
+
+.header {
+  padding: 32px 12px 36px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 24px;
+  text-align: center;
+  position: relative;
+}
+.header::after {
+  content: '';
+  display: block;
+  width: 60px; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--blue), transparent);
+  margin: 20px auto 0;
+}
+.header-eyebrow {
+  font-family: var(--sans);
+  font-size: var(--fs-xs);
+  letter-spacing: 5px;
+  color: var(--blue-light);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  font-weight: 500;
+}
+.header-title {
+  font-size: clamp(28px, 7vw, 48px);
+  font-weight: 900;
+  line-height: 1.25;
+  color: var(--cream);
+  letter-spacing: -0.5px;
+  margin-bottom: 12px;
+}
+.header-title span { color: var(--blue-light); }
+.header-sub {
+  font-family: var(--sans);
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  line-height: 1.9;
+}
+
+.intro-box {
+  background: var(--surface);
+  border-left: 3px solid var(--blue);
+  padding: 20px 22px;
+  margin-bottom: 24px;
+  border-radius: 0 8px 8px 0;
+  font-family: var(--sans);
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  line-height: 1.9;
+}
+.intro-box strong {
+  color: var(--blue-light);
+  display: block;
+  margin-bottom: 6px;
+  font-size: var(--fs);
+  font-weight: 700;
+}
+
+/* ── 전체 듣기 버튼 ── */
+#btn-listen-all {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  background: linear-gradient(135deg, var(--blue-dim) 0%, #0e1e30 100%);
+  border: 1.5px solid var(--blue);
+  border-radius: 14px;
+  padding: 20px 24px;
+  cursor: pointer;
+  color: var(--cream);
+  font-family: var(--sans);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 24px;
+  transition: all 0.25s;
+  -webkit-appearance: none;
+  box-shadow: 0 4px 20px rgba(74,127,168,0.2);
+  position: relative;
+  overflow: hidden;
+}
+#btn-listen-all::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(128,180,216,0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+#btn-listen-all:active { transform: scale(0.98); }
+#btn-listen-all.playing {
+  background: linear-gradient(135deg, #0e1e30 0%, var(--blue-dim) 100%);
+  border-color: var(--blue-light);
+  box-shadow: 0 4px 28px rgba(74,127,168,0.35);
+}
+#btn-listen-all.paused-all {
+  background: linear-gradient(135deg, rgba(201,168,76,0.15) 0%, #2a2010 100%);
+  border-color: var(--gold);
+  color: var(--gold-light);
+  box-shadow: 0 4px 20px rgba(201,168,76,0.15);
+}
+.listen-all-icon { width: 26px; height: 26px; flex-shrink: 0; }
+.listen-all-sub {
+  display: block;
+  font-size: 14px; font-weight: 400;
+  color: var(--blue-light);
+  letter-spacing: 0; margin-top: 3px; opacity: 0.85;
+}
+#btn-listen-all.paused-all .listen-all-sub { color: var(--gold); }
+.listen-all-text-wrap { display: flex; flex-direction: column; align-items: flex-start; }
+
+/* ── TTS BANNER ── */
+#tts-banner {
+  display: none;
+  background: var(--red);
+  color: var(--cream);
+  padding: 12px 18px;
+  border-radius: 8px;
+  font-family: var(--sans);
+  font-size: var(--fs-sm);
+  margin-bottom: 18px;
+  text-align: center;
+}
+
+/* ── SECTION LABEL ── */
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 8px 0 16px;
+  font-family: var(--sans);
+  font-size: var(--fs-xs);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+.section-label::before, .section-label::after {
+  content: ''; flex: 1; height: 1px; background: var(--border);
+}
+
+/* ── CARDS ── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 12px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.card.active {
+  border-color: var(--blue-dim);
+  box-shadow: 0 4px 24px rgba(74,127,168,0.15);
+}
+.card-header {
+  padding: 20px 16px 0px;
+  cursor: pointer; user-select: none;
+  display: flex; flex-direction: column;
+}
+.card-header-main {
+  display: flex; gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+.card-num {
+  font-family: var(--sans);
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 3px;
+  color: var(--blue-light);
+  text-transform: uppercase;
+  margin-top: 4px; flex-shrink: 0; min-width: 36px;
+}
+.card-header-text { flex: 1; }
+.card-tag {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: 12px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  padding: 3px 10px; margin-bottom: 8px;
+  border-radius: 3px; color: var(--bg);
+}
+.tag-blue { background: var(--blue-light); }
+.tag-gold { background: var(--gold); }
+.tag-red { background: #c06080; color: white; }
+.tag-cream { background: var(--cream); }
+.tag-green { background: #70c090; }
+
+.card-title {
+  font-size: var(--fs-lg); font-weight: 700;
+  line-height: 1.35; color: var(--cream); margin-bottom: 8px;
+}
+.card-summary {
+  font-family: var(--sans);
+  font-size: var(--fs-sm);
+  color: var(--blue-light);
+  line-height: 1.8; font-weight: 500;
+}
+
+.toggle-icon-wrap {
+  display: flex; justify-content: center;
+  padding: 10px 0 18px;
+  border-top: 1px solid var(--border); margin-top: 4px;
+}
+.toggle-icon {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--surface2);
+  border: 2px solid var(--blue-dim);
+  border-radius: 30px; padding: 10px 22px;
+  color: var(--blue-light);
+  font-family: var(--sans); font-size: 22px;
+}
+.toggle-icon svg { width: 20px; height: 20px; flex-shrink: 0; transition: transform 0.25s; }
+.toggle-label-open  { display: inline; }
+.toggle-label-close { display: none; }
+.card.active .toggle-icon { background: var(--blue-dim); border-color: var(--blue); color: var(--cream); }
+.card.active .toggle-icon svg { transform: rotate(180deg); }
+.card.active .toggle-label-open  { display: none; }
+.card.active .toggle-label-close { display: inline; }
+
+.card-detail {
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.card.active .card-detail { max-height: 4000px; }
+.detail-inner { border-top: 1px solid var(--border); padding: 20px 16px 24px; }
+
+.tts-bar { margin-bottom: 14px; }
+.btn-tts {
+  display: flex; align-items: center; justify-content: center;
+  gap: 10px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 10px; padding: 14px 24px;
+  cursor: pointer; color: var(--text-muted);
+  font-family: var(--sans); font-size: 24px;
+}
+.btn-tts:hover { border-color: var(--blue-dim); color: var(--blue-light); }
+.btn-tts.playing { background: var(--blue-dim); border-color: var(--blue); color: var(--cream); }
+.btn-tts svg { width: 24px; height: 24px; flex-shrink: 0; }
+.btn-tts.playing .play-icon { display: none; }
+.btn-tts:not(.playing) .stop-icon { display: none; }
+
+.tts-progress {
+  height: 3px; background: var(--border);
+  border-radius: 2px; margin-top: 10px;
+  overflow: hidden; opacity: 0; transition: opacity 0.3s;
+}
+.tts-progress.visible { opacity: 1; }
+.tts-progress-fill {
+  height: 100%; width: 0%;
+  background: linear-gradient(90deg, var(--blue), var(--blue-light));
+  border-radius: 2px; transition: width 0.3s linear;
+}
+
+.detail-label {
+  font-family: var(--sans); font-size: var(--fs-xs);
+  letter-spacing: 3px; text-transform: uppercase;
+  color: var(--text-dim); margin-bottom: 14px;
+  padding-bottom: 10px; border-bottom: 1px solid var(--border);
+}
+.detail-text {
+  font-family: var(--sans); font-size: var(--fs-sm);
+  line-height: 1.95; color: var(--text); margin-bottom: 20px;
+}
+.detail-text p { margin-bottom: 16px; }
+.detail-text p:last-child { margin-bottom: 0; }
+.detail-text strong { color: var(--cream); font-weight: 700; }
+.detail-quote {
+  background: var(--surface2);
+  border-left: 3px solid var(--gold);
+  padding: 16px 20px;
+  font-family: var(--sans); font-size: var(--fs-sm);
+  color: var(--gold-light); line-height: 1.9;
+  border-radius: 0 8px 8px 0; font-style: italic;
+}
+
+.footer {
+  text-align: center; font-family: var(--sans);
+  font-size: 18px; color: var(--text-dim);
+  padding: 32px 0 0; line-height: 1.8;
+}
+
+#scrollTop {
+  position: fixed; bottom: 28px; right: 20px;
+  width: 44px; height: 44px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; color: var(--text-muted);
+  opacity: 0; pointer-events: none; transition: opacity 0.3s; z-index: 100;
+}
+#scrollTop.visible { opacity: 1; pointer-events: auto; }
+#scrollTop svg { width: 18px; height: 18px; }
+
+@media (max-width: 520px) {
+  .card-header { padding: 16px 12px 0px; }
+  .detail-inner { padding: 16px 12px 20px; }
+}
+
+/* ── FLOATING CONTROL BAR ── */
+#float-bar {
+  display: none;
+  position: fixed;
+  bottom: 16px; left: 50%;
+  transform: translateX(-50%);
+  z-index: 200;
+  width: calc(100% - 32px); max-width: 680px;
+}
+#float-bar.visible { display: block; }
+.float-inner {
+  background: var(--surface);
+  border: 1.5px solid var(--blue);
+  border-radius: 16px; padding: 12px 16px 14px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+}
+.float-top { display: flex; align-items: center; gap: 10px; }
+#float-toggle-btn {
+  flex: 1; display: flex; align-items: center; justify-content: center;
+  gap: 10px;
+  background: var(--blue-dim); border: 1.5px solid var(--blue);
+  border-radius: 10px; padding: 12px 18px;
+  cursor: pointer; color: var(--cream);
+  font-family: var(--sans); font-size: 22px; font-weight: 700;
+  letter-spacing: 1px; transition: all 0.2s; -webkit-appearance: none;
+}
+#float-toggle-btn.paused {
+  background: rgba(201,168,76,0.15); border-color: var(--gold); color: var(--gold-light);
+}
+#float-toggle-btn svg { width: 22px; height: 22px; flex-shrink: 0; }
+.float-stop-btn {
+  flex-shrink: 0; background: var(--surface2); border: 1.5px solid var(--border);
+  border-radius: 10px; cursor: pointer; padding: 12px 14px;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s; -webkit-appearance: none;
+}
+.float-stop-btn svg { width: 22px; height: 22px; }
+.float-progress {
+  width: 100%; height: 4px; background: var(--border);
+  border-radius: 2px; overflow: hidden; margin-top: 10px;
+}
+.float-progress-fill {
+  height: 100%; width: 0%;
+  background: linear-gradient(90deg, var(--blue), var(--blue-light));
+  border-radius: 2px; transition: width 0.3s linear;
+}
+</style>
+</head>
+<body>
+<div id="tts-banner">이 브라우저는 음성 읽기를 지원하지 않습니다.</div>
+
+<!-- 플로팅 컨트롤 바 -->
+<div id="float-bar">
+  <div class="float-inner">
+    <div class="float-top">
+      <button id="float-toggle-btn" onclick="floatTogglePause()">
+        <svg id="float-icon-pause" viewBox="0 0 24 24" fill="none">
+          <rect x="6" y="4" width="4" height="16" rx="1" fill="currentColor"/>
+          <rect x="14" y="4" width="4" height="16" rx="1" fill="currentColor"/>
+        </svg>
+        <svg id="float-icon-resume" viewBox="0 0 24 24" fill="none" style="display:none">
+          <path d="M8 5v14l11-7z" fill="currentColor"/>
+        </svg>
+        <span id="float-btn-label">일시정지</span>
+      </button>
+      <button class="float-stop-btn" onclick="stopTTS()">
+        <svg viewBox="0 0 24 24" fill="none">
+          <rect x="5" y="5" width="14" height="14" rx="3" fill="var(--text-muted)"/>
+        </svg>
+      </button>
+    </div>
+    <div class="float-progress">
+      <div class="float-progress-fill" id="float-fill"></div>
+    </div>
+  </div>
+</div>
+
+<div class="wrapper">
+  <!-- 아이콘 -->
+  <div class="header-icon-wrap">
+    <div class="header-icon-bg">
+      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- 달 -->
+        <path d="M38 10 Q28 14 26 26 Q24 38 34 44 Q22 44 16 34 Q10 22 18 14 Q26 6 38 10Z"
+              fill="currentColor" opacity="0.85"/>
+        <!-- 별 1 -->
+        <circle cx="46" cy="14" r="2" fill="currentColor" opacity="0.7"/>
+        <!-- 별 2 -->
+        <circle cx="52" cy="22" r="1.5" fill="currentColor" opacity="0.5"/>
+        <!-- 별 3 -->
+        <circle cx="44" cy="28" r="1.2" fill="currentColor" opacity="0.4"/>
+        <!-- ZZZ -->
+        <text x="36" y="42" font-size="10" fill="currentColor" opacity="0.6"
+              font-family="sans-serif" font-weight="bold">z</text>
+        <text x="42" y="36" font-size="12" fill="currentColor" opacity="0.5"
+              font-family="sans-serif" font-weight="bold">z</text>
+        <text x="49" y="28" font-size="14" fill="currentColor" opacity="0.4"
+              font-family="sans-serif" font-weight="bold">z</text>
+      </svg>
+    </div>
+  </div>
+
+  <div class="header">
+    <div class="header-eyebrow">수면 건강 · 불면증 관리 · 실용 가이드</div>
+    <h1 class="header-title"><span>수면 장애</span><br>완전 가이드</h1>
+    <div class="header-sub">
+      왜 잠 못 자는지, 어떻게 하면 다시 잘 잘 수 있는지<br>
+      수면제 없이 숙면하는 실용 지식
+    </div>
+  </div>
+
+  <div class="intro-box">
+    <strong>이 가이드는 무엇을 알려주는가?</strong>
+    노인의 절반 이상이 잠 문제를 겪습니다. 그런데 많은 분들이 수면제에 의존하다가 오히려 낙상, 기억력 저하, 의존성이라는 더 큰 문제를 만납니다. 왜 나이 들수록 잠이 줄어드는지, 낮잠이 왜 문제가 되는지, 어떤 생활 습관이 수면을 망치는지, 수면제 없이도 숙면할 수 있는 방법이 무엇인지 — 병원에서 다 가르쳐줄 수 없었던 지식을 담았습니다.
+  </div>
+
+  <!-- 전체 듣기 버튼 -->
+  <button id="btn-listen-all" onclick="toggleListenAll()">
+    <svg class="listen-all-icon" id="listen-all-icon-play" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
+      <path d="M10 8l6 4-6 4V8z" fill="currentColor"/>
+    </svg>
+    <svg class="listen-all-icon" id="listen-all-icon-pause" viewBox="0 0 24 24" fill="none" style="display:none">
+      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
+      <rect x="8" y="7" width="3" height="10" rx="1" fill="currentColor"/>
+      <rect x="13" y="7" width="3" height="10" rx="1" fill="currentColor"/>
+    </svg>
+    <svg class="listen-all-icon" id="listen-all-icon-resume" viewBox="0 0 24 24" fill="none" style="display:none">
+      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
+      <path d="M10 8l6 4-6 4V8z" fill="currentColor"/>
+    </svg>
+    <div class="listen-all-text-wrap">
+      <span id="listen-all-label">전체 듣기</span>
+      <span class="listen-all-sub" id="listen-all-sub">처음부터 끝까지 전체 재생</span>
+    </div>
+  </button>
+
+  <div class="section-label">수면 장애 — 7가지 핵심 지식</div>
+
+  <div id="chapterList"></div>
+
+  <div class="footer">
+    수면 장애 완전 가이드<br>
+    건강 정보 앱 · 전문 진료를 대체하지 않습니다
+  </div>
+</div>
+
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg viewBox="0 0 24 24" fill="none"><path d="M18 15l-6-6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+
+<script>
+const chapters = [
+  {
+    num: "01",
+    tag: "tag-blue",
+    tagText: "수면 변화",
+    title: "왜 나이 들면 잠이 줄어드는가 — 노화와 수면의 과학",
+    summary: "60대부터 수면 구조 자체가 바뀐다. 깊은 잠이 줄고 새벽에 일찍 깨는 것은 병이 아니라 자연스러운 변화다. 그러나 이것이 낮 활동에 지장을 주면 치료가 필요한 수면 장애다.",
+    detail: `노인의 수면 문제를 이해하려면 먼저 나이 들면서 수면이 어떻게 바뀌는지 알아야 합니다.
+
+<strong>수면 구조가 바뀝니다.</strong> 잠은 얕은 잠, 깊은 잠, 꿈 꾸는 잠(렘수면)이 90분 주기로 반복됩니다. 나이가 들면 이 중 가장 회복에 중요한 깊은 잠(서파수면)이 크게 줄어듭니다. 30대에는 전체 수면의 20% 정도였던 깊은 잠이 70대에는 5% 이하로 줄어듭니다. 이것이 자도 자도 피곤한 이유입니다.
+
+<strong>일주기리듬이 앞당겨집니다.</strong> 나이가 들면 생체 시계가 2~3시간 앞으로 당겨집니다. 저녁 8~9시에 졸리고, 새벽 4~5시에 깨는 것이 노인에게는 자연스러운 패턴입니다. 병이 아닙니다. 하지만 사회적 일정과 맞지 않아 불편함을 느끼게 됩니다.
+
+<strong>총 수면 시간이 줄어듭니다.</strong> 젊을 때 7~8시간 자던 것이 60대에는 6~7시간, 70대에는 5~6시간으로 자연스럽게 줄어듭니다. 억지로 8시간을 채우려 일찍 눕는 것이 오히려 불면증을 악화시킵니다.
+
+<strong>언제부터 치료가 필요한가.</strong> 잠이 줄어든 것 자체가 문제가 아닙니다. 낮에 졸려서 일상생활을 못 하거나, 집중력이 떨어지거나, 기분이 지속적으로 나쁘거나, 입면(잠드는 것)에 30분 이상 걸리는 날이 일주일에 3회 이상이고 3개월 이상 지속되면 치료가 필요한 만성 불면증입니다.
+
+<strong>불면증은 혼자 앓지 마세요.</strong> 노인 불면증은 우울증, 치매, 낙상, 심혈관 질환과 밀접하게 연결됩니다. 수면 문제를 나이 탓으로만 돌리지 말고 의사와 상담하는 것이 중요합니다.`,
+    quote: "나이 들면 잠이 줄어드는 것은 자연스럽습니다. 하지만 낮에 기능하지 못할 정도라면 치료를 받아야 합니다. 잠 못 자는 것을 그냥 참는 것이 가장 나쁜 선택입니다."
+  },
+  {
+    num: "02",
+    tag: "tag-red",
+    tagText: "수면 방해 요인",
+    title: "잠을 망치는 것들 — 모르고 하는 나쁜 수면 습관",
+    summary: "낮잠이 길수록 밤잠이 줄어든다. 저녁 음주가 수면의 질을 떨어뜨린다. 침대에 오래 누워 있는 것이 불면증을 고착시킨다. 이 세 가지만 바꿔도 수면이 달라진다.",
+    detail: `많은 분들이 잠을 잘 자려고 하는 행동이 오히려 수면을 망치고 있습니다.
+
+<strong>낮잠이 가장 큰 적입니다.</strong> 낮잠은 수면 욕구(수면 압력)를 소진시킵니다. 오후에 1시간 낮잠을 자면 밤에 1~2시간 덜 자게 됩니다. 낮잠이 필요하다면 오후 1~2시 사이, 20~30분 이내로 제한해야 합니다. 오후 3시 이후의 낮잠은 밤잠을 완전히 망칩니다.
+
+<strong>저녁 음주가 수면의 질을 떨어뜨립니다.</strong> 술을 마시면 빨리 잠들지만, 새벽에 자꾸 깨고 깊은 잠이 줄어듭니다. 알코올은 렘수면을 억제해서 자도 피곤한 상태를 만듭니다. "잠 잘 자려고" 마시는 반 잔의 술이 오히려 수면을 파괴합니다.
+
+<strong>침대에 오래 누워 있는 것이 불면증을 고착시킵니다.</strong> 잠이 안 와도 침대에 계속 누워 있으면 뇌가 침대를 "깨어있는 곳"으로 기억합니다. 누워서 TV 보기, 스마트폰 하기, 걱정하기가 반복되면 침대에 눕는 것 자체가 각성 신호가 됩니다.
+
+<strong>스마트폰과 TV의 청색광이 수면을 방해합니다.</strong> 청색광은 뇌에서 멜라토닌(수면 호르몬) 분비를 억제합니다. 잠자리 1~2시간 전부터는 스마트폰과 TV를 끄는 것이 좋습니다. 야간 모드로 설정해도 완전히 차단되지 않습니다.
+
+<strong>침실이 너무 따뜻하면 잠을 못 잡니다.</strong> 잠이 드는 과정에서 체온이 내려갑니다. 침실 온도가 높으면 체온이 내려가지 않아 잠들기 어렵습니다. 침실 온도는 18~20도가 가장 이상적입니다. 겨울에도 침실을 너무 따뜻하게 하지 않는 것이 좋습니다.
+
+<strong>카페인은 생각보다 오래 작용합니다.</strong> 카페인의 반감기는 5~7시간입니다. 오후 3시에 마신 커피가 밤 10시까지 각성 효과를 냅니다. 60세 이상은 카페인 대사가 더 느려지므로 오후 1시 이후에는 카페인을 피하는 것이 좋습니다.`,
+    quote: "잠이 안 온다고 침대에 더 오래 누워 있는 것은 불면증을 고치는 것이 아니라 키우는 것입니다. 침대는 잠자는 곳이어야 합니다. 그것이 수면 치료의 핵심입니다."
+  },
+  {
+    num: "03",
+    tag: "tag-gold",
+    tagText: "수면 위생",
+    title: "숙면을 부르는 수면 위생 — 오늘부터 바꿀 수 있는 10가지",
+    summary: "수면 위생이란 잠을 잘 자기 위한 생활 습관이다. 기상 시간 고정, 침실 환경, 취침 전 루틴 — 이 세 가지를 지키면 수면제 없이도 수면의 질이 크게 좋아진다.",
+    detail: `수면 위생은 수면제보다 훨씬 효과적이고 안전합니다. 특히 만성 불면증에는 수면 위생이 1차 치료법입니다.
+
+<strong>기상 시간을 매일 같은 시간에 고정합니다.</strong> 수면 위생에서 가장 중요한 단 하나를 고르면 이것입니다. 전날 밤에 잠을 못 잤어도, 주말이어도, 무조건 같은 시간에 일어납니다. 생체 시계를 고정시켜 밤에 자연스럽게 졸리게 만드는 가장 강력한 방법입니다.
+
+<strong>침대는 잠자는 것과 성생활에만 사용합니다.</strong> TV 보기, 스마트폰 하기, 독서, 걱정하기 — 이 모든 것을 침대에서 하지 않습니다. 잠이 오지 않으면 침대에서 나와 다른 공간에서 조용한 활동을 하다가 졸릴 때 다시 들어옵니다.
+
+<strong>취침 1시간 전 루틴을 만듭니다.</strong> 같은 행동을 매일 반복하면 뇌가 "이제 잘 시간"이라고 인식합니다. 따뜻한 물로 샤워하기, 따뜻한 허브티 마시기, 가벼운 스트레칭, 조명 낮추기 — 이 중 자신에게 맞는 것을 골라 매일 같은 순서로 합니다.
+
+<strong>침실을 어둡고 조용하고 시원하게 유지합니다.</strong> 암막 커튼으로 외부 빛을 차단합니다. 소음이 있으면 귀마개나 백색소음(빗소리, 선풍기 소리)을 활용합니다. 온도는 18~20도가 이상적입니다.
+
+<strong>잠자리에서 시계를 보지 않습니다.</strong> 밤중에 깨서 시계를 보면 "아직 4시간 남았다"는 생각이 각성을 일으킵니다. 시계를 침대에서 보이지 않는 곳에 둡니다.
+
+<strong>낮에 햇빛을 충분히 쬡니다.</strong> 오전 햇빛이 생체 시계를 리셋시키고 저녁에 멜라토닌 분비를 도웁니다. 매일 오전 30분 이상 야외 활동이나 밝은 빛 노출이 수면의 질을 크게 개선합니다.
+
+<strong>규칙적인 운동이 최고의 수면제입니다.</strong> 매일 30분 걷기만으로도 수면의 질이 크게 향상됩니다. 단, 취침 3시간 이내에 격렬한 운동은 피합니다.`,
+    quote: "수면 위생은 지루하게 들릴 수 있습니다. 하지만 임상 연구에서 수면 위생은 수면제보다 장기적으로 더 효과적이고 부작용이 없습니다. 가장 좋은 수면제는 규칙적인 생활입니다."
+  },
+  {
+    num: "04",
+    tag: "tag-blue",
+    tagText: "수면제 위험",
+    title: "수면제의 진실 — 단기 해결책이 장기 악몽이 되는 이유",
+    summary: "수면제는 노인에게 특히 위험하다. 낙상, 기억력 저하, 의존성, 치매 위험 증가 — 수면제를 장기 복용하면 잠보다 더 큰 것을 잃는다. 어떻게 줄이고 끊을 수 있는지 알아야 한다.",
+    detail: `수면제는 단기적으로 효과가 있지만 장기 복용하면 심각한 문제가 생깁니다. 특히 노인에게는 더욱 위험합니다.
+
+<strong>수면제가 노인에게 위험한 이유.</strong> 노인은 약물 대사가 느려 수면제 성분이 다음 날까지 남아있습니다. 이것이 낮 동안의 졸음, 어지럼증, 균형 장애를 일으켜 낙상 위험을 2~3배 높입니다. 수면제를 복용하는 노인의 낙상 및 골절 위험이 유의미하게 높다는 연구가 많습니다.
+
+<strong>기억력과 인지 기능을 저하시킵니다.</strong> 벤조디아제핀 계열 수면제(디아제팜, 로라제팜 등)를 장기 복용하면 기억력, 집중력, 반응 속도가 떨어집니다. 일부 연구에서는 장기 복용이 치매 위험을 높인다는 결과도 있습니다.
+
+<strong>의존성이 생깁니다.</strong> 수면제는 2~4주 이상 복용하면 신체 의존성이 생깁니다. 약 없이는 더 잠을 못 자는 반동성 불면증이 생기고, 약을 끊으면 오히려 더 심한 불면증이 옵니다. 이것이 "약을 끊을 수가 없다"는 느낌의 원인입니다.
+
+<strong>수면의 질을 오히려 떨어뜨립니다.</strong> 수면제는 잠드는 시간은 줄여주지만, 깊은 잠과 렘수면을 억제합니다. 자도 개운하지 않고 꿈이 줄어드는 것이 이 때문입니다.
+
+<strong>수면제를 줄이는 방법.</strong> 수면제는 절대 갑자기 끊으면 안 됩니다. 반드시 의사와 상담하여 2~4주에 걸쳐 서서히 줄여야 합니다. 동시에 수면 위생을 강화하고, 필요하다면 인지행동치료(CBT-I)를 받는 것이 가장 효과적인 방법입니다.
+
+<strong>멜라토닌은 상대적으로 안전합니다.</strong> 천연 수면 호르몬인 멜라토닌은 일주기리듬을 교정하는 데 도움이 되고 의존성이 없습니다. 특히 노인의 일주기리듬 교란에 효과적입니다. 용량은 0.5~3mg이 적절하고 취침 1~2시간 전에 복용합니다. 그러나 이것도 의사와 상담 후 사용하는 것이 좋습니다.`,
+    quote: "수면제를 오래 먹을수록 더 잘 자게 되는 것이 아닙니다. 오히려 수면제 없이는 못 자는 몸이 됩니다. 수면제는 응급 처방이지, 장기 해결책이 아닙니다."
+  },
+  {
+    num: "05",
+    tag: "tag-gold",
+    tagText: "수면 장애 종류",
+    title: "불면증만 수면 장애가 아니다 — 코골이, 하지불안증, 렘수면장애",
+    summary: "코골이는 단순 소음이 아니라 수면무호흡증일 수 있다. 다리가 쑤시고 움직이고 싶은 하지불안증, 자다가 소리 지르고 움직이는 렘수면장애 — 이것들도 치료가 필요한 수면 장애다.",
+    detail: `수면 장애는 잠을 못 자는 불면증만이 아닙니다. 자면서 생기는 다양한 문제들이 있습니다.
+
+<strong>수면무호흡증 — 가장 흔하고 위험한 수면 장애.</strong> 자는 동안 기도가 막혀 숨이 10초 이상 멈추는 것이 반복됩니다. 코를 심하게 골다가 갑자기 조용해지면 의심해야 합니다. 수면무호흡증은 고혈압, 심장병, 뇌졸중, 당뇨 위험을 높입니다. 자도 개운하지 않고, 낮에 심하게 졸리고, 두통이 있으면 수면 클리닉을 방문해야 합니다. 양압기(CPAP) 치료가 매우 효과적입니다.
+
+<strong>하지불안증후군 — 다리를 움직이지 않으면 못 배기는 병.</strong> 저녁이나 밤에 다리가 불편하고 쑤시고 간지러워서 가만히 있지 못하고 움직이고 싶은 충동이 생깁니다. 움직이면 일시적으로 나아집니다. 노인의 10~15%에서 나타나며 수면 방해의 주요 원인입니다. 철분 결핍과 관련이 있을 수 있고, 약물 치료가 효과적입니다.
+
+<strong>렘수면행동장애 — 꿈을 행동으로 옮기는 병.</strong> 자다가 큰 소리로 말하거나 소리 지르고, 팔다리를 심하게 움직이거나, 침대에서 떨어지는 것이 특징입니다. 꿈속에서 싸우거나 도망치는 행동을 실제로 하는 것입니다. 파킨슨병이나 루이소체치매의 초기 증상일 수 있어 반드시 전문의 진찰이 필요합니다.
+
+<strong>주기성 사지운동장애 — 자는 동안 다리가 규칙적으로 움직이는 병.</strong> 자는 동안 다리가 20~40초 간격으로 규칙적으로 움직입니다. 본인은 모르지만 함께 자는 배우자가 먼저 발견하는 경우가 많습니다. 수면의 질을 크게 떨어뜨립니다.
+
+<strong>이런 증상이 있으면 수면 클리닉을 찾아야 합니다.</strong> 심한 코골이, 자다가 숨이 막힘, 낮의 극심한 졸음, 자다가 소리 지르거나 몸을 심하게 움직임, 다리 불편감으로 잠을 못 잠 — 이 중 하나라도 해당되면 단순 불면증이 아닐 수 있습니다.`,
+    quote: "코골이를 단순히 '원래 그런 사람'이라고 넘기지 마세요. 수면무호흡증은 자는 동안 뇌와 심장에 산소가 부족해지는 응급 상황이 반복되는 것입니다. 치료하면 삶이 완전히 달라집니다."
+  },
+  {
+    num: "06",
+    tag: "tag-green",
+    tagText: "수면 개선 운동",
+    title: "잠을 부르는 몸 만들기 — 수면에 특히 좋은 활동들",
+    summary: "햇빛 걷기, 스트레칭, 복식호흡은 수면의 질을 과학적으로 개선한다. 특히 취침 전 4-7-8 호흡법은 교감신경을 가라앉혀 10분 안에 잠들게 돕는다.",
+    detail: `운동과 이완 활동이 수면에 미치는 효과는 많은 연구로 입증되어 있습니다.
+
+<strong>오전 햇빛 걷기가 가장 효과적입니다.</strong> 오전 30분 걷기를 하면 두 가지 효과가 동시에 납니다. 첫째, 운동 자체가 밤의 수면 욕구를 높입니다. 둘째, 햇빛이 생체 시계를 리셋시켜 저녁에 멜라토닌이 제때 분비되게 합니다. 특히 기상 후 1시간 이내에 햇빛을 보는 것이 가장 효과적입니다.
+
+<strong>취침 전 온욕이나 반신욕.</strong> 잠자기 1~2시간 전에 따뜻한 목욕이나 반신욕을 하면 체온이 올라갔다가 내려가면서 수면 신호를 만듭니다. 15~20분이 적당합니다. 너무 뜨거운 물은 오히려 각성을 일으키니 주의합니다.
+
+<strong>4-7-8 호흡법 — 자기 전 긴장을 푸는 방법.</strong> 코로 4초 들이마시고, 7초 숨을 참고, 입으로 8초 내쉽니다. 이 호흡을 4~8회 반복합니다. 부교감신경을 활성화시켜 심박수를 낮추고 긴장을 풀어줍니다. 연습이 필요하지만 꾸준히 하면 10분 안에 잠드는 데 도움이 됩니다.
+
+<strong>취침 전 스트레칭.</strong> 자기 30분 전에 가볍게 몸을 풀어주는 스트레칭을 합니다. 목, 어깨, 허리를 부드럽게 풀어주면 몸의 긴장이 빠지고 잠들기 쉬워집니다. 격렬하지 않게 천천히 합니다.
+
+<strong>걱정 일기 쓰기.</strong> 자기 전에 내일 해야 할 일과 걱정거리를 종이에 적습니다. 뇌가 더 이상 그것을 기억하려 하지 않아도 되므로 잠자리에서 생각이 줄어듭니다. 5분이면 충분합니다.
+
+<strong>피해야 할 것.</strong> 취침 3시간 이내에 격렬한 운동은 오히려 각성을 높입니다. 배가 너무 고프거나 너무 배부른 상태도 수면을 방해합니다. 잠자리에서 걱정하거나 다음 날 계획을 세우는 것도 피합니다.`,
+    quote: "잠은 노력해서 자는 것이 아닙니다. 잠이 오는 환경을 만들어주는 것입니다. 오전에 햇빛을 보고, 낮에 움직이고, 밤에 조용히 이완하면 잠은 자연스럽게 옵니다."
+  },
+  {
+    num: "07",
+    tag: "tag-cream",
+    tagText: "수면과 질병",
+    title: "수면이 건강을 결정한다 — 잘 자면 모든 것이 좋아진다",
+    summary: "수면 부족은 치매, 당뇨, 고혈압, 우울증, 면역력 저하와 직결된다. 반대로 잘 자면 기억이 정리되고, 혈압이 내려가고, 기분이 나아진다. 수면은 최고의 보약이다.",
+    detail: `수면이 단순히 피로 회복이 아니라 건강 전체에 얼마나 중요한지 알면 수면을 소홀히 할 수 없습니다.
+
+<strong>수면과 치매.</strong> 자는 동안 뇌는 알츠하이머 치매와 관련된 독성 단백질(베타아밀로이드)을 청소합니다. 수면 부족이 지속되면 이 청소 기능이 떨어져 치매 위험이 높아진다는 연구가 늘고 있습니다. 7시간 미만의 수면이 지속되면 치매 위험이 높아진다는 연구가 여럿 있습니다.
+
+<strong>수면과 혈압·심장.</strong> 자는 동안 혈압은 자연스럽게 낮아지며 심장이 쉽니다. 수면이 부족하거나 수면무호흡증이 있으면 이 회복 시간이 사라집니다. 수면 6시간 미만이 지속되면 고혈압, 심장병, 뇌졸중 위험이 높아집니다.
+
+<strong>수면과 혈당·체중.</strong> 수면 부족은 인슐린 저항성을 높여 혈당 조절을 어렵게 합니다. 또 식욕을 높이는 그렐린 호르몬이 증가해 과식하게 됩니다. 당뇨 환자가 잠을 잘 자면 혈당 조절이 눈에 띄게 개선됩니다.
+
+<strong>수면과 기억·인지.</strong> 낮에 배운 것들은 자는 동안 정리되고 장기 기억으로 저장됩니다. 잠을 못 자면 집중력, 판단력, 기억력이 모두 떨어집니다. 중요한 일이 있는 날일수록 잠을 잘 자야 합니다.
+
+<strong>수면과 면역.</strong> 자는 동안 면역세포가 활발하게 활동합니다. 수면이 부족하면 감염에 더 잘 걸리고 회복도 더딥니다. 독감 예방주사의 효과도 수면을 잘 자야 더 높아집니다.
+
+<strong>수면과 기분·우울증.</strong> 불면증과 우울증은 서로를 악화시키는 악순환 관계입니다. 불면증이 오래되면 우울증이 생기고, 우울증이 있으면 잠을 못 잡니다. 수면을 치료하는 것이 우울증 치료의 일부이기도 합니다.`,
+    quote: "잠은 게으름이 아닙니다. 잠자는 동안 뇌가 청소하고, 심장이 쉬고, 면역이 일하고, 기억이 정리됩니다. 잘 자는 것이 가장 비용 없는 최고의 건강 투자입니다."
+  }
+];
+
+const list = document.getElementById('chapterList');
+
+// ── TTS 상태 변수 ──
+let currentTTS = null;
+let isPaused = false;
+let sentences = [];
+let currentSentenceIdx = 0;
+let ttsInterval = null;
+let isListenAll = false;
+
+function renderCards() {
+  list.innerHTML = '';
+  chapters.forEach((ch, i) => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <div class="card-header" onclick="toggleCard(${i})">
+        <div class="card-header-main">
+          <div class="card-num">${ch.num}</div>
+          <div class="card-header-text">
+            <span class="card-tag ${ch.tag}">${ch.tagText}</span>
+            <div class="card-title">${ch.title}</div>
+            <div class="card-summary">${ch.summary}</div>
+          </div>
+        </div>
+        <div class="toggle-icon-wrap">
+          <div class="toggle-icon">
+            <svg viewBox="0 0 14 14" fill="none">
+              <path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="toggle-label-open">펼쳐보기</span>
+            <span class="toggle-label-close">접기</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-detail">
+        <div class="detail-inner">
+          <div class="tts-bar">
+            <button class="btn-tts" id="tts-${i}" onclick="toggleTTS(${i}, event)">
+              <svg class="play-icon" viewBox="0 0 24 24" fill="none">
+                <path d="M3 9v6h4l5 5V4L7 9H3z" fill="currentColor"/>
+                <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z" fill="currentColor"/>
+                <path d="M14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77 0-4.28-2.99-7.86-7-8.77z" fill="currentColor"/>
+              </svg>
+              <svg class="stop-icon" viewBox="0 0 24 24" fill="none">
+                <rect x="6" y="6" width="12" height="12" rx="2" fill="currentColor"/>
+              </svg>
+              <span class="play-icon">자세히 듣기</span>
+              <span class="stop-icon">듣기 중지</span>
+            </button>
+          </div>
+          <div class="tts-progress" id="prog-${i}">
+            <div class="tts-progress-fill" id="progfill-${i}"></div>
+          </div>
+          <div class="detail-label">상세 내용</div>
+          <div class="detail-text">${ch.detail.replace(/\n\n/g, '</p><p>').replace(/^/, '<p>').replace(/$/, '</p>')}</div>
+          <div class="detail-quote">${ch.quote}</div>
+        </div>
+      </div>
+    `;
+    list.appendChild(card);
+  });
+}
+
+renderCards();
+
+function toggleCard(i) {
+  const cards = document.querySelectorAll('.card');
+  const card = cards[i];
+  const isActive = card.classList.contains('active');
+  if (isActive) stopTTS();
+  card.classList.toggle('active');
+  if (!isActive) {
+    setTimeout(() => {
+      const ttsBtn = document.getElementById('tts-' + i);
+      if (!ttsBtn) return;
+      const btnRect = ttsBtn.getBoundingClientRect();
+      const viewH = window.innerHeight;
+      if (btnRect.bottom > viewH - 20) {
+        window.scrollBy({ top: btnRect.bottom - viewH + 60, behavior: 'smooth' });
+      }
+    }, 320);
+  }
+}
+
+function buildTTSText(i) {
+  const ch = chapters[i];
+  const detail = ch.detail.replace(/<[^>]+>/g, '');
+  return `${ch.title}. ${detail} ${ch.quote}`;
+}
+
+// ── 문장 분리 ──
+function splitSentences(text) {
+  return text.split(/(?<=[.!?。！？다요까죠네군]\s)/).map(s => s.trim()).filter(Boolean);
+}
+
+// ── 플로팅 바 업데이트 ──
+function updateFloatBar(show, title, pct, paused) {
+  const bar = document.getElementById('float-bar');
+  if (!show) { bar.classList.remove('visible'); return; }
+  bar.classList.add('visible');
+  document.getElementById('float-fill').style.width = (pct || 0) + '%';
+  const toggleBtn  = document.getElementById('float-toggle-btn');
+  const iconPause  = document.getElementById('float-icon-pause');
+  const iconResume = document.getElementById('float-icon-resume');
+  const label      = document.getElementById('float-btn-label');
+  if (paused) {
+    toggleBtn.classList.add('paused');
+    iconPause.style.display  = 'none';
+    iconResume.style.display = 'block';
+    label.textContent = '이어듣기';
+  } else {
+    toggleBtn.classList.remove('paused');
+    iconPause.style.display  = 'block';
+    iconResume.style.display = 'none';
+    label.textContent = '일시정지';
+  }
+}
+
+// ── 문장 하나씩 재생 (재귀) ──
+function speakSentence(idx) {
+  if (idx >= sentences.length) {
+    const fill = currentTTS !== null && currentTTS !== -1 ? document.getElementById('progfill-' + currentTTS) : null;
+    if (fill) fill.style.width = '100%';
+    document.getElementById('float-fill').style.width = '100%';
+    setTimeout(stopTTS, 500);
+    return;
+  }
+  const utter = new SpeechSynthesisUtterance(sentences[idx]);
+  utter.lang  = 'ko-KR';
+  utter.rate  = 0.92;
+  utter.pitch = 1.0;
+  const voices  = window.speechSynthesis.getVoices();
+  const koVoice = voices.find(v => v.lang.startsWith('ko'));
+  if (koVoice) utter.voice = koVoice;
+  utter.onstart = () => {
+    currentSentenceIdx = idx;
+    const pct = Math.round((idx / sentences.length) * 100);
+    if (currentTTS !== null && currentTTS !== -1) {
+      const fill = document.getElementById('progfill-' + currentTTS);
+      if (fill) fill.style.width = pct + '%';
+    }
+    document.getElementById('float-fill').style.width = pct + '%';
+    const chTitle = currentTTS !== null && currentTTS !== -1 ? chapters[currentTTS]?.title : null;
+    updateFloatBar(true, chTitle, pct, false);
+  };
+  utter.onend = () => {
+    if (isPaused) return;
+    speakSentence(idx + 1);
+  };
+  utter.onerror = (e) => {
+    if (e.error === 'interrupted' || e.error === 'canceled') return;
+    stopTTS();
+  };
+  window.speechSynthesis.speak(utter);
+}
+
+// ── 플로팅 바 일시정지/이어듣기 ──
+function floatTogglePause() {
+  if (currentTTS === null) return;
+  if (!isPaused) {
+    isPaused = true;
+    window.speechSynthesis.cancel();
+    if (currentTTS !== -1) {
+      const btn = document.getElementById('tts-' + currentTTS);
+      if (btn) btn.classList.remove('playing');
+    }
+    const pct = Math.round((currentSentenceIdx / sentences.length) * 100);
+    updateFloatBar(true, null, pct, true);
+    if (isListenAll) updateListenAllBtn('paused');
+  } else {
+    isPaused = false;
+    if (currentTTS !== -1) {
+      const btn = document.getElementById('tts-' + currentTTS);
+      if (btn) btn.classList.add('playing');
+    }
+    const pct = Math.round((currentSentenceIdx / sentences.length) * 100);
+    updateFloatBar(true, null, pct, false);
+    if (isListenAll) updateListenAllBtn('playing');
+    speakSentence(currentSentenceIdx);
+  }
+}
+
+// ── 전체듣기 버튼 상태 업데이트 ──
+function updateListenAllBtn(state) {
+  const btn        = document.getElementById('btn-listen-all');
+  const iconPlay   = document.getElementById('listen-all-icon-play');
+  const iconPause  = document.getElementById('listen-all-icon-pause');
+  const iconResume = document.getElementById('listen-all-icon-resume');
+  const label      = document.getElementById('listen-all-label');
+  const sub        = document.getElementById('listen-all-sub');
+  btn.classList.remove('playing', 'paused-all');
+  iconPlay.style.display = iconPause.style.display = iconResume.style.display = 'none';
+  if (state === 'playing') {
+    btn.classList.add('playing');
+    iconPause.style.display = 'block';
+    label.textContent = '일시정지';
+    sub.textContent   = '재생 중 — 탭하면 일시정지';
+  } else if (state === 'paused') {
+    btn.classList.add('paused-all');
+    iconResume.style.display = 'block';
+    label.textContent = '이어듣기';
+    sub.textContent   = '일시정지됨 — 탭하면 이어듣기';
+  } else {
+    iconPlay.style.display = 'block';
+    label.textContent = '전체 듣기';
+    sub.textContent   = '처음부터 끝까지 전체 재생';
+  }
+}
+
+// ── 완전 정지 ──
+function stopTTS() {
+  if (window.speechSynthesis) window.speechSynthesis.cancel();
+  if (ttsInterval) { clearInterval(ttsInterval); ttsInterval = null; }
+  document.querySelectorAll('.btn-tts').forEach(b => b.classList.remove('playing'));
+  document.querySelectorAll('.tts-progress').forEach(p => p.classList.remove('visible'));
+  document.querySelectorAll('.tts-progress-fill').forEach(f => f.style.width = '0%');
+  updateFloatBar(false);
+  currentTTS = null;
+  isPaused = false;
+  sentences = [];
+  currentSentenceIdx = 0;
+  isListenAll = false;
+  updateListenAllBtn('idle');
+}
+
+// ── 자세히 듣기 버튼 ──
+function toggleTTS(i, e) {
+  e.stopPropagation();
+  if (!window.speechSynthesis) {
+    const banner = document.getElementById('tts-banner');
+    if (banner) { banner.style.display = 'block'; setTimeout(() => banner.style.display = 'none', 4000); }
+    return;
+  }
+  if (currentTTS === i) { stopTTS(); return; }
+  stopTTS();
+  setTimeout(() => {
+    const bar = document.getElementById('prog-' + i);
+    if (!bar) return;
+    const barRect = bar.getBoundingClientRect();
+    if (barRect.top > window.innerHeight * 0.5) {
+      window.scrollBy({ top: 160, behavior: 'smooth' });
+    }
+  }, 80);
+  const text = buildTTSText(i);
+  sentences = splitSentences(text);
+  currentSentenceIdx = 0;
+  currentTTS = i;
+  isPaused = false;
+  const prog = document.getElementById('prog-' + i);
+  const btn  = document.getElementById('tts-' + i);
+  prog.classList.add('visible');
+  btn.classList.add('playing');
+  updateFloatBar(true, chapters[i].title, 0, false);
+  speakSentence(0);
+}
+
+// ── 전체 듣기 ──
+function toggleListenAll() {
+  if (!window.speechSynthesis) {
+    const banner = document.getElementById('tts-banner');
+    if (banner) { banner.style.display = 'block'; setTimeout(() => banner.style.display = 'none', 4000); }
+    return;
+  }
+  if (isListenAll && currentTTS === -1) {
+    floatTogglePause();
+    updateListenAllBtn(isPaused ? 'paused' : 'playing');
+    return;
+  }
+  stopTTS();
+  isListenAll = true;
+  currentTTS = -1;
+  const allText = chapters.map((ch, i) => buildTTSText(i)).join(' ');
+  sentences = splitSentences(allText);
+  currentSentenceIdx = 0;
+  isPaused = false;
+  updateListenAllBtn('playing');
+  updateFloatBar(true, null, 0, false);
+  speakSentence(0);
+}
+
+window.speechSynthesis && window.speechSynthesis.addEventListener
+  && window.speechSynthesis.addEventListener('voiceschanged', () => {});
+
+// 카카오톡 인앱브라우저 감지 → 크롬으로 강제 이동
+(function() {
+  const ua = navigator.userAgent.toLowerCase();
+  const isInApp = ua.includes('kakaotalk') || ua.includes('naver') ||
+                  ua.includes('instagram') || ua.includes('fbios') || ua.includes('fban');
+  if (isInApp) {
+    const currentUrl = location.href;
+    if (ua.includes('android')) {
+      location.href = 'intent://' + currentUrl.replace(/https?:\/\//, '') +
+        '#Intent;scheme=https;package=com.android.chrome;end';
+    } else if (ua.includes('iphone') || ua.includes('ipad')) {
+      location.href = currentUrl.replace('https://', 'googlechrome://');
+      setTimeout(() => {
+        alert('크롬 앱이 없으면 사파리 주소창에\n' + currentUrl + '\n을 직접 입력해주세요.');
+      }, 1500);
+    }
+  }
+})();
+
+window.addEventListener('scroll', () => {
+  const btn = document.getElementById('scrollTop');
+  btn.classList.toggle('visible', window.scrollY > 400);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>만성 피로·활력 저하 가이드</title>
+<meta property="og:title" content="만성 피로·활력 저하 가이드">
+<meta property="og:description" content="만성 피로 — 원인 감별부터 수면, 영양, 운동, 스트레스 관리까지 실용 지식">
+<meta property="og:locale" content="ko_KR">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="만성 피로 가이드">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#0e161e">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700;900&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0e161e;--surface:#121e2a;--surface2:#192736;--border:#2a4060;--blue:#4a7fa8;--blue-light:#80b4d8;--blue-dim:#1e4060;--gold:#c9a84c;--gold-light:#e8c870;--red:#7a3a50;--cream:#f0ece0;--text:#e0ecf4;--text-muted:#7aaac8;--text-dim:#3a6080;--serif:'Noto Serif KR',serif;--sans:'Noto Sans KR',sans-serif;--fs:26px;--fs-sm:24px;--fs-xs:20px;--fs-lg:30px}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{background:var(--bg);color:var(--text);font-family:var(--serif);font-size:var(--fs);line-height:1.85;min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 15% 20%,rgba(74,127,168,.08) 0%,transparent 60%),radial-gradient(ellipse at 85% 80%,rgba(201,168,76,.05) 0%,transparent 60%);pointer-events:none;z-index:0}
+.wrapper{max-width:720px;margin:0 auto;padding:0 8px 60px;position:relative;z-index:1}
+.header-icon-wrap{display:flex;justify-content:center;padding:40px 24px 0}
+.header-icon-bg{width:120px;height:120px;border-radius:32px;background:linear-gradient(135deg,var(--blue-dim) 0%,#0e2030 100%);border:2px solid var(--blue);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 32px rgba(74,127,168,.25),0 2px 8px rgba(0,0,0,.4)}
+.header-icon-bg svg{width:64px;height:64px;color:var(--blue-light)}
+.header{padding:32px 12px 36px;border-bottom:1px solid var(--border);margin-bottom:24px;text-align:center;position:relative}
+.header::after{content:'';display:block;width:60px;height:2px;background:linear-gradient(90deg,transparent,var(--blue),transparent);margin:20px auto 0}
+.header-eyebrow{font-family:var(--sans);font-size:var(--fs-xs);letter-spacing:5px;color:var(--blue-light);text-transform:uppercase;margin-bottom:14px;font-weight:500}
+.header-title{font-size:clamp(28px,7vw,48px);font-weight:900;line-height:1.25;color:var(--cream);letter-spacing:-.5px;margin-bottom:12px}
+.header-title span{color:var(--blue-light)}
+.header-sub{font-family:var(--sans);font-size:var(--fs-sm);color:var(--text-muted);line-height:1.9}
+.intro-box{background:var(--surface);border-left:3px solid var(--blue);padding:20px 22px;margin-bottom:24px;border-radius:0 8px 8px 0;font-family:var(--sans);font-size:var(--fs-sm);color:var(--text-muted);line-height:1.9}
+.intro-box strong{color:var(--blue-light);display:block;margin-bottom:6px;font-size:var(--fs);font-weight:700}
+#btn-listen-all{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;background:linear-gradient(135deg,var(--blue-dim) 0%,#0e1e30 100%);border:1.5px solid var(--blue);border-radius:14px;padding:20px 24px;cursor:pointer;color:var(--cream);font-family:var(--sans);font-size:22px;font-weight:700;letter-spacing:1px;margin-bottom:24px;transition:all .25s;-webkit-appearance:none;box-shadow:0 4px 20px rgba(74,127,168,.2);position:relative;overflow:hidden}
+#btn-listen-all::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(128,180,216,.08) 0%,transparent 60%);pointer-events:none}
+#btn-listen-all:active{transform:scale(.98)}
+#btn-listen-all.playing{background:linear-gradient(135deg,#0e1e30 0%,var(--blue-dim) 100%);border-color:var(--blue-light);box-shadow:0 4px 28px rgba(74,127,168,.35)}
+#btn-listen-all.paused-all{background:linear-gradient(135deg,rgba(201,168,76,.15) 0%,#2a2010 100%);border-color:var(--gold);color:var(--gold-light);box-shadow:0 4px 20px rgba(201,168,76,.15)}
+.listen-all-icon{width:26px;height:26px;flex-shrink:0}
+.listen-all-sub{display:block;font-size:14px;font-weight:400;color:var(--blue-light);letter-spacing:0;margin-top:3px;opacity:.85}
+#btn-listen-all.paused-all .listen-all-sub{color:var(--gold)}
+.listen-all-text-wrap{display:flex;flex-direction:column;align-items:flex-start}
+#tts-banner{display:none;background:var(--red);color:var(--cream);padding:12px 18px;border-radius:8px;font-family:var(--sans);font-size:var(--fs-sm);margin-bottom:18px;text-align:center}
+.section-label{display:flex;align-items:center;gap:12px;margin:8px 0 16px;font-family:var(--sans);font-size:var(--fs-xs);letter-spacing:3px;text-transform:uppercase;color:var(--text-dim)}
+.section-label::before,.section-label::after{content:'';flex:1;height:1px;background:var(--border)}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:12px;transition:border-color .2s,box-shadow .2s}
+.card.active{border-color:var(--blue-dim);box-shadow:0 4px 24px rgba(74,127,168,.15)}
+.card-header{padding:20px 16px 0;cursor:pointer;user-select:none;display:flex;flex-direction:column}
+.card-header-main{display:flex;gap:12px;align-items:flex-start;margin-bottom:16px}
+.card-num{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:3px;color:var(--blue-light);text-transform:uppercase;margin-top:4px;flex-shrink:0;min-width:36px}
+.card-header-text{flex:1}
+.card-tag{display:inline-block;font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;margin-bottom:8px;border-radius:3px;color:var(--bg)}
+.tag-blue{background:var(--blue-light)}.tag-gold{background:var(--gold)}.tag-red{background:#c06080;color:white}.tag-cream{background:var(--cream)}.tag-green{background:#70c090}
+.card-title{font-size:var(--fs-lg);font-weight:700;line-height:1.35;color:var(--cream);margin-bottom:8px}
+.card-summary{font-family:var(--sans);font-size:var(--fs-sm);color:var(--blue-light);line-height:1.8;font-weight:500}
+.toggle-icon-wrap{display:flex;justify-content:center;padding:10px 0 18px;border-top:1px solid var(--border);margin-top:4px}
+.toggle-icon{display:flex;align-items:center;gap:8px;background:var(--surface2);border:2px solid var(--blue-dim);border-radius:30px;padding:10px 22px;color:var(--blue-light);font-family:var(--sans);font-size:22px}
+.toggle-icon svg{width:20px;height:20px;flex-shrink:0;transition:transform .25s}
+.toggle-label-open{display:inline}.toggle-label-close{display:none}
+.card.active .toggle-icon{background:var(--blue-dim);border-color:var(--blue);color:var(--cream)}
+.card.active .toggle-icon svg{transform:rotate(180deg)}
+.card.active .toggle-label-open{display:none}.card.active .toggle-label-close{display:inline}
+.card-detail{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.4,0,.2,1)}
+.card.active .card-detail{max-height:4000px}
+.detail-inner{border-top:1px solid var(--border);padding:20px 16px 24px}
+.tts-bar{margin-bottom:14px}
+.btn-tts{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:14px 24px;cursor:pointer;color:var(--text-muted);font-family:var(--sans);font-size:24px}
+.btn-tts:hover{border-color:var(--blue-dim);color:var(--blue-light)}
+.btn-tts.playing{background:var(--blue-dim);border-color:var(--blue);color:var(--cream)}
+.btn-tts svg{width:24px;height:24px;flex-shrink:0}
+.btn-tts.playing .play-icon{display:none}.btn-tts:not(.playing) .stop-icon{display:none}
+.tts-progress{height:3px;background:var(--border);border-radius:2px;margin-top:10px;overflow:hidden;opacity:0;transition:opacity .3s}
+.tts-progress.visible{opacity:1}
+.tts-progress-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--blue),var(--blue-light));border-radius:2px;transition:width .3s linear}
+.detail-label{font-family:var(--sans);font-size:var(--fs-xs);letter-spacing:3px;text-transform:uppercase;color:var(--text-dim);margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.detail-text{font-family:var(--sans);font-size:var(--fs-sm);line-height:1.95;color:var(--text);margin-bottom:20px}
+.detail-text p{margin-bottom:16px}.detail-text p:last-child{margin-bottom:0}
+.detail-text strong{color:var(--cream);font-weight:700}
+.detail-quote{background:var(--surface2);border-left:3px solid var(--gold);padding:16px 20px;font-family:var(--sans);font-size:var(--fs-sm);color:var(--gold-light);line-height:1.9;border-radius:0 8px 8px 0;font-style:italic}
+.footer{text-align:center;font-family:var(--sans);font-size:18px;color:var(--text-dim);padding:32px 0 0;line-height:1.8}
+#scrollTop{position:fixed;bottom:28px;right:20px;width:44px;height:44px;background:var(--surface);border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text-muted);opacity:0;pointer-events:none;transition:opacity .3s;z-index:100}
+#scrollTop.visible{opacity:1;pointer-events:auto}
+#scrollTop svg{width:18px;height:18px}
+@media(max-width:520px){.card-header{padding:16px 12px 0}.detail-inner{padding:16px 12px 20px}}
+#float-bar{display:none;position:fixed;bottom:16px;left:50%;transform:translateX(-50%);z-index:200;width:calc(100% - 32px);max-width:680px}
+#float-bar.visible{display:block}
+.float-inner{background:var(--surface);border:1.5px solid var(--blue);border-radius:16px;padding:12px 16px 14px;box-shadow:0 8px 32px rgba(0,0,0,.5)}
+.float-top{display:flex;align-items:center;gap:10px}
+#float-toggle-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:10px;background:var(--blue-dim);border:1.5px solid var(--blue);border-radius:10px;padding:12px 18px;cursor:pointer;color:var(--cream);font-family:var(--sans);font-size:22px;font-weight:700;letter-spacing:1px;transition:all .2s;-webkit-appearance:none}
+#float-toggle-btn.paused{background:rgba(201,168,76,.15);border-color:var(--gold);color:var(--gold-light)}
+#float-toggle-btn svg{width:22px;height:22px;flex-shrink:0}
+.float-stop-btn{flex-shrink:0;background:var(--surface2);border:1.5px solid var(--border);border-radius:10px;cursor:pointer;padding:12px 14px;display:flex;align-items:center;justify-content:center;transition:all .2s;-webkit-appearance:none}
+.float-stop-btn svg{width:22px;height:22px}
+.float-progress{width:100%;height:4px;background:var(--border);border-radius:2px;overflow:hidden;margin-top:10px}
+.float-progress-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--blue),var(--blue-light));border-radius:2px;transition:width .3s linear}
+</style>
+</head>
+<body>
+<div id="tts-banner">이 브라우저는 음성 읽기를 지원하지 않습니다.</div>
+
+<div id="float-bar">
+  <div class="float-inner">
+    <div class="float-top">
+      <button id="float-toggle-btn" onclick="floatTogglePause()">
+        <svg id="float-icon-pause" viewBox="0 0 24 24" fill="none"><rect x="6" y="4" width="4" height="16" rx="1" fill="currentColor"/><rect x="14" y="4" width="4" height="16" rx="1" fill="currentColor"/></svg>
+        <svg id="float-icon-resume" viewBox="0 0 24 24" fill="none" style="display:none"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+        <span id="float-btn-label">일시정지</span>
+      </button>
+      <button class="float-stop-btn" onclick="stopTTS()">
+        <svg viewBox="0 0 24 24" fill="none"><rect x="5" y="5" width="14" height="14" rx="3" fill="var(--text-muted)"/></svg>
+      </button>
+    </div>
+    <div class="float-progress"><div class="float-progress-fill" id="float-fill"></div></div>
+  </div>
+</div>
+
+<div class="wrapper">
+  <div class="header-icon-wrap">
+    <div class="header-icon-bg">
+      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- 배터리 낮음 아이콘 -->
+        <rect x="10" y="20" width="40" height="24" rx="4" stroke="currentColor" stroke-width="2.2" fill="none" opacity="0.85"/>
+        <rect x="50" y="27" width="4" height="10" rx="2" fill="currentColor" opacity="0.6"/>
+        <!-- 배터리 잔량 (낮음) -->
+        <rect x="13" y="23" width="8" height="18" rx="2" fill="currentColor" opacity="0.75"/>
+        <!-- 번개 (에너지 부족) -->
+        <path d="M36 18 L28 34 L34 34 L26 50 L42 30 L36 30 Z" fill="currentColor" opacity="0.5"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="header">
+    <div class="header-eyebrow">에너지 관리 · 만성 피로 · 실용 가이드</div>
+    <h1 class="header-title"><span>만성 피로·활력 저하</span><br>완전 가이드</h1>
+    <div class="header-sub">
+      피곤한 이유부터 수면·영양·운동·스트레스 관리까지<br>
+      활력을 되찾는 생활 습관 지식
+    </div>
+  </div>
+
+  <div class="intro-box">
+    <strong>이 가이드는 무엇을 알려주는가?</strong>
+    "늘 피곤하다", "잠을 자도 개운하지 않다", "예전만큼 기운이 없다" — 이런 증상이 6개월 이상 지속된다면 단순한 나이 탓이 아닐 수 있습니다. 만성 피로의 원인은 매우 다양합니다. 갑상선 기능 저하, 빈혈, 수면 무호흡증, 우울증, 영양 결핍이 원인일 수도 있습니다. 피로의 원인을 찾고, 수면·영양·운동·스트레스 관리로 활력을 되찾는 방법을 담았습니다.
+  </div>
+
+  <button id="btn-listen-all" onclick="toggleListenAll()">
+    <svg class="listen-all-icon" id="listen-all-icon-play" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
+      <path d="M10 8l6 4-6 4V8z" fill="currentColor"/>
+    </svg>
+    <svg class="listen-all-icon" id="listen-all-icon-pause" viewBox="0 0 24 24" fill="none" style="display:none">
+      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
+      <rect x="8" y="7" width="3" height="10" rx="1" fill="currentColor"/>
+      <rect x="13" y="7" width="3" height="10" rx="1" fill="currentColor"/>
+    </svg>
+    <svg class="listen-all-icon" id="listen-all-icon-resume" viewBox="0 0 24 24" fill="none" style="display:none">
+      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
+      <path d="M10 8l6 4-6 4V8z" fill="currentColor"/>
+    </svg>
+    <div class="listen-all-text-wrap">
+      <span id="listen-all-label">전체 듣기</span>
+      <span class="listen-all-sub" id="listen-all-sub">처음부터 끝까지 전체 재생</span>
+    </div>
+  </button>
+
+  <div class="section-label">만성 피로 해결 — 7가지 핵심 지식</div>
+  <div id="chapterList"></div>
+
+  <div class="footer">만성 피로·활력 저하 완전 가이드<br>건강 정보 앱 · 전문 진료를 대체하지 않습니다</div>
+</div>
+
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg viewBox="0 0 24 24" fill="none"><path d="M18 15l-6-6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+
+<script>
+const chapters = [
+  {
+    num:"01", tag:"tag-red", tagText:"원인 감별",
+    title:"피곤한 진짜 이유 — 병원 검사가 필요한 만성 피로",
+    summary:"6개월 이상 지속되는 피로는 단순 과로가 아닐 수 있다. 갑상선 기능 저하, 빈혈, 수면 무호흡증, 당뇨, 우울증이 숨어 있는 경우가 많다. 원인을 찾아야 제대로 치료할 수 있다.",
+    detail:`만성 피로의 원인은 매우 다양하며, 상당수가 치료 가능한 질환입니다.
+
+<strong>갑상선 기능 저하증 — 모든 것이 느려지는 병.</strong> 갑상선 호르몬이 부족하면 신진대사가 느려져 항상 피곤하고, 추위를 많이 타고, 체중이 늘고, 변비, 피부 건조, 무기력감이 생깁니다. 특히 중년 이후 여성에서 흔합니다. 혈액 검사(TSH, T4)로 쉽게 확인하고, 약 복용으로 회복됩니다.
+
+<strong>빈혈 — 산소가 부족한 몸.</strong> 적혈구나 헤모글로빈이 부족하면 몸 전체에 산소 공급이 줄어 피로, 어지러움, 두통, 숨 참이 생깁니다. 철분 결핍 빈혈이 가장 흔하며, 철분제 복용으로 수주 내에 호전됩니다. 비타민 B12나 엽산 결핍도 빈혈의 원인이 됩니다.
+
+<strong>수면 무호흡증 — 자면서 숨이 막히는 병.</strong> 수면 중 기도가 반복적으로 막혀 호흡이 멈추는 병입니다. 코골이가 심한 분, 비만인 분, 낮에도 졸음이 심한 분에서 흔합니다. 수면 검사로 진단하고, 양압기(CPAP) 치료로 극적으로 호전됩니다. 치료 후 "10년 만에 처음으로 개운하게 잤다"는 분들이 많습니다.
+
+<strong>우울증 — 마음의 병이 몸을 지치게 합니다.</strong> 우울증의 가장 흔한 증상 중 하나가 피로입니다. 무기력, 의욕 저하, 집중력 감소, 수면 장애가 동반됩니다. 노인 우울증은 슬픔보다 피로와 신체 증상으로 나타나는 경우가 많아 발견이 늦어집니다.
+
+<strong>반드시 검사해야 할 경우.</strong> 6개월 이상 지속, 쉬어도 나아지지 않음, 체중 감소, 식은땀, 림프절 부음, 혈변 등이 동반될 때는 반드시 병원을 방문해야 합니다.`,
+    quote:"피곤함을 '나이 탓'으로만 돌리지 마세요. 치료할 수 있는 원인이 숨어 있을 가능성이 큽니다. 혈액 검사 한 번이 원인을 찾아줄 수 있습니다."
+  },
+  {
+    num:"02", tag:"tag-blue", tagText:"수면의 질",
+    title:"잠을 자도 왜 피곤한가 — 수면의 질을 높이는 법",
+    summary:"시간보다 깊이가 중요하다. 같은 7시간이라도 얕은 잠은 깊은 잠보다 회복이 훨씬 못하다. 수면 위생 6가지를 지키면 2주 안에 수면의 질이 눈에 띄게 달라진다.",
+    detail:`수면의 양보다 질이 중요합니다. 깊은 잠이 몸을 진짜 회복시킵니다.
+
+<strong>깊은 잠이 회복을 만듭니다.</strong> 수면은 얕은 잠(N1, N2)과 깊은 잠(N3, 서파수면), REM 수면으로 나뉩니다. 성장 호르몬 분비, 세포 회복, 면역 강화는 깊은 잠에서 일어납니다. 기억 정리와 감정 처리는 REM 수면에서 이루어집니다. 잠을 자도 피곤한 경우 깊은 잠이 부족한 것이 주원인입니다.
+
+<strong>수면 위생 1 — 매일 같은 시간에 자고 일어납니다.</strong> 주말에도 1시간 이상 차이 나지 않게 합니다. 수면-각성 리듬(일주기 리듬)이 안정되면 잠드는 시간이 빨라지고 깊은 잠이 늘어납니다.
+
+<strong>수면 위생 2 — 자기 전 1시간은 화면을 끕니다.</strong> 스마트폰, TV, 태블릿의 블루라이트가 멜라토닌(수면 호르몬) 분비를 억제합니다. 잠들기 1시간 전부터 화면 대신 독서, 가벼운 스트레칭을 합니다.
+
+<strong>수면 위생 3 — 침실을 서늘하고 어둡게 유지합니다.</strong> 최적 수면 온도는 18~20도입니다. 완전한 어둠이 멜라토닌 분비를 최대화합니다. 야간등도 수면의 질을 떨어뜨릴 수 있습니다.
+
+<strong>수면 위생 4 — 오후 2시 이후 카페인을 피합니다.</strong> 커피의 카페인은 몸에서 반감기가 5~7시간입니다. 오후 3시에 마신 커피가 밤 10시에도 절반이 남아 있습니다.
+
+<strong>수면 위생 5 — 낮잠은 20~30분으로 제한합니다.</strong> 30분 이상의 낮잠은 야간 수면을 방해합니다. 오후 3시 이후의 낮잠은 피합니다.
+
+<strong>수면 위생 6 — 침대는 잠자는 곳으로만 사용합니다.</strong> 침대에서 스마트폰 보기, 음식 먹기, TV 보기는 뇌가 침대를 각성 장소로 인식하게 합니다.`,
+    quote:"수면제보다 수면 위생이 먼저입니다. 6가지 수면 위생을 2주 동안 지키면 대부분 수면의 질이 눈에 띄게 좋아집니다. 잠이 최고의 회복제입니다."
+  },
+  {
+    num:"03", tag:"tag-gold", tagText:"영양과 에너지",
+    title:"먹는 것이 에너지를 결정한다 — 피로를 유발하는 식습관",
+    summary:"혈당이 급격히 오르내리면 오후마다 졸리고 피곤해진다. 철분, 비타민 B12, 마그네슘 부족이 만성 피로의 원인이 된다. 에너지를 유지하는 식사 패턴이 따로 있다.",
+    detail:`무엇을 어떻게 먹느냐가 하루 에너지 수준을 결정합니다.
+
+<strong>혈당 롤러코스터가 피로를 만듭니다.</strong> 흰 쌀밥, 빵, 과자 같은 정제 탄수화물을 먹으면 혈당이 급격히 오릅니다. 혈당이 오르면 인슐린이 급격히 분비되고, 혈당이 다시 뚝 떨어집니다. 혈당이 떨어지면 졸리고 집중이 안 되고 달콤한 것이 먹고 싶어집니다. 이것이 오후 2~3시에 유독 졸린 이유입니다.
+
+<strong>단백질과 식이섬유가 혈당을 안정시킵니다.</strong> 매 끼니 단백질(생선, 두부, 달걀, 닭고기)과 채소를 함께 먹으면 혈당이 천천히 오르고 에너지가 오래 유지됩니다. 간식도 견과류, 요구르트처럼 단백질이 있는 것을 선택합니다.
+
+<strong>철분 — 특히 여성과 채식주의자가 부족하기 쉽습니다.</strong> 철분이 부족하면 빈혈까지 가지 않아도 피로, 집중력 저하, 두통이 생깁니다. 붉은 고기, 굴, 시금치, 두부에 철분이 많습니다. 비타민C와 함께 먹으면 흡수율이 높아집니다.
+
+<strong>비타민 B12 — 채식주의자와 노인이 부족하기 쉽습니다.</strong> 비타민 B12는 동물성 식품에만 있습니다. 채식을 하는 경우 반드시 보충제를 복용해야 합니다. 노인은 위산 분비가 줄어 B12 흡수가 떨어져 부족해지는 경우가 많습니다.
+
+<strong>마그네슘 부족이 피로를 유발합니다.</strong> 마그네슘은 에너지 생성에 필수적인 미네랄입니다. 현대인의 상당수가 부족 상태입니다. 견과류, 씨앗, 통곡물, 녹색 채소에 풍부합니다.
+
+<strong>수분 부족도 피로의 원인입니다.</strong> 체내 수분이 2%만 부족해도 인지 기능과 에너지가 떨어집니다. 하루 1.5~2리터 물을 규칙적으로 마십니다.`,
+    quote:"에너지 드링크나 커피는 피로를 잠깐 덮을 뿐 근본적인 해결이 안 됩니다. 혈당을 안정시키는 식사 패턴이 하루 종일 에너지를 유지시켜 줍니다."
+  },
+  {
+    num:"04", tag:"tag-green", tagText:"운동과 활력",
+    title:"피곤한데 왜 운동해야 하는가 — 운동이 에너지를 만드는 원리",
+    summary:"피곤할 때 운동하면 더 피곤해질 것 같지만, 사실은 반대다. 규칙적인 운동은 미토콘드리아를 늘려 에너지 생산 능력을 키운다. 하루 20분 걷기만으로도 2주 후 활력이 달라진다.",
+    detail:`운동은 에너지를 소비하는 것이 아니라 에너지를 만드는 능력을 키워줍니다.
+
+<strong>운동이 미토콘드리아를 늘립니다.</strong> 미토콘드리아는 세포 안에서 에너지(ATP)를 만드는 공장입니다. 규칙적인 유산소 운동을 하면 근육 세포 안의 미토콘드리아 수와 크기가 늘어납니다. 즉, 같은 활동을 해도 더 많은 에너지를 만들고 덜 피곤해집니다.
+
+<strong>운동이 코르티솔을 조절합니다.</strong> 만성 스트레스로 코르티솔(스트레스 호르몬)이 계속 높으면 피로가 지속됩니다. 규칙적인 운동은 코르티솔 반응을 정상화하고, 엔도르핀과 세로토닌 분비를 늘려 기분과 에너지를 높입니다.
+
+<strong>처음에는 가볍게 시작합니다.</strong> 만성 피로 상태에서 갑자기 강도 높은 운동을 하면 더 지칩니다. 하루 10~15분 천천히 걷기부터 시작합니다. 2주 후 20~30분으로 늘립니다. 운동 후 기분이 좋아지는 경험이 쌓이면 자연스럽게 늘어납니다.
+
+<strong>아침 운동이 하루 에너지를 높입니다.</strong> 아침 햇볕을 보며 걷는 것은 일주기 리듬을 안정시키고 세로토닌 분비를 늘려 낮 동안의 활력을 높입니다. 잠도 더 잘 자게 됩니다.
+
+<strong>근력 운동이 기초대사량을 높입니다.</strong> 근육이 많을수록 같은 활동에서 에너지를 더 효율적으로 씁니다. 주 2~3회 가벼운 근력 운동(스쿼트, 팔굽혀펴기 등)을 유산소 운동과 함께 하면 전반적인 활력이 크게 향상됩니다.`,
+    quote:"피곤할수록 움직여야 합니다. 처음 10분은 힘들지만, 그 이후에 오는 활력이 운동의 진짜 효과입니다. 몸을 움직이는 것이 에너지를 만드는 가장 강력한 방법입니다."
+  },
+  {
+    num:"05", tag:"tag-blue", tagText:"스트레스 관리",
+    title:"스트레스가 에너지를 갉아먹는다 — 번아웃과 만성 피로",
+    summary:"심리적 스트레스도 신체적 피로를 만든다. 코르티솔이 장기간 높으면 면역이 무너지고 수면이 망가지고 에너지가 고갈된다. 번아웃을 예방하는 실용적인 방법들이 있다.",
+    detail:`스트레스는 몸의 에너지를 직접 소모시킵니다.
+
+<strong>만성 스트레스가 HPA 축을 무너뜨립니다.</strong> 스트레스를 받으면 뇌의 시상하부-뇌하수체-부신(HPA) 축이 활성화되어 코르티솔이 분비됩니다. 단기적으로는 에너지를 끌어올리지만, 만성적으로 계속되면 코르티솔이 과도하게 분비되다 결국 고갈됩니다. 이 상태가 지속되면 극심한 피로, 무기력, 면역 저하가 생깁니다.
+
+<strong>번아웃은 서서히 옵니다.</strong> 번아웃은 갑자기 생기지 않습니다. 처음에는 더 열심히 하면 나아질 것 같아 무리합니다. 그러다 점점 의욕이 사라지고, 사소한 일에도 지치고, 이유 없이 짜증이 납니다. 이 단계에서 쉬어야 합니다.
+
+<strong>호흡이 가장 빠른 스트레스 해소법입니다.</strong> 4-7-8 호흡법: 4초 들이쉬고, 7초 참고, 8초 내쉽니다. 부교감 신경을 활성화해 5분 안에 몸이 이완됩니다. 하루 3번, 습관으로 만들면 코르티솔 수준이 안정됩니다.
+
+<strong>거절하는 능력이 에너지를 지킵니다.</strong> 에너지는 유한합니다. 중요하지 않은 것에 에너지를 쓰면 중요한 것을 할 에너지가 없습니다. "미안하지만 지금은 어렵습니다"라고 말할 수 있는 능력이 에너지 관리의 핵심입니다.
+
+<strong>사회적 연결이 스트레스를 완충합니다.</strong> 가족이나 친구와 대화하고 시간을 보내는 것이 스트레스 호르몬을 낮추는 가장 자연스러운 방법입니다. 고립되면 스트레스에 더 취약해집니다.`,
+    quote:"쉬는 것은 약한 것이 아닙니다. 번아웃을 막는 가장 현명한 전략입니다. 에너지를 채우는 것도 일입니다. 오늘 내가 뭘 해야 충전되는지 알고 실천하는 것이 가장 중요합니다."
+  },
+  {
+    num:"06", tag:"tag-gold", tagText:"일상 에너지",
+    title:"하루 에너지를 관리하는 법 — 오전에 쓰고 오후에 충전한다",
+    summary:"인간의 에너지는 하루 동안 일정하지 않다. 오전이 인지 능력 피크이고 오후 2~3시가 저점이다. 이 리듬에 맞춰 활동을 배치하고, 마이크로 휴식을 활용하면 하루가 달라진다.",
+    detail:`에너지를 잘 쓰는 것도 에너지를 만드는 것만큼 중요합니다.
+
+<strong>하루 에너지 리듬이 있습니다.</strong> 대부분의 사람은 오전 9~12시에 집중력과 에너지가 가장 높습니다. 오후 2~3시에는 자연스럽게 저하됩니다. 저녁 6~8시에 두 번째 피크가 오는 경우도 있습니다. 이 리듬을 알고 중요한 일을 에너지 피크 때 배치합니다.
+
+<strong>마이크로 휴식이 에너지를 회복시킵니다.</strong> 90분마다 5~10분 쉬는 것이 효과적입니다. 뇌의 에너지 사용 주기(울트라디안 리듬)와 일치합니다. 눈을 감고 깊게 호흡하기, 짧게 걷기, 창밖 보기 — 이것만으로도 다음 90분의 집중력이 회복됩니다.
+
+<strong>아침 루틴이 하루 에너지를 결정합니다.</strong> 기상 후 30분간의 행동이 하루 전체의 에너지 수준을 세팅합니다. 햇볕 보기, 가벼운 스트레칭, 물 한 컵, 단백질 포함 아침 식사 — 이 네 가지가 하루 에너지를 높게 시작하게 합니다. 스마트폰을 먼저 보는 것은 스트레스 호르몬을 자극합니다.
+
+<strong>카페인의 최적 활용법.</strong> 기상 직후보다 기상 후 90~120분 뒤에 커피를 마시는 것이 더 효과적입니다. 기상 직후는 코르티솔이 자연적으로 높은 시간이라 카페인 효과가 상쇄됩니다. 오후 2시 이후 카페인은 야간 수면을 방해합니다.
+
+<strong>에너지 드레인을 찾아 없앱니다.</strong> 무엇이 에너지를 소모시키는지 파악합니다. 갈등 관계, 미루는 일, 완벽주의, SNS 과다 사용이 에너지 드레인의 주요 원인입니다. 이것들을 줄이는 것만으로도 에너지가 눈에 띄게 늘어납니다.`,
+    quote:"에너지는 관리하는 것입니다. 무한정 쏟아붓는 것이 아니라, 채우고 쓰고 채우는 리듬을 만드는 것입니다. 오늘 하루 에너지 리듬을 의식하면서 살아보세요."
+  },
+  {
+    num:"07", tag:"tag-cream", tagText:"활력 회복",
+    title:"활력을 되찾는 통합 전략 — 4주 실천 계획",
+    summary:"수면, 영양, 운동, 스트레스 관리 — 이 네 가지를 동시에 조금씩 바꾸는 것이 가장 효과적이다. 한 번에 다 바꾸려 하면 실패한다. 4주 동안 하나씩 쌓아가는 전략이 있다.",
+    detail:`만성 피로 회복은 마라톤입니다. 천천히, 꾸준히, 체계적으로 접근해야 합니다.
+
+<strong>1주차 — 수면 고치기.</strong> 매일 같은 시간에 일어납니다(주말 포함). 자기 전 1시간 화면을 끕니다. 침실을 어둡고 서늘하게 만듭니다. 이것만 해도 2주 후 수면의 질이 눈에 띄게 달라집니다.
+
+<strong>2주차 — 식사 패턴 바꾸기.</strong> 아침에 단백질을 포함한 식사를 합니다. 오후 간식을 견과류나 요구르트로 바꿉니다. 커피를 오후 2시 이전에만 마십니다. 물을 하루 1.5리터 이상 마십니다.
+
+<strong>3주차 — 움직임 시작하기.</strong> 매일 아침 15분 걷기를 시작합니다. 엘리베이터 대신 계단을 이용합니다. 90분마다 자리에서 일어나 5분 움직입니다. 강도를 올리는 것보다 꾸준함이 먼저입니다.
+
+<strong>4주차 — 스트레스 다루기.</strong> 하루 한 번 4-7-8 호흡법을 실천합니다. 에너지를 소모시키는 활동 하나를 줄입니다. 혼자 모든 것을 해결하려 하지 않고 도움을 요청합니다.
+
+<strong>6개월이 지나도 나아지지 않으면 병원에 갑니다.</strong> 생활 습관 개선에도 만성 피로가 지속된다면 갑상선 기능 검사, 빈혈 검사, 수면 다원 검사를 받아보는 것이 좋습니다. 치료 가능한 원인을 찾는 것이 먼저입니다.`,
+    quote:"활력을 되찾는 것은 가능합니다. 하지만 하루아침에 되지는 않습니다. 4주 동안 작은 것 하나씩 바꾸는 것이 지속 가능한 변화를 만듭니다. 오늘 밤 같은 시간에 잠자리에 드는 것부터 시작하세요."
+  }
+];
+
+const list = document.getElementById('chapterList');
+let currentTTS=null, isPaused=false, sentences=[], currentSentenceIdx=0, ttsInterval=null, isListenAll=false;
+
+function renderCards(){list.innerHTML='';chapters.forEach((ch,i)=>{const card=document.createElement('div');card.className='card';card.innerHTML=`<div class="card-header" onclick="toggleCard(${i})"><div class="card-header-main"><div class="card-num">${ch.num}</div><div class="card-header-text"><span class="card-tag ${ch.tag}">${ch.tagText}</span><div class="card-title">${ch.title}</div><div class="card-summary">${ch.summary}</div></div></div><div class="toggle-icon-wrap"><div class="toggle-icon"><svg viewBox="0 0 14 14" fill="none"><path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="toggle-label-open">펼쳐보기</span><span class="toggle-label-close">접기</span></div></div></div><div class="card-detail"><div class="detail-inner"><div class="tts-bar"><button class="btn-tts" id="tts-${i}" onclick="toggleTTS(${i},event)"><svg class="play-icon" viewBox="0 0 24 24" fill="none"><path d="M3 9v6h4l5 5V4L7 9H3z" fill="currentColor"/><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z" fill="currentColor"/><path d="M14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77 0-4.28-2.99-7.86-7-8.77z" fill="currentColor"/></svg><svg class="stop-icon" viewBox="0 0 24 24" fill="none"><rect x="6" y="6" width="12" height="12" rx="2" fill="currentColor"/></svg><span class="play-icon">자세히 듣기</span><span class="stop-icon">듣기 중지</span></button></div><div class="tts-progress" id="prog-${i}"><div class="tts-progress-fill" id="progfill-${i}"></div></div><div class="detail-label">상세 내용</div><div class="detail-text">${ch.detail.replace(/\n\n/g,'</p><p>').replace(/^/,'<p>').replace(/$/,'</p>')}</div><div class="detail-quote">${ch.quote}</div></div></div>`;list.appendChild(card);});}
+renderCards();
+function toggleCard(i){const card=document.querySelectorAll('.card')[i];const isActive=card.classList.contains('active');if(isActive)stopTTS();card.classList.toggle('active');if(!isActive)setTimeout(()=>{const btn=document.getElementById('tts-'+i);if(!btn)return;const r=btn.getBoundingClientRect();if(r.bottom>window.innerHeight-20)window.scrollBy({top:r.bottom-window.innerHeight+60,behavior:'smooth'});},320);}
+function buildTTSText(i){const ch=chapters[i];return`${ch.title}. ${ch.detail.replace(/<[^>]+>/g,'')} ${ch.quote}`;}
+function splitSentences(text){return text.split(/(?<=[.!?。！？다요까죠네군]\s)/).map(s=>s.trim()).filter(Boolean);}
+function updateFloatBar(show,title,pct,paused){const bar=document.getElementById('float-bar');if(!show){bar.classList.remove('visible');return;}bar.classList.add('visible');document.getElementById('float-fill').style.width=(pct||0)+'%';const tb=document.getElementById('float-toggle-btn'),ip=document.getElementById('float-icon-pause'),ir=document.getElementById('float-icon-resume'),lb=document.getElementById('float-btn-label');if(paused){tb.classList.add('paused');ip.style.display='none';ir.style.display='block';lb.textContent='이어듣기';}else{tb.classList.remove('paused');ip.style.display='block';ir.style.display='none';lb.textContent='일시정지';}}
+function updateListenAllBtn(state){const btn=document.getElementById('btn-listen-all'),ip=document.getElementById('listen-all-icon-play'),ipa=document.getElementById('listen-all-icon-pause'),ir=document.getElementById('listen-all-icon-resume'),lb=document.getElementById('listen-all-label'),sb=document.getElementById('listen-all-sub');btn.classList.remove('playing','paused-all');ip.style.display=ipa.style.display=ir.style.display='none';if(state==='playing'){btn.classList.add('playing');ipa.style.display='block';lb.textContent='일시정지';sb.textContent='재생 중 — 탭하면 일시정지';}else if(state==='paused'){btn.classList.add('paused-all');ir.style.display='block';lb.textContent='이어듣기';sb.textContent='일시정지됨 — 탭하면 이어듣기';}else{ip.style.display='block';lb.textContent='전체 듣기';sb.textContent='처음부터 끝까지 전체 재생';}}
+function speakSentence(idx){if(idx>=sentences.length){const fill=currentTTS!==null&&currentTTS!==-1?document.getElementById('progfill-'+currentTTS):null;if(fill)fill.style.width='100%';document.getElementById('float-fill').style.width='100%';setTimeout(stopTTS,500);return;}const u=new SpeechSynthesisUtterance(sentences[idx]);u.lang='ko-KR';u.rate=0.92;u.pitch=1.0;const kv=window.speechSynthesis.getVoices().find(v=>v.lang.startsWith('ko'));if(kv)u.voice=kv;u.onstart=()=>{currentSentenceIdx=idx;const pct=Math.round((idx/sentences.length)*100);if(currentTTS!==null&&currentTTS!==-1){const f=document.getElementById('progfill-'+currentTTS);if(f)f.style.width=pct+'%';}document.getElementById('float-fill').style.width=pct+'%';updateFloatBar(true,currentTTS!==null&&currentTTS!==-1?chapters[currentTTS]?.title:null,pct,false);};u.onend=()=>{if(isPaused)return;speakSentence(idx+1);};u.onerror=(e)=>{if(e.error==='interrupted'||e.error==='canceled')return;stopTTS();};window.speechSynthesis.speak(u);}
+function floatTogglePause(){if(currentTTS===null)return;if(!isPaused){isPaused=true;window.speechSynthesis.cancel();if(currentTTS!==-1){const b=document.getElementById('tts-'+currentTTS);if(b)b.classList.remove('playing');}updateFloatBar(true,null,Math.round((currentSentenceIdx/sentences.length)*100),true);if(isListenAll)updateListenAllBtn('paused');}else{isPaused=false;if(currentTTS!==-1){const b=document.getElementById('tts-'+currentTTS);if(b)b.classList.add('playing');}updateFloatBar(true,null,Math.round((currentSentenceIdx/sentences.length)*100),false);if(isListenAll)updateListenAllBtn('playing');speakSentence(currentSentenceIdx);}}
+function stopTTS(){if(window.speechSynthesis)window.speechSynthesis.cancel();if(ttsInterval){clearInterval(ttsInterval);ttsInterval=null;}document.querySelectorAll('.btn-tts').forEach(b=>b.classList.remove('playing'));document.querySelectorAll('.tts-progress').forEach(p=>p.classList.remove('visible'));document.querySelectorAll('.tts-progress-fill').forEach(f=>f.style.width='0%');updateFloatBar(false);currentTTS=null;isPaused=false;sentences=[];currentSentenceIdx=0;isListenAll=false;updateListenAllBtn('idle');}
+function toggleTTS(i,e){e.stopPropagation();if(!window.speechSynthesis){const b=document.getElementById('tts-banner');if(b){b.style.display='block';setTimeout(()=>b.style.display='none',4000);}return;}if(currentTTS===i){stopTTS();return;}stopTTS();setTimeout(()=>{const bar=document.getElementById('prog-'+i);if(bar&&bar.getBoundingClientRect().top>window.innerHeight*.5)window.scrollBy({top:160,behavior:'smooth'});},80);sentences=splitSentences(buildTTSText(i));currentSentenceIdx=0;currentTTS=i;isPaused=false;document.getElementById('prog-'+i).classList.add('visible');document.getElementById('tts-'+i).classList.add('playing');updateFloatBar(true,chapters[i].title,0,false);speakSentence(0);}
+function toggleListenAll(){if(!window.speechSynthesis){const b=document.getElementById('tts-banner');if(b){b.style.display='block';setTimeout(()=>b.style.display='none',4000);}return;}if(isListenAll&&currentTTS===-1){floatTogglePause();updateListenAllBtn(isPaused?'paused':'playing');return;}stopTTS();isListenAll=true;currentTTS=-1;sentences=splitSentences(chapters.map((ch,i)=>buildTTSText(i)).join(' '));currentSentenceIdx=0;isPaused=false;updateListenAllBtn('playing');updateFloatBar(true,null,0,false);speakSentence(0);}
+window.speechSynthesis&&window.speechSynthesis.addEventListener&&window.speechSynthesis.addEventListener('voiceschanged',()=>{});
+(function(){const ua=navigator.userAgent.toLowerCase();const isInApp=ua.includes('kakaotalk')||ua.includes('naver')||ua.includes('instagram')||ua.includes('fbios')||ua.includes('fban');if(isInApp){const url=location.href;if(ua.includes('android')){location.href='intent://'+url.replace(/https?:\/\//,'')+'#Intent;scheme=https;package=com.android.chrome;end';}else if(ua.includes('iphone')||ua.includes('ipad')){location.href=url.replace('https://','googlechrome://');setTimeout(()=>alert('크롬 앱이 없으면 사파리 주소창에\n'+url+'\n을 직접 입력해주세요.'),1500);}}})();
+window.addEventListener('scroll',()=>document.getElementById('scrollTop').classList.toggle('visible',window.scrollY>400));
+</script>
+</body>
+</html>

@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>당뇨병 가이드</title>
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="당뇨병 가이드">
+<meta property="og:description" content="당뇨병 — 혈당 관리, 합병증 예방, 발 관리, 식습관까지 실용 지식">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="당뇨병 가이드">
+<meta name="twitter:description" content="당뇨병 — 혈당 관리, 합병증 예방, 발 관리, 식습관까지 실용 지식">
+<meta name="description" content="당뇨병 — 혈당 수치 이해, 식습관, 운동, 발 관리, 저혈당 대처, 합병증 예방까지">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="당뇨병 가이드">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#0e161e">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700;900&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #0e161e;
+  --surface: #121e2a;
+  --surface2: #192736;
+  --border: #2a4060;
+  --blue: #4a7fa8;
+  --blue-light: #80b4d8;
+  --blue-dim: #1e4060;
+  --gold: #c9a84c;
+  --gold-light: #e8c870;
+  --red: #7a3a50;
+  --cream: #f0ece0;
+  --text: #e0ecf4;
+  --text-muted: #7aaac8;
+  --text-dim: #3a6080;
+  --serif: 'Noto Serif KR', serif;
+  --sans: 'Noto Sans KR', sans-serif;
+  --fs: 26px;
+  --fs-sm: 24px;
+  --fs-xs: 20px;
+  --fs-lg: 30px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--serif);
+  font-size: var(--fs);
+  line-height: 1.85;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background:
+    radial-gradient(ellipse at 15% 20%, rgba(74,127,168,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse at 85% 80%, rgba(201,168,76,0.05) 0%, transparent 60%);
+  pointer-events: none; z-index: 0;
+}
+
+.wrapper { max-width: 720px; margin: 0 auto; padding: 0 8px 60px; position: relative; z-index: 1; }
+
+.header-icon-wrap { display: flex; justify-content: center; padding: 40px 24px 0; }
+.header-icon-bg {
+  width: 120px; height: 120px; border-radius: 32px;
+  background: linear-gradient(135deg, var(--blue-dim) 0%, #0e2030 100%);
+  border: 2px solid var(--blue);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 8px 32px rgba(74,127,168,0.25), 0 2px 8px rgba(0,0,0,0.4);
+}
+.header-icon-bg svg { width: 64px; height: 64px; color: var(--blue-light); }
+
+.header { padding: 32px 12px 36px; border-bottom: 1px solid var(--border); margin-bottom: 24px; text-align: center; position: relative; }
+.header::after { content: ''; display: block; width: 60px; height: 2px; background: linear-gradient(90deg, transparent, var(--blue), transparent); margin: 20px auto 0; }
+.header-eyebrow { font-family: var(--sans); font-size: var(--fs-xs); letter-spacing: 5px; color: var(--blue-light); text-transform: uppercase; margin-bottom: 14px; font-weight: 500; }
+.header-title { font-size: clamp(28px, 7vw, 48px); font-weight: 900; line-height: 1.25; color: var(--cream); letter-spacing: -0.5px; margin-bottom: 12px; }
+.header-title span { color: var(--blue-light); }
+.header-sub { font-family: var(--sans); font-size: var(--fs-sm); color: var(--text-muted); line-height: 1.9; }
+
+.intro-box { background: var(--surface); border-left: 3px solid var(--blue); padding: 20px 22px; margin-bottom: 24px; border-radius: 0 8px 8px 0; font-family: var(--sans); font-size: var(--fs-sm); color: var(--text-muted); line-height: 1.9; }
+.intro-box strong { color: var(--blue-light); display: block; margin-bottom: 6px; font-size: var(--fs); font-weight: 700; }
+
+#btn-listen-all {
+  display: flex; align-items: center; justify-content: center; gap: 12px; width: 100%;
+  background: linear-gradient(135deg, var(--blue-dim) 0%, #0e1e30 100%);
+  border: 1.5px solid var(--blue); border-radius: 14px; padding: 20px 24px;
+  cursor: pointer; color: var(--cream); font-family: var(--sans); font-size: 22px; font-weight: 700;
+  letter-spacing: 1px; margin-bottom: 24px; transition: all 0.25s; -webkit-appearance: none;
+  box-shadow: 0 4px 20px rgba(74,127,168,0.2); position: relative; overflow: hidden;
+}
+#btn-listen-all::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(128,180,216,0.08) 0%, transparent 60%); pointer-events: none; }
+#btn-listen-all:active { transform: scale(0.98); }
+#btn-listen-all.playing { background: linear-gradient(135deg, #0e1e30 0%, var(--blue-dim) 100%); border-color: var(--blue-light); box-shadow: 0 4px 28px rgba(74,127,168,0.35); }
+#btn-listen-all.paused-all { background: linear-gradient(135deg, rgba(201,168,76,0.15) 0%, #2a2010 100%); border-color: var(--gold); color: var(--gold-light); box-shadow: 0 4px 20px rgba(201,168,76,0.15); }
+.listen-all-icon { width: 26px; height: 26px; flex-shrink: 0; }
+.listen-all-sub { display: block; font-size: 14px; font-weight: 400; color: var(--blue-light); letter-spacing: 0; margin-top: 3px; opacity: 0.85; }
+#btn-listen-all.paused-all .listen-all-sub { color: var(--gold); }
+.listen-all-text-wrap { display: flex; flex-direction: column; align-items: flex-start; }
+
+#tts-banner { display: none; background: var(--red); color: var(--cream); padding: 12px 18px; border-radius: 8px; font-family: var(--sans); font-size: var(--fs-sm); margin-bottom: 18px; text-align: center; }
+
+.section-label { display: flex; align-items: center; gap: 12px; margin: 8px 0 16px; font-family: var(--sans); font-size: var(--fs-xs); letter-spacing: 3px; text-transform: uppercase; color: var(--text-dim); }
+.section-label::before, .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 12px; transition: border-color 0.2s, box-shadow 0.2s; }
+.card.active { border-color: var(--blue-dim); box-shadow: 0 4px 24px rgba(74,127,168,0.15); }
+.card-header { padding: 20px 16px 0px; cursor: pointer; user-select: none; display: flex; flex-direction: column; }
+.card-header-main { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 16px; }
+.card-num { font-family: var(--sans); font-size: 11px; font-weight: 700; letter-spacing: 3px; color: var(--blue-light); text-transform: uppercase; margin-top: 4px; flex-shrink: 0; min-width: 36px; }
+.card-header-text { flex: 1; }
+.card-tag { display: inline-block; font-family: var(--sans); font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 3px 10px; margin-bottom: 8px; border-radius: 3px; color: var(--bg); }
+.tag-blue { background: var(--blue-light); }
+.tag-gold { background: var(--gold); }
+.tag-red { background: #c06080; color: white; }
+.tag-cream { background: var(--cream); }
+.tag-green { background: #70c090; }
+.card-title { font-size: var(--fs-lg); font-weight: 700; line-height: 1.35; color: var(--cream); margin-bottom: 8px; }
+.card-summary { font-family: var(--sans); font-size: var(--fs-sm); color: var(--blue-light); line-height: 1.8; font-weight: 500; }
+
+.toggle-icon-wrap { display: flex; justify-content: center; padding: 10px 0 18px; border-top: 1px solid var(--border); margin-top: 4px; }
+.toggle-icon { display: flex; align-items: center; gap: 8px; background: var(--surface2); border: 2px solid var(--blue-dim); border-radius: 30px; padding: 10px 22px; color: var(--blue-light); font-family: var(--sans); font-size: 22px; }
+.toggle-icon svg { width: 20px; height: 20px; flex-shrink: 0; transition: transform 0.25s; }
+.toggle-label-open  { display: inline; }
+.toggle-label-close { display: none; }
+.card.active .toggle-icon { background: var(--blue-dim); border-color: var(--blue); color: var(--cream); }
+.card.active .toggle-icon svg { transform: rotate(180deg); }
+.card.active .toggle-label-open  { display: none; }
+.card.active .toggle-label-close { display: inline; }
+
+.card-detail { max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+.card.active .card-detail { max-height: 4000px; }
+.detail-inner { border-top: 1px solid var(--border); padding: 20px 16px 24px; }
+
+.tts-bar { margin-bottom: 14px; }
+.btn-tts { display: flex; align-items: center; justify-content: center; gap: 10px; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 14px 24px; cursor: pointer; color: var(--text-muted); font-family: var(--sans); font-size: 24px; }
+.btn-tts:hover { border-color: var(--blue-dim); color: var(--blue-light); }
+.btn-tts.playing { background: var(--blue-dim); border-color: var(--blue); color: var(--cream); }
+.btn-tts svg { width: 24px; height: 24px; flex-shrink: 0; }
+.btn-tts.playing .play-icon { display: none; }
+.btn-tts:not(.playing) .stop-icon { display: none; }
+
+.tts-progress { height: 3px; background: var(--border); border-radius: 2px; margin-top: 10px; overflow: hidden; opacity: 0; transition: opacity 0.3s; }
+.tts-progress.visible { opacity: 1; }
+.tts-progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--blue), var(--blue-light)); border-radius: 2px; transition: width 0.3s linear; }
+
+.detail-label { font-family: var(--sans); font-size: var(--fs-xs); letter-spacing: 3px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+.detail-text { font-family: var(--sans); font-size: var(--fs-sm); line-height: 1.95; color: var(--text); margin-bottom: 20px; }
+.detail-text p { margin-bottom: 16px; }
+.detail-text p:last-child { margin-bottom: 0; }
+.detail-text strong { color: var(--cream); font-weight: 700; }
+.detail-quote { background: var(--surface2); border-left: 3px solid var(--gold); padding: 16px 20px; font-family: var(--sans); font-size: var(--fs-sm); color: var(--gold-light); line-height: 1.9; border-radius: 0 8px 8px 0; font-style: italic; }
+
+.footer { text-align: center; font-family: var(--sans); font-size: 18px; color: var(--text-dim); padding: 32px 0 0; line-height: 1.8; }
+
+#scrollTop { position: fixed; bottom: 28px; right: 20px; width: 44px; height: 44px; background: var(--surface); border: 1px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--text-muted); opacity: 0; pointer-events: none; transition: opacity 0.3s; z-index: 100; }
+#scrollTop.visible { opacity: 1; pointer-events: auto; }
+#scrollTop svg { width: 18px; height: 18px; }
+
+@media (max-width: 520px) { .card-header { padding: 16px 12px 0px; } .detail-inner { padding: 16px 12px 20px; } }
+
+/* ── FLOATING CONTROL BAR ── */
+#float-bar { display: none; position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%); z-index: 200; width: calc(100% - 32px); max-width: 680px; }
+#float-bar.visible { display: block; }
+.float-inner { background: var(--surface); border: 1.5px solid var(--blue); border-radius: 16px; padding: 12px 16px 14px; box-shadow: 0 8px 32px rgba(0,0,0,0.5); }
+.float-top { display: flex; align-items: center; gap: 10px; }
+#float-toggle-btn { flex: 1; display: flex; align-items: center; justify-content: center; gap: 10px; background: var(--blue-dim); border: 1.5px solid var(--blue); border-radius: 10px; padding: 12px 18px; cursor: pointer; color: var(--cream); font-family: var(--sans); font-size: 22px; font-weight: 700; letter-spacing: 1px; transition: all 0.2s; -webkit-appearance: none; }
+#float-toggle-btn.paused { background: rgba(201,168,76,0.15); border-color: var(--gold); color: var(--gold-light); }
+#float-toggle-btn svg { width: 22px; height: 22px; flex-shrink: 0; }
+.float-stop-btn { flex-shrink: 0; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 10px; cursor: pointer; padding: 12px 14px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; -webkit-appearance: none; }
+.float-stop-btn svg { width: 22px; height: 22px; }
+.float-progress { width: 100%; height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; margin-top: 10px; }
+.float-progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--blue), var(--blue-light)); border-radius: 2px; transition: width 0.3s linear; }
+</style>
+</head>
+<body>
+<div id="tts-banner">이 브라우저는 음성 읽기를 지원하지 않습니다.</div>
+
+<div id="float-bar">
+  <div class="float-inner">
+    <div class="float-top">
+      <button id="float-toggle-btn" onclick="floatTogglePause()">
+        <svg id="float-icon-pause" viewBox="0 0 24 24" fill="none">
+          <rect x="6" y="4" width="4" height="16" rx="1" fill="currentColor"/>
+          <rect x="14" y="4" width="4" height="16" rx="1" fill="currentColor"/>
+        </svg>
+        <svg id="float-icon-resume" viewBox="0 0 24 24" fill="none" style="display:none">
+          <path d="M8 5v14l11-7z" fill="currentColor"/>
+        </svg>
+        <span id="float-btn-label">일시정지</span>
+      </button>
+      <button class="float-stop-btn" onclick="stopTTS()">
+        <svg viewBox="0 0 24 24" fill="none"><rect x="5" y="5" width="14" height="14" rx="3" fill="var(--text-muted)"/></svg>
+      </button>
+    </div>
+    <div class="float-progress"><div class="float-progress-fill" id="float-fill"></div></div>
+  </div>
+</div>
+
+<div class="wrapper">
+  <div class="header-icon-wrap">
+    <div class="header-icon-bg">
+      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- 혈당 측정기 모양 -->
+        <rect x="14" y="18" width="36" height="28" rx="6" stroke="currentColor" stroke-width="2.5" fill="none" opacity="0.85"/>
+        <!-- 화면 -->
+        <rect x="20" y="24" width="24" height="12" rx="3" fill="currentColor" opacity="0.25"/>
+        <!-- 수치 표시 -->
+        <text x="23" y="34" font-size="9" fill="currentColor" opacity="0.9" font-family="sans-serif" font-weight="bold">126</text>
+        <!-- 단위 -->
+        <text x="22" y="42" font-size="5.5" fill="currentColor" opacity="0.5" font-family="sans-serif">mg/dL</text>
+        <!-- 채혈침 -->
+        <line x1="32" y1="46" x2="32" y2="54" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+        <circle cx="32" cy="56" r="2.5" fill="currentColor" opacity="0.7"/>
+        <!-- 혈방울 -->
+        <path d="M32 10 Q34 14 34 16 Q34 19 32 19 Q30 19 30 16 Q30 14 32 10Z" fill="currentColor" opacity="0.5"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="header">
+    <div class="header-eyebrow">혈당 관리 · 합병증 예방 · 실용 가이드</div>
+    <h1 class="header-title"><span>당뇨병</span><br>완전 가이드</h1>
+    <div class="header-sub">
+      혈당 수치 이해부터 식습관·운동·발 관리까지<br>
+      합병증 없이 오래 사는 당뇨 관리 지식
+    </div>
+  </div>
+
+  <div class="intro-box">
+    <strong>이 가이드는 무엇을 알려주는가?</strong>
+    당뇨병은 혈당 수치만의 문제가 아닙니다. 10년, 20년 관리를 잘못하면 눈이 멀고, 신장이 망가지고, 발을 잘라야 하는 상황이 옵니다. 반대로 꾸준히 잘 관리하면 합병증 없이 건강하게 살 수 있습니다. 혈당 수치를 어떻게 읽는지, 무엇을 먹어야 하는지, 운동이 혈당에 어떤 영향을 주는지, 발 관리가 왜 생사의 문제인지, 저혈당이 왔을 때 어떻게 해야 하는지 — 진료실에서 다 배울 수 없었던 지식을 담았습니다.
+  </div>
+
+  <button id="btn-listen-all" onclick="toggleListenAll()">
+    <svg class="listen-all-icon" id="listen-all-icon-play" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
+      <path d="M10 8l6 4-6 4V8z" fill="currentColor"/>
+    </svg>
+    <svg class="listen-all-icon" id="listen-all-icon-pause" viewBox="0 0 24 24" fill="none" style="display:none">
+      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
+      <rect x="8" y="7" width="3" height="10" rx="1" fill="currentColor"/>
+      <rect x="13" y="7" width="3" height="10" rx="1" fill="currentColor"/>
+    </svg>
+    <svg class="listen-all-icon" id="listen-all-icon-resume" viewBox="0 0 24 24" fill="none" style="display:none">
+      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
+      <path d="M10 8l6 4-6 4V8z" fill="currentColor"/>
+    </svg>
+    <div class="listen-all-text-wrap">
+      <span id="listen-all-label">전체 듣기</span>
+      <span class="listen-all-sub" id="listen-all-sub">처음부터 끝까지 전체 재생</span>
+    </div>
+  </button>
+
+  <div class="section-label">당뇨병 — 7가지 핵심 지식</div>
+  <div id="chapterList"></div>
+
+  <div class="footer">
+    당뇨병 완전 가이드<br>
+    건강 정보 앱 · 전문 진료를 대체하지 않습니다
+  </div>
+</div>
+
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg viewBox="0 0 24 24" fill="none"><path d="M18 15l-6-6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+
+<script>
+const chapters = [
+  {
+    num: "01",
+    tag: "tag-blue",
+    tagText: "혈당 이해",
+    title: "혈당 수치란 무엇인가 — 숫자가 말해주는 것들",
+    summary: "공복혈당, 식후혈당, 당화혈색소(HbA1c) — 이 세 가지 수치가 당뇨 관리의 기준이다. 숫자를 정확히 알아야 내 몸 상태를 이해하고 올바른 관리를 할 수 있다.",
+    detail: `당뇨 관리에서 세 가지 혈당 수치를 반드시 알아야 합니다.
+
+<strong>공복혈당.</strong> 8시간 이상 아무것도 먹지 않은 상태에서 잰 혈당입니다. 정상은 100mg/dL 미만입니다. 100~125mg/dL이면 당뇨 전단계, 126mg/dL 이상이면 당뇨병입니다.
+
+<strong>식후 2시간 혈당.</strong> 식사 시작 후 2시간이 지난 뒤 잰 혈당입니다. 정상은 140mg/dL 미만입니다. 140~199mg/dL이면 당뇨 전단계, 200mg/dL 이상이면 당뇨병입니다. 공복혈당이 정상이어도 식후혈당이 높으면 혈관 손상이 진행됩니다.
+
+<strong>당화혈색소(HbA1c) — 가장 중요한 수치입니다.</strong> 최근 2~3개월 동안의 평균 혈당을 반영합니다. 오늘 하루만 잘 관리해서는 속일 수 없는 수치입니다. 정상은 5.7% 미만, 당뇨 전단계는 5.7~6.4%, 당뇨병은 6.5% 이상입니다. 당뇨 환자의 관리 목표는 보통 7% 미만이지만, 노인은 8% 미만으로 다소 여유 있게 잡기도 합니다.
+
+<strong>혈당이 왜 오르는가.</strong> 탄수화물을 먹으면 포도당으로 분해되어 혈액으로 흡수됩니다. 인슐린이 포도당을 세포 안으로 넣어주는 역할을 합니다. 당뇨병은 인슐린이 부족하거나 인슐린이 있어도 제대로 작동하지 않아 혈당이 높게 유지되는 병입니다.
+
+<strong>노인 당뇨의 특수성.</strong> 노인은 저혈당 증상을 잘 못 느끼는 경우가 많습니다. 혈당이 너무 떨어져도 어지럼증이나 식은땀 대신 멍한 느낌이나 혼란, 넘어짐으로 나타나기도 합니다. 너무 엄격한 혈당 관리보다 저혈당을 피하는 것이 노인에게 더 중요합니다.`,
+    quote: "당화혈색소 7%는 평균 혈당 154mg/dL에 해당합니다. 이 숫자 하나가 지난 3개월 당신의 혈관 건강을 말해줍니다. 3개월에 한 번은 반드시 확인하세요."
+  },
+  {
+    num: "02",
+    tag: "tag-gold",
+    tagText: "식습관 관리",
+    title: "당뇨 식사 — 먹지 말아야 할 것이 아니라 어떻게 먹느냐가 핵심이다",
+    summary: "당뇨라고 밥을 굶어야 하는 것이 아니다. 혈당을 천천히 올리는 음식 순서, 식사량 조절, 식이섬유의 역할을 알면 좋아하는 음식도 즐길 수 있다. GI지수보다 GL이 더 중요하다.",
+    detail: `당뇨 식사는 제한이 아니라 전략입니다. 올바른 전략을 알면 훨씬 자유롭게 먹을 수 있습니다.
+
+<strong>음식 먹는 순서가 혈당을 바꿉니다.</strong> 채소 → 단백질·지방 → 탄수화물 순서로 먹으면 식후 혈당이 20~30% 낮아집니다. 밥보다 나물과 반찬을 먼저 먹고, 국물은 나중에 마십니다. 이 순서 하나만 바꿔도 당화혈색소가 개선됩니다.
+
+<strong>탄수화물의 양과 질이 중요합니다.</strong> 흰쌀밥, 흰빵, 떡, 국수처럼 정제 탄수화물은 혈당을 빠르게 올립니다. 현미, 잡곡, 통밀처럼 복합 탄수화물은 혈당을 천천히 올립니다. 밥의 양을 줄이고 반찬의 양을 늘리는 것이 기본입니다. 밥 한 공기를 반 공기로 줄이면 혈당 조절이 크게 쉬워집니다.
+
+<strong>식이섬유가 혈당의 방패입니다.</strong> 채소, 해조류, 버섯, 콩류에 많은 식이섬유는 당의 흡수 속도를 늦춥니다. 매 끼니에 채소를 충분히 먹는 것이 가장 쉬운 혈당 관리법입니다. 목표는 하루 채소 5가지 이상입니다.
+
+<strong>혈당을 급격히 올리는 음식들.</strong> 과일주스, 꿀, 엿, 물엿, 설탕이 든 음료, 떡, 빵, 과자, 라면은 혈당을 빠르게 올립니다. 과일도 한꺼번에 많이 먹으면 혈당이 오릅니다. 과일은 하루 주먹 하나 정도의 양으로 제한합니다.
+
+<strong>규칙적인 식사 시간이 중요합니다.</strong> 식사를 거르거나 불규칙하게 먹으면 혈당이 오르내리고 저혈당 위험이 높아집니다. 하루 세 끼를 일정한 시간에 먹는 것이 기본입니다. 당뇨약이나 인슐린을 맞는 분은 식사를 거르면 저혈당이 올 수 있어 특히 위험합니다.
+
+<strong>외식할 때 실전 팁.</strong> 국밥이나 찌개는 국물을 적게 먹습니다. 비빔밥은 밥 양을 줄이고 채소를 늘립니다. 치킨이나 튀김보다 구이를 선택합니다. 술은 혈당을 불규칙하게 만들므로 가급적 피합니다.`,
+    quote: "당뇨 식사의 핵심은 '무엇을 먹지 않느냐'가 아니라 '어떻게 먹느냐'입니다. 채소 먼저, 천천히, 조금씩 자주 — 이 세 가지가 식후 혈당을 바꿉니다."
+  },
+  {
+    num: "03",
+    tag: "tag-green",
+    tagText: "운동 치료",
+    title: "운동이 인슐린이다 — 걷기 10분이 혈당을 얼마나 낮추는가",
+    summary: "식후 30분 걷기는 혈당을 20~30mg/dL 낮춘다. 근육이 포도당을 소비하는 저장소이기 때문이다. 근육이 많을수록 혈당 관리가 쉬워진다. 어떤 운동을 얼마나 해야 하는지 알아야 한다.",
+    detail: `운동은 당뇨 치료의 핵심 중 하나입니다. 약 없이 혈당을 낮출 수 있는 가장 강력한 방법입니다.
+
+<strong>왜 운동이 혈당을 낮추는가.</strong> 근육은 포도당을 가장 많이 소비하는 기관입니다. 운동하면 근육세포가 인슐린 없이도 포도당을 흡수합니다. 운동 중뿐만 아니라 운동 후 24~48시간 동안 인슐린 감수성이 높아집니다. 즉, 같은 양의 인슐린으로 더 많은 혈당을 처리할 수 있게 됩니다.
+
+<strong>식후 30분 걷기가 가장 효과적입니다.</strong> 혈당이 가장 높아지는 식후 30분~1시간 사이에 10~15분 걷기만 해도 혈당이 20~30mg/dL 낮아집니다. 세 끼 식후에 조금씩 걷는 것이 한 번에 길게 걷는 것보다 혈당 관리에 더 효과적입니다.
+
+<strong>유산소 운동 목표.</strong> 주 150분 이상, 중간 강도의 유산소 운동이 권고됩니다. 빠르게 걷기, 자전거 타기, 수영, 아쿠아로빅이 노인에게 좋습니다. 하루 30분씩 주 5일이 이상적입니다.
+
+<strong>근력 운동도 반드시 필요합니다.</strong> 근육량이 많을수록 혈당 저장소가 커져서 혈당 조절이 쉬워집니다. 주 2~3회 가벼운 근력 운동을 합니다. 앉았다 일어서기, 벽 팔굽혀펴기, 가벼운 아령 운동이 좋습니다. 특히 허벅지 근육은 혈당 조절에 가장 중요한 근육입니다.
+
+<strong>운동할 때 주의사항.</strong> 혈당이 250mg/dL 이상이면 운동을 피합니다. 오히려 혈당이 더 올라갈 수 있습니다. 공복 상태에서 격렬한 운동은 저혈당 위험이 있습니다. 운동할 때는 사탕이나 포도당 젤을 가지고 다닙니다. 발에 물집이 생기지 않도록 적절한 신발을 신고 운동 후 발을 꼭 확인합니다.`,
+    quote: "식사 후 소파에 앉는 대신 10분만 걸으세요. 이 작은 습관이 식후 혈당 스파이크를 막고, 췌장의 부담을 줄이고, 합병증을 늦춥니다. 운동화가 최고의 당뇨약입니다."
+  },
+  {
+    num: "04",
+    tag: "tag-red",
+    tagText: "저혈당 대처",
+    title: "저혈당 — 당뇨 환자에게 가장 즉각적인 위험",
+    summary: "혈당이 너무 낮으면 뇌가 작동하지 않는다. 노인은 저혈당 증상을 잘 못 느껴 갑자기 쓰러지거나 넘어진다. 증상 인식, 즉각 대처법, 예방법을 반드시 알아야 한다.",
+    detail: `저혈당은 고혈당보다 더 빠르게 위험해집니다. 즉각 대처하지 않으면 의식을 잃을 수 있습니다.
+
+<strong>저혈당이란.</strong> 혈당이 70mg/dL 미만으로 떨어진 상태입니다. 뇌는 포도당만을 에너지원으로 사용하기 때문에 혈당이 낮아지면 뇌 기능이 즉시 저하됩니다.
+
+<strong>저혈당 증상.</strong> 손이 떨리고, 식은땀이 나고, 심장이 빨리 뛰고, 심한 허기가 느껴집니다. 더 심해지면 어지럽고, 두통이 오고, 시야가 흐려지고, 집중이 안 됩니다. 노인은 이런 증상 없이 갑자기 멍해지거나 말이 어눌해지거나 넘어지는 것으로 나타날 수 있어 특히 위험합니다.
+
+<strong>저혈당 즉각 대처 — 15-15 규칙.</strong> 빠르게 흡수되는 당분 15g을 즉시 섭취합니다. 사탕 3~4개, 포도당 정제 3알, 오렌지주스 반 컵, 설탕물 한 컵이 해당됩니다. 15분 후 혈당을 재서 여전히 낮으면 같은 양을 한 번 더 먹습니다. 혈당이 회복되면 그 다음 식사까지 30분 이상 남았다면 빵 한 쪽 같은 복합 탄수화물을 추가로 먹습니다.
+
+<strong>저혈당 예방법.</strong> 식사를 거르지 않습니다. 평소보다 많이 운동할 때는 간식을 미리 먹습니다. 술을 마실 때는 반드시 음식과 함께 먹습니다. 외출할 때는 항상 사탕이나 포도당 정제를 지참합니다. 당뇨 환자임을 알리는 의료 정보 카드나 팔찌를 착용하는 것도 좋습니다.
+
+<strong>야간 저혈당을 조심합니다.</strong> 자는 동안 저혈당이 오면 모르고 지나칩니다. 악몽을 꾸거나 아침에 두통과 함께 깨는 것이 야간 저혈당의 신호일 수 있습니다. 자기 전 혈당이 100mg/dL 이하이면 간단한 간식을 먹고 자는 것이 좋습니다.
+
+<strong>의식을 잃었을 때.</strong> 의식이 없는 사람에게 음식이나 음료를 먹이면 기도가 막혀 위험합니다. 즉시 119에 신고합니다. 글루카곤 응급 주사제가 있다면 사용합니다.`,
+    quote: "외출할 때는 항상 사탕 3개를 가방에 넣으세요. 이 작은 준비가 응급실 신세를 막습니다. 저혈당은 느리게 오지 않습니다. 준비된 사람만 안전합니다."
+  },
+  {
+    num: "05",
+    tag: "tag-red",
+    tagText: "발 관리",
+    title: "당뇨 발 관리 — 작은 상처 하나가 발을 잃는 원인이 된다",
+    summary: "당뇨 환자는 발의 감각이 떨어지고 혈액순환이 나빠져 작은 상처도 낫지 않는다. 한국과 일본 당뇨 환자의 발 절단 비율이 높은 이유다. 매일 5분 발 검사가 절단을 막는다.",
+    detail: `당뇨 합병증 중 발 문제는 예방 가능한 것들이 많습니다. 매일 조금만 신경 쓰면 됩니다.
+
+<strong>왜 당뇨 환자는 발이 위험한가.</strong> 당뇨가 오래되면 두 가지 문제가 동시에 생깁니다. 첫째, 말초신경이 손상되어 발의 통증과 온도 감각이 떨어집니다. 상처가 나도 아프지 않습니다. 둘째, 혈액순환이 나빠져 상처가 생겨도 회복이 매우 느립니다. 이 두 가지가 겹치면 작은 상처가 궤양이 되고, 결국 발을 절단해야 하는 상황이 됩니다.
+
+<strong>매일 발 검사가 필수입니다.</strong> 매일 저녁 발을 세심하게 살펴봅니다. 발바닥과 발가락 사이를 포함해서 붉어진 곳, 물집, 굳은살, 상처, 변색된 부분이 없는지 확인합니다. 눈이 나빠서 잘 안 보이면 거울을 사용하거나 가족이 도와줍니다.
+
+<strong>발 관리 일상 루틴.</strong> 매일 미온수로 발을 씻고 물기를 완전히 닦습니다. 발가락 사이도 꼼꼼히 닦습니다. 건조함을 막기 위해 로션을 바릅니다. 단, 발가락 사이에는 바르지 않습니다. 발톱은 너무 짧게 자르지 말고 일자로 자릅니다.
+
+<strong>신발 선택이 중요합니다.</strong> 꽉 끼는 신발, 굽이 높은 신발, 앞이 좁은 신발은 피합니다. 새 신발은 처음부터 오래 신지 말고 천천히 길들입니다. 맨발로 다니지 않습니다. 집 안에서도 슬리퍼를 신습니다. 신발을 신기 전에 안쪽에 이물질이 없는지 손으로 확인합니다.
+
+<strong>즉시 병원에 가야 할 신호.</strong> 발에 상처가 생겼는데 2~3일이 지나도 낫지 않으면 즉시 병원에 갑니다. 발이 빨갛게 붓거나 열감이 있으면 감염의 신호입니다. 발가락이나 발이 검게 변하면 즉각 응급실에 가야 합니다.
+
+<strong>담배가 발을 죽입니다.</strong> 흡연은 말초혈관을 수축시켜 발로 가는 혈액을 더 줄입니다. 당뇨 환자가 흡연하면 발 절단 위험이 극적으로 높아집니다. 금연이 발을 지키는 가장 중요한 일 중 하나입니다.`,
+    quote: "당뇨 환자에게 발은 생명입니다. 매일 저녁 1분만 발을 들여다보세요. 이 1분이 발을 지킵니다."
+  },
+  {
+    num: "06",
+    tag: "tag-blue",
+    tagText: "합병증 예방",
+    title: "당뇨 합병증 — 어디서부터 어떻게 망가지는가",
+    summary: "당뇨가 10~20년 지속되면 눈, 콩팥, 심장, 신경이 순서대로 손상된다. 하지만 혈당을 잘 관리하면 합병증 발생을 10~20년 늦출 수 있다. 정기 검진 항목을 알아야 한다.",
+    detail: `당뇨 합병증은 갑자기 오지 않습니다. 오랫동안 혈당이 높으면 혈관과 신경이 서서히 손상되면서 옵니다.
+
+<strong>당뇨망막병증 — 눈이 손상됩니다.</strong> 당뇨 환자에서 실명의 가장 큰 원인입니다. 망막의 미세혈관이 손상되어 출혈이 생기고 시력이 떨어집니다. 초기에는 증상이 없어서 모르고 지냅니다. 당뇨 진단 후 1년 이내에 안저 검사를 받고, 이후 매년 검사합니다. 조기 발견하면 레이저 치료로 진행을 막을 수 있습니다.
+
+<strong>당뇨신장병증 — 콩팥이 손상됩니다.</strong> 고혈당이 지속되면 콩팥의 미세혈관이 손상됩니다. 초기에는 소변에 단백질이 새어나오는 것이 유일한 신호입니다. 진행되면 신부전이 되어 투석을 해야 합니다. 1년에 한 번 소변 검사(미세알부민뇨)와 혈액 검사(신장 기능)를 받아야 합니다.
+
+<strong>당뇨신경병증 — 신경이 손상됩니다.</strong> 발과 손의 저림, 타는 듯한 통증, 감각 저하가 생깁니다. 발 관리가 중요한 이유입니다. 소화기 신경이 손상되면 식후 더부룩함, 변비, 설사가 반복됩니다.
+
+<strong>심혈관 합병증 — 심장과 혈관이 손상됩니다.</strong> 당뇨 환자는 심근경색, 뇌졸중 위험이 일반인의 2~4배입니다. 혈당 관리와 함께 혈압, 콜레스테롤도 반드시 함께 관리해야 합니다.
+
+<strong>정기 검진 체크리스트.</strong> 3개월마다 당화혈색소(HbA1c), 1년마다 안저 검사·소변 검사·신장 기능·발 검사·콜레스테롤 검사를 받아야 합니다. 이 검진들이 합병증을 조기에 발견하는 유일한 방법입니다.
+
+<strong>혈당만이 아닙니다.</strong> 당뇨 합병증을 막으려면 혈당·혈압·콜레스테롤 세 가지를 함께 관리해야 합니다. 이것을 'ABC 관리'라고 합니다. A(HbA1c) 7% 미만, B(Blood pressure, 혈압) 130/80 미만, C(Cholesterol, 콜레스테롤) LDL 100 미만이 목표입니다.`,
+    quote: "당뇨 합병증은 선고가 아닙니다. 혈당을 1% 낮추면 당뇨 합병증 위험이 37% 감소합니다. 오늘의 관리가 10년 후의 눈과 콩팥과 발을 지킵니다."
+  },
+  {
+    num: "07",
+    tag: "tag-cream",
+    tagText: "약과 인슐린",
+    title: "당뇨약과 인슐린 — 두렵지 않게 이해하는 법",
+    summary: "인슐린 주사를 시작하는 것이 당뇨가 악화된 것이 아니다. 오히려 혈당을 더 잘 조절해 합병증을 막는 것이다. 약의 종류, 복용 시간, 인슐린 주사법의 기본을 알아야 한다.",
+    detail: `당뇨약에 대한 잘못된 두려움이 관리를 방해하는 경우가 많습니다.
+
+<strong>당뇨약의 종류.</strong> 메트포르민은 가장 기본적인 당뇨약으로 간에서 포도당 생성을 줄입니다. 설포닐유레아 계열은 인슐린 분비를 늘리는데 저혈당 부작용이 있습니다. SGLT2 억제제는 소변으로 포도당을 배출시키며 심장과 콩팥 보호 효과도 있습니다. GLP-1 유사체는 식욕을 줄이고 인슐린 분비를 돕습니다. 이들을 조합해서 씁니다.
+
+<strong>약을 먹을 때 주의사항.</strong> 메트포르민은 식사와 함께 먹어야 위장 불편감이 줄어듭니다. 설포닐유레아 계열은 식전에 먹어야 저혈당을 예방할 수 있습니다. 조영제를 사용하는 CT 촬영 전에는 메트포르민을 잠시 중단해야 합니다. 이것은 반드시 의사에게 확인합니다.
+
+<strong>인슐린 주사는 실패가 아닙니다.</strong> 많은 분들이 인슐린을 시작하면 당뇨가 심해진 것, 앞으로 계속 주사를 맞아야 하는 것이라고 두려워합니다. 하지만 인슐린은 가장 강력하고 안전한 혈당 치료제입니다. 생활 습관 개선과 함께 인슐린을 사용하면 당화혈색소를 빠르게 낮추고 합병증을 막을 수 있습니다.
+
+<strong>인슐린 주사의 기본.</strong> 배꼽 주변, 허벅지 앞쪽, 팔 바깥쪽 피하지방에 주사합니다. 같은 부위에 반복해서 주사하면 지방이 딱딱하게 굳어 흡수가 불규칙해집니다. 주사 부위를 매번 조금씩 바꿉니다. 주삿바늘은 매번 새것을 사용합니다.
+
+<strong>혈당 자가 측정이 관리의 기본입니다.</strong> 집에서 혈당을 직접 재는 것이 당뇨 관리에서 가장 중요한 습관 중 하나입니다. 공복, 식후 2시간, 운동 전후를 측정하면 어떤 음식과 활동이 혈당에 영향을 주는지 파악할 수 있습니다. 이 데이터를 가지고 진료를 받으면 훨씬 정확한 치료를 받을 수 있습니다.`,
+    quote: "인슐린 주사를 시작했다고 실패한 것이 아닙니다. 몸이 필요로 하는 것을 적시에 공급하는 것입니다. 중요한 것은 혈당이 잘 조절되는가, 합병증이 없는가입니다."
+  }
+];
+
+const list = document.getElementById('chapterList');
+let currentTTS = null;
+let isPaused = false;
+let sentences = [];
+let currentSentenceIdx = 0;
+let ttsInterval = null;
+let isListenAll = false;
+
+function renderCards() {
+  list.innerHTML = '';
+  chapters.forEach((ch, i) => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <div class="card-header" onclick="toggleCard(${i})">
+        <div class="card-header-main">
+          <div class="card-num">${ch.num}</div>
+          <div class="card-header-text">
+            <span class="card-tag ${ch.tag}">${ch.tagText}</span>
+            <div class="card-title">${ch.title}</div>
+            <div class="card-summary">${ch.summary}</div>
+          </div>
+        </div>
+        <div class="toggle-icon-wrap">
+          <div class="toggle-icon">
+            <svg viewBox="0 0 14 14" fill="none">
+              <path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="toggle-label-open">펼쳐보기</span>
+            <span class="toggle-label-close">접기</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-detail">
+        <div class="detail-inner">
+          <div class="tts-bar">
+            <button class="btn-tts" id="tts-${i}" onclick="toggleTTS(${i}, event)">
+              <svg class="play-icon" viewBox="0 0 24 24" fill="none">
+                <path d="M3 9v6h4l5 5V4L7 9H3z" fill="currentColor"/>
+                <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z" fill="currentColor"/>
+                <path d="M14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77 0-4.28-2.99-7.86-7-8.77z" fill="currentColor"/>
+              </svg>
+              <svg class="stop-icon" viewBox="0 0 24 24" fill="none">
+                <rect x="6" y="6" width="12" height="12" rx="2" fill="currentColor"/>
+              </svg>
+              <span class="play-icon">자세히 듣기</span>
+              <span class="stop-icon">듣기 중지</span>
+            </button>
+          </div>
+          <div class="tts-progress" id="prog-${i}">
+            <div class="tts-progress-fill" id="progfill-${i}"></div>
+          </div>
+          <div class="detail-label">상세 내용</div>
+          <div class="detail-text">${ch.detail.replace(/\n\n/g, '</p><p>').replace(/^/, '<p>').replace(/$/, '</p>')}</div>
+          <div class="detail-quote">${ch.quote}</div>
+        </div>
+      </div>
+    `;
+    list.appendChild(card);
+  });
+}
+
+renderCards();
+
+function toggleCard(i) {
+  const cards = document.querySelectorAll('.card');
+  const card = cards[i];
+  const isActive = card.classList.contains('active');
+  if (isActive) stopTTS();
+  card.classList.toggle('active');
+  if (!isActive) {
+    setTimeout(() => {
+      const ttsBtn = document.getElementById('tts-' + i);
+      if (!ttsBtn) return;
+      const btnRect = ttsBtn.getBoundingClientRect();
+      if (btnRect.bottom > window.innerHeight - 20)
+        window.scrollBy({ top: btnRect.bottom - window.innerHeight + 60, behavior: 'smooth' });
+    }, 320);
+  }
+}
+
+function buildTTSText(i) {
+  const ch = chapters[i];
+  return `${ch.title}. ${ch.detail.replace(/<[^>]+>/g, '')} ${ch.quote}`;
+}
+
+function splitSentences(text) {
+  return text.split(/(?<=[.!?。！？다요까죠네군]\s)/).map(s => s.trim()).filter(Boolean);
+}
+
+function updateFloatBar(show, title, pct, paused) {
+  const bar = document.getElementById('float-bar');
+  if (!show) { bar.classList.remove('visible'); return; }
+  bar.classList.add('visible');
+  document.getElementById('float-fill').style.width = (pct || 0) + '%';
+  const toggleBtn  = document.getElementById('float-toggle-btn');
+  const iconPause  = document.getElementById('float-icon-pause');
+  const iconResume = document.getElementById('float-icon-resume');
+  const label      = document.getElementById('float-btn-label');
+  if (paused) {
+    toggleBtn.classList.add('paused');
+    iconPause.style.display  = 'none';
+    iconResume.style.display = 'block';
+    label.textContent = '이어듣기';
+  } else {
+    toggleBtn.classList.remove('paused');
+    iconPause.style.display  = 'block';
+    iconResume.style.display = 'none';
+    label.textContent = '일시정지';
+  }
+}
+
+function speakSentence(idx) {
+  if (idx >= sentences.length) {
+    const fill = currentTTS !== null && currentTTS !== -1 ? document.getElementById('progfill-' + currentTTS) : null;
+    if (fill) fill.style.width = '100%';
+    document.getElementById('float-fill').style.width = '100%';
+    setTimeout(stopTTS, 500);
+    return;
+  }
+  const utter = new SpeechSynthesisUtterance(sentences[idx]);
+  utter.lang = 'ko-KR'; utter.rate = 0.92; utter.pitch = 1.0;
+  const koVoice = window.speechSynthesis.getVoices().find(v => v.lang.startsWith('ko'));
+  if (koVoice) utter.voice = koVoice;
+  utter.onstart = () => {
+    currentSentenceIdx = idx;
+    const pct = Math.round((idx / sentences.length) * 100);
+    if (currentTTS !== null && currentTTS !== -1) {
+      const fill = document.getElementById('progfill-' + currentTTS);
+      if (fill) fill.style.width = pct + '%';
+    }
+    document.getElementById('float-fill').style.width = pct + '%';
+    updateFloatBar(true, currentTTS !== null && currentTTS !== -1 ? chapters[currentTTS]?.title : null, pct, false);
+  };
+  utter.onend = () => { if (isPaused) return; speakSentence(idx + 1); };
+  utter.onerror = (e) => { if (e.error === 'interrupted' || e.error === 'canceled') return; stopTTS(); };
+  window.speechSynthesis.speak(utter);
+}
+
+function floatTogglePause() {
+  if (currentTTS === null) return;
+  if (!isPaused) {
+    isPaused = true;
+    window.speechSynthesis.cancel();
+    if (currentTTS !== -1) { const btn = document.getElementById('tts-' + currentTTS); if (btn) btn.classList.remove('playing'); }
+    const pct = Math.round((currentSentenceIdx / sentences.length) * 100);
+    updateFloatBar(true, null, pct, true);
+    if (isListenAll) updateListenAllBtn('paused');
+  } else {
+    isPaused = false;
+    if (currentTTS !== -1) { const btn = document.getElementById('tts-' + currentTTS); if (btn) btn.classList.add('playing'); }
+    const pct = Math.round((currentSentenceIdx / sentences.length) * 100);
+    updateFloatBar(true, null, pct, false);
+    if (isListenAll) updateListenAllBtn('playing');
+    speakSentence(currentSentenceIdx);
+  }
+}
+
+function updateListenAllBtn(state) {
+  const btn        = document.getElementById('btn-listen-all');
+  const iconPlay   = document.getElementById('listen-all-icon-play');
+  const iconPause  = document.getElementById('listen-all-icon-pause');
+  const iconResume = document.getElementById('listen-all-icon-resume');
+  const label      = document.getElementById('listen-all-label');
+  const sub        = document.getElementById('listen-all-sub');
+  btn.classList.remove('playing', 'paused-all');
+  iconPlay.style.display = iconPause.style.display = iconResume.style.display = 'none';
+  if (state === 'playing') {
+    btn.classList.add('playing'); iconPause.style.display = 'block';
+    label.textContent = '일시정지'; sub.textContent = '재생 중 — 탭하면 일시정지';
+  } else if (state === 'paused') {
+    btn.classList.add('paused-all'); iconResume.style.display = 'block';
+    label.textContent = '이어듣기'; sub.textContent = '일시정지됨 — 탭하면 이어듣기';
+  } else {
+    iconPlay.style.display = 'block';
+    label.textContent = '전체 듣기'; sub.textContent = '처음부터 끝까지 전체 재생';
+  }
+}
+
+function stopTTS() {
+  if (window.speechSynthesis) window.speechSynthesis.cancel();
+  if (ttsInterval) { clearInterval(ttsInterval); ttsInterval = null; }
+  document.querySelectorAll('.btn-tts').forEach(b => b.classList.remove('playing'));
+  document.querySelectorAll('.tts-progress').forEach(p => p.classList.remove('visible'));
+  document.querySelectorAll('.tts-progress-fill').forEach(f => f.style.width = '0%');
+  updateFloatBar(false);
+  currentTTS = null; isPaused = false; sentences = [];
+  currentSentenceIdx = 0; isListenAll = false;
+  updateListenAllBtn('idle');
+}
+
+function toggleTTS(i, e) {
+  e.stopPropagation();
+  if (!window.speechSynthesis) {
+    const banner = document.getElementById('tts-banner');
+    if (banner) { banner.style.display = 'block'; setTimeout(() => banner.style.display = 'none', 4000); }
+    return;
+  }
+  if (currentTTS === i) { stopTTS(); return; }
+  stopTTS();
+  setTimeout(() => {
+    const bar = document.getElementById('prog-' + i);
+    if (bar && bar.getBoundingClientRect().top > window.innerHeight * 0.5)
+      window.scrollBy({ top: 160, behavior: 'smooth' });
+  }, 80);
+  sentences = splitSentences(buildTTSText(i));
+  currentSentenceIdx = 0; currentTTS = i; isPaused = false;
+  document.getElementById('prog-' + i).classList.add('visible');
+  document.getElementById('tts-' + i).classList.add('playing');
+  updateFloatBar(true, chapters[i].title, 0, false);
+  speakSentence(0);
+}
+
+function toggleListenAll() {
+  if (!window.speechSynthesis) {
+    const banner = document.getElementById('tts-banner');
+    if (banner) { banner.style.display = 'block'; setTimeout(() => banner.style.display = 'none', 4000); }
+    return;
+  }
+  if (isListenAll && currentTTS === -1) {
+    floatTogglePause();
+    updateListenAllBtn(isPaused ? 'paused' : 'playing');
+    return;
+  }
+  stopTTS();
+  isListenAll = true; currentTTS = -1;
+  sentences = splitSentences(chapters.map((ch, i) => buildTTSText(i)).join(' '));
+  currentSentenceIdx = 0; isPaused = false;
+  updateListenAllBtn('playing');
+  updateFloatBar(true, null, 0, false);
+  speakSentence(0);
+}
+
+window.speechSynthesis && window.speechSynthesis.addEventListener
+  && window.speechSynthesis.addEventListener('voiceschanged', () => {});
+
+(function() {
+  const ua = navigator.userAgent.toLowerCase();
+  const isInApp = ua.includes('kakaotalk') || ua.includes('naver') ||
+                  ua.includes('instagram') || ua.includes('fbios') || ua.includes('fban');
+  if (isInApp) {
+    const currentUrl = location.href;
+    if (ua.includes('android')) {
+      location.href = 'intent://' + currentUrl.replace(/https?:\/\//, '') +
+        '#Intent;scheme=https;package=com.android.chrome;end';
+    } else if (ua.includes('iphone') || ua.includes('ipad')) {
+      location.href = currentUrl.replace('https://', 'googlechrome://');
+      setTimeout(() => { alert('크롬 앱이 없으면 사파리 주소창에\n' + currentUrl + '\n을 직접 입력해주세요.'); }, 1500);
+    }
+  }
+})();
+
+window.addEventListener('scroll', () => {
+  document.getElementById('scrollTop').classList.toggle('visible', window.scrollY > 400);
+});
+</script>
+</body>
+</html>

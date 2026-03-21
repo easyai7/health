@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>눈 건강 가이드</title>
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="눈 건강 가이드">
+<meta property="og:description" content="노안·백내장·녹내장·황반변성 — 눈을 지키는 실용 지식">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="눈 건강 가이드">
+<meta name="twitter:description" content="노안·백내장·녹내장·황반변성 — 눈을 지키는 실용 지식">
+<meta name="description" content="노안·백내장·녹내장·황반변성·안구건조증 — 조기 발견과 일상 관리로 시력을 지키는 법">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="눈 건강 가이드">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#0e161e">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700;900&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #0e161e;
+  --surface: #121e2a;
+  --surface2: #192736;
+  --border: #2a4060;
+  --blue: #4a7fa8;
+  --blue-light: #80b4d8;
+  --blue-dim: #1e4060;
+  --gold: #c9a84c;
+  --gold-light: #e8c870;
+  --red: #7a3a50;
+  --cream: #f0ece0;
+  --text: #e0ecf4;
+  --text-muted: #7aaac8;
+  --text-dim: #3a6080;
+  --serif: 'Noto Serif KR', serif;
+  --sans: 'Noto Sans KR', sans-serif;
+  --fs: 26px;
+  --fs-sm: 24px;
+  --fs-xs: 20px;
+  --fs-lg: 30px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--serif);
+  font-size: var(--fs);
+  line-height: 1.85;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 15% 20%, rgba(74,127,168,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse at 85% 80%, rgba(201,168,76,0.05) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.wrapper {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 8px 60px;
+  position: relative;
+  z-index: 1;
+}
+
+.header-icon-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 40px 24px 0;
+}
+.header-icon-bg {
+  width: 120px;
+  height: 120px;
+  border-radius: 32px;
+  background: linear-gradient(135deg, var(--blue-dim) 0%, #0e2030 100%);
+  border: 2px solid var(--blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 32px rgba(74,127,168,0.25), 0 2px 8px rgba(0,0,0,0.4);
+}
+.header-icon-bg svg { width: 64px; height: 64px; color: var(--blue-light); }
+
+.header {
+  padding: 32px 12px 36px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 24px;
+  text-align: center;
+  position: relative;
+}
+.header::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--blue), transparent);
+  margin: 20px auto 0;
+}
+.header-eyebrow {
+  font-family: var(--sans);
+  font-size: var(--fs-xs);
+  letter-spacing: 5px;
+  color: var(--blue-light);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  font-weight: 500;
+}
+.header-title {
+  font-size: clamp(28px, 7vw, 48px);
+  font-weight: 900;
+  line-height: 1.25;
+  color: var(--cream);
+  letter-spacing: -0.5px;
+  margin-bottom: 12px;
+}
+.header-title span { color: var(--blue-light); }
+.header-sub {
+  font-family: var(--sans);
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  line-height: 1.9;
+}
+
+.intro-box {
+  background: var(--surface);
+  border-left: 3px solid var(--blue);
+  padding: 20px 22px;
+  margin-bottom: 24px;
+  border-radius: 0 8px 8px 0;
+  font-family: var(--sans);
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  line-height: 1.9;
+}
+.intro-box strong {
+  color: var(--blue-light);
+  display: block;
+  margin-bottom: 6px;
+  font-size: var(--fs);
+  font-weight: 700;
+}
+
+#btn-listen-all {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  background: linear-gradient(135deg, var(--blue-dim) 0%, #0e1e30 100%);
+  border: 1.5px solid var(--blue);
+  border-radius: 14px;
+  padding: 20px 24px;
+  cursor: pointer;
+  color: var(--cream);
+  font-family: var(--sans);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 24px;
+  transition: all 0.25s;
+  -webkit-appearance: none;
+  box-shadow: 0 4px 20px rgba(74,127,168,0.2);
+  position: relative;
+  overflow: hidden;
+}
+#btn-listen-all::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(128,180,216,0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+#btn-listen-all:active { transform: scale(0.98); }
+#btn-listen-all.playing {
+  background: linear-gradient(135deg, #0e1e30 0%, var(--blue-dim) 100%);
+  border-color: var(--blue-light);
+  box-shadow: 0 4px 28px rgba(74,127,168,0.35);
+}
+.listen-all-icon {
+  width: 26px; height: 26px; flex-shrink: 0;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+#btn-listen-all.playing .listen-all-icon { transform: rotate(90deg); }
+.listen-all-sub {
+  display: block;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--blue-light);
+  letter-spacing: 0;
+  margin-top: 3px;
+  opacity: 0.85;
+}
+.listen-all-text-wrap { display: flex; flex-direction: column; align-items: flex-start; }
+
+#tts-banner {
+  display: none;
+  background: var(--red);
+  color: var(--cream);
+  padding: 12px 18px;
+  border-radius: 8px;
+  font-family: var(--sans);
+  font-size: var(--fs-sm);
+  margin-bottom: 18px;
+  text-align: center;
+}
+
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 8px 0 16px;
+  font-family: var(--sans);
+  font-size: var(--fs-xs);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+.section-label::before, .section-label::after {
+  content: ''; flex: 1; height: 1px; background: var(--border);
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 12px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.card.active {
+  border-color: var(--blue-dim);
+  box-shadow: 0 4px 24px rgba(74,127,168,0.15);
+}
+
+.card-header {
+  padding: 20px 16px 0px;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+}
+.card-header-main {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+.card-num {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: var(--blue-light);
+  text-transform: uppercase;
+  margin-top: 4px;
+  flex-shrink: 0;
+  min-width: 36px;
+}
+.card-header-text { flex: 1; }
+.card-tag {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  margin-bottom: 8px;
+  border-radius: 3px;
+  color: var(--bg);
+}
+.tag-blue { background: var(--blue-light); }
+.tag-gold { background: var(--gold); }
+.tag-red { background: #c06080; color: white; }
+.tag-cream { background: var(--cream); }
+.tag-green { background: #70c090; }
+
+.card-title {
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--cream);
+  margin-bottom: 8px;
+}
+.card-summary {
+  font-family: var(--sans);
+  font-size: var(--fs-sm);
+  color: var(--blue-light);
+  line-height: 1.8;
+  font-weight: 500;
+}
+
+.toggle-icon-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 10px 0 18px;
+  border-top: 1px solid var(--border);
+  margin-top: 4px;
+}
+.toggle-icon {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--surface2);
+  border: 2px solid var(--blue-dim);
+  border-radius: 30px;
+  padding: 10px 22px;
+  color: var(--blue-light);
+  font-family: var(--sans);
+  font-size: 22px;
+}
+.toggle-icon svg { width: 20px; height: 20px; flex-shrink: 0; transition: transform 0.25s; }
+.toggle-label-open  { display: inline; }
+.toggle-label-close { display: none; }
+.card.active .toggle-icon { background: var(--blue-dim); border-color: var(--blue); color: var(--cream); }
+.card.active .toggle-icon svg { transform: rotate(180deg); }
+.card.active .toggle-label-open  { display: none; }
+.card.active .toggle-label-close { display: inline; }
+
+.card-detail {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.card.active .card-detail { max-height: 4000px; }
+
+.detail-inner { border-top: 1px solid var(--border); padding: 20px 16px 24px; }
+
+.tts-bar { margin-bottom: 14px; }
+.btn-tts {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 24px;
+  cursor: pointer;
+  color: var(--text-muted);
+  font-family: var(--sans);
+  font-size: 24px;
+}
+.btn-tts:hover { border-color: var(--blue-dim); color: var(--blue-light); }
+.btn-tts.playing { background: var(--blue-dim); border-color: var(--blue); color: var(--cream); }
+.btn-tts svg { width: 24px; height: 24px; flex-shrink: 0; }
+.btn-tts.playing .play-icon { display: none; }
+.btn-tts:not(.playing) .stop-icon { display: none; }
+
+.tts-progress {
+  height: 3px;
+  background: var(--border);
+  border-radius: 2px;
+  margin-top: 10px;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.tts-progress.visible { opacity: 1; }
+.tts-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--blue), var(--blue-light));
+  border-radius: 2px;
+  transition: width 0.3s linear;
+}
+
+.detail-label {
+  font-family: var(--sans);
+  font-size: var(--fs-xs);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+.detail-text {
+  font-family: var(--sans);
+  font-size: var(--fs-sm);
+  line-height: 1.95;
+  color: var(--text);
+  margin-bottom: 20px;
+}
+.detail-text p { margin-bottom: 16px; }
+.detail-text p:last-child { margin-bottom: 0; }
+.detail-text strong { color: var(--cream); font-weight: 700; }
+.detail-quote {
+  background: var(--surface2);
+  border-left: 3px solid var(--gold);
+  padding: 16px 20px;
+  font-family: var(--sans);
+  font-size: var(--fs-sm);
+  color: var(--gold-light);
+  line-height: 1.9;
+  border-radius: 0 8px 8px 0;
+  font-style: italic;
+}
+
+.footer {
+  text-align: center;
+  font-family: var(--sans);
+  font-size: 18px;
+  color: var(--text-dim);
+  padding: 32px 0 0;
+  line-height: 1.8;
+}
+
+#scrollTop {
+  position: fixed;
+  bottom: 28px; right: 20px;
+  width: 44px; height: 44px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  color: var(--text-muted);
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.3s;
+  z-index: 100;
+}
+#scrollTop.visible { opacity: 1; pointer-events: auto; }
+#scrollTop svg { width: 18px; height: 18px; }
+
+@media (max-width: 520px) {
+  .card-header { padding: 16px 12px 0px; }
+  .detail-inner { padding: 16px 12px 20px; }
+}
+
+/* ── FLOATING CONTROL BAR ── */
+#float-bar {
+  display: none;
+  position: fixed;
+  bottom: 16px; left: 50%;
+  transform: translateX(-50%);
+  z-index: 200;
+  width: calc(100% - 32px);
+  max-width: 680px;
+}
+#float-bar.visible { display: block; }
+.float-inner {
+  background: var(--surface);
+  border: 1.5px solid var(--blue);
+  border-radius: 16px;
+  padding: 12px 16px 14px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+}
+.float-top { display: flex; align-items: center; gap: 10px; }
+#float-toggle-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: var(--blue-dim);
+  border: 1.5px solid var(--blue);
+  border-radius: 10px;
+  padding: 12px 18px;
+  cursor: pointer;
+  color: var(--cream);
+  font-family: var(--sans);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  transition: all 0.2s;
+  -webkit-appearance: none;
+}
+#float-toggle-btn.paused {
+  background: rgba(201,168,76,0.15);
+  border-color: var(--gold);
+  color: var(--gold-light);
+}
+#float-toggle-btn svg { width: 22px; height: 22px; flex-shrink: 0; }
+.float-stop-btn {
+  flex-shrink: 0;
+  background: var(--surface2);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 12px 14px;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s;
+  -webkit-appearance: none;
+}
+.float-stop-btn svg { width: 22px; height: 22px; }
+.float-progress {
+  width: 100%; height: 4px;
+  background: var(--border);
+  border-radius: 2px; overflow: hidden;
+  margin-top: 10px;
+}
+.float-progress-fill {
+  height: 100%; width: 0%;
+  background: linear-gradient(90deg, var(--blue), var(--blue-light));
+  border-radius: 2px;
+  transition: width 0.3s linear;
+}
+</style>
+</head>
+<body>
+<div id="tts-banner">이 브라우저는 음성 읽기를 지원하지 않습니다.</div>
+
+<!-- 플로팅 컨트롤 바 -->
+<div id="float-bar">
+  <div class="float-inner">
+    <div class="float-top">
+      <button id="float-toggle-btn" onclick="floatTogglePause()">
+        <svg id="float-icon-pause" viewBox="0 0 24 24" fill="none">
+          <rect x="6" y="4" width="4" height="16" rx="1" fill="currentColor"/>
+          <rect x="14" y="4" width="4" height="16" rx="1" fill="currentColor"/>
+        </svg>
+        <svg id="float-icon-resume" viewBox="0 0 24 24" fill="none" style="display:none">
+          <path d="M8 5v14l11-7z" fill="currentColor"/>
+        </svg>
+        <span id="float-btn-label">일시정지</span>
+      </button>
+      <button class="float-stop-btn" onclick="stopTTS()">
+        <svg viewBox="0 0 24 24" fill="none">
+          <rect x="5" y="5" width="14" height="14" rx="3" fill="var(--text-muted)"/>
+        </svg>
+      </button>
+    </div>
+    <div class="float-progress">
+      <div class="float-progress-fill" id="float-fill"></div>
+    </div>
+  </div>
+</div>
+
+<div class="wrapper">
+  <div class="header-icon-wrap">
+    <div class="header-icon-bg">
+      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- 눈 외곽 -->
+        <path d="M8 32 C16 18, 48 18, 56 32 C48 46, 16 46, 8 32 Z"
+              stroke="currentColor" stroke-width="2.5" fill="none" opacity="0.9"/>
+        <!-- 홍채 -->
+        <circle cx="32" cy="32" r="9" stroke="currentColor" stroke-width="2" fill="none" opacity="0.85"/>
+        <!-- 동공 -->
+        <circle cx="32" cy="32" r="4" fill="currentColor" opacity="0.9"/>
+        <!-- 빛 반사 -->
+        <circle cx="36" cy="28" r="2" fill="currentColor" opacity="0.5"/>
+        <!-- 속눈썹 위 -->
+        <path d="M20 24 Q24 20 28 22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+        <path d="M32 21 Q32 17 32 21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+        <path d="M36 22 Q40 19 43 23" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="header">
+    <div class="header-eyebrow">시력 보호 · 노안 · 안과 질환 · 실용 가이드</div>
+    <h1 class="header-title"><span>눈 건강</span><br>완전 가이드</h1>
+    <div class="header-sub">
+      노안·백내장·녹내장·황반변성·안구건조증<br>
+      조기 발견과 꾸준한 관리로 시력을 지키는 법
+    </div>
+  </div>
+
+  <div class="intro-box">
+    <strong>이 가이드는 무엇을 알려주는가?</strong>
+    눈은 한번 나빠지면 되돌리기 어렵습니다. 특히 녹내장과 황반변성은 증상을 느낄 때는 이미 많이 진행된 경우가 많습니다. 왜 나이가 들수록 눈이 나빠지는지, 어떤 증상이 위험 신호인지, 녹내장 진단 후 일상에서 무엇을 주의해야 하는지, 눈을 지키는 생활 습관은 무엇인지 — 안과에서 다 들을 수 없었던 실용 지식을 담았습니다.
+  </div>
+
+  <button id="btn-listen-all" onclick="toggleListenAll()">
+    <svg class="listen-all-icon" id="listen-all-icon-play" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
+      <path d="M10 8l6 4-6 4V8z" fill="currentColor"/>
+    </svg>
+    <svg class="listen-all-icon" id="listen-all-icon-pause" viewBox="0 0 24 24" fill="none" style="display:none">
+      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
+      <rect x="8" y="7" width="3" height="10" rx="1" fill="currentColor"/>
+      <rect x="13" y="7" width="3" height="10" rx="1" fill="currentColor"/>
+    </svg>
+    <svg class="listen-all-icon" id="listen-all-icon-resume" viewBox="0 0 24 24" fill="none" style="display:none">
+      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
+      <path d="M10 8l6 4-6 4V8z" fill="currentColor"/>
+    </svg>
+    <div class="listen-all-text-wrap">
+      <span id="listen-all-label">전체 듣기</span>
+      <span class="listen-all-sub" id="listen-all-sub">처음부터 끝까지 전체 재생</span>
+    </div>
+  </button>
+
+  <div class="section-label">눈 건강 — 7가지 핵심 지식</div>
+
+  <div id="chapterList"></div>
+
+  <div class="footer">
+    눈 건강 완전 가이드<br>
+    건강 정보 앱 · 전문 안과 진료를 대체하지 않습니다
+  </div>
+</div>
+
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg viewBox="0 0 24 24" fill="none"><path d="M18 15l-6-6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+
+<script>
+const chapters = [
+  {
+    num: "01",
+    tag: "tag-blue",
+    tagText: "노화와 눈",
+    title: "왜 나이 들수록 눈이 나빠지는가 — 눈 노화의 과학",
+    summary: "눈은 40대부터 서서히, 60대부터 빠르게 노화된다. 노안은 자연스러운 변화지만, 백내장·녹내장·황반변성은 치료가 필요한 질병이다. 이 차이를 아는 것이 시력을 지키는 첫걸음이다.",
+    detail: `눈도 나이가 들면 변합니다. 하지만 모든 변화가 같은 것은 아닙니다.
+
+<strong>노안은 질병이 아닌 자연스러운 노화입니다.</strong> 수정체가 딱딱해져서 가까운 것에 초점을 맞추는 능력이 줄어드는 것입니다. 40대 중반부터 시작해서 60대에 거의 완성됩니다. 돋보기 안경으로 충분히 보완됩니다.
+
+<strong>백내장은 수정체가 뿌옇게 흐려지는 병입니다.</strong> 60대의 약 70%, 70대의 90% 이상이 어느 정도 백내장을 가지고 있습니다. 처음에는 안개가 낀 것처럼 뿌옇고, 밤에 빛이 번져 보입니다. 수술로 완전히 회복이 가능합니다. 너무 늦게 수술하면 오히려 합병증이 생길 수 있습니다.
+
+<strong>녹내장은 시신경이 손상되는 병입니다.</strong> 안압이 높아지거나 혈액 순환이 나빠지면 눈 뒤의 시신경이 서서히 죽어갑니다. 가장 큰 문제는 말기가 될 때까지 본인이 전혀 느끼지 못한다는 것입니다. 한번 손상된 시신경은 회복되지 않습니다. 조기 발견과 꾸준한 치료만이 답입니다.
+
+<strong>황반변성은 중심 시력이 손상되는 병입니다.</strong> 망막 중심부(황반)가 노화로 손상되면 글씨가 굽어 보이거나 중심이 까맣게 보입니다. 한국과 일본 모두 노인 실명의 주요 원인입니다.
+
+<strong>가장 중요한 사실.</strong> 녹내장과 황반변성은 증상을 느낄 때는 이미 많이 진행된 상태입니다. 60세 이상은 증상이 없어도 1년에 한 번 안과 정기검진이 필수입니다.`,
+    quote: "눈은 아프지 않습니다. 통증이 없으니 이상이 없다고 착각하기 쉽습니다. 하지만 녹내장과 황반변성은 소리 없이 진행됩니다. 정기검진이 유일한 조기 발견법입니다."
+  },
+  {
+    num: "02",
+    tag: "tag-red",
+    tagText: "녹내장",
+    title: "녹내장 — 알고 나서야 무서운 병, 진단 후 반드시 알아야 할 것",
+    summary: "녹내장은 한번 진행된 시야 손실은 되돌릴 수 없다. 그러나 조기에 발견하고 안약을 꾸준히 넣으면 평생 시력을 유지할 수 있다. 안약 사용법과 일상 주의사항이 결정적이다.",
+    detail: `녹내장 진단을 받으셨다면 이것들을 반드시 알아야 합니다.
+
+<strong>녹내장의 핵심은 안압 조절입니다.</strong> 안압이 높으면 시신경이 눌려 손상됩니다. 안약은 안압을 낮추는 것이 목적입니다. 하루에 한 번 또는 두 번, 정해진 시간에 규칙적으로 넣는 것이 가장 중요합니다. 단 하루라도 거르면 안압이 올라갑니다.
+
+<strong>안약 올바르게 넣는 법.</strong> 고개를 뒤로 젖히고 아래 눈꺼풀을 살짝 당깁니다. 눈동자를 위로 향하고 결막낭(눈꺼풀 안쪽 공간)에 한 방울 넣습니다. 눈을 감고 눈물점(눈 안쪽 코 옆 부분)을 1~2분 지긋이 누릅니다. 이렇게 하면 약이 코와 목으로 넘어가는 것을 막아 부작용을 줄이고 효과를 높입니다.
+
+<strong>일상에서 피해야 할 것들.</strong> 넥타이나 목이 꽉 끼는 옷깃은 안압을 높입니다. 엎드려 자거나 엎드린 자세로 스마트폰을 보는 것은 안압을 크게 높입니다. 무거운 물건을 들거나 숨을 참고 힘쓰는 운동도 순간적으로 안압을 높입니다. 커피를 한꺼번에 많이 마시는 것도 주의가 필요합니다.
+
+<strong>정기검진을 절대 빠지면 안 됩니다.</strong> 안압이 정상 범위여도 시신경 손상이 진행될 수 있습니다. 시야 검사와 시신경 사진 촬영을 통해 진행 여부를 확인해야 합니다. 보통 3~6개월마다 검진을 받습니다.
+
+<strong>녹내장 환자에게 좋은 것들.</strong> 규칙적인 유산소 운동(걷기, 수영)은 안압을 낮추는 데 도움이 됩니다. 충분한 수면, 스트레스 관리도 중요합니다. 루테인이 풍부한 녹황색 채소(시금치, 케일, 브로콜리)도 시신경 보호에 도움이 됩니다.
+
+<strong>가족에게도 알려야 합니다.</strong> 녹내장은 유전적 경향이 있습니다. 직계 가족(자녀, 형제)은 40대부터 정기검진을 받는 것이 권고됩니다.`,
+    quote: "안약을 빠뜨리는 날이 없어야 합니다. 오늘 안약 한 방울이 10년 후의 시야를 지킵니다. 녹내장은 관리하는 병이지, 포기하는 병이 아닙니다."
+  },
+  {
+    num: "03",
+    tag: "tag-gold",
+    tagText: "백내장",
+    title: "백내장 — 뿌연 안개가 걷히는 수술, 언제 해야 하는가",
+    summary: "백내장은 수술로 완전히 치료된다. 문제는 '언제 하느냐'다. 너무 이르거나 너무 늦으면 좋지 않다. 수술 전후 주의사항과 인공수정체 선택법을 알면 결과가 달라진다.",
+    detail: `백내장은 노인성 안과 질환 중 수술로 완치가 가능한 유일한 질병입니다.
+
+<strong>백내장 수술 시기.</strong> 시력이 0.3 이하로 떨어져 일상생활이 불편해지거나, 밤 운전이 위험해지거나, 빛 번짐이 심해지면 수술을 고려합니다. 너무 일찍 할 필요는 없지만, 너무 오래 방치하면 수정체가 딱딱해져 수술이 어려워지고 합병증 위험이 높아집니다.
+
+<strong>인공수정체 선택이 중요합니다.</strong> 단초점 렌즈는 원거리 또는 근거리 한 곳만 잘 보이고 나머지는 안경이 필요합니다. 다초점 렌즈는 안경 없이 원거리·근거리 모두 볼 수 있지만 빛 번짐이 생길 수 있고 비용이 높습니다. 녹내장이 있는 경우 다초점 렌즈보다 단초점 렌즈가 적합한 경우가 많습니다. 담당 의사와 충분히 상담하세요.
+
+<strong>수술 후 주의사항.</strong> 수술 후 1개월간 눈을 비비거나 세게 누르면 안 됩니다. 세수할 때 눈에 물이 들어가지 않도록 주의합니다. 수술 후 처방된 안약을 빠짐없이 넣어야 염증을 예방할 수 있습니다. 무거운 것을 들거나 심한 운동은 2주 이상 피합니다.
+
+<strong>수술 후에도 안과 검진은 계속합니다.</strong> 백내장 수술 후에도 녹내장, 황반변성은 별도로 계속 진행될 수 있습니다. 수술로 눈이 맑아졌다고 안심하면 안 됩니다.
+
+<strong>백내장을 늦추는 생활 습관.</strong> 자외선 차단 선글라스 착용이 가장 효과적입니다. 흡연은 백내장 진행을 크게 빠르게 합니다. 당뇨가 있으면 혈당 관리가 눈 건강과 직결됩니다.`,
+    quote: "백내장 수술은 두려워할 이유가 없습니다. 20분 정도의 시술로 안개가 걷히는 경험을 하십니다. 적절한 시기를 놓치지 않는 것이 가장 중요합니다."
+  },
+  {
+    num: "04",
+    tag: "tag-red",
+    tagText: "황반변성",
+    title: "황반변성 — 중심이 사라지는 병, 조기 발견이 전부다",
+    summary: "황반변성은 글씨의 중심이 굽어 보이거나 까맣게 보이는 것이 첫 신호다. 이 증상이 나타났을 때 즉시 병원에 가면 진행을 멈출 수 있다. 한 달만 늦어도 결과가 달라진다.",
+    detail: `황반변성은 조기에 발견하면 막을 수 있지만, 늦으면 중심 시력을 영구적으로 잃습니다.
+
+<strong>황반변성의 첫 증상을 반드시 알아야 합니다.</strong> 글씨를 읽을 때 가운데가 흐릿하거나 굽어 보인다, 직선이 휘어 보인다, 얼굴의 중심 부분이 잘 안 보인다 — 이 증상이 나타나면 지체 없이 안과에 가야 합니다. 하루이틀을 미루지 마세요.
+
+<strong>암슬러 격자 자가 검사.</strong> 집에서 간단하게 황반변성을 확인하는 방법이 있습니다. 격자무늬(바둑판 모양)를 30cm 거리에서 한 쪽 눈씩 중앙 점을 바라봅니다. 선이 굽거나 중앙이 흐릿하게 보이면 즉시 안과를 방문합니다. 스마트폰에서 '암슬러 격자'를 검색하면 바로 테스트할 수 있습니다.
+
+<strong>건성 황반변성과 습성 황반변성.</strong> 건성(약 90%)은 천천히 진행되며 현재 완전한 치료법은 없지만 영양소 보충으로 진행을 늦출 수 있습니다. 습성(약 10%)은 빠르게 진행되지만 항 혈관내피성장인자(anti-VEGF) 주사 치료로 시력을 보존할 수 있습니다. 발견 즉시 치료를 시작해야 합니다.
+
+<strong>황반변성을 늦추는 방법.</strong> 루테인·지아잔틴이 풍부한 음식(시금치, 케일, 달걀노른자)을 꾸준히 먹는 것이 도움이 됩니다. 오메가3(등푸른 생선)도 황반 보호에 효과가 있습니다. 흡연은 황반변성 위험을 2~4배 높이는 가장 강력한 위험 인자입니다. 자외선 차단도 중요합니다.
+
+<strong>한쪽 눈씩 가리고 확인하는 습관을 만드세요.</strong> 황반변성은 한쪽 눈에서 먼저 시작되는 경우가 많습니다. 두 눈으로 보면 나쁜 눈을 좋은 눈이 보완해서 이상을 느끼지 못합니다. 한 달에 한 번, 한쪽 눈씩 가리고 암슬러 격자나 신문 글씨를 확인하세요.`,
+    quote: "황반변성은 한 달이 1년을 결정합니다. '조금 이따 가야지'가 시력을 앗아갑니다. 중심이 흐릿하거나 선이 굽어 보이면 그날 바로 안과에 가세요."
+  },
+  {
+    num: "05",
+    tag: "tag-blue",
+    tagText: "안구건조증",
+    title: "안구건조증 — 단순한 불편함이 아니라 눈 건강을 해친다",
+    summary: "스마트폰, 에어컨, 나이 듦 — 이 세 가지가 안구건조증을 만든다. 인공눈물만 넣으면 된다고 생각하지만, 종류 선택과 사용법이 틀리면 오히려 나빠진다.",
+    detail: `안구건조증은 노인의 30~40%가 겪는 매우 흔한 문제입니다. 단순 불편을 넘어 각막 손상으로 이어질 수 있습니다.
+
+<strong>왜 나이 들수록 건조한가.</strong> 눈물샘 기능이 저하되고, 눈물의 지방층이 얇아집니다. 항히스타민제, 이뇨제, 항우울제 등 많은 약물이 눈물 분비를 줄입니다. 여성은 폐경 후 급격히 악화됩니다.
+
+<strong>인공눈물 올바른 사용법.</strong> 방부제 없는 1회용 인공눈물이 가장 안전합니다. 방부제가 든 다회용은 하루 4회 이하로 사용합니다. 렌즈를 낀 상태에서는 렌즈용 인공눈물만 사용합니다. 눈이 뻑뻑하다고 너무 자주 넣으면 오히려 눈물 분비 기능이 떨어질 수 있습니다.
+
+<strong>스마트폰·TV 볼 때 주의.</strong> 화면을 집중해서 볼 때 눈 깜빡임이 평소의 3분의 1로 줄어듭니다. 눈 깜빡임이 눈물을 눈 전체에 고르게 펴주는 역할을 하기 때문에 건조함이 심해집니다. 20분마다 20초 이상 먼 곳(6미터 이상)을 바라보는 습관을 만드세요.
+
+<strong>환경을 바꿉니다.</strong> 에어컨·난방 바람이 눈을 향하지 않도록 합니다. 실내 습도를 50~60%로 유지합니다. 가습기가 도움이 됩니다. 컴퓨터 화면을 눈높이보다 약간 아래에 놓으면 눈을 더 많이 감아 건조함을 줄일 수 있습니다.
+
+<strong>온찜질이 효과적입니다.</strong> 따뜻하게 데운 수건을 눈 위에 10분간 올려두면 마이봄샘(눈꺼풀 기름샘)이 열려 눈물의 지방층이 회복됩니다. 아침에 눈이 뻑뻑할 때 특히 도움이 됩니다.`,
+    quote: "스마트폰을 20분 보셨으면 20초는 먼 산을 보세요. 이 작은 습관이 눈의 수명을 늘립니다."
+  },
+  {
+    num: "06",
+    tag: "tag-gold",
+    tagText: "눈 영양",
+    title: "눈에 좋은 것과 나쁜 것 — 식습관이 시력을 바꾼다",
+    summary: "루테인, 지아잔틴, 오메가3, 비타민C·E — 이 영양소들이 눈 노화를 늦춘다. 반대로 흡연과 혈당 조절 실패는 눈을 가장 빠르게 망친다. 음식으로 먼저, 영양제는 보조로.",
+    detail: `눈 건강에 영향을 미치는 영양소와 생활 습관이 있습니다.
+
+<strong>루테인과 지아잔틴.</strong> 황반에 집중되어 있는 항산화 물질입니다. 자외선과 청색광으로부터 황반을 보호합니다. 시금치, 케일, 브로콜리, 달걀노른자에 풍부합니다. 황반변성과 백내장 진행을 늦추는 데 가장 효과가 검증된 성분입니다. 루테인 보충제는 하루 10~20mg이 권고량입니다.
+
+<strong>오메가3 지방산.</strong> 눈물의 지방층을 강화하여 안구건조증을 완화합니다. 눈 혈관 건강에도 도움이 됩니다. 고등어, 연어, 참치 등 등푸른 생선을 주 2회 이상 먹는 것을 권합니다. 생선을 못 드시는 분은 오메가3 보충제로 대체할 수 있습니다.
+
+<strong>비타민 C와 E.</strong> 강력한 항산화 효과로 눈의 노화를 늦춥니다. 비타민C는 감귤류, 딸기, 피망에 풍부합니다. 비타민E는 견과류, 올리브오일에 많습니다. AREDS 연구에 따르면 이 두 가지 비타민과 루테인, 아연을 함께 복용하면 황반변성 진행을 25~30% 늦출 수 있습니다.
+
+<strong>눈에 가장 나쁜 것 — 흡연.</strong> 흡연은 황반변성 위험을 2~4배, 백내장 위험을 2배 이상 높입니다. 눈 혈관을 수축시키고 산화 스트레스를 일으킵니다. 금연만으로도 눈 건강이 크게 개선됩니다.
+
+<strong>혈당 관리가 눈을 지킵니다.</strong> 당뇨가 있으면 당뇨망막병증으로 실명할 수 있습니다. 혈당이 잘 조절되면 눈 합병증 위험이 크게 줄어듭니다. 당뇨 환자는 1년에 한 번 이상 안저 검사를 받아야 합니다.`,
+    quote: "눈에 좋다고 당근만 먹는 것보다, 다양한 색의 채소를 매일 조금씩 먹는 것이 훨씬 효과적입니다. 그리고 담배 한 개비가 루테인 영양제 한 달치를 무너뜨립니다."
+  },
+  {
+    num: "07",
+    tag: "tag-green",
+    tagText: "생활 습관",
+    title: "매일 실천하는 눈 건강 루틴 — 오늘부터 바꿀 수 있는 것들",
+    summary: "자외선 차단, 20-20-20 법칙, 온찜질, 정기검진 — 이 네 가지만 지켜도 눈 건강이 달라진다. 특히 녹내장 환자는 안약 시간을 지키는 것이 가장 중요한 일과다.",
+    detail: `매일 실천할 수 있는 눈 건강 루틴입니다.
+
+<strong>아침 — 안약부터 시작합니다 (녹내장 환자).</strong> 기상 후 가장 먼저 안약을 넣는 것을 습관으로 만드세요. 양치질 전, 세수 전, 아침밥 전 — 같은 행동에 묶어두면 잊지 않습니다. 두 가지 이상 안약을 넣을 때는 5분 간격을 두어야 효과가 제대로 납니다.
+
+<strong>낮 — 20-20-20 법칙.</strong> 화면을 20분 보면 20초 동안 20피트(6미터) 이상 먼 곳을 바라봅니다. 눈 근육의 긴장을 풀고 깜빡임을 회복시킵니다. 스마트폰 타이머로 20분 알람을 설정해두는 것이 가장 쉬운 방법입니다.
+
+<strong>외출 시 — 자외선 차단을 빠뜨리지 않습니다.</strong> 자외선은 백내장과 황반변성을 모두 악화시킵니다. 흐린 날도 자외선은 차단되지 않습니다. UV400 차단 선글라스를 착용하세요. 넓은 챙모자도 추가 보호가 됩니다.
+
+<strong>저녁 — 온찜질로 눈을 쉬게 합니다.</strong> 따뜻한 수건이나 아이마스크를 눈 위에 10분간 올려둡니다. 마이봄샘을 열어 눈물 지방층을 회복시키고 눈 주위 혈액순환을 좋게 합니다. 잠들기 전 스마트폰을 1시간 전에 끄면 수면도 좋아지고 눈도 쉽니다.
+
+<strong>한 달에 한 번 — 한쪽 눈 자가검사.</strong> 한쪽 눈을 가리고 암슬러 격자나 신문을 읽어봅니다. 이상이 느껴지면 즉시 안과를 방문합니다.
+
+<strong>1년에 한 번 — 반드시 안과 정기검진.</strong> 60세 이상이라면 증상이 없어도 매년 안과 검진을 받아야 합니다. 안압 측정, 시야 검사, 안저 촬영을 통해 녹내장·황반변성·당뇨망막병증을 조기에 발견할 수 있습니다.`,
+    quote: "녹내장 환자에게 안약은 약이 아니라 눈의 밥입니다. 매일 빠지지 않고, 같은 시간에, 올바른 방법으로 — 이것이 시력을 지키는 가장 강력한 습관입니다."
+  }
+];
+
+const list = document.getElementById('chapterList');
+let currentTTS = null;
+let isPaused = false;
+let sentences = [];
+let currentSentenceIdx = 0;
+let ttsInterval = null;
+let isListenAll = false;
+
+function renderCards() {
+  list.innerHTML = '';
+  chapters.forEach((ch, i) => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <div class="card-header" onclick="toggleCard(${i})">
+        <div class="card-header-main">
+          <div class="card-num">${ch.num}</div>
+          <div class="card-header-text">
+            <span class="card-tag ${ch.tag}">${ch.tagText}</span>
+            <div class="card-title">${ch.title}</div>
+            <div class="card-summary">${ch.summary}</div>
+          </div>
+        </div>
+        <div class="toggle-icon-wrap">
+          <div class="toggle-icon">
+            <svg viewBox="0 0 14 14" fill="none">
+              <path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="toggle-label-open">펼쳐보기</span>
+            <span class="toggle-label-close">접기</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-detail">
+        <div class="detail-inner">
+          <div class="tts-bar">
+            <button class="btn-tts" id="tts-${i}" onclick="toggleTTS(${i}, event)">
+              <svg class="play-icon" viewBox="0 0 24 24" fill="none">
+                <path d="M3 9v6h4l5 5V4L7 9H3z" fill="currentColor"/>
+                <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z" fill="currentColor"/>
+                <path d="M14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77 0-4.28-2.99-7.86-7-8.77z" fill="currentColor"/>
+              </svg>
+              <svg class="stop-icon" viewBox="0 0 24 24" fill="none">
+                <rect x="6" y="6" width="12" height="12" rx="2" fill="currentColor"/>
+              </svg>
+              <span class="play-icon">자세히 듣기</span>
+              <span class="stop-icon">듣기 중지</span>
+            </button>
+          </div>
+          <div class="tts-progress" id="prog-${i}">
+            <div class="tts-progress-fill" id="progfill-${i}"></div>
+          </div>
+          <div class="detail-label">상세 내용</div>
+          <div class="detail-text">${ch.detail.replace(/\n\n/g, '</p><p>').replace(/^/, '<p>').replace(/$/, '</p>')}</div>
+          <div class="detail-quote">${ch.quote}</div>
+        </div>
+      </div>
+    `;
+    list.appendChild(card);
+  });
+}
+
+renderCards();
+
+function toggleCard(i) {
+  const cards = document.querySelectorAll('.card');
+  const card = cards[i];
+  const isActive = card.classList.contains('active');
+  if (isActive) stopTTS();
+  card.classList.toggle('active');
+  if (!isActive) {
+    setTimeout(() => {
+      const ttsBtn = document.getElementById('tts-' + i);
+      if (!ttsBtn) return;
+      const btnRect = ttsBtn.getBoundingClientRect();
+      const viewH = window.innerHeight;
+      if (btnRect.bottom > viewH - 20) {
+        window.scrollBy({ top: btnRect.bottom - viewH + 60, behavior: 'smooth' });
+      }
+    }, 320);
+  }
+}
+
+function buildTTSText(i) {
+  const ch = chapters[i];
+  const detail = ch.detail.replace(/<[^>]+>/g, '');
+  return `${ch.title}. ${detail} ${ch.quote}`;
+}
+
+// ── 문장 분리 ──
+function splitSentences(text) {
+  return text.split(/(?<=[.!?。！？다요까죠네군]\s)/).map(s => s.trim()).filter(Boolean);
+}
+
+// ── 플로팅 바 업데이트 ──
+function updateFloatBar(show, title, pct, paused) {
+  const bar = document.getElementById('float-bar');
+  if (!show) { bar.classList.remove('visible'); return; }
+  bar.classList.add('visible');
+  document.getElementById('float-fill').style.width = (pct || 0) + '%';
+  const toggleBtn = document.getElementById('float-toggle-btn');
+  const iconPause = document.getElementById('float-icon-pause');
+  const iconResume = document.getElementById('float-icon-resume');
+  const label = document.getElementById('float-btn-label');
+  if (paused) {
+    toggleBtn.classList.add('paused');
+    iconPause.style.display = 'none';
+    iconResume.style.display = 'block';
+    label.textContent = '이어듣기';
+  } else {
+    toggleBtn.classList.remove('paused');
+    iconPause.style.display = 'block';
+    iconResume.style.display = 'none';
+    label.textContent = '일시정지';
+  }
+}
+
+// ── 문장 하나씩 재생 (재귀) ──
+function speakSentence(idx) {
+  if (idx >= sentences.length) {
+    const fill = currentTTS !== null && currentTTS !== -1 ? document.getElementById('progfill-' + currentTTS) : null;
+    if (fill) fill.style.width = '100%';
+    document.getElementById('float-fill').style.width = '100%';
+    setTimeout(stopTTS, 500);
+    return;
+  }
+  const utter = new SpeechSynthesisUtterance(sentences[idx]);
+  utter.lang = 'ko-KR';
+  utter.rate = 0.92;
+  utter.pitch = 1.0;
+  const voices = window.speechSynthesis.getVoices();
+  const koVoice = voices.find(v => v.lang.startsWith('ko'));
+  if (koVoice) utter.voice = koVoice;
+  utter.onstart = () => {
+    currentSentenceIdx = idx;
+    const pct = Math.round((idx / sentences.length) * 100);
+    if (currentTTS !== null && currentTTS !== -1) {
+      const fill = document.getElementById('progfill-' + currentTTS);
+      if (fill) fill.style.width = pct + '%';
+    }
+    document.getElementById('float-fill').style.width = pct + '%';
+    const chTitle = currentTTS !== null && currentTTS !== -1 ? chapters[currentTTS]?.title : null;
+    updateFloatBar(true, chTitle, pct, false);
+  };
+  utter.onend = () => {
+    if (isPaused) return;
+    speakSentence(idx + 1);
+  };
+  utter.onerror = (e) => {
+    if (e.error === 'interrupted' || e.error === 'canceled') return;
+    stopTTS();
+  };
+  window.speechSynthesis.speak(utter);
+}
+
+// ── 플로팅 바 일시정지/이어듣기 ──
+function floatTogglePause() {
+  if (currentTTS === null) return;
+  if (!isPaused) {
+    isPaused = true;
+    window.speechSynthesis.cancel();
+    if (currentTTS !== -1) {
+      const btn = document.getElementById('tts-' + currentTTS);
+      if (btn) btn.classList.remove('playing');
+    }
+    const pct = Math.round((currentSentenceIdx / sentences.length) * 100);
+    updateFloatBar(true, null, pct, true);
+    if (isListenAll) updateListenAllBtn('paused');
+  } else {
+    isPaused = false;
+    if (currentTTS !== -1) {
+      const btn = document.getElementById('tts-' + currentTTS);
+      if (btn) btn.classList.add('playing');
+    }
+    const pct = Math.round((currentSentenceIdx / sentences.length) * 100);
+    updateFloatBar(true, null, pct, false);
+    if (isListenAll) updateListenAllBtn('playing');
+    speakSentence(currentSentenceIdx);
+  }
+}
+
+// ── 전체듣기 버튼 상태 업데이트 ──
+function updateListenAllBtn(state) {
+  const btn       = document.getElementById('btn-listen-all');
+  const iconPlay  = document.getElementById('listen-all-icon-play');
+  const iconPause = document.getElementById('listen-all-icon-pause');
+  const iconResume= document.getElementById('listen-all-icon-resume');
+  const label     = document.getElementById('listen-all-label');
+  const sub       = document.getElementById('listen-all-sub');
+  btn.classList.remove('playing', 'paused-all');
+  iconPlay.style.display = iconPause.style.display = iconResume.style.display = 'none';
+  if (state === 'playing') {
+    btn.classList.add('playing');
+    iconPause.style.display = 'block';
+    label.textContent = '일시정지';
+    sub.textContent   = '재생 중 — 탭하면 일시정지';
+  } else if (state === 'paused') {
+    btn.classList.add('paused-all');
+    iconResume.style.display = 'block';
+    label.textContent = '이어듣기';
+    sub.textContent   = '일시정지됨 — 탭하면 이어듣기';
+  } else {
+    iconPlay.style.display = 'block';
+    label.textContent = '전체 듣기';
+    sub.textContent   = '처음부터 끝까지 전체 재생';
+  }
+}
+
+// ── 완전 정지 ──
+function stopTTS() {
+  if (window.speechSynthesis) window.speechSynthesis.cancel();
+  if (ttsInterval) { clearInterval(ttsInterval); ttsInterval = null; }
+  document.querySelectorAll('.btn-tts').forEach(b => b.classList.remove('playing'));
+  document.querySelectorAll('.tts-progress').forEach(p => p.classList.remove('visible'));
+  document.querySelectorAll('.tts-progress-fill').forEach(f => f.style.width = '0%');
+  updateFloatBar(false);
+  currentTTS = null;
+  isPaused = false;
+  sentences = [];
+  currentSentenceIdx = 0;
+  isListenAll = false;
+  updateListenAllBtn('idle');
+}
+
+// ── 자세히 듣기 버튼 ──
+function toggleTTS(i, e) {
+  e.stopPropagation();
+  if (!window.speechSynthesis) {
+    const banner = document.getElementById('tts-banner');
+    if (banner) { banner.style.display = 'block'; setTimeout(() => banner.style.display = 'none', 4000); }
+    return;
+  }
+  if (currentTTS === i) { stopTTS(); return; }
+  stopTTS();
+  setTimeout(() => {
+    const bar = document.getElementById('prog-' + i);
+    if (!bar) return;
+    const barRect = bar.getBoundingClientRect();
+    if (barRect.top > window.innerHeight * 0.5) {
+      window.scrollBy({ top: 160, behavior: 'smooth' });
+    }
+  }, 80);
+  const text = buildTTSText(i);
+  sentences = splitSentences(text);
+  currentSentenceIdx = 0;
+  currentTTS = i;
+  isPaused = false;
+  const prog = document.getElementById('prog-' + i);
+  const btn  = document.getElementById('tts-' + i);
+  prog.classList.add('visible');
+  btn.classList.add('playing');
+  updateFloatBar(true, chapters[i].title, 0, false);
+  speakSentence(0);
+}
+
+// ── 전체 듣기 ──
+function toggleListenAll() {
+  if (!window.speechSynthesis) {
+    const banner = document.getElementById('tts-banner');
+    if (banner) { banner.style.display = 'block'; setTimeout(() => banner.style.display = 'none', 4000); }
+    return;
+  }
+  if (isListenAll && currentTTS === -1) {
+    floatTogglePause();
+    updateListenAllBtn(isPaused ? 'paused' : 'playing');
+    return;
+  }
+  stopTTS();
+  isListenAll = true;
+  currentTTS = -1;
+  const allText = chapters.map(ch => buildTTSText(chapters.indexOf(ch))).join(' ');
+  sentences = splitSentences(allText);
+  currentSentenceIdx = 0;
+  isPaused = false;
+  updateListenAllBtn('playing');
+  updateFloatBar(true, null, 0, false);
+  speakSentence(0);
+}
+
+window.speechSynthesis && window.speechSynthesis.addEventListener
+  && window.speechSynthesis.addEventListener('voiceschanged', () => {});
+
+(function() {
+  const ua = navigator.userAgent.toLowerCase();
+  const isInApp = ua.includes('kakaotalk') || ua.includes('naver') ||
+                  ua.includes('instagram') || ua.includes('fbios') || ua.includes('fban');
+  if (isInApp) {
+    const currentUrl = location.href;
+    if (ua.includes('android')) {
+      location.href = 'intent://' + currentUrl.replace(/https?:\/\//, '') +
+        '#Intent;scheme=https;package=com.android.chrome;end';
+    } else if (ua.includes('iphone') || ua.includes('ipad')) {
+      location.href = currentUrl.replace('https://', 'googlechrome://');
+      setTimeout(() => {
+        alert('크롬 앱이 없으면 사파리 주소창에\n' + currentUrl + '\n을 직접 입력해주세요.');
+      }, 1500);
+    }
+  }
+})();
+
+window.addEventListener('scroll', () => {
+  const btn = document.getElementById('scrollTop');
+  btn.classList.toggle('visible', window.scrollY > 400);
+});
+</script>
+</body>
+</html>

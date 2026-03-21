@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>치매 예방 가이드</title>
+<meta property="og:title" content="치매 예방 가이드">
+<meta property="og:description" content="치매 예방 — 뇌 자극, 수면, 운동, 사회적 연결, 조기 발견까지 실용 지식">
+<meta property="og:locale" content="ko_KR">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="치매 예방 가이드">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#0e161e">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700;900&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#0e161e;--surface:#121e2a;--surface2:#192736;--border:#2a4060;
+  --blue:#4a7fa8;--blue-light:#80b4d8;--blue-dim:#1e4060;
+  --gold:#c9a84c;--gold-light:#e8c870;--red:#7a3a50;--cream:#f0ece0;
+  --text:#e0ecf4;--text-muted:#7aaac8;--text-dim:#3a6080;
+  --serif:'Noto Serif KR',serif;--sans:'Noto Sans KR',sans-serif;
+  --fs:26px;--fs-sm:24px;--fs-xs:20px;--fs-lg:30px;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{background:var(--bg);color:var(--text);font-family:var(--serif);font-size:var(--fs);line-height:1.85;min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 15% 20%,rgba(74,127,168,.08) 0%,transparent 60%),radial-gradient(ellipse at 85% 80%,rgba(201,168,76,.05) 0%,transparent 60%);pointer-events:none;z-index:0}
+.wrapper{max-width:720px;margin:0 auto;padding:0 8px 60px;position:relative;z-index:1}
+.header-icon-wrap{display:flex;justify-content:center;padding:40px 24px 0}
+.header-icon-bg{width:120px;height:120px;border-radius:32px;background:linear-gradient(135deg,var(--blue-dim) 0%,#0e2030 100%);border:2px solid var(--blue);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 32px rgba(74,127,168,.25),0 2px 8px rgba(0,0,0,.4)}
+.header-icon-bg svg{width:64px;height:64px;color:var(--blue-light)}
+.header{padding:32px 12px 36px;border-bottom:1px solid var(--border);margin-bottom:24px;text-align:center;position:relative}
+.header::after{content:'';display:block;width:60px;height:2px;background:linear-gradient(90deg,transparent,var(--blue),transparent);margin:20px auto 0}
+.header-eyebrow{font-family:var(--sans);font-size:var(--fs-xs);letter-spacing:5px;color:var(--blue-light);text-transform:uppercase;margin-bottom:14px;font-weight:500}
+.header-title{font-size:clamp(28px,7vw,48px);font-weight:900;line-height:1.25;color:var(--cream);letter-spacing:-.5px;margin-bottom:12px}
+.header-title span{color:var(--blue-light)}
+.header-sub{font-family:var(--sans);font-size:var(--fs-sm);color:var(--text-muted);line-height:1.9}
+.intro-box{background:var(--surface);border-left:3px solid var(--blue);padding:20px 22px;margin-bottom:24px;border-radius:0 8px 8px 0;font-family:var(--sans);font-size:var(--fs-sm);color:var(--text-muted);line-height:1.9}
+.intro-box strong{color:var(--blue-light);display:block;margin-bottom:6px;font-size:var(--fs);font-weight:700}
+#btn-listen-all{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;background:linear-gradient(135deg,var(--blue-dim) 0%,#0e1e30 100%);border:1.5px solid var(--blue);border-radius:14px;padding:20px 24px;cursor:pointer;color:var(--cream);font-family:var(--sans);font-size:22px;font-weight:700;letter-spacing:1px;margin-bottom:24px;transition:all .25s;-webkit-appearance:none;box-shadow:0 4px 20px rgba(74,127,168,.2);position:relative;overflow:hidden}
+#btn-listen-all::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(128,180,216,.08) 0%,transparent 60%);pointer-events:none}
+#btn-listen-all:active{transform:scale(.98)}
+#btn-listen-all.playing{background:linear-gradient(135deg,#0e1e30 0%,var(--blue-dim) 100%);border-color:var(--blue-light);box-shadow:0 4px 28px rgba(74,127,168,.35)}
+#btn-listen-all.paused-all{background:linear-gradient(135deg,rgba(201,168,76,.15) 0%,#2a2010 100%);border-color:var(--gold);color:var(--gold-light);box-shadow:0 4px 20px rgba(201,168,76,.15)}
+.listen-all-icon{width:26px;height:26px;flex-shrink:0}
+.listen-all-sub{display:block;font-size:14px;font-weight:400;color:var(--blue-light);letter-spacing:0;margin-top:3px;opacity:.85}
+#btn-listen-all.paused-all .listen-all-sub{color:var(--gold)}
+.listen-all-text-wrap{display:flex;flex-direction:column;align-items:flex-start}
+#tts-banner{display:none;background:var(--red);color:var(--cream);padding:12px 18px;border-radius:8px;font-family:var(--sans);font-size:var(--fs-sm);margin-bottom:18px;text-align:center}
+.section-label{display:flex;align-items:center;gap:12px;margin:8px 0 16px;font-family:var(--sans);font-size:var(--fs-xs);letter-spacing:3px;text-transform:uppercase;color:var(--text-dim)}
+.section-label::before,.section-label::after{content:'';flex:1;height:1px;background:var(--border)}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:12px;transition:border-color .2s,box-shadow .2s}
+.card.active{border-color:var(--blue-dim);box-shadow:0 4px 24px rgba(74,127,168,.15)}
+.card-header{padding:20px 16px 0;cursor:pointer;user-select:none;display:flex;flex-direction:column}
+.card-header-main{display:flex;gap:12px;align-items:flex-start;margin-bottom:16px}
+.card-num{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:3px;color:var(--blue-light);text-transform:uppercase;margin-top:4px;flex-shrink:0;min-width:36px}
+.card-header-text{flex:1}
+.card-tag{display:inline-block;font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;margin-bottom:8px;border-radius:3px;color:var(--bg)}
+.tag-blue{background:var(--blue-light)}.tag-gold{background:var(--gold)}.tag-red{background:#c06080;color:white}.tag-cream{background:var(--cream)}.tag-green{background:#70c090}
+.card-title{font-size:var(--fs-lg);font-weight:700;line-height:1.35;color:var(--cream);margin-bottom:8px}
+.card-summary{font-family:var(--sans);font-size:var(--fs-sm);color:var(--blue-light);line-height:1.8;font-weight:500}
+.toggle-icon-wrap{display:flex;justify-content:center;padding:10px 0 18px;border-top:1px solid var(--border);margin-top:4px}
+.toggle-icon{display:flex;align-items:center;gap:8px;background:var(--surface2);border:2px solid var(--blue-dim);border-radius:30px;padding:10px 22px;color:var(--blue-light);font-family:var(--sans);font-size:22px}
+.toggle-icon svg{width:20px;height:20px;flex-shrink:0;transition:transform .25s}
+.toggle-label-open{display:inline}.toggle-label-close{display:none}
+.card.active .toggle-icon{background:var(--blue-dim);border-color:var(--blue);color:var(--cream)}
+.card.active .toggle-icon svg{transform:rotate(180deg)}
+.card.active .toggle-label-open{display:none}.card.active .toggle-label-close{display:inline}
+.card-detail{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.4,0,.2,1)}
+.card.active .card-detail{max-height:4000px}
+.detail-inner{border-top:1px solid var(--border);padding:20px 16px 24px}
+.tts-bar{margin-bottom:14px}
+.btn-tts{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:14px 24px;cursor:pointer;color:var(--text-muted);font-family:var(--sans);font-size:24px}
+.btn-tts:hover{border-color:var(--blue-dim);color:var(--blue-light)}
+.btn-tts.playing{background:var(--blue-dim);border-color:var(--blue);color:var(--cream)}
+.btn-tts svg{width:24px;height:24px;flex-shrink:0}
+.btn-tts.playing .play-icon{display:none}.btn-tts:not(.playing) .stop-icon{display:none}
+.tts-progress{height:3px;background:var(--border);border-radius:2px;margin-top:10px;overflow:hidden;opacity:0;transition:opacity .3s}
+.tts-progress.visible{opacity:1}
+.tts-progress-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--blue),var(--blue-light));border-radius:2px;transition:width .3s linear}
+.detail-label{font-family:var(--sans);font-size:var(--fs-xs);letter-spacing:3px;text-transform:uppercase;color:var(--text-dim);margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.detail-text{font-family:var(--sans);font-size:var(--fs-sm);line-height:1.95;color:var(--text);margin-bottom:20px}
+.detail-text p{margin-bottom:16px}.detail-text p:last-child{margin-bottom:0}
+.detail-text strong{color:var(--cream);font-weight:700}
+.detail-quote{background:var(--surface2);border-left:3px solid var(--gold);padding:16px 20px;font-family:var(--sans);font-size:var(--fs-sm);color:var(--gold-light);line-height:1.9;border-radius:0 8px 8px 0;font-style:italic}
+.footer{text-align:center;font-family:var(--sans);font-size:18px;color:var(--text-dim);padding:32px 0 0;line-height:1.8}
+#scrollTop{position:fixed;bottom:28px;right:20px;width:44px;height:44px;background:var(--surface);border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text-muted);opacity:0;pointer-events:none;transition:opacity .3s;z-index:100}
+#scrollTop.visible{opacity:1;pointer-events:auto}
+#scrollTop svg{width:18px;height:18px}
+@media(max-width:520px){.card-header{padding:16px 12px 0}.detail-inner{padding:16px 12px 20px}}
+#float-bar{display:none;position:fixed;bottom:16px;left:50%;transform:translateX(-50%);z-index:200;width:calc(100% - 32px);max-width:680px}
+#float-bar.visible{display:block}
+.float-inner{background:var(--surface);border:1.5px solid var(--blue);border-radius:16px;padding:12px 16px 14px;box-shadow:0 8px 32px rgba(0,0,0,.5)}
+.float-top{display:flex;align-items:center;gap:10px}
+#float-toggle-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:10px;background:var(--blue-dim);border:1.5px solid var(--blue);border-radius:10px;padding:12px 18px;cursor:pointer;color:var(--cream);font-family:var(--sans);font-size:22px;font-weight:700;letter-spacing:1px;transition:all .2s;-webkit-appearance:none}
+#float-toggle-btn.paused{background:rgba(201,168,76,.15);border-color:var(--gold);color:var(--gold-light)}
+#float-toggle-btn svg{width:22px;height:22px;flex-shrink:0}
+.float-stop-btn{flex-shrink:0;background:var(--surface2);border:1.5px solid var(--border);border-radius:10px;cursor:pointer;padding:12px 14px;display:flex;align-items:center;justify-content:center;transition:all .2s;-webkit-appearance:none}
+.float-stop-btn svg{width:22px;height:22px}
+.float-progress{width:100%;height:4px;background:var(--border);border-radius:2px;overflow:hidden;margin-top:10px}
+.float-progress-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--blue),var(--blue-light));border-radius:2px;transition:width .3s linear}
+</style>
+</head>
+<body>
+<div id="tts-banner">이 브라우저는 음성 읽기를 지원하지 않습니다.</div>
+
+<div id="float-bar">
+  <div class="float-inner">
+    <div class="float-top">
+      <button id="float-toggle-btn" onclick="floatTogglePause()">
+        <svg id="float-icon-pause" viewBox="0 0 24 24" fill="none"><rect x="6" y="4" width="4" height="16" rx="1" fill="currentColor"/><rect x="14" y="4" width="4" height="16" rx="1" fill="currentColor"/></svg>
+        <svg id="float-icon-resume" viewBox="0 0 24 24" fill="none" style="display:none"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+        <span id="float-btn-label">일시정지</span>
+      </button>
+      <button class="float-stop-btn" onclick="stopTTS()">
+        <svg viewBox="0 0 24 24" fill="none"><rect x="5" y="5" width="14" height="14" rx="3" fill="var(--text-muted)"/></svg>
+      </button>
+    </div>
+    <div class="float-progress"><div class="float-progress-fill" id="float-fill"></div></div>
+  </div>
+</div>
+
+<div class="wrapper">
+  <div class="header-icon-wrap">
+    <div class="header-icon-bg">
+      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- 뇌 실루엣 -->
+        <path d="M32 10 C20 10 12 18 12 26 C12 30 14 34 12 38 C10 42 12 50 20 52 C24 53 28 52 32 52 C36 52 40 53 44 52 C52 50 54 42 52 38 C50 34 52 30 52 26 C52 18 44 10 32 10Z"
+              stroke="currentColor" stroke-width="2.2" fill="none" opacity="0.85"/>
+        <!-- 뇌 주름 -->
+        <path d="M22 20 Q26 16 30 20 Q34 24 38 20 Q42 16 46 20" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.55" stroke-linecap="round"/>
+        <path d="M18 30 Q24 26 30 30 Q36 34 42 30 Q48 26 50 30" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.55" stroke-linecap="round"/>
+        <path d="M20 40 Q26 36 32 40 Q38 44 44 40" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.55" stroke-linecap="round"/>
+        <!-- 중앙 분리선 -->
+        <line x1="32" y1="12" x2="32" y2="50" stroke="currentColor" stroke-width="1.2" opacity="0.3" stroke-dasharray="3 3"/>
+        <!-- 빛 점 -->
+        <circle cx="24" cy="28" r="2.5" fill="currentColor" opacity="0.4"/>
+        <circle cx="40" cy="28" r="2.5" fill="currentColor" opacity="0.4"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="header">
+    <div class="header-eyebrow">뇌 건강 · 인지 기능 · 실용 가이드</div>
+    <h1 class="header-title"><span>치매 예방</span><br>완전 가이드</h1>
+    <div class="header-sub">
+      뇌가 늙는 방식, 예방법, 조기 신호까지<br>
+      치매를 늦추는 생활 습관 지식
+    </div>
+  </div>
+
+  <div class="intro-box">
+    <strong>이 가이드는 무엇을 알려주는가?</strong>
+    치매는 유전이라서 어쩔 수 없다고 생각하는 분들이 많습니다. 하지만 연구에 따르면 치매의 약 40%는 생활 습관 개선으로 예방하거나 늦출 수 있습니다. 뇌가 어떻게 늙는지, 어떤 활동이 뇌를 보호하는지, 수면이 왜 치매와 직결되는지, 조기 치매를 구별하는 법, 가족이 치매 진단을 받았을 때 어떻게 해야 하는지 — 병원에서 다 알려주지 못한 지식을 담았습니다.
+  </div>
+
+  <button id="btn-listen-all" onclick="toggleListenAll()">
+    <svg class="listen-all-icon" id="listen-all-icon-play" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
+      <path d="M10 8l6 4-6 4V8z" fill="currentColor"/>
+    </svg>
+    <svg class="listen-all-icon" id="listen-all-icon-pause" viewBox="0 0 24 24" fill="none" style="display:none">
+      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
+      <rect x="8" y="7" width="3" height="10" rx="1" fill="currentColor"/>
+      <rect x="13" y="7" width="3" height="10" rx="1" fill="currentColor"/>
+    </svg>
+    <svg class="listen-all-icon" id="listen-all-icon-resume" viewBox="0 0 24 24" fill="none" style="display:none">
+      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
+      <path d="M10 8l6 4-6 4V8z" fill="currentColor"/>
+    </svg>
+    <div class="listen-all-text-wrap">
+      <span id="listen-all-label">전체 듣기</span>
+      <span class="listen-all-sub" id="listen-all-sub">처음부터 끝까지 전체 재생</span>
+    </div>
+  </button>
+
+  <div class="section-label">치매 예방 — 7가지 핵심 지식</div>
+  <div id="chapterList"></div>
+
+  <div class="footer">치매 예방 완전 가이드<br>건강 정보 앱 · 전문 진료를 대체하지 않습니다</div>
+</div>
+
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg viewBox="0 0 24 24" fill="none"><path d="M18 15l-6-6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+
+<script>
+const chapters = [
+  {
+    num:"01", tag:"tag-blue", tagText:"뇌 노화",
+    title:"뇌는 어떻게 늙는가 — 치매와 정상 노화의 차이",
+    summary:"나이 들면 기억력이 떨어지는 것은 자연스럽다. 하지만 치매는 다르다. 깜빡하는 것과 치매의 차이를 알아야 조기에 발견하고 대처할 수 있다. 뇌도 근육처럼 쓸수록 강해진다.",
+    detail:`뇌 노화와 치매를 구분하는 것이 예방의 첫걸음입니다.
+
+<strong>정상 노화와 치매의 결정적 차이.</strong> 정상 노화에서는 약속을 잊었다가 나중에 기억합니다. 치매에서는 약속 자체를 했다는 사실을 잊습니다. 열쇠를 어디 뒀는지 잊는 것은 정상이지만, 열쇠가 무엇인지 모르게 되는 것은 치매입니다. 핵심은 힌트를 주면 기억이 돌아오느냐, 아니냐입니다.
+
+<strong>뇌도 근육처럼 쓸수록 강해집니다.</strong> 뇌는 평생 새로운 신경 연결을 만들 수 있습니다. 이것을 신경가소성이라고 합니다. 새로운 것을 배우고, 도전하고, 사람을 만나고, 운동하면 뇌 신경 연결이 늘어납니다. 반대로 아무것도 안 하고 고립되면 뇌가 빠르게 퇴화합니다.
+
+<strong>치매의 뇌에서는 무슨 일이 일어나는가.</strong> 알츠하이머 치매는 뇌에 베타아밀로이드라는 독성 단백질이 쌓이면서 신경세포가 죽어가는 병입니다. 증상이 나타나기 10~20년 전부터 뇌 손상이 시작됩니다. 이것이 예방이 중요한 이유입니다. 증상이 생긴 후에는 이미 많이 진행된 상태입니다.
+
+<strong>치매는 한 종류가 아닙니다.</strong> 알츠하이머 치매가 전체의 60~70%입니다. 혈관성 치매는 뇌졸중이나 혈관 손상으로 생기며 두 번째로 흔합니다. 루이소체 치매, 전두측두엽 치매 등도 있습니다. 각각 특징이 다르고 진행 방식도 다릅니다.
+
+<strong>예방 가능한 위험 인자들.</strong> 세계적인 의학 학술지 란셋의 연구에 따르면 치매의 약 40%는 수정 가능한 위험 인자와 관련이 있습니다. 교육 수준 향상, 청력 손실 치료, 고혈압 관리, 음주 감소, 비만 예방, 흡연, 우울증, 신체 활동 부족, 사회적 고립, 당뇨, 대기오염, 두부 외상 — 이 12가지를 관리하면 치매를 크게 예방할 수 있습니다.`,
+    quote:"치매는 운명이 아닙니다. 지금부터 뇌를 쓰고, 몸을 움직이고, 사람을 만나고, 잘 자는 것이 치매를 막는 가장 강력한 방법입니다."
+  },
+  {
+    num:"02", tag:"tag-gold", tagText:"뇌 자극",
+    title:"뇌를 깨우는 활동들 — 어떤 자극이 치매를 늦추는가",
+    summary:"독서, 바둑, 악기, 외국어 학습, 글쓰기 — 새롭고 복잡한 정신 활동이 뇌 신경 연결을 늘린다. 특히 손을 쓰는 활동과 창의적 활동이 뇌 전체를 자극한다. TV 시청은 해당되지 않는다.",
+    detail:`어떤 정신 활동이 뇌를 보호하는지 알아야 효과적으로 실천할 수 있습니다.
+
+<strong>새롭고 도전적인 활동이 핵심입니다.</strong> 이미 익숙한 것을 반복하는 것은 뇌에 큰 자극이 되지 않습니다. 처음 하는 것, 어렵게 느껴지는 것, 실수를 하면서 배우는 과정이 뇌 신경 연결을 만들어냅니다. 불편함이 느껴지는 활동이 뇌에는 좋은 신호입니다.
+
+<strong>손을 쓰는 활동이 특히 효과적입니다.</strong> 악기 연주, 붓글씨, 그림 그리기, 뜨개질, 조각, 요리처럼 손의 정교한 움직임이 필요한 활동은 뇌의 운동 영역과 감각 영역을 동시에 자극합니다. 손가락을 자주 움직이면 치매 예방에 효과적이라는 연구가 많습니다.
+
+<strong>사회적 상호작용이 뇌를 깨웁니다.</strong> 대화는 단순한 소통 이상입니다. 상대방의 말을 듣고 이해하고 적절히 반응하는 과정에서 뇌의 여러 영역이 동시에 활성화됩니다. 사람을 많이 만나고 대화하는 노인이 그렇지 않은 노인보다 치매 발생이 현저히 낮습니다.
+
+<strong>새로운 것을 배우는 것이 가장 좋습니다.</strong> 새로운 언어 배우기, 악기 배우기, 춤 배우기, 스마트폰 새 기능 익히기 — 처음에 어렵고 실수하는 것이 당연합니다. 그 불편한 과정 자체가 뇌를 강화합니다. 나이 들어 새것을 배우는 것이 어렵게 느껴지는 것은 뇌가 게을러진 증거입니다. 바로 지금 시작하세요.
+
+<strong>독서와 글쓰기의 힘.</strong> 책 읽기는 언어 이해, 상상력, 집중력을 동시에 사용합니다. 일기나 편지 쓰기는 생각을 정리하고 언어로 표현하는 복잡한 과정입니다. 매일 10분 독서와 짧은 일기 쓰기가 뇌 건강에 꾸준한 도움이 됩니다.
+
+<strong>TV와 스마트폰은 수동적 자극입니다.</strong> TV 시청이나 동영상 보기는 뇌가 수동적으로 받아들이는 활동입니다. 능동적으로 생각하고 반응하는 활동이 아니어서 인지 기능 향상에 도움이 되지 않습니다. 오히려 장시간 TV 시청이 치매 위험을 높인다는 연구가 있습니다.`,
+    quote:"뇌를 쓰지 않으면 뇌는 줄어듭니다. 어렵고 새로운 것을 배울 때마다 뇌는 새로운 연결을 만듭니다. 오늘 처음 해보는 것 하나가 내일의 뇌를 지킵니다."
+  },
+  {
+    num:"03", tag:"tag-green", tagText:"운동과 뇌",
+    title:"운동이 최고의 치매 예방약 — 걷기가 뇌를 어떻게 바꾸는가",
+    summary:"규칙적인 유산소 운동은 뇌 해마를 키우고 인지 기능을 향상시킨다. 하루 30분 걷기가 치매 위험을 45%까지 낮춘다는 연구도 있다. 운동이 뇌에 미치는 과학적 원리를 알아야 한다.",
+    detail:`운동은 뇌에 직접적인 보호 효과를 가집니다.
+
+<strong>운동이 뇌를 물리적으로 키웁니다.</strong> 유산소 운동을 꾸준히 하면 기억과 학습을 담당하는 뇌의 해마 부피가 증가합니다. 반대로 운동하지 않으면 해마가 줄어듭니다. 1년간 규칙적으로 걸은 노인의 해마가 2% 증가했다는 연구도 있습니다. 이것은 노화로 인한 1~2년치 뇌 퇴화를 역전시키는 효과입니다.
+
+<strong>뇌유래신경영양인자(BDNF)가 핵심입니다.</strong> 운동하면 뇌에서 BDNF라는 단백질이 분비됩니다. BDNF는 뇌 신경세포의 성장과 생존을 돕고, 새로운 신경 연결을 만드는 것을 도와줍니다. 운동을 '뇌의 비료'라고 부르는 이유입니다.
+
+<strong>하루 30분 걷기로 충분합니다.</strong> 격렬한 운동이 필요하지 않습니다. 주 3~5회, 하루 30분의 빠르게 걷기만으로도 치매 위험이 크게 줄어듭니다. 중요한 것은 꾸준히 하는 것입니다. 한 번에 오래 하는 것보다 매일 조금씩이 효과적입니다.
+
+<strong>복잡한 운동이 더 효과적입니다.</strong> 단순히 걷는 것보다 춤, 탁구, 테니스처럼 순간순간 판단하고 반응해야 하는 운동이 뇌를 더 많이 자극합니다. 걷기를 할 때도 뒤로 걷기, 숫자 세면서 걷기처럼 인지 활동을 함께 하면 효과가 배가됩니다.
+
+<strong>근력 운동도 중요합니다.</strong> 근력 운동은 뇌로 가는 혈류를 개선하고 신경 성장 인자를 증가시킵니다. 주 2회 가벼운 근력 운동을 유산소 운동과 함께 하면 인지 기능 유지에 더 효과적입니다.
+
+<strong>앉아있는 시간을 줄이는 것이 중요합니다.</strong> 하루 8시간 이상 앉아 있으면 치매 위험이 높아집니다. 운동을 따로 하더라도 나머지 시간에 오래 앉아있으면 효과가 줄어듭니다. 1시간마다 일어나서 5분 걷기, 집안일 하기, 가벼운 스트레칭으로 자주 움직이는 것이 중요합니다.`,
+    quote:"걷기는 무릎에도 좋고, 혈압에도 좋고, 혈당에도 좋고, 기분에도 좋습니다. 그리고 뇌도 키웁니다. 운동화를 신는 것이 치매 예방의 가장 확실한 첫 걸음입니다."
+  },
+  {
+    num:"04", tag:"tag-blue", tagText:"수면과 치매",
+    title:"자는 동안 뇌가 청소된다 — 수면 부족이 치매를 부르는 이유",
+    summary:"자는 동안 뇌에서 치매 독소(베타아밀로이드)가 청소된다. 수면이 부족하면 이 청소가 안 돼 독소가 쌓인다. 7시간 미만의 수면이 10년 이상 지속되면 치매 위험이 크게 높아진다.",
+    detail:`수면과 치매의 관계는 최근 연구에서 가장 주목받는 분야 중 하나입니다.
+
+<strong>자는 동안 뇌가 청소됩니다.</strong> 2013년 발견된 뇌척수액 순환 시스템(글림프 시스템)이 수면 중에 활성화되어 낮 동안 쌓인 대사 노폐물을 청소합니다. 알츠하이머의 원인인 베타아밀로이드도 이 청소 과정에서 제거됩니다. 잠을 못 자면 이 청소가 안 됩니다.
+
+<strong>하루 한 번만 잠을 못 자도 베타아밀로이드가 쌓입니다.</strong> 연구에 따르면 하룻밤 수면을 방해받은 것만으로도 뇌의 베타아밀로이드 수치가 유의미하게 증가했습니다. 만성적인 수면 부족은 치매 위험을 높이는 가장 직접적인 원인 중 하나입니다.
+
+<strong>7~8시간 수면이 뇌를 지킵니다.</strong> 여러 연구에서 하루 7시간 미만이나 9시간 이상 자는 사람이 7~8시간 자는 사람보다 인지 기능 저하와 치매 위험이 높은 것으로 나타났습니다. 너무 적게 자는 것도, 너무 많이 자는 것(수면 무호흡 등 다른 문제의 신호일 수 있음)도 좋지 않습니다.
+
+<strong>수면무호흡증이 치매 위험을 높입니다.</strong> 코를 심하게 골고 자다가 숨이 멈추는 수면무호흡증은 수면 중 산소 공급을 방해해 뇌 손상을 일으킵니다. 수면무호흡증 치료만으로도 인지 기능이 회복되고 치매 위험이 낮아진다는 연구가 있습니다. 코골이가 심하면 반드시 검사를 받아야 합니다.
+
+<strong>낮잠은 짧게만.</strong> 30분 이내의 낮잠은 인지 기능에 도움이 됩니다. 하지만 1시간 이상의 긴 낮잠은 야간 수면을 방해하고 오히려 치매 위험을 높일 수 있습니다. 오후 3시 이후의 낮잠은 피하는 것이 좋습니다.`,
+    quote:"잘 자는 것이 치매 예방의 절반입니다. 오늘 밤 7시간의 깊은 잠이 뇌를 청소합니다. 수면을 희생하면서 무언가를 한다는 것은 뇌를 담보로 잡힌 것과 같습니다."
+  },
+  {
+    num:"05", tag:"tag-gold", tagText:"사회적 연결",
+    title:"고독이 치매를 부른다 — 사람과의 연결이 뇌를 살린다",
+    summary:"사회적 고립은 흡연만큼 뇌 건강에 해롭다. 가족, 친구, 이웃과 자주 교류하는 노인이 치매 발생이 현저히 낮다. 특히 일본·한국 독거노인의 치매 위험이 높은 이유가 여기 있다.",
+    detail:`사회적 연결은 뇌 건강의 핵심 요소입니다.
+
+<strong>고독이 뇌를 손상시킵니다.</strong> 사회적 고립은 만성 스트레스 호르몬(코르티솔)을 높이고, 이것이 뇌의 해마를 손상시킵니다. 고독한 노인은 그렇지 않은 노인보다 치매 발생 위험이 1.5~2배 높습니다. 세계보건기구는 사회적 고립을 치매의 중요한 위험 인자로 지정했습니다.
+
+<strong>대화가 뇌 운동입니다.</strong> 누군가와 대화하는 것은 듣기, 이해하기, 생각하기, 표현하기 네 가지 인지 기능을 동시에 사용하는 뇌 종합 운동입니다. 가족과 매일 이야기하고, 이웃과 인사 나누고, 친구에게 전화하는 것이 뇌를 직접 자극합니다.
+
+<strong>목적 있는 사회 참여가 더 효과적입니다.</strong> 단순히 사람을 만나는 것보다 함께 무언가를 하는 것이 더 효과적입니다. 노인 학습 프로그램, 자원봉사, 종교 모임, 취미 동호회, 합창단, 그림 교실 — 공통된 목적이 있는 집단 활동이 개인 운동이나 독서보다 치매 예방에 더 효과적이라는 연구가 많습니다.
+
+<strong>세대 간 교류가 특히 좋습니다.</strong> 손자, 손녀, 젊은 사람들과의 교류는 새로운 관심사를 갖게 하고 디지털 기기 사용을 유도하며 정서적 활력을 줍니다. 세대를 넘나드는 대화와 활동이 뇌를 가장 폭넓게 자극합니다.
+
+<strong>우울증과 치매의 악순환을 끊어야 합니다.</strong> 우울증은 치매의 위험 인자이기도 하고 초기 치매 증상이기도 합니다. 고립되면 우울해지고, 우울하면 더 고립됩니다. 이 악순환을 끊으려면 억지로라도 밖으로 나가고 사람을 만나는 것이 중요합니다. 우울증이 의심되면 반드시 치료를 받아야 합니다.`,
+    quote:"전화 한 통, 인사 한 마디, 함께하는 식사 한 끼가 뇌를 살립니다. 고독은 뇌가 선택할 수 없는 독입니다. 오늘 누군가에게 먼저 연락하세요."
+  },
+  {
+    num:"06", tag:"tag-red", tagText:"조기 신호",
+    title:"치매의 10가지 경고 신호 — 단순 건망증과 어떻게 다른가",
+    summary:"국제알츠하이머협회가 제시한 10가지 경고 신호를 알면 치매를 조기에 발견할 수 있다. 조기 발견이 중요한 이유는 초기에 치료하면 진행 속도를 크게 늦출 수 있기 때문이다.",
+    detail:`치매의 경고 신호를 알면 조기에 발견하고 치료를 시작할 수 있습니다.
+
+<strong>1. 일상을 방해하는 기억력 저하.</strong> 최근에 배운 것을 잊거나, 같은 질문을 반복하거나, 중요한 날짜나 사건을 잊어버리는 것입니다. 단순 건망증은 나중에 기억이 돌아오지만, 치매는 힌트를 줘도 기억하지 못합니다.
+
+<strong>2. 계획이나 문제 해결 능력의 변화.</strong> 익숙한 요리 레시피를 따르거나 청구서를 관리하는 것이 어려워집니다. 숫자를 다루거나 계획을 세우는 것이 예전보다 훨씬 힘들어집니다.
+
+<strong>3. 익숙한 일을 마치기 어렵게 됩니다.</strong> 집까지 가는 길을 잊거나, 좋아하던 게임의 규칙을 기억하지 못하거나, 직장 업무를 익숙하게 처리하지 못하게 됩니다.
+
+<strong>4. 시간과 장소에 대한 혼란.</strong> 날짜, 계절, 연도를 잊거나, 어떻게 어떤 장소에 왔는지 모르거나, 현재 있는 곳이 어디인지 헷갈립니다.
+
+<strong>5. 시각·공간 능력의 저하.</strong> 균형 잡기나 거리 판단이 어려워지거나, 글 읽기가 힘들어지거나, 얼굴이나 물체 인식이 어려워집니다.
+
+<strong>6. 말이나 글쓰기의 새로운 문제.</strong> 대화 중 적당한 단어가 생각나지 않거나, 갑자기 말을 멈추거나, 이야기 중간에 무슨 말을 하려 했는지 잊어버립니다.
+
+<strong>7. 물건을 엉뚱한 곳에 두기.</strong> 열쇠를 냉장고에, 지갑을 화장실에 두거나, 물건을 잃어버리고 찾지 못하고 남이 훔쳐갔다고 의심합니다.
+
+<strong>8. 판단력 저하.</strong> 텔레마케터나 사기에 쉽게 속거나, 위생 관리나 돈 관리가 소홀해집니다.
+
+<strong>9. 사회적 활동에서 물러남.</strong> 취미나 사회 활동, 업무에서 손을 떼거나, 좋아하던 스포츠 팀이나 활동에 관심을 잃습니다.
+
+<strong>10. 기분과 성격의 변화.</strong> 혼란스러워하거나, 의심하거나, 우울해하거나, 두려워하거나, 불안해합니다. 특히 익숙하지 않은 상황에서 쉽게 흥분합니다.
+
+이 중 여러 가지가 해당된다면 지체 없이 신경과나 정신건강의학과를 방문하여 인지기능 검사를 받아야 합니다.`,
+    quote:"치매를 일찍 발견할수록 더 많은 시간을 의미 있게 살 수 있습니다. 경고 신호가 보이면 무시하지 마세요. 조기 진단이 치매와 함께 사는 삶의 질을 결정합니다."
+  },
+  {
+    num:"07", tag:"tag-cream", tagText:"가족과 돌봄",
+    title:"가족이 치매라면 — 당신이 알아야 할 것들",
+    summary:"치매 환자를 돌보는 가족이 소진되면 환자도 나빠진다. 치매 환자와 대화하는 법, 문제 행동 대처법, 도움받을 수 있는 제도, 그리고 돌봄 가족의 건강을 지키는 법을 알아야 한다.",
+    detail:`가족이 치매 진단을 받으면 가족 모두의 삶이 바뀝니다. 올바른 지식이 함께 사는 시간을 더 좋게 만듭니다.
+
+<strong>치매 환자와 대화하는 법.</strong> 부드럽고 천천히 말합니다. 한 번에 하나의 질문이나 지시만 합니다. 틀린 말을 굳이 고치지 않습니다. 감정을 인정해줍니다. "오늘 아침 드셨잖아요"보다 "배고프셨군요, 뭘 드실까요"가 더 좋습니다. 그분이 살던 과거 이야기를 나누면 대화가 자연스럽게 이어집니다.
+
+<strong>문제 행동에 대처하는 법.</strong> 반복 질문, 배회, 밤낮 혼동, 의심, 공격성 — 이런 행동은 뇌 손상 때문이지 고의가 아닙니다. 맞서거나 설득하려 하면 더 악화됩니다. 환경을 바꾸거나, 주의를 다른 곳으로 돌리거나, 규칙적인 일과를 만들어 주는 것이 효과적입니다.
+
+<strong>안전 환경을 만듭니다.</strong> 가스 밸브 잠금 장치, 현관 이중 잠금, 약 보관함 잠금, 욕실 미끄럼 방지, 날카로운 물건 정리가 필요합니다. GPS가 내장된 안전 손목밴드를 착용하면 배회 시 빠르게 찾을 수 있습니다.
+
+<strong>장기요양보험 제도를 활용합니다.</strong> 치매 진단을 받으면 장기요양보험 등급 신청을 합니다. 등급에 따라 요양보호사 방문, 주야간 보호 센터, 요양 시설 입소 등 다양한 지원을 받을 수 있습니다. 치매안심센터(전국에 설치)에서 무료 검사, 교육, 상담 서비스를 받을 수 있습니다.
+
+<strong>돌봄 가족의 건강이 가장 중요합니다.</strong> 치매 환자를 돌보는 가족의 50% 이상이 우울증을 경험합니다. 돌보는 사람이 소진되면 환자도 더 나빠집니다. 정기적으로 쉬는 시간을 갖고, 주야간 보호 서비스를 활용하여 혼자 감당하지 않습니다. 가족 중 한 명이 모든 것을 짊어지지 않도록 역할을 나눕니다.`,
+    quote:"치매는 환자 혼자의 병이 아닙니다. 가족 모두의 병입니다. 혼자 감당하려 하지 마세요. 도움을 요청하는 것이 더 오래, 더 잘 돌볼 수 있는 방법입니다."
+  }
+];
+
+const list = document.getElementById('chapterList');
+let currentTTS=null, isPaused=false, sentences=[], currentSentenceIdx=0, ttsInterval=null, isListenAll=false;
+
+function renderCards() {
+  list.innerHTML = '';
+  chapters.forEach((ch, i) => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <div class="card-header" onclick="toggleCard(${i})">
+        <div class="card-header-main">
+          <div class="card-num">${ch.num}</div>
+          <div class="card-header-text">
+            <span class="card-tag ${ch.tag}">${ch.tagText}</span>
+            <div class="card-title">${ch.title}</div>
+            <div class="card-summary">${ch.summary}</div>
+          </div>
+        </div>
+        <div class="toggle-icon-wrap"><div class="toggle-icon">
+          <svg viewBox="0 0 14 14" fill="none"><path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="toggle-label-open">펼쳐보기</span><span class="toggle-label-close">접기</span>
+        </div></div>
+      </div>
+      <div class="card-detail"><div class="detail-inner">
+        <div class="tts-bar">
+          <button class="btn-tts" id="tts-${i}" onclick="toggleTTS(${i},event)">
+            <svg class="play-icon" viewBox="0 0 24 24" fill="none"><path d="M3 9v6h4l5 5V4L7 9H3z" fill="currentColor"/><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z" fill="currentColor"/><path d="M14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77 0-4.28-2.99-7.86-7-8.77z" fill="currentColor"/></svg>
+            <svg class="stop-icon" viewBox="0 0 24 24" fill="none"><rect x="6" y="6" width="12" height="12" rx="2" fill="currentColor"/></svg>
+            <span class="play-icon">자세히 듣기</span><span class="stop-icon">듣기 중지</span>
+          </button>
+        </div>
+        <div class="tts-progress" id="prog-${i}"><div class="tts-progress-fill" id="progfill-${i}"></div></div>
+        <div class="detail-label">상세 내용</div>
+        <div class="detail-text">${ch.detail.replace(/\n\n/g,'</p><p>').replace(/^/,'<p>').replace(/$/,'</p>')}</div>
+        <div class="detail-quote">${ch.quote}</div>
+      </div></div>`;
+    list.appendChild(card);
+  });
+}
+renderCards();
+
+function toggleCard(i) {
+  const card = document.querySelectorAll('.card')[i];
+  const isActive = card.classList.contains('active');
+  if (isActive) stopTTS();
+  card.classList.toggle('active');
+  if (!isActive) setTimeout(() => {
+    const btn = document.getElementById('tts-'+i);
+    if (!btn) return;
+    const r = btn.getBoundingClientRect();
+    if (r.bottom > window.innerHeight-20) window.scrollBy({top:r.bottom-window.innerHeight+60,behavior:'smooth'});
+  }, 320);
+}
+function buildTTSText(i) {
+  const ch = chapters[i];
+  return `${ch.title}. ${ch.detail.replace(/<[^>]+>/g,'')} ${ch.quote}`;
+}
+function splitSentences(text) {
+  return text.split(/(?<=[.!?。！？다요까죠네군]\s)/).map(s=>s.trim()).filter(Boolean);
+}
+function updateFloatBar(show,title,pct,paused) {
+  const bar=document.getElementById('float-bar');
+  if(!show){bar.classList.remove('visible');return;}
+  bar.classList.add('visible');
+  document.getElementById('float-fill').style.width=(pct||0)+'%';
+  const tb=document.getElementById('float-toggle-btn');
+  const ip=document.getElementById('float-icon-pause');
+  const ir=document.getElementById('float-icon-resume');
+  const lb=document.getElementById('float-btn-label');
+  if(paused){tb.classList.add('paused');ip.style.display='none';ir.style.display='block';lb.textContent='이어듣기';}
+  else{tb.classList.remove('paused');ip.style.display='block';ir.style.display='none';lb.textContent='일시정지';}
+}
+function speakSentence(idx) {
+  if(idx>=sentences.length){
+    const fill=currentTTS!==null&&currentTTS!==-1?document.getElementById('progfill-'+currentTTS):null;
+    if(fill)fill.style.width='100%';
+    document.getElementById('float-fill').style.width='100%';
+    setTimeout(stopTTS,500);return;
+  }
+  const u=new SpeechSynthesisUtterance(sentences[idx]);
+  u.lang='ko-KR';u.rate=0.92;u.pitch=1.0;
+  const kv=window.speechSynthesis.getVoices().find(v=>v.lang.startsWith('ko'));
+  if(kv)u.voice=kv;
+  u.onstart=()=>{
+    currentSentenceIdx=idx;
+    const pct=Math.round((idx/sentences.length)*100);
+    if(currentTTS!==null&&currentTTS!==-1){const f=document.getElementById('progfill-'+currentTTS);if(f)f.style.width=pct+'%';}
+    document.getElementById('float-fill').style.width=pct+'%';
+    updateFloatBar(true,currentTTS!==null&&currentTTS!==-1?chapters[currentTTS]?.title:null,pct,false);
+  };
+  u.onend=()=>{if(isPaused)return;speakSentence(idx+1);};
+  u.onerror=(e)=>{if(e.error==='interrupted'||e.error==='canceled')return;stopTTS();};
+  window.speechSynthesis.speak(u);
+}
+function floatTogglePause() {
+  if(currentTTS===null)return;
+  if(!isPaused){
+    isPaused=true;window.speechSynthesis.cancel();
+    if(currentTTS!==-1){const b=document.getElementById('tts-'+currentTTS);if(b)b.classList.remove('playing');}
+    updateFloatBar(true,null,Math.round((currentSentenceIdx/sentences.length)*100),true);
+    if(isListenAll)updateListenAllBtn('paused');
+  } else {
+    isPaused=false;
+    if(currentTTS!==-1){const b=document.getElementById('tts-'+currentTTS);if(b)b.classList.add('playing');}
+    updateFloatBar(true,null,Math.round((currentSentenceIdx/sentences.length)*100),false);
+    if(isListenAll)updateListenAllBtn('playing');
+    speakSentence(currentSentenceIdx);
+  }
+}
+function updateListenAllBtn(state) {
+  const btn=document.getElementById('btn-listen-all');
+  const ip=document.getElementById('listen-all-icon-play');
+  const ipa=document.getElementById('listen-all-icon-pause');
+  const ir=document.getElementById('listen-all-icon-resume');
+  const lb=document.getElementById('listen-all-label');
+  const sb=document.getElementById('listen-all-sub');
+  btn.classList.remove('playing','paused-all');
+  ip.style.display=ipa.style.display=ir.style.display='none';
+  if(state==='playing'){btn.classList.add('playing');ipa.style.display='block';lb.textContent='일시정지';sb.textContent='재생 중 — 탭하면 일시정지';}
+  else if(state==='paused'){btn.classList.add('paused-all');ir.style.display='block';lb.textContent='이어듣기';sb.textContent='일시정지됨 — 탭하면 이어듣기';}
+  else{ip.style.display='block';lb.textContent='전체 듣기';sb.textContent='처음부터 끝까지 전체 재생';}
+}
+function stopTTS() {
+  if(window.speechSynthesis)window.speechSynthesis.cancel();
+  if(ttsInterval){clearInterval(ttsInterval);ttsInterval=null;}
+  document.querySelectorAll('.btn-tts').forEach(b=>b.classList.remove('playing'));
+  document.querySelectorAll('.tts-progress').forEach(p=>p.classList.remove('visible'));
+  document.querySelectorAll('.tts-progress-fill').forEach(f=>f.style.width='0%');
+  updateFloatBar(false);
+  currentTTS=null;isPaused=false;sentences=[];currentSentenceIdx=0;isListenAll=false;
+  updateListenAllBtn('idle');
+}
+function toggleTTS(i,e) {
+  e.stopPropagation();
+  if(!window.speechSynthesis){const b=document.getElementById('tts-banner');if(b){b.style.display='block';setTimeout(()=>b.style.display='none',4000);}return;}
+  if(currentTTS===i){stopTTS();return;}
+  stopTTS();
+  setTimeout(()=>{const bar=document.getElementById('prog-'+i);if(bar&&bar.getBoundingClientRect().top>window.innerHeight*.5)window.scrollBy({top:160,behavior:'smooth'});},80);
+  sentences=splitSentences(buildTTSText(i));
+  currentSentenceIdx=0;currentTTS=i;isPaused=false;
+  document.getElementById('prog-'+i).classList.add('visible');
+  document.getElementById('tts-'+i).classList.add('playing');
+  updateFloatBar(true,chapters[i].title,0,false);
+  speakSentence(0);
+}
+function toggleListenAll() {
+  if(!window.speechSynthesis){const b=document.getElementById('tts-banner');if(b){b.style.display='block';setTimeout(()=>b.style.display='none',4000);}return;}
+  if(isListenAll&&currentTTS===-1){floatTogglePause();updateListenAllBtn(isPaused?'paused':'playing');return;}
+  stopTTS();
+  isListenAll=true;currentTTS=-1;
+  sentences=splitSentences(chapters.map((ch,i)=>buildTTSText(i)).join(' '));
+  currentSentenceIdx=0;isPaused=false;
+  updateListenAllBtn('playing');updateFloatBar(true,null,0,false);
+  speakSentence(0);
+}
+window.speechSynthesis&&window.speechSynthesis.addEventListener&&window.speechSynthesis.addEventListener('voiceschanged',()=>{});
+(function(){
+  const ua=navigator.userAgent.toLowerCase();
+  const isInApp=ua.includes('kakaotalk')||ua.includes('naver')||ua.includes('instagram')||ua.includes('fbios')||ua.includes('fban');
+  if(isInApp){
+    const url=location.href;
+    if(ua.includes('android')){location.href='intent://'+url.replace(/https?:\/\//,'')+'#Intent;scheme=https;package=com.android.chrome;end';}
+    else if(ua.includes('iphone')||ua.includes('ipad')){location.href=url.replace('https://','googlechrome://');setTimeout(()=>alert('크롬 앱이 없으면 사파리 주소창에\n'+url+'\n을 직접 입력해주세요.'),1500);}
+  }
+})();
+window.addEventListener('scroll',()=>document.getElementById('scrollTop').classList.toggle('visible',window.scrollY>400));
+</script>
+</body>
+</html>

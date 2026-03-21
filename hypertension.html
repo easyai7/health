@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>고혈압 가이드</title>
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="고혈압 가이드">
+<meta property="og:description" content="고혈압 — 약만으로는 부족한 이유, 합병증 예방, 생활 관리까지 실용 지식">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="고혈압 가이드">
+<meta name="twitter:description" content="고혈압 — 약만으로는 부족한 이유, 합병증 예방, 생활 관리까지 실용 지식">
+<meta name="description" content="고혈압 — 혈압 수치 이해, 약 복용법, 뇌졸중·심장병 예방, 식습관·운동 관리까지">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="고혈압 가이드">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#0e161e">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700;900&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #0e161e;
+  --surface: #121e2a;
+  --surface2: #192736;
+  --border: #2a4060;
+  --blue: #4a7fa8;
+  --blue-light: #80b4d8;
+  --blue-dim: #1e4060;
+  --gold: #c9a84c;
+  --gold-light: #e8c870;
+  --red: #7a3a50;
+  --cream: #f0ece0;
+  --text: #e0ecf4;
+  --text-muted: #7aaac8;
+  --text-dim: #3a6080;
+  --serif: 'Noto Serif KR', serif;
+  --sans: 'Noto Sans KR', sans-serif;
+  --fs: 26px;
+  --fs-sm: 24px;
+  --fs-xs: 20px;
+  --fs-lg: 30px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--serif);
+  font-size: var(--fs);
+  line-height: 1.85;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background:
+    radial-gradient(ellipse at 15% 20%, rgba(74,127,168,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse at 85% 80%, rgba(201,168,76,0.05) 0%, transparent 60%);
+  pointer-events: none; z-index: 0;
+}
+
+.wrapper {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 8px 60px;
+  position: relative; z-index: 1;
+}
+
+.header-icon-wrap { display: flex; justify-content: center; padding: 40px 24px 0; }
+.header-icon-bg {
+  width: 120px; height: 120px;
+  border-radius: 32px;
+  background: linear-gradient(135deg, var(--blue-dim) 0%, #0e2030 100%);
+  border: 2px solid var(--blue);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 8px 32px rgba(74,127,168,0.25), 0 2px 8px rgba(0,0,0,0.4);
+}
+.header-icon-bg svg { width: 64px; height: 64px; color: var(--blue-light); }
+
+.header {
+  padding: 32px 12px 36px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 24px;
+  text-align: center; position: relative;
+}
+.header::after {
+  content: ''; display: block;
+  width: 60px; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--blue), transparent);
+  margin: 20px auto 0;
+}
+.header-eyebrow {
+  font-family: var(--sans); font-size: var(--fs-xs);
+  letter-spacing: 5px; color: var(--blue-light);
+  text-transform: uppercase; margin-bottom: 14px; font-weight: 500;
+}
+.header-title {
+  font-size: clamp(28px, 7vw, 48px); font-weight: 900;
+  line-height: 1.25; color: var(--cream);
+  letter-spacing: -0.5px; margin-bottom: 12px;
+}
+.header-title span { color: var(--blue-light); }
+.header-sub { font-family: var(--sans); font-size: var(--fs-sm); color: var(--text-muted); line-height: 1.9; }
+
+.intro-box {
+  background: var(--surface); border-left: 3px solid var(--blue);
+  padding: 20px 22px; margin-bottom: 24px;
+  border-radius: 0 8px 8px 0;
+  font-family: var(--sans); font-size: var(--fs-sm);
+  color: var(--text-muted); line-height: 1.9;
+}
+.intro-box strong {
+  color: var(--blue-light); display: block;
+  margin-bottom: 6px; font-size: var(--fs); font-weight: 700;
+}
+
+#btn-listen-all {
+  display: flex; align-items: center; justify-content: center;
+  gap: 12px; width: 100%;
+  background: linear-gradient(135deg, var(--blue-dim) 0%, #0e1e30 100%);
+  border: 1.5px solid var(--blue); border-radius: 14px;
+  padding: 20px 24px; cursor: pointer; color: var(--cream);
+  font-family: var(--sans); font-size: 22px; font-weight: 700;
+  letter-spacing: 1px; margin-bottom: 24px; transition: all 0.25s;
+  -webkit-appearance: none; box-shadow: 0 4px 20px rgba(74,127,168,0.2);
+  position: relative; overflow: hidden;
+}
+#btn-listen-all::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(128,180,216,0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+#btn-listen-all:active { transform: scale(0.98); }
+#btn-listen-all.playing {
+  background: linear-gradient(135deg, #0e1e30 0%, var(--blue-dim) 100%);
+  border-color: var(--blue-light); box-shadow: 0 4px 28px rgba(74,127,168,0.35);
+}
+#btn-listen-all.paused-all {
+  background: linear-gradient(135deg, rgba(201,168,76,0.15) 0%, #2a2010 100%);
+  border-color: var(--gold); color: var(--gold-light);
+  box-shadow: 0 4px 20px rgba(201,168,76,0.15);
+}
+.listen-all-icon { width: 26px; height: 26px; flex-shrink: 0; }
+.listen-all-sub {
+  display: block; font-size: 14px; font-weight: 400;
+  color: var(--blue-light); letter-spacing: 0; margin-top: 3px; opacity: 0.85;
+}
+#btn-listen-all.paused-all .listen-all-sub { color: var(--gold); }
+.listen-all-text-wrap { display: flex; flex-direction: column; align-items: flex-start; }
+
+#tts-banner {
+  display: none; background: var(--red); color: var(--cream);
+  padding: 12px 18px; border-radius: 8px;
+  font-family: var(--sans); font-size: var(--fs-sm);
+  margin-bottom: 18px; text-align: center;
+}
+
+.section-label {
+  display: flex; align-items: center; gap: 12px;
+  margin: 8px 0 16px; font-family: var(--sans);
+  font-size: var(--fs-xs); letter-spacing: 3px;
+  text-transform: uppercase; color: var(--text-dim);
+}
+.section-label::before, .section-label::after {
+  content: ''; flex: 1; height: 1px; background: var(--border);
+}
+
+.card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; overflow: hidden; margin-bottom: 12px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.card.active { border-color: var(--blue-dim); box-shadow: 0 4px 24px rgba(74,127,168,0.15); }
+
+.card-header {
+  padding: 20px 16px 0px; cursor: pointer; user-select: none;
+  display: flex; flex-direction: column;
+}
+.card-header-main { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 16px; }
+.card-num {
+  font-family: var(--sans); font-size: 11px; font-weight: 700;
+  letter-spacing: 3px; color: var(--blue-light); text-transform: uppercase;
+  margin-top: 4px; flex-shrink: 0; min-width: 36px;
+}
+.card-header-text { flex: 1; }
+.card-tag {
+  display: inline-block; font-family: var(--sans);
+  font-size: 12px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; padding: 3px 10px; margin-bottom: 8px;
+  border-radius: 3px; color: var(--bg);
+}
+.tag-blue { background: var(--blue-light); }
+.tag-gold { background: var(--gold); }
+.tag-red { background: #c06080; color: white; }
+.tag-cream { background: var(--cream); }
+.tag-green { background: #70c090; }
+
+.card-title { font-size: var(--fs-lg); font-weight: 700; line-height: 1.35; color: var(--cream); margin-bottom: 8px; }
+.card-summary { font-family: var(--sans); font-size: var(--fs-sm); color: var(--blue-light); line-height: 1.8; font-weight: 500; }
+
+.toggle-icon-wrap {
+  display: flex; justify-content: center;
+  padding: 10px 0 18px; border-top: 1px solid var(--border); margin-top: 4px;
+}
+.toggle-icon {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--surface2); border: 2px solid var(--blue-dim);
+  border-radius: 30px; padding: 10px 22px;
+  color: var(--blue-light); font-family: var(--sans); font-size: 22px;
+}
+.toggle-icon svg { width: 20px; height: 20px; flex-shrink: 0; transition: transform 0.25s; }
+.toggle-label-open  { display: inline; }
+.toggle-label-close { display: none; }
+.card.active .toggle-icon { background: var(--blue-dim); border-color: var(--blue); color: var(--cream); }
+.card.active .toggle-icon svg { transform: rotate(180deg); }
+.card.active .toggle-label-open  { display: none; }
+.card.active .toggle-label-close { display: inline; }
+
+.card-detail { max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+.card.active .card-detail { max-height: 4000px; }
+.detail-inner { border-top: 1px solid var(--border); padding: 20px 16px 24px; }
+
+.tts-bar { margin-bottom: 14px; }
+.btn-tts {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: 10px; padding: 14px 24px; cursor: pointer;
+  color: var(--text-muted); font-family: var(--sans); font-size: 24px;
+}
+.btn-tts:hover { border-color: var(--blue-dim); color: var(--blue-light); }
+.btn-tts.playing { background: var(--blue-dim); border-color: var(--blue); color: var(--cream); }
+.btn-tts svg { width: 24px; height: 24px; flex-shrink: 0; }
+.btn-tts.playing .play-icon { display: none; }
+.btn-tts:not(.playing) .stop-icon { display: none; }
+
+.tts-progress {
+  height: 3px; background: var(--border); border-radius: 2px;
+  margin-top: 10px; overflow: hidden; opacity: 0; transition: opacity 0.3s;
+}
+.tts-progress.visible { opacity: 1; }
+.tts-progress-fill {
+  height: 100%; width: 0%;
+  background: linear-gradient(90deg, var(--blue), var(--blue-light));
+  border-radius: 2px; transition: width 0.3s linear;
+}
+
+.detail-label {
+  font-family: var(--sans); font-size: var(--fs-xs);
+  letter-spacing: 3px; text-transform: uppercase; color: var(--text-dim);
+  margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid var(--border);
+}
+.detail-text {
+  font-family: var(--sans); font-size: var(--fs-sm);
+  line-height: 1.95; color: var(--text); margin-bottom: 20px;
+}
+.detail-text p { margin-bottom: 16px; }
+.detail-text p:last-child { margin-bottom: 0; }
+.detail-text strong { color: var(--cream); font-weight: 700; }
+.detail-quote {
+  background: var(--surface2); border-left: 3px solid var(--gold);
+  padding: 16px 20px; font-family: var(--sans); font-size: var(--fs-sm);
+  color: var(--gold-light); line-height: 1.9;
+  border-radius: 0 8px 8px 0; font-style: italic;
+}
+
+.footer {
+  text-align: center; font-family: var(--sans);
+  font-size: 18px; color: var(--text-dim); padding: 32px 0 0; line-height: 1.8;
+}
+
+#scrollTop {
+  position: fixed; bottom: 28px; right: 20px;
+  width: 44px; height: 44px; background: var(--surface);
+  border: 1px solid var(--border); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; color: var(--text-muted);
+  opacity: 0; pointer-events: none; transition: opacity 0.3s; z-index: 100;
+}
+#scrollTop.visible { opacity: 1; pointer-events: auto; }
+#scrollTop svg { width: 18px; height: 18px; }
+
+@media (max-width: 520px) {
+  .card-header { padding: 16px 12px 0px; }
+  .detail-inner { padding: 16px 12px 20px; }
+}
+
+/* ── FLOATING CONTROL BAR ── */
+#float-bar {
+  display: none; position: fixed;
+  bottom: 16px; left: 50%; transform: translateX(-50%);
+  z-index: 200; width: calc(100% - 32px); max-width: 680px;
+}
+#float-bar.visible { display: block; }
+.float-inner {
+  background: var(--surface); border: 1.5px solid var(--blue);
+  border-radius: 16px; padding: 12px 16px 14px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+}
+.float-top { display: flex; align-items: center; gap: 10px; }
+#float-toggle-btn {
+  flex: 1; display: flex; align-items: center; justify-content: center; gap: 10px;
+  background: var(--blue-dim); border: 1.5px solid var(--blue);
+  border-radius: 10px; padding: 12px 18px; cursor: pointer; color: var(--cream);
+  font-family: var(--sans); font-size: 22px; font-weight: 700;
+  letter-spacing: 1px; transition: all 0.2s; -webkit-appearance: none;
+}
+#float-toggle-btn.paused { background: rgba(201,168,76,0.15); border-color: var(--gold); color: var(--gold-light); }
+#float-toggle-btn svg { width: 22px; height: 22px; flex-shrink: 0; }
+.float-stop-btn {
+  flex-shrink: 0; background: var(--surface2); border: 1.5px solid var(--border);
+  border-radius: 10px; cursor: pointer; padding: 12px 14px;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s; -webkit-appearance: none;
+}
+.float-stop-btn svg { width: 22px; height: 22px; }
+.float-progress {
+  width: 100%; height: 4px; background: var(--border);
+  border-radius: 2px; overflow: hidden; margin-top: 10px;
+}
+.float-progress-fill {
+  height: 100%; width: 0%;
+  background: linear-gradient(90deg, var(--blue), var(--blue-light));
+  border-radius: 2px; transition: width 0.3s linear;
+}
+</style>
+</head>
+<body>
+<div id="tts-banner">이 브라우저는 음성 읽기를 지원하지 않습니다.</div>
+
+<!-- 플로팅 컨트롤 바 -->
+<div id="float-bar">
+  <div class="float-inner">
+    <div class="float-top">
+      <button id="float-toggle-btn" onclick="floatTogglePause()">
+        <svg id="float-icon-pause" viewBox="0 0 24 24" fill="none">
+          <rect x="6" y="4" width="4" height="16" rx="1" fill="currentColor"/>
+          <rect x="14" y="4" width="4" height="16" rx="1" fill="currentColor"/>
+        </svg>
+        <svg id="float-icon-resume" viewBox="0 0 24 24" fill="none" style="display:none">
+          <path d="M8 5v14l11-7z" fill="currentColor"/>
+        </svg>
+        <span id="float-btn-label">일시정지</span>
+      </button>
+      <button class="float-stop-btn" onclick="stopTTS()">
+        <svg viewBox="0 0 24 24" fill="none">
+          <rect x="5" y="5" width="14" height="14" rx="3" fill="var(--text-muted)"/>
+        </svg>
+      </button>
+    </div>
+    <div class="float-progress">
+      <div class="float-progress-fill" id="float-fill"></div>
+    </div>
+  </div>
+</div>
+
+<div class="wrapper">
+  <div class="header-icon-wrap">
+    <div class="header-icon-bg">
+      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- 심장 -->
+        <path d="M32 52 C32 52 10 38 10 24 C10 16 16 10 24 12 C28 13 31 16 32 18 C33 16 36 13 40 12 C48 10 54 16 54 24 C54 38 32 52 32 52Z"
+              fill="currentColor" opacity="0.85"/>
+        <!-- 심박수 라인 -->
+        <polyline points="14,32 20,32 23,24 27,40 31,28 35,36 38,32 50,32"
+                  stroke="var(--bg)" stroke-width="2.2" fill="none"
+                  stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="header">
+    <div class="header-eyebrow">혈압 관리 · 합병증 예방 · 실용 가이드</div>
+    <h1 class="header-title"><span>고혈압</span><br>완전 가이드</h1>
+    <div class="header-sub">
+      약만으로는 부족한 이유, 뇌졸중·심장병 예방<br>
+      혈압을 진짜로 낮추는 생활 관리 지식
+    </div>
+  </div>
+
+  <div class="intro-box">
+    <strong>이 가이드는 무엇을 알려주는가?</strong>
+    한국과 일본 노인의 70% 가까이가 고혈압입니다. 많은 분들이 "약 먹으니까 됐다"고 생각합니다. 하지만 약이 혈압 수치를 낮춰도, 생활 습관이 나쁘면 혈관은 계속 망가집니다. 혈압이 뇌와 심장에 어떤 피해를 주는지, 약과 생활 관리를 어떻게 함께 해야 하는지, 집에서 혈압을 올바르게 재는 법, 뇌졸중의 전조 증상까지 — 병원에서 다 알려주지 못했던 지식을 담았습니다.
+  </div>
+
+  <button id="btn-listen-all" onclick="toggleListenAll()">
+    <svg class="listen-all-icon" id="listen-all-icon-play" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
+      <path d="M10 8l6 4-6 4V8z" fill="currentColor"/>
+    </svg>
+    <svg class="listen-all-icon" id="listen-all-icon-pause" viewBox="0 0 24 24" fill="none" style="display:none">
+      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
+      <rect x="8" y="7" width="3" height="10" rx="1" fill="currentColor"/>
+      <rect x="13" y="7" width="3" height="10" rx="1" fill="currentColor"/>
+    </svg>
+    <svg class="listen-all-icon" id="listen-all-icon-resume" viewBox="0 0 24 24" fill="none" style="display:none">
+      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
+      <path d="M10 8l6 4-6 4V8z" fill="currentColor"/>
+    </svg>
+    <div class="listen-all-text-wrap">
+      <span id="listen-all-label">전체 듣기</span>
+      <span class="listen-all-sub" id="listen-all-sub">처음부터 끝까지 전체 재생</span>
+    </div>
+  </button>
+
+  <div class="section-label">고혈압 — 7가지 핵심 지식</div>
+  <div id="chapterList"></div>
+
+  <div class="footer">
+    고혈압 완전 가이드<br>
+    건강 정보 앱 · 전문 진료를 대체하지 않습니다
+  </div>
+</div>
+
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg viewBox="0 0 24 24" fill="none"><path d="M18 15l-6-6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+
+<script>
+const chapters = [
+  {
+    num: "01",
+    tag: "tag-blue",
+    tagText: "혈압 이해",
+    title: "혈압이란 무엇인가 — 수치가 말해주는 것들",
+    summary: "130/80, 140/90 — 이 숫자가 무엇을 뜻하는지 정확히 알아야 한다. 수축기·이완기 혈압의 차이, 정상과 위험의 기준, 노인에게 특히 위험한 수축기 고혈압까지.",
+    detail: `혈압 수치를 정확히 이해해야 왜 관리해야 하는지 실감할 수 있습니다.
+
+<strong>혈압 수치 읽는 법.</strong> 혈압은 두 숫자로 표시됩니다. 위 숫자(수축기 혈압)는 심장이 수축하며 혈액을 내보낼 때 혈관에 가해지는 압력입니다. 아래 숫자(이완기 혈압)는 심장이 이완되어 혈액을 받아들일 때의 압력입니다.
+
+<strong>혈압 기준.</strong> 정상은 수축기 120 미만, 이완기 80 미만입니다. 수축기 130~139 또는 이완기 80~89이면 고혈압 전단계입니다. 수축기 140 이상 또는 이완기 90 이상이면 고혈압입니다. 수축기 180 이상 또는 이완기 120 이상이면 즉시 응급실에 가야 하는 고혈압 위기입니다.
+
+<strong>노인에게 특히 위험한 수축기 고혈압.</strong> 나이가 들면 혈관이 딱딱해지면서 이완기 혈압은 정상이어도 수축기 혈압만 높아지는 경우가 많습니다. 예를 들어 160/75처럼요. 이것을 고립성 수축기 고혈압이라고 합니다. 노인 뇌졸중의 가장 큰 위험 인자입니다.
+
+<strong>고혈압이 위험한 이유.</strong> 혈압이 높으면 혈관 벽이 지속적으로 강한 압력을 받습니다. 고무호스에 수압을 계속 세게 넣으면 벽이 두꺼워지고 좁아지고 결국 터지듯이, 혈관도 같은 과정을 겪습니다. 이것이 뇌졸중, 심근경색, 신부전, 시력 손상으로 이어집니다.
+
+<strong>고혈압은 증상이 없습니다.</strong> '침묵의 살인자'라고 불리는 이유입니다. 머리가 띵하거나 뒷목이 뻣뻣한 증상은 혈압과 관계없는 경우가 더 많습니다. 혈압이 200이 넘어도 아무 증상이 없을 수 있습니다. 그래서 정기 측정이 필수입니다.`,
+    quote: "혈압은 느낌으로 알 수 없습니다. 아무 증상이 없어도 혈관은 매 순간 손상되고 있을 수 있습니다. 측정만이 답입니다."
+  },
+  {
+    num: "02",
+    tag: "tag-gold",
+    tagText: "올바른 측정",
+    title: "집에서 혈압 올바르게 재는 법 — 잘못 재면 아무 의미 없다",
+    summary: "같은 사람도 아침·저녁, 앉은 자세·누운 자세, 긴장 여부에 따라 혈압이 20~30mmHg 이상 차이 난다. 병원에서만 높은 '백의 고혈압', 집에서만 높은 '가면 고혈압'도 있다.",
+    detail: `집에서 혈압을 정확하게 재는 것이 병원 측정보다 실제로 더 중요합니다.
+
+<strong>측정 전 5분간 안정합니다.</strong> 측정 30분 전에는 커피, 담배, 운동을 피합니다. 화장실을 먼저 다녀옵니다. 의자에 등을 기대고 편안하게 앉아서 5분간 안정한 후 잽니다. 말하면서, 긴장한 상태에서 재면 혈압이 실제보다 높게 나옵니다.
+
+<strong>올바른 자세.</strong> 팔을 심장 높이에 올려놓습니다. 테이블 위에 팔을 올리거나 팔 받침대를 사용합니다. 팔을 아래로 늘어뜨린 상태에서 재면 실제보다 10mmHg 이상 높게 나올 수 있습니다. 다리를 꼬거나 발이 바닥에 닿지 않으면 혈압이 올라갑니다.
+
+<strong>측정 시간과 횟수.</strong> 아침(기상 후 1시간 이내, 약 먹기 전)과 저녁(잠자리 들기 전) 두 번 재는 것이 가장 좋습니다. 한 번 측정할 때 1~2분 간격으로 두 번 재서 평균을 냅니다. 처음 잰 값이 높으면 긴장 때문일 수 있으니 두 번째 값이 더 정확합니다.
+
+<strong>백의 고혈압과 가면 고혈압.</strong> 백의 고혈압은 병원에서만 혈압이 높고 집에서는 정상인 경우입니다. 의사 앞에서 긴장하는 것이 원인입니다. 반대로 가면 고혈압은 집에서만 혈압이 높고 병원에서는 정상입니다. 더 위험합니다. 집에서 꾸준히 재는 것이 중요한 이유입니다.
+
+<strong>혈압 기록을 가져오세요.</strong> 혈압계 앱이나 수첩에 날짜, 시간, 측정값을 기록하여 진료 때 가져가면 의사가 훨씬 정확하게 판단할 수 있습니다. 단 한 번의 병원 측정보다 집에서 2주간 기록한 데이터가 훨씬 가치 있습니다.
+
+<strong>좋은 혈압계 선택.</strong> 손목형보다 위팔(상완)형이 더 정확합니다. 커프(팔띠) 크기가 팔 굵기에 맞아야 합니다. 커프가 너무 작으면 실제보다 높게, 너무 크면 낮게 나옵니다.`,
+    quote: "아침에 눈 뜨자마자 5분 후에 재는 혈압이 가장 진실에 가깝습니다. 병원 혈압보다 집 혈압을 믿으세요."
+  },
+  {
+    num: "03",
+    tag: "tag-blue",
+    tagText: "약 복용",
+    title: "혈압약 제대로 알기 — 왜 평생 먹어야 하고 언제 위험한가",
+    summary: "혈압약을 먹다 수치가 정상이 되면 끊는 분들이 많다. 이것이 뇌졸중의 원인이 된다. 약의 종류, 복용 시간, 절대 해서는 안 되는 것들을 알아야 한다.",
+    detail: `혈압약에 대해 잘못 알고 있는 것들이 많습니다. 정확히 알아야 안전합니다.
+
+<strong>혈압약은 혈압을 '치료'하는 것이 아닙니다.</strong> 혈압약은 고혈압의 원인을 없애는 것이 아니라 혈압을 조절하는 것입니다. 안경이 시력을 치료하지 않고 잘 보이게 해주듯, 혈압약도 먹는 동안만 혈압이 내려갑니다. 수치가 정상이 된 것은 약이 잘 듣는 것이지 고혈압이 나은 것이 아닙니다.
+
+<strong>임의로 끊으면 안 됩니다.</strong> 혈압약을 갑자기 끊으면 반동성 고혈압이 생겨 혈압이 급격히 오릅니다. 이것이 뇌졸중과 심근경색의 직접 원인이 됩니다. 약을 줄이거나 끊고 싶다면 반드시 의사와 상의해서 서서히 줄여야 합니다.
+
+<strong>매일 같은 시간에 복용합니다.</strong> 혈압약은 24시간 혈압을 안정적으로 유지하는 것이 목적입니다. 아침에 먹는 약이라면 기상 후 30분 이내에 매일 같은 시간에 복용합니다. 하루를 빠뜨리면 그날 혈압이 오릅니다.
+
+<strong>절대 함께 먹으면 안 되는 것들.</strong> 자몽주스는 칼슘채널차단제(암로디핀 등) 계열 혈압약의 혈중 농도를 높여 부작용을 유발합니다. 소염진통제(이부프로펜, 나프록센 등)는 혈압을 높이고 혈압약의 효과를 낮춥니다. 한약이나 건강보조제도 혈압약과 상호작용할 수 있으므로 의사에게 알려야 합니다.
+
+<strong>부작용이 생기면 즉시 알립니다.</strong> 혈압약 종류에 따라 마른 기침, 발목 부종, 어지럼증 등 부작용이 생길 수 있습니다. 참고 계속 먹지 말고 의사에게 알리면 다른 계열의 약으로 바꿀 수 있습니다. 혈압약은 종류가 많습니다.
+
+<strong>두 가지 이상 약을 함께 먹는 경우가 많습니다.</strong> 중등도 이상 고혈압은 한 가지 약만으로는 목표 혈압에 도달하기 어렵습니다. 두세 가지를 함께 쓰는 것이 표준 치료입니다. 약이 많다고 걱정할 필요는 없습니다.`,
+    quote: "혈압이 정상이 된 것은 약이 잘 듣는 증거입니다. 약을 끊어야 할 신호가 아닙니다. 혈압약을 임의로 끊는 것은 안전핀을 뽑는 것과 같습니다."
+  },
+  {
+    num: "04",
+    tag: "tag-red",
+    tagText: "합병증 경고",
+    title: "고혈압이 뇌와 심장을 파괴하는 과정 — 합병증을 막는 골든타임",
+    summary: "고혈압이 10년, 20년 지속되면 뇌졸중, 심근경색, 신부전, 실명이 온다. 이것은 예정된 결과가 아니다. 혈압을 제대로 관리하면 대부분 막을 수 있다. 뇌졸중 전조 증상을 외우면 생명을 구한다.",
+    detail: `고혈압은 혈관을 통해 온몸의 장기를 서서히 파괴합니다. 어떻게 진행되는지 알아야 예방할 수 있습니다.
+
+<strong>뇌졸중 — 가장 흔하고 치명적인 합병증.</strong> 고혈압은 뇌졸중의 가장 큰 위험 인자입니다. 혈압이 높으면 뇌혈관이 좁아지거나 막히거나(뇌경색), 또는 터집니다(뇌출혈). 뇌졸중은 순식간에 발생하고 생존해도 반신마비, 언어장애, 인지장애가 남을 수 있습니다.
+
+<strong>뇌졸중 전조 증상 — 반드시 외워야 합니다.</strong> 갑자기 한쪽 얼굴·팔·다리에 힘이 빠지거나 저린 것, 갑자기 말이 안 나오거나 남의 말을 못 알아듣는 것, 갑자기 한쪽 눈이 안 보이거나 시야가 흐릿해지는 것, 갑자기 심한 두통이 생기는 것, 갑자기 어지럽고 균형을 잡지 못하는 것 — 이 중 하나라도 생기면 즉시 119를 부릅니다. 증상이 잠깐 있다가 사라져도 반드시 응급실에 가야 합니다.
+
+<strong>심근경색 — 심장 혈관이 막히는 것.</strong> 고혈압이 지속되면 심장 혈관에도 동맥경화가 진행됩니다. 혈관이 막히면 심장 근육이 죽는 심근경색이 옵니다. 가슴을 짜는 듯한 극심한 통증, 턱·왼쪽 팔로 퍼지는 통증, 식은땀·구역질이 함께 오면 즉시 119를 부릅니다.
+
+<strong>신부전 — 콩팥이 망가집니다.</strong> 고혈압은 콩팥 혈관을 손상시켜 신장 기능을 서서히 떨어뜨립니다. 고혈압과 당뇨가 함께 있으면 신부전 위험이 크게 높아집니다. 한 번 망가진 신장은 회복이 어렵습니다.
+
+<strong>망막 손상 — 시력을 잃을 수 있습니다.</strong> 고혈압은 눈의 망막 혈관도 손상시킵니다. 고혈압성 망막병증이 진행되면 시력이 저하되거나 실명할 수 있습니다. 안과 정기검진이 고혈압 환자에게도 필요한 이유입니다.
+
+<strong>혈압을 잘 관리하면 이 모든 것을 막을 수 있습니다.</strong> 수축기 혈압을 10mmHg 낮추면 뇌졸중 위험이 41%, 심장병 위험이 22% 감소합니다. 약과 생활 습관 관리를 함께 하면 충분히 달성할 수 있는 목표입니다.`,
+    quote: "뇌졸중은 갑자기 오지만, 준비는 오늘 할 수 있습니다. 전조 증상을 외우고, 혈압을 관리하고, 가족에게도 알려두세요. 3시간이 평생을 결정합니다."
+  },
+  {
+    num: "05",
+    tag: "tag-gold",
+    tagText: "식습관 관리",
+    title: "혈압을 낮추는 식습관 — 소금만의 문제가 아니다",
+    summary: "나트륨 줄이기가 핵심이지만, 그것만으론 부족하다. 칼륨·마그네슘·칼슘이 풍부한 DASH 식단이 혈압을 약 복용 수준으로 낮출 수 있다. 한국·일본 음식에서 어떻게 실천하는지 알아야 한다.",
+    detail: `식습관 변화만으로도 수축기 혈압을 8~14mmHg 낮출 수 있습니다. 약 한 알과 맞먹는 효과입니다.
+
+<strong>나트륨을 줄이는 것이 가장 중요합니다.</strong> 세계보건기구 권고 나트륨 섭취량은 하루 2000mg(소금 5g)이지만, 한국인 평균은 3500mg 이상입니다. 나트륨을 1000mg 줄이면 수축기 혈압이 2~4mmHg 낮아집니다. 국물을 반만 마시는 것, 국·찌개를 싱겁게 끓이는 것, 소금·간장·된장 사용을 줄이는 것부터 시작합니다.
+
+<strong>가공식품과 외식의 나트륨을 조심합니다.</strong> 라면 1개에 나트륨 1700~2000mg이 들어 있습니다. 김치찌개, 된장찌개, 설렁탕 한 그릇에도 1500~2000mg이 들어 있습니다. 젓갈, 장아찌, 인스턴트 식품도 나트륨이 매우 많습니다.
+
+<strong>칼륨을 충분히 먹습니다.</strong> 칼륨은 나트륨을 소변으로 배출시켜 혈압을 낮춥니다. 바나나, 감자, 고구마, 아보카도, 시금치, 토마토에 풍부합니다. 단, 신장 기능이 나쁜 분은 칼륨 섭취를 제한해야 하므로 의사와 상담이 필요합니다.
+
+<strong>DASH 식단이 가장 효과적입니다.</strong> 채소와 과일을 풍부하게, 통곡물과 저지방 유제품을 충분히, 붉은 고기와 가공식품을 줄이는 식단입니다. 연구에서 DASH 식단이 수축기 혈압을 8~14mmHg 낮추는 것으로 나타났습니다.
+
+<strong>음주를 줄입니다.</strong> 알코올은 혈압을 직접 올립니다. 남성은 하루 2잔 이하, 여성은 1잔 이하로 제한합니다. 매일 마시는 소량의 술이 혈압을 꾸준히 올리고 있을 수 있습니다.
+
+<strong>카페인을 적당히 조절합니다.</strong> 카페인은 일시적으로 혈압을 올립니다. 고혈압이 있다면 하루 커피 2잔 이하로 제한하고, 혈압을 재기 30분 전에는 커피를 마시지 않습니다.`,
+    quote: "싱겁게 먹는 것이 맛이 없다고 느끼는 것은 나트륨에 중독된 것입니다. 2~3주만 싱겁게 먹으면 미각이 바뀝니다. 혀가 적응하면 싱거운 것이 더 맛있게 느껴집니다."
+  },
+  {
+    num: "06",
+    tag: "tag-green",
+    tagText: "운동과 생활",
+    title: "운동이 혈압약이다 — 어떻게 얼마나 움직여야 혈압이 내려가는가",
+    summary: "규칙적인 유산소 운동은 수축기 혈압을 5~8mmHg 낮춘다. 하루 30분 걷기, 스트레스 관리, 금연 — 이 세 가지를 지키면 약 용량을 줄일 수도 있다.",
+    detail: `생활 습관 개선은 약을 대체하는 것이 아니라 약과 함께 혈압을 더 잘 조절하는 방법입니다.
+
+<strong>유산소 운동이 가장 효과적입니다.</strong> 하루 30~45분, 주 5일 이상 빠르게 걷기, 자전거 타기, 수영 등의 유산소 운동을 하면 수축기 혈압이 5~8mmHg 낮아집니다. 운동 효과는 운동 후 24시간 동안 지속됩니다. 매일 해야 하는 이유입니다.
+
+<strong>근력 운동도 도움이 됩니다.</strong> 근육량이 증가하면 기초대사율이 올라가고 체중 관리에 도움이 됩니다. 주 2~3회 가벼운 근력 운동을 유산소 운동과 함께 합니다. 단, 운동 중 숨을 참거나 힘을 쓸 때 혈압이 순간적으로 오르므로 주의합니다.
+
+<strong>체중 감량이 혈압을 낮춥니다.</strong> 체중 1kg을 줄이면 수축기 혈압이 약 1mmHg 낮아집니다. 10kg을 줄이면 혈압약 한 알과 맞먹는 효과입니다. 복부비만(남성 허리둘레 90cm 이상, 여성 85cm 이상)이 고혈압과 특히 밀접합니다.
+
+<strong>금연은 선택이 아닌 필수입니다.</strong> 담배 한 개비를 피우면 혈압이 즉시 올라가고 30분 이상 지속됩니다. 흡연은 혈관을 수축시키고 동맥경화를 빠르게 진행시킵니다. 고혈압과 흡연이 함께 있으면 뇌졸중 위험이 수십 배 높아집니다.
+
+<strong>스트레스 관리가 혈압에 영향을 줍니다.</strong> 스트레스를 받으면 아드레날린이 분비되어 혈압이 올라갑니다. 만성 스트레스는 지속적인 혈압 상승으로 이어집니다. 명상, 깊은 호흡, 산책, 취미 활동이 도움이 됩니다. 특히 4-7-8 호흡법(4초 들이마시고, 7초 참고, 8초 내쉬기)은 즉각적인 혈압 안정 효과가 있습니다.
+
+<strong>충분한 수면도 혈압을 낮춥니다.</strong> 수면 부족은 혈압을 올립니다. 7시간 이상 규칙적으로 자는 것이 혈압 관리에도 중요합니다. 수면무호흡증이 있으면 치료만으로도 혈압이 크게 낮아집니다.`,
+    quote: "하루 30분 걷기는 공짜 혈압약입니다. 부작용이 없고 심장과 뼈와 기분도 함께 좋아집니다. 운동화를 신는 것이 고혈압 관리의 절반입니다."
+  },
+  {
+    num: "07",
+    tag: "tag-cream",
+    tagText: "장기 관리",
+    title: "고혈압은 평생 관리다 — 포기하지 않고 지속하는 법",
+    summary: "혈압 관리는 마라톤이다. 오늘 혈압이 정상이어도 내일도 재야 한다. 계절에 따라 혈압이 다르고, 복용하는 다른 약이 혈압에 영향을 줄 수 있다. 지속하기 위한 현실적인 전략이 필요하다.",
+    detail: `고혈압 관리에서 가장 어려운 것은 시작이 아니라 지속입니다. 평생 하기 위한 현실적인 전략이 필요합니다.
+
+<strong>혈압은 계절에 따라 달라집니다.</strong> 추운 겨울에는 혈관이 수축해 혈압이 올라갑니다. 더운 여름에는 혈관이 이완되어 혈압이 내려가기도 합니다. 겨울에 혈압이 올라가는 것은 자연스럽지만, 목표 혈압을 벗어나면 의사와 상의해 약 용량을 조절해야 합니다. 외출할 때 목을 따뜻하게 하는 것이 혈압 급상승을 막는 데 도움이 됩니다.
+
+<strong>다른 약이 혈압에 영향을 줄 수 있습니다.</strong> 관절염 치료에 쓰는 소염진통제, 감기약에 들어있는 코막힘 완화제, 한약의 감초 성분, 일부 한약재 등이 혈압을 올릴 수 있습니다. 새로운 약을 시작하거나 한약을 복용할 때는 혈압 변화를 관찰하고 의사에게 알려야 합니다.
+
+<strong>아침 혈압 급상승을 조심합니다.</strong> 기상 후 1~2시간이 혈압이 가장 급격히 올라가는 시간입니다. 이 시간대에 뇌졸중과 심근경색이 가장 많이 발생합니다. 아침에 갑자기 일어나지 말고 천천히 일어나고, 화장실도 서두르지 않습니다. 아침 혈압이 특히 높다면 의사와 상의해 저녁 복용 약을 추가하는 것을 고려합니다.
+
+<strong>정기 진료를 빠지지 않습니다.</strong> 혈압이 잘 조절되고 있어도 3~6개월마다 진료를 받아야 합니다. 혈액 검사로 콩팥 기능, 혈당, 콜레스테롤을 함께 확인해야 합니다. 고혈압은 혼자 오지 않습니다. 당뇨, 고지혈증과 함께 있는 경우가 많아 종합적인 관리가 필요합니다.
+
+<strong>목표를 현실적으로 잡습니다.</strong> 고혈압을 완전히 '없애는' 것이 목표가 아닙니다. 혈압을 목표 범위 안에서 안정적으로 유지하면서 합병증 없이 건강하게 사는 것이 목표입니다. 완벽하게 하려다 포기하는 것보다, 80% 잘 하는 것을 평생 지속하는 것이 훨씬 중요합니다.
+
+<strong>가족이 함께 알아야 합니다.</strong> 뇌졸중 전조 증상, 혈압 측정 방법, 복용 약 목록 — 이것을 가족이 함께 알고 있어야 응급 상황에서 빠른 대처가 가능합니다. 복용 약 목록을 지갑에 넣어 다니는 것도 좋습니다.`,
+    quote: "고혈압 관리를 오늘 잘 했다고 끝난 것이 아닙니다. 내일도, 모레도, 10년 후에도 계속해야 합니다. 하지만 그 결과는 뇌졸중 없이, 심장병 없이, 건강하게 오래 사는 것입니다."
+  }
+];
+
+const list = document.getElementById('chapterList');
+
+let currentTTS = null;
+let isPaused = false;
+let sentences = [];
+let currentSentenceIdx = 0;
+let ttsInterval = null;
+let isListenAll = false;
+
+function renderCards() {
+  list.innerHTML = '';
+  chapters.forEach((ch, i) => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <div class="card-header" onclick="toggleCard(${i})">
+        <div class="card-header-main">
+          <div class="card-num">${ch.num}</div>
+          <div class="card-header-text">
+            <span class="card-tag ${ch.tag}">${ch.tagText}</span>
+            <div class="card-title">${ch.title}</div>
+            <div class="card-summary">${ch.summary}</div>
+          </div>
+        </div>
+        <div class="toggle-icon-wrap">
+          <div class="toggle-icon">
+            <svg viewBox="0 0 14 14" fill="none">
+              <path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="toggle-label-open">펼쳐보기</span>
+            <span class="toggle-label-close">접기</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-detail">
+        <div class="detail-inner">
+          <div class="tts-bar">
+            <button class="btn-tts" id="tts-${i}" onclick="toggleTTS(${i}, event)">
+              <svg class="play-icon" viewBox="0 0 24 24" fill="none">
+                <path d="M3 9v6h4l5 5V4L7 9H3z" fill="currentColor"/>
+                <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z" fill="currentColor"/>
+                <path d="M14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77 0-4.28-2.99-7.86-7-8.77z" fill="currentColor"/>
+              </svg>
+              <svg class="stop-icon" viewBox="0 0 24 24" fill="none">
+                <rect x="6" y="6" width="12" height="12" rx="2" fill="currentColor"/>
+              </svg>
+              <span class="play-icon">자세히 듣기</span>
+              <span class="stop-icon">듣기 중지</span>
+            </button>
+          </div>
+          <div class="tts-progress" id="prog-${i}">
+            <div class="tts-progress-fill" id="progfill-${i}"></div>
+          </div>
+          <div class="detail-label">상세 내용</div>
+          <div class="detail-text">${ch.detail.replace(/\n\n/g, '</p><p>').replace(/^/, '<p>').replace(/$/, '</p>')}</div>
+          <div class="detail-quote">${ch.quote}</div>
+        </div>
+      </div>
+    `;
+    list.appendChild(card);
+  });
+}
+
+renderCards();
+
+function toggleCard(i) {
+  const cards = document.querySelectorAll('.card');
+  const card = cards[i];
+  const isActive = card.classList.contains('active');
+  if (isActive) stopTTS();
+  card.classList.toggle('active');
+  if (!isActive) {
+    setTimeout(() => {
+      const ttsBtn = document.getElementById('tts-' + i);
+      if (!ttsBtn) return;
+      const btnRect = ttsBtn.getBoundingClientRect();
+      const viewH = window.innerHeight;
+      if (btnRect.bottom > viewH - 20) {
+        window.scrollBy({ top: btnRect.bottom - viewH + 60, behavior: 'smooth' });
+      }
+    }, 320);
+  }
+}
+
+function buildTTSText(i) {
+  const ch = chapters[i];
+  const detail = ch.detail.replace(/<[^>]+>/g, '');
+  return `${ch.title}. ${detail} ${ch.quote}`;
+}
+
+function splitSentences(text) {
+  return text.split(/(?<=[.!?。！？다요까죠네군]\s)/).map(s => s.trim()).filter(Boolean);
+}
+
+function updateFloatBar(show, title, pct, paused) {
+  const bar = document.getElementById('float-bar');
+  if (!show) { bar.classList.remove('visible'); return; }
+  bar.classList.add('visible');
+  document.getElementById('float-fill').style.width = (pct || 0) + '%';
+  const toggleBtn  = document.getElementById('float-toggle-btn');
+  const iconPause  = document.getElementById('float-icon-pause');
+  const iconResume = document.getElementById('float-icon-resume');
+  const label      = document.getElementById('float-btn-label');
+  if (paused) {
+    toggleBtn.classList.add('paused');
+    iconPause.style.display  = 'none';
+    iconResume.style.display = 'block';
+    label.textContent = '이어듣기';
+  } else {
+    toggleBtn.classList.remove('paused');
+    iconPause.style.display  = 'block';
+    iconResume.style.display = 'none';
+    label.textContent = '일시정지';
+  }
+}
+
+function speakSentence(idx) {
+  if (idx >= sentences.length) {
+    const fill = currentTTS !== null && currentTTS !== -1 ? document.getElementById('progfill-' + currentTTS) : null;
+    if (fill) fill.style.width = '100%';
+    document.getElementById('float-fill').style.width = '100%';
+    setTimeout(stopTTS, 500);
+    return;
+  }
+  const utter = new SpeechSynthesisUtterance(sentences[idx]);
+  utter.lang  = 'ko-KR';
+  utter.rate  = 0.92;
+  utter.pitch = 1.0;
+  const voices  = window.speechSynthesis.getVoices();
+  const koVoice = voices.find(v => v.lang.startsWith('ko'));
+  if (koVoice) utter.voice = koVoice;
+  utter.onstart = () => {
+    currentSentenceIdx = idx;
+    const pct = Math.round((idx / sentences.length) * 100);
+    if (currentTTS !== null && currentTTS !== -1) {
+      const fill = document.getElementById('progfill-' + currentTTS);
+      if (fill) fill.style.width = pct + '%';
+    }
+    document.getElementById('float-fill').style.width = pct + '%';
+    const chTitle = currentTTS !== null && currentTTS !== -1 ? chapters[currentTTS]?.title : null;
+    updateFloatBar(true, chTitle, pct, false);
+  };
+  utter.onend = () => { if (isPaused) return; speakSentence(idx + 1); };
+  utter.onerror = (e) => {
+    if (e.error === 'interrupted' || e.error === 'canceled') return;
+    stopTTS();
+  };
+  window.speechSynthesis.speak(utter);
+}
+
+function floatTogglePause() {
+  if (currentTTS === null) return;
+  if (!isPaused) {
+    isPaused = true;
+    window.speechSynthesis.cancel();
+    if (currentTTS !== -1) {
+      const btn = document.getElementById('tts-' + currentTTS);
+      if (btn) btn.classList.remove('playing');
+    }
+    const pct = Math.round((currentSentenceIdx / sentences.length) * 100);
+    updateFloatBar(true, null, pct, true);
+    if (isListenAll) updateListenAllBtn('paused');
+  } else {
+    isPaused = false;
+    if (currentTTS !== -1) {
+      const btn = document.getElementById('tts-' + currentTTS);
+      if (btn) btn.classList.add('playing');
+    }
+    const pct = Math.round((currentSentenceIdx / sentences.length) * 100);
+    updateFloatBar(true, null, pct, false);
+    if (isListenAll) updateListenAllBtn('playing');
+    speakSentence(currentSentenceIdx);
+  }
+}
+
+function updateListenAllBtn(state) {
+  const btn        = document.getElementById('btn-listen-all');
+  const iconPlay   = document.getElementById('listen-all-icon-play');
+  const iconPause  = document.getElementById('listen-all-icon-pause');
+  const iconResume = document.getElementById('listen-all-icon-resume');
+  const label      = document.getElementById('listen-all-label');
+  const sub        = document.getElementById('listen-all-sub');
+  btn.classList.remove('playing', 'paused-all');
+  iconPlay.style.display = iconPause.style.display = iconResume.style.display = 'none';
+  if (state === 'playing') {
+    btn.classList.add('playing');
+    iconPause.style.display = 'block';
+    label.textContent = '일시정지';
+    sub.textContent   = '재생 중 — 탭하면 일시정지';
+  } else if (state === 'paused') {
+    btn.classList.add('paused-all');
+    iconResume.style.display = 'block';
+    label.textContent = '이어듣기';
+    sub.textContent   = '일시정지됨 — 탭하면 이어듣기';
+  } else {
+    iconPlay.style.display = 'block';
+    label.textContent = '전체 듣기';
+    sub.textContent   = '처음부터 끝까지 전체 재생';
+  }
+}
+
+function stopTTS() {
+  if (window.speechSynthesis) window.speechSynthesis.cancel();
+  if (ttsInterval) { clearInterval(ttsInterval); ttsInterval = null; }
+  document.querySelectorAll('.btn-tts').forEach(b => b.classList.remove('playing'));
+  document.querySelectorAll('.tts-progress').forEach(p => p.classList.remove('visible'));
+  document.querySelectorAll('.tts-progress-fill').forEach(f => f.style.width = '0%');
+  updateFloatBar(false);
+  currentTTS = null; isPaused = false; sentences = [];
+  currentSentenceIdx = 0; isListenAll = false;
+  updateListenAllBtn('idle');
+}
+
+function toggleTTS(i, e) {
+  e.stopPropagation();
+  if (!window.speechSynthesis) {
+    const banner = document.getElementById('tts-banner');
+    if (banner) { banner.style.display = 'block'; setTimeout(() => banner.style.display = 'none', 4000); }
+    return;
+  }
+  if (currentTTS === i) { stopTTS(); return; }
+  stopTTS();
+  setTimeout(() => {
+    const bar = document.getElementById('prog-' + i);
+    if (!bar) return;
+    if (bar.getBoundingClientRect().top > window.innerHeight * 0.5)
+      window.scrollBy({ top: 160, behavior: 'smooth' });
+  }, 80);
+  const text = buildTTSText(i);
+  sentences = splitSentences(text);
+  currentSentenceIdx = 0; currentTTS = i; isPaused = false;
+  document.getElementById('prog-' + i).classList.add('visible');
+  document.getElementById('tts-' + i).classList.add('playing');
+  updateFloatBar(true, chapters[i].title, 0, false);
+  speakSentence(0);
+}
+
+function toggleListenAll() {
+  if (!window.speechSynthesis) {
+    const banner = document.getElementById('tts-banner');
+    if (banner) { banner.style.display = 'block'; setTimeout(() => banner.style.display = 'none', 4000); }
+    return;
+  }
+  if (isListenAll && currentTTS === -1) {
+    floatTogglePause();
+    updateListenAllBtn(isPaused ? 'paused' : 'playing');
+    return;
+  }
+  stopTTS();
+  isListenAll = true; currentTTS = -1;
+  const allText = chapters.map((ch, i) => buildTTSText(i)).join(' ');
+  sentences = splitSentences(allText);
+  currentSentenceIdx = 0; isPaused = false;
+  updateListenAllBtn('playing');
+  updateFloatBar(true, null, 0, false);
+  speakSentence(0);
+}
+
+window.speechSynthesis && window.speechSynthesis.addEventListener
+  && window.speechSynthesis.addEventListener('voiceschanged', () => {});
+
+(function() {
+  const ua = navigator.userAgent.toLowerCase();
+  const isInApp = ua.includes('kakaotalk') || ua.includes('naver') ||
+                  ua.includes('instagram') || ua.includes('fbios') || ua.includes('fban');
+  if (isInApp) {
+    const currentUrl = location.href;
+    if (ua.includes('android')) {
+      location.href = 'intent://' + currentUrl.replace(/https?:\/\//, '') +
+        '#Intent;scheme=https;package=com.android.chrome;end';
+    } else if (ua.includes('iphone') || ua.includes('ipad')) {
+      location.href = currentUrl.replace('https://', 'googlechrome://');
+      setTimeout(() => {
+        alert('크롬 앱이 없으면 사파리 주소창에\n' + currentUrl + '\n을 직접 입력해주세요.');
+      }, 1500);
+    }
+  }
+})();
+
+window.addEventListener('scroll', () => {
+  document.getElementById('scrollTop').classList.toggle('visible', window.scrollY > 400);
+});
+</script>
+</body>
+</html>

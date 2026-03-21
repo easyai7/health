@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>뇌졸중 예방 가이드</title>
+<meta property="og:title" content="뇌졸중 예방 가이드">
+<meta property="og:description" content="뇌졸중 — 원인부터 조기 증상 인식, 혈압·혈당 관리, 재활까지 실용 지식">
+<meta property="og:locale" content="ko_KR">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="뇌졸중 예방 가이드">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#0e161e">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700;900&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0e161e;--surface:#121e2a;--surface2:#192736;--border:#2a4060;--blue:#4a7fa8;--blue-light:#80b4d8;--blue-dim:#1e4060;--gold:#c9a84c;--gold-light:#e8c870;--red:#7a3a50;--cream:#f0ece0;--text:#e0ecf4;--text-muted:#7aaac8;--text-dim:#3a6080;--serif:'Noto Serif KR',serif;--sans:'Noto Sans KR',sans-serif;--fs:26px;--fs-sm:24px;--fs-xs:20px;--fs-lg:30px}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{background:var(--bg);color:var(--text);font-family:var(--serif);font-size:var(--fs);line-height:1.85;min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 15% 20%,rgba(74,127,168,.08) 0%,transparent 60%),radial-gradient(ellipse at 85% 80%,rgba(201,168,76,.05) 0%,transparent 60%);pointer-events:none;z-index:0}
+.wrapper{max-width:720px;margin:0 auto;padding:0 8px 60px;position:relative;z-index:1}
+.header-icon-wrap{display:flex;justify-content:center;padding:40px 24px 0}
+.header-icon-bg{width:120px;height:120px;border-radius:32px;background:linear-gradient(135deg,var(--blue-dim) 0%,#0e2030 100%);border:2px solid var(--blue);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 32px rgba(74,127,168,.25),0 2px 8px rgba(0,0,0,.4)}
+.header-icon-bg svg{width:64px;height:64px;color:var(--blue-light)}
+.header{padding:32px 12px 36px;border-bottom:1px solid var(--border);margin-bottom:24px;text-align:center;position:relative}
+.header::after{content:'';display:block;width:60px;height:2px;background:linear-gradient(90deg,transparent,var(--blue),transparent);margin:20px auto 0}
+.header-eyebrow{font-family:var(--sans);font-size:var(--fs-xs);letter-spacing:5px;color:var(--blue-light);text-transform:uppercase;margin-bottom:14px;font-weight:500}
+.header-title{font-size:clamp(28px,7vw,48px);font-weight:900;line-height:1.25;color:var(--cream);letter-spacing:-.5px;margin-bottom:12px}
+.header-title span{color:var(--blue-light)}
+.header-sub{font-family:var(--sans);font-size:var(--fs-sm);color:var(--text-muted);line-height:1.9}
+.intro-box{background:var(--surface);border-left:3px solid var(--blue);padding:20px 22px;margin-bottom:24px;border-radius:0 8px 8px 0;font-family:var(--sans);font-size:var(--fs-sm);color:var(--text-muted);line-height:1.9}
+.intro-box strong{color:var(--blue-light);display:block;margin-bottom:6px;font-size:var(--fs);font-weight:700}
+#btn-listen-all{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;background:linear-gradient(135deg,var(--blue-dim) 0%,#0e1e30 100%);border:1.5px solid var(--blue);border-radius:14px;padding:20px 24px;cursor:pointer;color:var(--cream);font-family:var(--sans);font-size:22px;font-weight:700;letter-spacing:1px;margin-bottom:24px;transition:all .25s;-webkit-appearance:none;box-shadow:0 4px 20px rgba(74,127,168,.2);position:relative;overflow:hidden}
+#btn-listen-all::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(128,180,216,.08) 0%,transparent 60%);pointer-events:none}
+#btn-listen-all:active{transform:scale(.98)}
+#btn-listen-all.playing{background:linear-gradient(135deg,#0e1e30 0%,var(--blue-dim) 100%);border-color:var(--blue-light);box-shadow:0 4px 28px rgba(74,127,168,.35)}
+#btn-listen-all.paused-all{background:linear-gradient(135deg,rgba(201,168,76,.15) 0%,#2a2010 100%);border-color:var(--gold);color:var(--gold-light);box-shadow:0 4px 20px rgba(201,168,76,.15)}
+.listen-all-icon{width:26px;height:26px;flex-shrink:0}
+.listen-all-sub{display:block;font-size:14px;font-weight:400;color:var(--blue-light);letter-spacing:0;margin-top:3px;opacity:.85}
+#btn-listen-all.paused-all .listen-all-sub{color:var(--gold)}
+.listen-all-text-wrap{display:flex;flex-direction:column;align-items:flex-start}
+#tts-banner{display:none;background:var(--red);color:var(--cream);padding:12px 18px;border-radius:8px;font-family:var(--sans);font-size:var(--fs-sm);margin-bottom:18px;text-align:center}
+.section-label{display:flex;align-items:center;gap:12px;margin:8px 0 16px;font-family:var(--sans);font-size:var(--fs-xs);letter-spacing:3px;text-transform:uppercase;color:var(--text-dim)}
+.section-label::before,.section-label::after{content:'';flex:1;height:1px;background:var(--border)}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:12px;transition:border-color .2s,box-shadow .2s}
+.card.active{border-color:var(--blue-dim);box-shadow:0 4px 24px rgba(74,127,168,.15)}
+.card-header{padding:20px 16px 0;cursor:pointer;user-select:none;display:flex;flex-direction:column}
+.card-header-main{display:flex;gap:12px;align-items:flex-start;margin-bottom:16px}
+.card-num{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:3px;color:var(--blue-light);text-transform:uppercase;margin-top:4px;flex-shrink:0;min-width:36px}
+.card-header-text{flex:1}
+.card-tag{display:inline-block;font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;margin-bottom:8px;border-radius:3px;color:var(--bg)}
+.tag-blue{background:var(--blue-light)}.tag-gold{background:var(--gold)}.tag-red{background:#c06080;color:white}.tag-cream{background:var(--cream)}.tag-green{background:#70c090}
+.card-title{font-size:var(--fs-lg);font-weight:700;line-height:1.35;color:var(--cream);margin-bottom:8px}
+.card-summary{font-family:var(--sans);font-size:var(--fs-sm);color:var(--blue-light);line-height:1.8;font-weight:500}
+.toggle-icon-wrap{display:flex;justify-content:center;padding:10px 0 18px;border-top:1px solid var(--border);margin-top:4px}
+.toggle-icon{display:flex;align-items:center;gap:8px;background:var(--surface2);border:2px solid var(--blue-dim);border-radius:30px;padding:10px 22px;color:var(--blue-light);font-family:var(--sans);font-size:22px}
+.toggle-icon svg{width:20px;height:20px;flex-shrink:0;transition:transform .25s}
+.toggle-label-open{display:inline}.toggle-label-close{display:none}
+.card.active .toggle-icon{background:var(--blue-dim);border-color:var(--blue);color:var(--cream)}
+.card.active .toggle-icon svg{transform:rotate(180deg)}
+.card.active .toggle-label-open{display:none}.card.active .toggle-label-close{display:inline}
+.card-detail{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.4,0,.2,1)}
+.card.active .card-detail{max-height:4000px}
+.detail-inner{border-top:1px solid var(--border);padding:20px 16px 24px}
+.tts-bar{margin-bottom:14px}
+.btn-tts{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:14px 24px;cursor:pointer;color:var(--text-muted);font-family:var(--sans);font-size:24px}
+.btn-tts:hover{border-color:var(--blue-dim);color:var(--blue-light)}
+.btn-tts.playing{background:var(--blue-dim);border-color:var(--blue);color:var(--cream)}
+.btn-tts svg{width:24px;height:24px;flex-shrink:0}
+.btn-tts.playing .play-icon{display:none}.btn-tts:not(.playing) .stop-icon{display:none}
+.tts-progress{height:3px;background:var(--border);border-radius:2px;margin-top:10px;overflow:hidden;opacity:0;transition:opacity .3s}
+.tts-progress.visible{opacity:1}
+.tts-progress-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--blue),var(--blue-light));border-radius:2px;transition:width .3s linear}
+.detail-label{font-family:var(--sans);font-size:var(--fs-xs);letter-spacing:3px;text-transform:uppercase;color:var(--text-dim);margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.detail-text{font-family:var(--sans);font-size:var(--fs-sm);line-height:1.95;color:var(--text);margin-bottom:20px}
+.detail-text p{margin-bottom:16px}.detail-text p:last-child{margin-bottom:0}
+.detail-text strong{color:var(--cream);font-weight:700}
+.detail-quote{background:var(--surface2);border-left:3px solid var(--gold);padding:16px 20px;font-family:var(--sans);font-size:var(--fs-sm);color:var(--gold-light);line-height:1.9;border-radius:0 8px 8px 0;font-style:italic}
+.footer{text-align:center;font-family:var(--sans);font-size:18px;color:var(--text-dim);padding:32px 0 0;line-height:1.8}
+#scrollTop{position:fixed;bottom:28px;right:20px;width:44px;height:44px;background:var(--surface);border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text-muted);opacity:0;pointer-events:none;transition:opacity .3s;z-index:100}
+#scrollTop.visible{opacity:1;pointer-events:auto}
+#scrollTop svg{width:18px;height:18px}
+@media(max-width:520px){.card-header{padding:16px 12px 0}.detail-inner{padding:16px 12px 20px}}
+#float-bar{display:none;position:fixed;bottom:16px;left:50%;transform:translateX(-50%);z-index:200;width:calc(100% - 32px);max-width:680px}
+#float-bar.visible{display:block}
+.float-inner{background:var(--surface);border:1.5px solid var(--blue);border-radius:16px;padding:12px 16px 14px;box-shadow:0 8px 32px rgba(0,0,0,.5)}
+.float-top{display:flex;align-items:center;gap:10px}
+#float-toggle-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:10px;background:var(--blue-dim);border:1.5px solid var(--blue);border-radius:10px;padding:12px 18px;cursor:pointer;color:var(--cream);font-family:var(--sans);font-size:22px;font-weight:700;letter-spacing:1px;transition:all .2s;-webkit-appearance:none}
+#float-toggle-btn.paused{background:rgba(201,168,76,.15);border-color:var(--gold);color:var(--gold-light)}
+#float-toggle-btn svg{width:22px;height:22px;flex-shrink:0}
+.float-stop-btn{flex-shrink:0;background:var(--surface2);border:1.5px solid var(--border);border-radius:10px;cursor:pointer;padding:12px 14px;display:flex;align-items:center;justify-content:center;transition:all .2s;-webkit-appearance:none}
+.float-stop-btn svg{width:22px;height:22px}
+.float-progress{width:100%;height:4px;background:var(--border);border-radius:2px;overflow:hidden;margin-top:10px}
+.float-progress-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--blue),var(--blue-light));border-radius:2px;transition:width .3s linear}
+</style>
+</head>
+<body>
+<div id="tts-banner">이 브라우저는 음성 읽기를 지원하지 않습니다.</div>
+
+<div id="float-bar">
+  <div class="float-inner">
+    <div class="float-top">
+      <button id="float-toggle-btn" onclick="floatTogglePause()">
+        <svg id="float-icon-pause" viewBox="0 0 24 24" fill="none"><rect x="6" y="4" width="4" height="16" rx="1" fill="currentColor"/><rect x="14" y="4" width="4" height="16" rx="1" fill="currentColor"/></svg>
+        <svg id="float-icon-resume" viewBox="0 0 24 24" fill="none" style="display:none"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+        <span id="float-btn-label">일시정지</span>
+      </button>
+      <button class="float-stop-btn" onclick="stopTTS()">
+        <svg viewBox="0 0 24 24" fill="none"><rect x="5" y="5" width="14" height="14" rx="3" fill="var(--text-muted)"/></svg>
+      </button>
+    </div>
+    <div class="float-progress"><div class="float-progress-fill" id="float-fill"></div></div>
+  </div>
+</div>
+
+<div class="wrapper">
+  <div class="header-icon-wrap">
+    <div class="header-icon-bg">
+      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- 뇌혈관 실루엣 -->
+        <path d="M32 8 C20 8 12 16 12 24 C12 28 14 32 12 36 C10 40 12 48 20 50 C24 51 28 50 32 50 C36 50 40 51 44 50 C52 48 54 40 52 36 C50 32 52 28 52 24 C52 16 44 8 32 8Z" stroke="currentColor" stroke-width="2" fill="none" opacity="0.7"/>
+        <!-- 혈관 라인 -->
+        <path d="M32 12 Q28 18 32 24 Q36 30 32 36 Q28 42 32 48" stroke="currentColor" stroke-width="1.8" fill="none" opacity="0.6" stroke-linecap="round"/>
+        <path d="M22 20 Q26 24 22 30 Q18 34 22 40" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.5" stroke-linecap="round"/>
+        <path d="M42 20 Q38 24 42 30 Q46 34 42 40" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.5" stroke-linecap="round"/>
+        <!-- 막힘 표시 -->
+        <circle cx="22" cy="30" r="3.5" fill="currentColor" opacity="0.8"/>
+        <line x1="19" y1="27" x2="25" y2="33" stroke="var(--bg)" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="25" y1="27" x2="19" y2="33" stroke="var(--bg)" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="header">
+    <div class="header-eyebrow">뇌혈관 건강 · 혈압 관리 · 실용 가이드</div>
+    <h1 class="header-title"><span>뇌졸중 예방</span><br>완전 가이드</h1>
+    <div class="header-sub">
+      뇌졸중의 원인부터 조기 증상 인식, 혈압·혈당 관리까지<br>
+      골든 타임을 지키는 생활 습관 지식
+    </div>
+  </div>
+
+  <div class="intro-box">
+    <strong>이 가이드는 무엇을 알려주는가?</strong>
+    뇌졸중은 한국인 사망 원인 4위이자 성인 장애의 1위 원인입니다. 살아남더라도 반신마비, 언어 장애, 인지 기능 저하가 남을 수 있습니다. 뇌졸중이 왜 생기는지, 조기 증상을 어떻게 알아채는지, 혈압과 혈당을 어떻게 관리해야 하는지, 발생 시 어떻게 행동해야 하는지 — 병원에서 다 알려주지 못한 지식을 담았습니다.
+  </div>
+
+  <button id="btn-listen-all" onclick="toggleListenAll()">
+    <svg class="listen-all-icon" id="listen-all-icon-play" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
+      <path d="M10 8l6 4-6 4V8z" fill="currentColor"/>
+    </svg>
+    <svg class="listen-all-icon" id="listen-all-icon-pause" viewBox="0 0 24 24" fill="none" style="display:none">
+      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
+      <rect x="8" y="7" width="3" height="10" rx="1" fill="currentColor"/>
+      <rect x="13" y="7" width="3" height="10" rx="1" fill="currentColor"/>
+    </svg>
+    <svg class="listen-all-icon" id="listen-all-icon-resume" viewBox="0 0 24 24" fill="none" style="display:none">
+      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
+      <path d="M10 8l6 4-6 4V8z" fill="currentColor"/>
+    </svg>
+    <div class="listen-all-text-wrap">
+      <span id="listen-all-label">전체 듣기</span>
+      <span class="listen-all-sub" id="listen-all-sub">처음부터 끝까지 전체 재생</span>
+    </div>
+  </button>
+
+  <div class="section-label">뇌졸중 예방 — 7가지 핵심 지식</div>
+  <div id="chapterList"></div>
+
+  <div class="footer">뇌졸중 예방 완전 가이드<br>건강 정보 앱 · 전문 진료를 대체하지 않습니다</div>
+</div>
+
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg viewBox="0 0 24 24" fill="none"><path d="M18 15l-6-6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+
+<script>
+const chapters = [
+  {
+    num:"01", tag:"tag-red", tagText:"뇌졸중 원리",
+    title:"뇌졸중이란 무엇인가 — 뇌경색과 뇌출혈의 차이",
+    summary:"뇌졸중은 뇌혈관이 막히거나 터지는 병이다. 막히면 뇌경색, 터지면 뇌출혈이다. 매 분마다 뇌세포 190만 개가 죽는다. 골든 타임 4.5시간 안에 병원에 가야 한다.",
+    detail:`뇌졸중은 뇌에 혈액 공급이 갑자기 차단되는 응급 질환입니다.
+
+<strong>뇌경색 — 혈관이 막히는 경우.</strong> 전체 뇌졸중의 약 80%를 차지합니다. 동맥경화로 좁아진 혈관이 혈전(혈액 덩어리)에 의해 막힙니다. 심방세동(불규칙한 심장 박동)이 있으면 심장에서 혈전이 만들어져 뇌혈관을 막는 경우도 많습니다. 치료 약물(혈전용해제, tPA)이 있으며 4.5시간 안에 투여해야 효과가 있습니다.
+
+<strong>뇌출혈 — 혈관이 터지는 경우.</strong> 전체의 약 20%입니다. 고혈압으로 약해진 혈관이 터져 뇌 안에 피가 고입니다. 뇌경색보다 사망률이 높습니다. 수술이 필요한 경우가 많습니다.
+
+<strong>일과성 허혈 발작(TIA) — 예고 신호.</strong> 뇌졸중 증상이 수 분~24시간 안에 저절로 사라지는 경우입니다. '미니 뇌졸중'이라고도 합니다. 절대 가볍게 여기면 안 됩니다. TIA 후 48시간~7일 안에 뇌경색이 생길 위험이 10~20%입니다. 증상이 사라져도 즉시 응급실에 가야 합니다.
+
+<strong>시간이 곧 뇌입니다.</strong> 뇌경색이 발생하면 매 분마다 뇌세포 190만 개, 매 시간 1억 2천만 개가 죽습니다. 빠를수록 더 많은 뇌세포를 살릴 수 있습니다. 혈전용해제는 4.5시간, 동맥내 혈전 제거술은 최대 24시간 안에 치료해야 합니다.
+
+<strong>뇌졸중은 예방 가능합니다.</strong> 세계뇌졸중기구에 따르면 뇌졸중의 약 90%는 수정 가능한 위험 인자와 관련이 있습니다. 고혈압, 당뇨, 흡연, 비만, 운동 부족, 음주, 심방세동 — 이것들을 관리하면 뇌졸중을 크게 예방할 수 있습니다.`,
+    quote:"뇌졸중은 운명이 아닙니다. 위험 인자를 알고 관리하면 대부분 예방할 수 있습니다. 그리고 증상이 나타나면 단 1분이 뇌세포 수백만 개를 살립니다."
+  },
+  {
+    num:"02", tag:"tag-red", tagText:"조기 증상",
+    title:"뇌졸중 증상 — FAST, 5분 안에 알아채는 법",
+    summary:"얼굴 비틀림, 팔 힘 빠짐, 말이 어눌해짐이 3대 증상이다. FAST(Face·Arm·Speech·Time) 원칙을 기억하면 된다. 증상이 나타나면 즉시 119를 불러야 한다. 혼자 운전은 절대 안 된다.",
+    detail:`뇌졸중 증상을 빨리 알아채는 것이 생사를 가릅니다. FAST 원칙을 외우면 됩니다.
+
+<strong>F — Face (얼굴).</strong> 웃어보라고 했을 때 한쪽 얼굴이 처지거나 비뚤어지면 위험 신호입니다. 거울을 보거나 가족에게 확인합니다.
+
+<strong>A — Arm (팔).</strong> 두 팔을 앞으로 나란히 들어보라고 했을 때 한쪽 팔이 힘없이 떨어지거나 들지 못하면 위험 신호입니다.
+
+<strong>S — Speech (말).</strong> 간단한 문장을 말해보라고 했을 때 발음이 어눌하거나, 말이 잘 안 나오거나, 이해를 못 하면 위험 신호입니다.
+
+<strong>T — Time (시간).</strong> 위 증상 중 하나라도 있으면 즉시 119에 전화합니다. 증상이 나타난 시각을 기억해 둡니다. 혼자 운전해서 가면 안 됩니다. 아스피린을 먹이지 않습니다(뇌출혈이면 더 위험).
+
+<strong>그 외 뇌졸중 증상들.</strong> 갑자기 한쪽 눈이 안 보이거나 시야가 절반 잘리는 느낌, 갑작스러운 극심한 두통(평생 겪어보지 못한 정도), 갑자기 심한 어지럼증과 걸음이 비틀거림, 갑작스러운 한쪽 몸의 감각 이상도 뇌졸중 증상일 수 있습니다.
+
+<strong>증상이 사라져도 반드시 응급실로.</strong> 증상이 5~10분 만에 저절로 나아져도 절대 안심하면 안 됩니다. 일과성 허혈 발작(TIA)일 수 있으며, 며칠 안에 큰 뇌졸중이 올 수 있습니다. 반드시 응급실에서 검사를 받아야 합니다.`,
+    quote:"FAST — 얼굴, 팔, 말, 시간. 이 네 글자를 기억하면 뇌졸중을 알아챌 수 있습니다. 증상이 나타나면 1분을 낭비하지 마세요. 119가 병원보다 빠릅니다."
+  },
+  {
+    num:"03", tag:"tag-blue", tagText:"혈압 관리",
+    title:"혈압이 핵심이다 — 고혈압과 뇌졸중의 관계",
+    summary:"고혈압은 뇌졸중 위험을 4~6배 높인다. 한국 성인의 30%가 고혈압이지만 절반은 모르고 있다. 140/90 이상이면 치료가 필요하다. 약을 멈추면 안 되는 이유가 있다.",
+    detail:`고혈압은 뇌졸중의 가장 강력한 위험 인자입니다. 혈압 관리가 곧 뇌졸중 예방입니다.
+
+<strong>고혈압이 혈관을 어떻게 손상시키는가.</strong> 높은 혈압이 지속되면 혈관 벽이 두껍고 딱딱해지는 동맥경화가 생깁니다. 약해진 혈관은 혈전이 쌓이거나 터지기 쉬워집니다. 수축기 혈압이 10mmHg 오를 때마다 뇌졸중 위험이 30% 높아집니다.
+
+<strong>목표 혈압은 130/80 미만.</strong> 이전에는 140/90 미만을 기준으로 했지만, 최근 지침은 130/80 미만을 권장합니다. 뇌졸중 기왕력이 있거나 당뇨가 있는 경우에는 더 엄격하게 관리합니다.
+
+<strong>가정 혈압 측정이 중요합니다.</strong> 병원에서 측정한 혈압은 긴장으로 높게 나오는 '백의 고혈압'이 있을 수 있습니다. 아침 기상 후 30분 이내, 화장실 다녀온 후, 앉아서 5분 쉰 다음 측정하는 가정 혈압이 더 정확합니다. 하루 2회, 연속 7일 측정한 평균값으로 판단합니다.
+
+<strong>혈압약은 임의로 중단하면 안 됩니다.</strong> 혈압이 정상으로 돌아온 것은 약 덕분입니다. 약을 끊으면 혈압이 다시 오릅니다. 혈압약은 대부분 평생 복용해야 하며, 약을 바꾸거나 줄이는 것은 반드시 의사와 상담해야 합니다.
+
+<strong>생활 습관 개선이 혈압을 낮춥니다.</strong> 소금 하루 5g 이하(라면 한 봉지에 약 5g), 하루 30분 유산소 운동, 정상 체중 유지, 금연, 절주 — 이것들로 수축기 혈압을 5~10mmHg 낮출 수 있습니다.`,
+    quote:"혈압약을 먹는 것은 뇌를 지키는 것입니다. 매일 아침 약 한 알이 뇌졸중을 막는 가장 강력한 방패입니다. 약을 잊거나 끊지 마세요."
+  },
+  {
+    num:"04", tag:"tag-gold", tagText:"위험 인자",
+    title:"뇌졸중을 부르는 것들 — 당뇨·심방세동·흡연의 위험",
+    summary:"당뇨는 혈관을 직접 손상시키고, 심방세동은 심장에서 혈전을 만들어 뇌로 보낸다. 흡연은 혈관을 수축시키고 혈전을 잘 생기게 한다. 이 세 가지가 고혈압 다음으로 중요한 위험 인자다.",
+    detail:`고혈압 외에도 뇌졸중 위험을 크게 높이는 요인들이 있습니다.
+
+<strong>당뇨 — 혈관을 조용히 망가뜨립니다.</strong> 고혈당이 지속되면 혈관 벽이 손상되고 동맥경화가 빠르게 진행됩니다. 당뇨가 있으면 뇌졸중 위험이 2~4배 높아집니다. 혈당 조절 목표는 당화혈색소(HbA1c) 7% 미만입니다.
+
+<strong>심방세동 — 심장이 불규칙하게 뛰는 부정맥.</strong> 심방이 제대로 수축하지 못하면 혈액이 고여 혈전이 생깁니다. 이 혈전이 뇌혈관을 막으면 대형 뇌경색이 생깁니다. 심방세동으로 인한 뇌경색은 증상이 더 심하고 사망률도 높습니다. 심방세동이 진단되면 항응고제 복용이 필요합니다.
+
+<strong>흡연 — 혈관을 수축시키고 혈전을 만듭니다.</strong> 담배는 혈관을 수축시켜 혈류를 줄이고, 혈소판을 활성화시켜 혈전을 잘 생기게 합니다. 흡연자는 비흡연자보다 뇌졸중 위험이 2~4배 높습니다. 금연 후 5년이 지나면 비흡연자 수준으로 위험이 낮아집니다.
+
+<strong>비만과 신체 활동 부족.</strong> 복부 비만은 고혈압, 당뇨, 이상지질혈증을 동시에 악화시켜 뇌졸중 위험을 높입니다. 하루 30분 이상 빠르게 걷기만으로도 뇌졸중 위험이 25~30% 줄어듭니다.
+
+<strong>과도한 음주.</strong> 술을 많이 마시면 혈압이 올라가고, 심방세동을 유발하며, 혈소판 기능을 방해합니다. 하루 2잔 이상의 음주가 지속되면 뇌졸중 위험이 높아집니다.`,
+    quote:"심방세동이 있다면 반드시 의사와 항응고제 복용을 상의하세요. 이 약 하나가 뇌졸중 위험을 70%까지 줄여줍니다. 부정맥은 발견하는 순간 치료를 시작해야 합니다."
+  },
+  {
+    num:"05", tag:"tag-gold", tagText:"예방 생활",
+    title:"뇌졸중을 예방하는 생활 습관 — 매일 실천하는 것들",
+    summary:"혈압약 꾸준히 먹기, 금연, 하루 30분 걷기, 소금 줄이기 — 이 네 가지가 뇌졸중 예방의 핵심이다. 뇌졸중 경험자는 재발 예방이 더 중요하며, 항혈소판제를 절대 끊으면 안 된다.",
+    detail:`뇌졸중은 생활 습관을 바꾸는 것만으로도 크게 예방할 수 있습니다.
+
+<strong>소금 줄이기가 혈압을 낮춥니다.</strong> 한국인 평균 소금 섭취량은 하루 10g 이상으로 권장량의 2배입니다. 라면, 찌개, 김치가 주요 원인입니다. 국물을 반만 먹고, 저나트륨 간장을 사용하고, 가공식품 나트륨을 확인하는 습관이 도움이 됩니다.
+
+<strong>매일 걷기가 혈관을 청소합니다.</strong> 하루 30분 빠르게 걷기는 혈압을 낮추고, 혈당을 조절하고, 체중을 줄이는 효과가 있습니다. 주 5일 이상 걷기만으로도 뇌졸중 위험이 25% 줄어듭니다. 한 번에 30분이 힘들면 10분씩 3번 나눠도 됩니다.
+
+<strong>등 푸른 생선과 채소를 충분히 먹습니다.</strong> 오메가-3 지방산이 풍부한 고등어, 꽁치, 연어는 혈전 생성을 억제합니다. 채소와 과일의 칼륨은 혈압을 낮춥니다. 지중해식 식단(올리브오일, 채소, 생선, 견과류)이 뇌졸중 예방에 효과적이라는 연구가 많습니다.
+
+<strong>뇌졸중 경험자는 재발 예방이 최우선.</strong> 뇌경색을 경험한 경우 항혈소판제(아스피린, 클로피도그렐 등)를 복용합니다. 이 약을 임의로 중단하면 재발 위험이 급격히 높아집니다. 치과 시술이나 수술 전에 반드시 담당 의사와 상의합니다.
+
+<strong>정기 건강검진이 중요합니다.</strong> 혈압, 혈당, 콜레스테롤, 심전도(부정맥 확인) 검사를 정기적으로 받습니다. 무증상으로 진행되는 위험 인자를 조기에 발견하는 것이 예방의 핵심입니다.`,
+    quote:"뇌졸중 예방은 거창한 노력이 필요하지 않습니다. 혈압약 챙겨 먹기, 담배 끊기, 매일 걷기 — 이 세 가지가 뇌졸중 위험을 절반 이하로 줄여줍니다."
+  },
+  {
+    num:"06", tag:"tag-cream", tagText:"응급 대처",
+    title:"뇌졸중 발생 시 행동 요령 — 1분이 뇌를 살린다",
+    summary:"119를 부르는 것이 혼자 병원 가는 것보다 빠르고 안전하다. 구급대원이 미리 병원에 연락하기 때문이다. 환자를 눕히고, 음식을 먹이지 말고, 아스피린을 주지 않는다.",
+    detail:`뇌졸중 발생 시 행동 하나하나가 생사와 장애 여부를 결정합니다.
+
+<strong>즉시 119에 전화합니다.</strong> 직접 운전해서 가는 것보다 119가 훨씬 빠르고 안전합니다. 구급대원이 이동 중에 병원에 미리 연락해 준비하도록 하기 때문입니다. 119 신고 시 "뇌졸중 증상이 있습니다"라고 명확히 말합니다.
+
+<strong>증상 발생 시각을 기억합니다.</strong> 혈전용해제 투여 가능 시간(4.5시간)이 증상 발생 시각부터 계산됩니다. 잠에서 깨어 증상을 발견한 경우, 마지막으로 정상이었던 시각을 기억해야 합니다.
+
+<strong>환자를 안전하게 눕힙니다.</strong> 의식이 있으면 편안한 자세로 눕히고, 호흡을 방해하는 넥타이나 옷 단추를 풉니다. 의식이 없으면 옆으로 눕혀(회복 자세) 기도를 확보합니다. 구토가 있을 경우 질식을 막기 위해 옆으로 눕히는 것이 중요합니다.
+
+<strong>음식·음료·약을 먹이지 않습니다.</strong> 삼킴 기능이 마비되어 있을 수 있어 질식 위험이 있습니다. 아스피린도 주지 않습니다. 뇌출혈이면 오히려 더 위험합니다.
+
+<strong>심폐소생술이 필요한 경우.</strong> 호흡과 맥박이 없으면 즉시 심폐소생술(CPR)을 시작합니다. 가슴 중앙을 분당 100~120회 강하게 누릅니다. AED(자동 심장충격기)가 있으면 사용합니다.`,
+    quote:"뇌졸중 앞에서 망설임은 뇌세포를 죽입니다. 증상이 의심되면 즉시 119입니다. '설마 아니겠지'라는 생각이 가장 위험합니다."
+  },
+  {
+    num:"07", tag:"tag-green", tagText:"재활과 회복",
+    title:"뇌졸중 후 재활 — 뇌는 다시 회복될 수 있다",
+    summary:"뇌졸중 후 3~6개월이 가장 집중적으로 회복되는 시기다. 재활을 일찍 시작할수록 더 많이 회복된다. 언어 치료, 작업 치료, 운동 치료를 포기하지 않는 것이 핵심이다.",
+    detail:`뇌졸중으로 손상된 뇌 기능은 재활을 통해 상당 부분 회복될 수 있습니다.
+
+<strong>뇌의 가소성 — 뇌는 재구성됩니다.</strong> 손상되지 않은 다른 뇌 부위가 잃어버린 기능을 대신하도록 재배선됩니다. 이것을 신경 가소성이라고 합니다. 재활 훈련이 이 과정을 촉진합니다. 뇌졸중 후 3~6개월이 가소성이 가장 활발한 '황금 재활 기간'입니다.
+
+<strong>재활은 급성기부터 시작합니다.</strong> 상태가 안정되면 24~48시간 이내에 재활을 시작합니다. 침대에 너무 오래 누워 있으면 근육이 위축되고 욕창, 폐렴 합병증이 생깁니다. 초기에는 앉기, 서기, 걷기 순서로 진행합니다.
+
+<strong>언어 치료 — 말하기·이해하기·삼키기.</strong> 뇌졸중 후 실어증이나 삼킴 장애가 생기는 경우가 많습니다. 언어 치료사와 꾸준히 훈련하면 상당히 회복됩니다. 포기하지 않는 것이 중요합니다. 가족이 환자와 함께 연습하는 것이 치료 효과를 높입니다.
+
+<strong>작업 치료 — 일상생활 동작 훈련.</strong> 젓가락질, 글쓰기, 단추 잠그기 같은 세밀한 손 동작을 다시 훈련합니다. 독립적인 일상 복귀가 목표입니다. 보조 기구를 활용하는 방법도 함께 배웁니다.
+
+<strong>재발 예방이 재활만큼 중요합니다.</strong> 뇌졸중 후 첫 1년 안에 재발 위험이 가장 높습니다. 항혈소판제나 항응고제를 철저히 복용하고, 혈압·혈당 관리를 더욱 엄격하게 합니다. 재활에 집중하면서 재발 위험 인자를 동시에 관리해야 합니다.`,
+    quote:"뇌졸중은 끝이 아닙니다. 재활을 포기하지 않은 분들이 다시 말하고, 걷고, 독립적으로 생활하는 경우가 많습니다. 뇌는 생각보다 훨씬 강합니다."
+  }
+];
+
+const list = document.getElementById('chapterList');
+let currentTTS=null, isPaused=false, sentences=[], currentSentenceIdx=0, ttsInterval=null, isListenAll=false;
+
+function renderCards(){list.innerHTML='';chapters.forEach((ch,i)=>{const card=document.createElement('div');card.className='card';card.innerHTML=`<div class="card-header" onclick="toggleCard(${i})"><div class="card-header-main"><div class="card-num">${ch.num}</div><div class="card-header-text"><span class="card-tag ${ch.tag}">${ch.tagText}</span><div class="card-title">${ch.title}</div><div class="card-summary">${ch.summary}</div></div></div><div class="toggle-icon-wrap"><div class="toggle-icon"><svg viewBox="0 0 14 14" fill="none"><path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="toggle-label-open">펼쳐보기</span><span class="toggle-label-close">접기</span></div></div></div><div class="card-detail"><div class="detail-inner"><div class="tts-bar"><button class="btn-tts" id="tts-${i}" onclick="toggleTTS(${i},event)"><svg class="play-icon" viewBox="0 0 24 24" fill="none"><path d="M3 9v6h4l5 5V4L7 9H3z" fill="currentColor"/><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z" fill="currentColor"/><path d="M14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77 0-4.28-2.99-7.86-7-8.77z" fill="currentColor"/></svg><svg class="stop-icon" viewBox="0 0 24 24" fill="none"><rect x="6" y="6" width="12" height="12" rx="2" fill="currentColor"/></svg><span class="play-icon">자세히 듣기</span><span class="stop-icon">듣기 중지</span></button></div><div class="tts-progress" id="prog-${i}"><div class="tts-progress-fill" id="progfill-${i}"></div></div><div class="detail-label">상세 내용</div><div class="detail-text">${ch.detail.replace(/\n\n/g,'</p><p>').replace(/^/,'<p>').replace(/$/,'</p>')}</div><div class="detail-quote">${ch.quote}</div></div></div>`;list.appendChild(card);});}
+renderCards();
+function toggleCard(i){const card=document.querySelectorAll('.card')[i];const isActive=card.classList.contains('active');if(isActive)stopTTS();card.classList.toggle('active');if(!isActive)setTimeout(()=>{const btn=document.getElementById('tts-'+i);if(!btn)return;const r=btn.getBoundingClientRect();if(r.bottom>window.innerHeight-20)window.scrollBy({top:r.bottom-window.innerHeight+60,behavior:'smooth'});},320);}
+function buildTTSText(i){const ch=chapters[i];return`${ch.title}. ${ch.detail.replace(/<[^>]+>/g,'')} ${ch.quote}`;}
+function splitSentences(text){return text.split(/(?<=[.!?。！？다요까죠네군]\s)/).map(s=>s.trim()).filter(Boolean);}
+function updateFloatBar(show,title,pct,paused){const bar=document.getElementById('float-bar');if(!show){bar.classList.remove('visible');return;}bar.classList.add('visible');document.getElementById('float-fill').style.width=(pct||0)+'%';const tb=document.getElementById('float-toggle-btn'),ip=document.getElementById('float-icon-pause'),ir=document.getElementById('float-icon-resume'),lb=document.getElementById('float-btn-label');if(paused){tb.classList.add('paused');ip.style.display='none';ir.style.display='block';lb.textContent='이어듣기';}else{tb.classList.remove('paused');ip.style.display='block';ir.style.display='none';lb.textContent='일시정지';}}
+function updateListenAllBtn(state){const btn=document.getElementById('btn-listen-all'),ip=document.getElementById('listen-all-icon-play'),ipa=document.getElementById('listen-all-icon-pause'),ir=document.getElementById('listen-all-icon-resume'),lb=document.getElementById('listen-all-label'),sb=document.getElementById('listen-all-sub');btn.classList.remove('playing','paused-all');ip.style.display=ipa.style.display=ir.style.display='none';if(state==='playing'){btn.classList.add('playing');ipa.style.display='block';lb.textContent='일시정지';sb.textContent='재생 중 — 탭하면 일시정지';}else if(state==='paused'){btn.classList.add('paused-all');ir.style.display='block';lb.textContent='이어듣기';sb.textContent='일시정지됨 — 탭하면 이어듣기';}else{ip.style.display='block';lb.textContent='전체 듣기';sb.textContent='처음부터 끝까지 전체 재생';}}
+function speakSentence(idx){if(idx>=sentences.length){const fill=currentTTS!==null&&currentTTS!==-1?document.getElementById('progfill-'+currentTTS):null;if(fill)fill.style.width='100%';document.getElementById('float-fill').style.width='100%';setTimeout(stopTTS,500);return;}const u=new SpeechSynthesisUtterance(sentences[idx]);u.lang='ko-KR';u.rate=0.92;u.pitch=1.0;const kv=window.speechSynthesis.getVoices().find(v=>v.lang.startsWith('ko'));if(kv)u.voice=kv;u.onstart=()=>{currentSentenceIdx=idx;const pct=Math.round((idx/sentences.length)*100);if(currentTTS!==null&&currentTTS!==-1){const f=document.getElementById('progfill-'+currentTTS);if(f)f.style.width=pct+'%';}document.getElementById('float-fill').style.width=pct+'%';updateFloatBar(true,currentTTS!==null&&currentTTS!==-1?chapters[currentTTS]?.title:null,pct,false);};u.onend=()=>{if(isPaused)return;speakSentence(idx+1);};u.onerror=(e)=>{if(e.error==='interrupted'||e.error==='canceled')return;stopTTS();};window.speechSynthesis.speak(u);}
+function floatTogglePause(){if(currentTTS===null)return;if(!isPaused){isPaused=true;window.speechSynthesis.cancel();if(currentTTS!==-1){const b=document.getElementById('tts-'+currentTTS);if(b)b.classList.remove('playing');}updateFloatBar(true,null,Math.round((currentSentenceIdx/sentences.length)*100),true);if(isListenAll)updateListenAllBtn('paused');}else{isPaused=false;if(currentTTS!==-1){const b=document.getElementById('tts-'+currentTTS);if(b)b.classList.add('playing');}updateFloatBar(true,null,Math.round((currentSentenceIdx/sentences.length)*100),false);if(isListenAll)updateListenAllBtn('playing');speakSentence(currentSentenceIdx);}}
+function stopTTS(){if(window.speechSynthesis)window.speechSynthesis.cancel();if(ttsInterval){clearInterval(ttsInterval);ttsInterval=null;}document.querySelectorAll('.btn-tts').forEach(b=>b.classList.remove('playing'));document.querySelectorAll('.tts-progress').forEach(p=>p.classList.remove('visible'));document.querySelectorAll('.tts-progress-fill').forEach(f=>f.style.width='0%');updateFloatBar(false);currentTTS=null;isPaused=false;sentences=[];currentSentenceIdx=0;isListenAll=false;updateListenAllBtn('idle');}
+function toggleTTS(i,e){e.stopPropagation();if(!window.speechSynthesis){const b=document.getElementById('tts-banner');if(b){b.style.display='block';setTimeout(()=>b.style.display='none',4000);}return;}if(currentTTS===i){stopTTS();return;}stopTTS();setTimeout(()=>{const bar=document.getElementById('prog-'+i);if(bar&&bar.getBoundingClientRect().top>window.innerHeight*.5)window.scrollBy({top:160,behavior:'smooth'});},80);sentences=splitSentences(buildTTSText(i));currentSentenceIdx=0;currentTTS=i;isPaused=false;document.getElementById('prog-'+i).classList.add('visible');document.getElementById('tts-'+i).classList.add('playing');updateFloatBar(true,chapters[i].title,0,false);speakSentence(0);}
+function toggleListenAll(){if(!window.speechSynthesis){const b=document.getElementById('tts-banner');if(b){b.style.display='block';setTimeout(()=>b.style.display='none',4000);}return;}if(isListenAll&&currentTTS===-1){floatTogglePause();updateListenAllBtn(isPaused?'paused':'playing');return;}stopTTS();isListenAll=true;currentTTS=-1;sentences=splitSentences(chapters.map((ch,i)=>buildTTSText(i)).join(' '));currentSentenceIdx=0;isPaused=false;updateListenAllBtn('playing');updateFloatBar(true,null,0,false);speakSentence(0);}
+window.speechSynthesis&&window.speechSynthesis.addEventListener&&window.speechSynthesis.addEventListener('voiceschanged',()=>{});
+(function(){const ua=navigator.userAgent.toLowerCase();const isInApp=ua.includes('kakaotalk')||ua.includes('naver')||ua.includes('instagram')||ua.includes('fbios')||ua.includes('fban');if(isInApp){const url=location.href;if(ua.includes('android')){location.href='intent://'+url.replace(/https?:\/\//,'')+'#Intent;scheme=https;package=com.android.chrome;end';}else if(ua.includes('iphone')||ua.includes('ipad')){location.href=url.replace('https://','googlechrome://');setTimeout(()=>alert('크롬 앱이 없으면 사파리 주소창에\n'+url+'\n을 직접 입력해주세요.'),1500);}}})();
+window.addEventListener('scroll',()=>document.getElementById('scrollTop').classList.toggle('visible',window.scrollY>400));
+</script>
+</body>
+</html>
