@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>かゆくて気が狂いそう</title>
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="かゆくて気が狂いそう">
+<meta property="og:description" content=" ">
+<meta property="og:image" content="https://easyai7.github.io/book/itch.png">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="かゆくて気が狂いそう">
+<meta name="twitter:description" content=" ">
+<meta name="description" content="チョン・ジンホ著 | かゆみの原因と治療 — 5ステップ原則で完治する">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700;900&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #0e1a0e;
+  --surface: #162016;
+  --surface2: #1e2e1e;
+  --border: #2e4a2e;
+  --green: #5a8f5a;
+  --green-light: #88c288;
+  --green-dim: #2a5a2a;
+  --gold: #c9a84c;
+  --gold-light: #e8c870;
+  --red: #8f3a3a;
+  --cream: #f0ecd8;
+  --text: #e8f0e8;
+  --text-muted: #90b890;
+  --text-dim: #486048;
+  --serif: 'Noto Serif KR', serif;
+  --sans: 'Noto Sans KR', sans-serif;
+  --fs: 22px;
+  --fs-sm: 19px;
+  --fs-xs: 16px;
+  --fs-lg: 26px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--serif);
+  font-size: var(--fs);
+  line-height: 1.85;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 15% 20%, rgba(90,143,90,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse at 85% 80%, rgba(201,168,76,0.05) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.wrapper {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 8px 60px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── BOOK COVER ── */
+.book-cover-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 32px 24px 0;
+}
+.book-cover {
+  width: 100%;
+  max-width: 340px;
+  border-radius: 12px;
+  box-shadow:
+    -6px 6px 0 #0a100a,
+    -12px 12px 20px rgba(0,0,0,0.6),
+    4px 4px 30px rgba(90,143,90,0.15);
+  display: block;
+  transform: perspective(800px) rotateY(3deg);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.book-cover:hover {
+  transform: perspective(800px) rotateY(0deg);
+  box-shadow:
+    -3px 3px 0 #0a100a,
+    -8px 8px 20px rgba(0,0,0,0.5),
+    4px 4px 30px rgba(90,143,90,0.2);
+}
+
+/* ── HEADER ── */
+.header {
+  padding: 48px 12px 36px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 24px;
+  text-align: center;
+  position: relative;
+}
+.header::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--green), transparent);
+  margin: 20px auto 0;
+}
+.header-eyebrow {
+  font-family: var(--sans);
+  font-size: var(--fs-xs);
+  letter-spacing: 5px;
+  color: var(--green-light);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  font-weight: 500;
+}
+.header-title {
+  font-size: clamp(28px, 7vw, 48px);
+  font-weight: 900;
+  line-height: 1.25;
+  color: var(--cream);
+  letter-spacing: -0.5px;
+  margin-bottom: 12px;
+}
+.header-title span { color: var(--green-light); }
+.header-author {
+  font-family: var(--sans);
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  line-height: 1.9;
+}
+.header-author strong { color: var(--text); }
+
+/* ── INTRO ── */
+.intro-box {
+  background: var(--surface);
+  border-left: 3px solid var(--green);
+  padding: 20px 22px;
+  margin-bottom: 24px;
+  border-radius: 0 8px 8px 0;
+  font-family: var(--sans);
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  line-height: 1.9;
+}
+.intro-box strong {
+  color: var(--green-light);
+  display: block;
+  margin-bottom: 6px;
+  font-size: var(--fs);
+  font-weight: 700;
+}
+
+
+/* ── 전체 듣기 버튼 ── */
+#btn-listen-all {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  background: linear-gradient(135deg, var(--green-dim) 0%, #1a3a1a 100%);
+  border: 1.5px solid var(--green);
+  border-radius: 14px;
+  padding: 20px 24px;
+  cursor: pointer;
+  color: var(--cream);
+  font-family: var(--sans);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 24px;
+  transition: all 0.25s;
+  -webkit-appearance: none;
+  box-shadow: 0 4px 20px rgba(90,143,90,0.2);
+  position: relative;
+  overflow: hidden;
+}
+#btn-listen-all::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(136,194,136,0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+#btn-listen-all:active {
+  transform: scale(0.98);
+}
+#btn-listen-all.playing {
+  background: linear-gradient(135deg, #1a3a1a 0%, var(--green-dim) 100%);
+  border-color: var(--green-light);
+  box-shadow: 0 4px 28px rgba(90,143,90,0.35);
+}
+#btn-listen-all.paused-all {
+  background: linear-gradient(135deg, rgba(201,168,76,0.15) 0%, #2a2010 100%);
+  border-color: var(--gold);
+  color: var(--gold-light);
+  box-shadow: 0 4px 20px rgba(201,168,76,0.15);
+}
+.listen-all-icon { width: 26px; height: 26px; flex-shrink: 0; }
+.listen-all-sub {
+  display: block;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--green-light);
+  letter-spacing: 0;
+  margin-top: 3px;
+  opacity: 0.85;
+}
+#btn-listen-all.paused-all .listen-all-sub { color: var(--gold); }
+.listen-all-text-wrap { display: flex; flex-direction: column; align-items: flex-start; }
+
+/* ── TTS BANNER ── */
+#tts-banner {
+  display: none;
+  background: var(--red);
+  color: var(--cream);
+  padding: 12px 18px;
+  border-radius: 8px;
+  font-family: var(--sans);
+  font-size: var(--fs-sm);
+  margin-bottom: 18px;
+  text-align: center;
+}
+
+/* ── SECTION LABEL ── */
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 8px 0 16px;
+  font-family: var(--sans);
+  font-size: var(--fs-xs);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+.section-label::before, .section-label::after {
+  content: ''; flex: 1; height: 1px; background: var(--border);
+}
+
+/* ── CARDS ── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 12px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.card.active {
+  border-color: var(--green-dim);
+  box-shadow: 0 4px 24px rgba(90,143,90,0.15);
+}
+
+.card-header {
+  padding: 20px 16px 0px;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+}
+.card-header-main {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+.card-num {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: var(--green-light);
+  text-transform: uppercase;
+  margin-top: 4px;
+  flex-shrink: 0;
+  min-width: 36px;
+}
+.card-header-text { flex: 1; }
+.card-tag {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  margin-bottom: 8px;
+  border-radius: 3px;
+  color: var(--bg);
+}
+.tag-green { background: var(--green-light); }
+.tag-gold { background: var(--gold); }
+.tag-red { background: #b05050; color: white; }
+.tag-cream { background: var(--cream); }
+
+.card-title {
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--cream);
+  margin-bottom: 8px;
+}
+.card-summary {
+  font-family: var(--sans);
+  font-size: var(--fs-sm);
+  color: var(--green-light);
+  line-height: 1.8;
+  font-weight: 500;
+}
+
+/* ── TOGGLE BUTTON (bottom center) ── */
+.toggle-icon-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 10px 0 18px;
+  border-top: 1px solid var(--border);
+  margin-top: 4px;
+}
+.toggle-icon {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--surface2);
+  border: 2px solid var(--green-dim);
+  border-radius: 30px;
+  padding: 10px 22px;
+  color: var(--green-light);
+  font-family: var(--sans);
+  font-size: 18px;
+  font-weight: 700;
+  transition: all 0.25s;
+  letter-spacing: 1px;
+}
+.toggle-icon svg {
+  width: 20px; height: 20px;
+  flex-shrink: 0;
+  transition: transform 0.25s;
+}
+.toggle-label-open  { display: inline; }
+.toggle-label-close { display: none; }
+.card.active .toggle-icon {
+  background: var(--green-dim);
+  border-color: var(--green);
+  color: var(--cream);
+}
+.card.active .toggle-icon svg { transform: rotate(180deg); }
+.card.active .toggle-label-open  { display: none; }
+.card.active .toggle-label-close { display: inline; }
+
+/* ── DETAIL ── */
+.card-detail {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.card.active .card-detail { max-height: 4000px; }
+
+.detail-inner {
+  border-top: 1px solid var(--border);
+  padding: 20px 16px 24px;
+}
+
+/* TTS Bar */
+.tts-bar { margin-bottom: 14px; }
+.btn-tts {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 24px;
+  cursor: pointer;
+  color: var(--text-muted);
+  font-family: var(--sans);
+  font-size: 20px;
+  font-weight: 700;
+  transition: all 0.2s;
+  -webkit-appearance: none;
+  width: 100%;
+}
+.btn-tts:hover { border-color: var(--green-dim); color: var(--green-light); }
+.btn-tts.playing {
+  background: var(--green-dim);
+  border-color: var(--green);
+  color: var(--cream);
+}
+.btn-tts svg { width: 24px; height: 24px; flex-shrink: 0; }
+.btn-tts.playing .play-icon { display: none; }
+.btn-tts:not(.playing) .stop-icon { display: none; }
+
+/* Progress bar */
+.tts-progress {
+  height: 3px;
+  background: var(--border);
+  border-radius: 2px;
+  margin-top: 10px;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.tts-progress.visible { opacity: 1; }
+.tts-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--green), var(--green-light));
+  border-radius: 2px;
+  transition: width 0.3s linear;
+}
+
+/* Detail text */
+.detail-label {
+  font-family: var(--sans);
+  font-size: var(--fs-xs);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+.detail-text {
+  font-family: var(--sans);
+  font-size: var(--fs-sm);
+  line-height: 2;
+  color: var(--green-light);
+  font-weight: 500;
+}
+.detail-text p { margin-bottom: 16px; }
+.detail-text p:last-child { margin-bottom: 0; }
+.detail-text strong { color: var(--gold-light); font-weight: 700; }
+
+.detail-quote {
+  margin-top: 20px;
+  border-left: 3px solid var(--green-dim);
+  padding: 14px 18px;
+  background: var(--surface2);
+  border-radius: 0 8px 8px 0;
+  font-style: italic;
+  color: var(--text-muted);
+  font-size: var(--fs-sm);
+  line-height: 1.85;
+}
+
+/* ── FOOTER ── */
+.footer {
+  margin-top: 48px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-family: var(--sans);
+  font-size: var(--fs-xs);
+  color: var(--text-dim);
+  line-height: 2.2;
+}
+
+/* ── SCROLL TOP ── */
+#scrollTop {
+  position: fixed;
+  bottom: 28px; right: 20px;
+  width: 44px; height: 44px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  color: var(--text-muted);
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.3s;
+  z-index: 100;
+}
+#scrollTop.visible { opacity: 1; pointer-events: auto; }
+#scrollTop svg { width: 18px; height: 18px; }
+
+@media (max-width: 520px) {
+  .card-header { padding: 16px 12px 0px; }
+  .detail-inner { padding: 16px 12px 20px; }
+}
+
+/* ── FLOATING CONTROL BAR ── */
+#float-bar {
+  display: none;
+  position: fixed;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 200;
+  width: calc(100% - 32px);
+  max-width: 680px;
+}
+#float-bar.visible { display: block; }
+.float-inner {
+  background: var(--surface);
+  border: 1.5px solid var(--green);
+  border-radius: 16px;
+  padding: 12px 16px 14px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+}
+.float-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+#float-toggle-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: var(--green-dim);
+  border: 1.5px solid var(--green);
+  border-radius: 10px;
+  padding: 12px 18px;
+  cursor: pointer;
+  color: var(--cream);
+  font-family: var(--sans);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  transition: all 0.2s;
+  -webkit-appearance: none;
+}
+#float-toggle-btn.paused {
+  background: rgba(201,168,76,0.15);
+  border-color: var(--gold);
+  color: var(--gold-light);
+}
+#float-toggle-btn svg { width: 22px; height: 22px; flex-shrink: 0; }
+.float-stop-btn {
+  flex-shrink: 0;
+  background: var(--surface2);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  -webkit-appearance: none;
+}
+.float-stop-btn svg { width: 22px; height: 22px; }
+.float-progress {
+  width: 100%;
+  height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+.float-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--green), var(--green-light));
+  border-radius: 2px;
+  transition: width 0.3s linear;
+}
+</style>
+</head>
+<body>
+<div id="tts-banner">このブラウザは音声読み上げに対応していません。</div>
+
+<!-- 플로팅 컨트롤 바 -->
+<div id="float-bar">
+  <div class="float-inner">
+    <div class="float-top">
+      <!-- 일시정지 / 이어듣기 토글 버튼 -->
+      <button id="float-toggle-btn" onclick="floatTogglePause()">
+        <svg id="float-icon-pause" viewBox="0 0 24 24" fill="none">
+          <rect x="6" y="4" width="4" height="16" rx="1" fill="currentColor"/>
+          <rect x="14" y="4" width="4" height="16" rx="1" fill="currentColor"/>
+        </svg>
+        <svg id="float-icon-resume" viewBox="0 0 24 24" fill="none" style="display:none">
+          <path d="M8 5v14l11-7z" fill="currentColor"/>
+        </svg>
+        <span id="float-btn-label">일시정지</span>
+      </button>
+      <!-- 정지(종료) 버튼 -->
+      <button class="float-stop-btn" onclick="stopTTS()">
+        <svg viewBox="0 0 24 24" fill="none">
+          <rect x="5" y="5" width="14" height="14" rx="3" fill="var(--text-muted)"/>
+        </svg>
+      </button>
+    </div>
+    <div class="float-progress">
+      <div class="float-progress-fill" id="float-fill"></div>
+    </div>
+  </div>
+</div>
+
+<div class="wrapper">
+  <div class="book-cover-wrap">
+    <img class="book-cover"
+         src="https://easyai7.github.io/book/itch.png"
+         alt="가려워서 미치겠어요 — 책 표지">
+  </div>
+
+  <div class="header">
+    <div class="header-eyebrow">医学書 · 皮膚科学 · かゆみ完治ガイド</div>
+    <h1 class="header-title"><span>かゆくて</span><br>気が狂いそう</h1>
+    <div class="header-author">
+      <strong>チョン・ジンホ 著</strong>
+ソウル大学病院 皮膚科教授
+    </div>
+  </div>
+
+  <div class="intro-box">
+    <strong>この本は何を教えてくれるのか？</strong>
+「かゆくて気が狂いそう」「かゆくて眠れない」。長年かゆみに苦しむ患者たちの言葉だ。原因を見つけて取り除き、悪い習慣を改め、段階的に治療すればかゆみは必ず治る。ソウル大学病院皮膚科教授が5ステップ治療原則で答える。
+  </div>
+
+  <!-- 전체 듣기 버튼 -->
+  <button id="btn-listen-all" onclick="toggleListenAll()">
+    <!-- 재생 전 / 정지 상태 -->
+    <svg class="listen-all-icon" id="listen-all-icon-play" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
+      <path d="M10 8l6 4-6 4V8z" fill="currentColor"/>
+    </svg>
+    <!-- 재생 중 상태 (일시정지 아이콘) -->
+    <svg class="listen-all-icon" id="listen-all-icon-pause" viewBox="0 0 24 24" fill="none" style="display:none">
+      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
+      <rect x="8" y="7" width="3" height="10" rx="1" fill="currentColor"/>
+      <rect x="13" y="7" width="3" height="10" rx="1" fill="currentColor"/>
+    </svg>
+    <!-- 이어듣기 상태 -->
+    <svg class="listen-all-icon" id="listen-all-icon-resume" viewBox="0 0 24 24" fill="none" style="display:none">
+      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
+      <path d="M10 8l6 4-6 4V8z" fill="currentColor"/>
+    </svg>
+    <div class="listen-all-text-wrap">
+      <span id="listen-all-label">全て聴く</span>
+      <span class="listen-all-sub" id="listen-all-sub">はじめから第5ステップまで全て再生</span>
+    </div>
+  </button>
+
+  <div class="section-label">5ステップ原則 — 聴く</div>
+
+  <div id="chapterList"></div>
+
+  <div class="footer">
+    かゆくて気が狂いそう · チョン・ジンホ 著<br>
+    本の要約アプリ
+  </div>
+</div>
+
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg viewBox="0 0 24 24" fill="none"><path d="M18 15l-6-6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+
+<script>
+const chapters = [
+  {
+    num: "はじめに",
+    tag: "tag-green",
+    tagText: "序論",
+    title: "\"かゆくて気が狂いそう\" — この本を書いた理由",
+    summary: "ソウル大学病院皮膚科の診察室で長年にわたりかゆみの患者と向き合ってきた。短い診察時間では説明しきれなかったことをこの本に込めた。原因を見つけて取り除けば、かゆみは必ず治る。",
+    detail: `かゆみはとても一般的で、本当につらい症状です。患者さんから一番よく聞く言葉は「かゆくて気が狂いそう」または「かゆくてまったく眠れない」というものでした。
+
+かゆみを引き起こす原因は必ずあります。医師と患者が最初にすべきことは、かゆみの原因を探ることです。原因を治療せずに薬だけでかゆみを抑えると、薬をやめたときに必ず再発します。
+
+「薬を使うと少し良くなるだけです。」「何度もかゆくなって繰り返します。」なぜかゆみは治療が難しいのでしょうか。それはかゆみの原因を見つけて取り除かずに、かゆいという症状だけを治療しているからです。
+
+この本は皮膚がかゆくて悩んでいる方々に、かゆみから解放される効果的な方法を紹介するために書き始めました。ソウル大学病院でかゆみを訴える多くの患者さんを診察してきた中で、短い診察時間ではすべてを説明できなかったという残念な思いをこの本に込めました。
+
+一度読んでは理解しにくい内容もあるかもしれません。何度も繰り返し丁寧に読み、この本で説明する方法を日常生活の中でしっかり実践することをお勧めします。`,
+    quote: "かゆみの原因が解決されていないのに再発しなければ、むしろおかしなことです。原因を見つけて取り除いて初めて、かゆみの根を断つことができます。 — チョン・ジンホ"
+  },
+  {
+    num: "第1ステップ",
+    tag: "tag-green",
+    tagText: "治療原則の理解",
+    title: "かゆみとは何か — なぜ掻いてはいけないのか",
+    summary: "かゆみは皮膚と粘膜だけで感じる感覚だ。掻くと一時的に気持ちいいが、さらにかゆくなる悪循環が始まる。かゆみを感じてから1〜2分だけ我慢すれば自然に消えるという科学的根拠を理解する。",
+    detail: `かゆみは皮膚を掻きたくさせる感覚です。かゆみが強いと掻かずにはいられません。皮膚をかきむしった後は一時的にすっきりします。皮膚を掻く理由は、強く掻いたときに生じる痛みの感覚がかゆみよりも我慢しやすいからです。
+
+かゆみを引き起こす物質が作られると、皮膚にある感覚神経を刺激して脳へかゆみの信号が伝達されます。結局、皮膚から始まりましたが、最終的にかゆみを感じるのは脳です。
+
+掻いてはいけない理由があります。かゆみの刺激が来たとき、皮膚にある神経末端で起こる生化学反応は長くても1〜2分後には消えます。1〜2分だけ掻かずに我慢すればかゆくなくなるという科学的根拠です。
+
+では、なぜ続けてかゆみを感じるのでしょうか。それはまさに掻くからです。我慢できずに掻くと、掻く刺激によって感覚神経線維が新たに活性化され、そしてまたかゆくなり、さらに掻くという悪循環が始まります。
+
+慢性的に掻き続けると、掻く行為が皮膚の中にある感覚神経の数を増やします。感覚神経が増えたため、軽い刺激でも簡単にかゆくなります。したがって、かゆみを感じ始めたら掻かずに1〜2分だけ強い意志を持って我慢することがとても重要です。
+
+掻く行為は快感を求める本能的な行動です。しかし人間は理性を持つ動物なので、掻きたい本能を抑えることができます。理性で本能に打ち勝たなければなりません。`,
+    quote: "1〜2分だけ我慢すればかゆみは消えます。しかし我慢できずに掻くと、掻く刺激によって感覚神経が再び活性化されてさらにかゆくなります。掻く行為は結局かゆみをより悪化させる悪い選択です。 — チョン・ジンホ"
+  },
+  {
+    num: "第2ステップ",
+    tag: "tag-gold",
+    tagText: "原因の究明",
+    title: "かゆみの原因①　— 乾燥肌・薬・サプリ・食べ物",
+    summary: "かゆみの最も一般的な原因は乾燥肌だ。垢すりや石鹸の使いすぎで肌が乾燥する。服用中の薬・サプリ・特定の食べ物も重要な原因だ。原因を取り除かなければ、薬を使っても治らない。",
+    detail: `かゆみの最もよくある重要な原因は乾燥肌です。しかしほとんどの患者さんは、乾燥肌が自分のかゆみの原因だということを知りません。
+
+乾燥肌がかゆい理由は4つあります。第一に、乾燥すると表皮の中に神経が入り込みます。第二に、乾燥するとかゆみを引き起こす物質（TSLP、IL-31）が増加します。第三に、壊れた皮膚バリアの隙間から刺激物質が侵入します。第四に、皮膚のpHが上がって神経を刺激します。
+
+肌が乾燥する原因もさまざまです。年を取ると皮膚の角質層が薄くなり、脂質合成能力が落ちて乾燥します。垢すりをすると皮膚の油膜である角質層を損傷させて乾燥します。石鹸を頻繁に長く使っても油膜が溶けて乾燥します。湿度が低かったり室温が高くても乾燥します。閉経するとエストロゲンの減少で脂質合成が落ちて乾燥します。
+
+服用中の薬も重要な原因です。薬を飲み始めてから数日、数週間、または1〜2ヶ月以内にかゆみが発生することがあります。理論的にはすべての薬がかゆみを引き起こす可能性があります。降圧薬・糖尿病薬・心臓薬・抗生物質・消炎剤・ビタミン剤などほぼすべての薬にかゆみを引き起こす可能性があります。
+
+サプリや健康機能食品もかゆみの原因になることがあります。体に良いとされる青汁を飲んだ後にかゆみが出て中止したら治った患者さんや、孫が買ってくれた健康食品をやめたら2週間でかゆみが消えたお婆さんもいました。
+
+特定の食べ物もかゆみを引き起こすことがあります。ある食べ物を食べるたびに例外なく皮膚がかゆくなるなら、その食べ物に含まれる特定の成分がアレルギー反応を起こしているので避けるようにしましょう。`,
+    quote: "乾燥肌はすなわちかゆみです。垢すりをすると油膜がなくなり、石鹸を長く使うと脂質が溶け出します。以前から飲んでいた降圧薬、毎日飲むオメガ3がかゆみの原因かもしれません。 — チョン・ジンホ"
+  },
+  {
+    num: "第2ステップ",
+    tag: "tag-gold",
+    tagText: "原因の究明",
+    title: "かゆみの原因② — 皮膚疾患・内科疾患・精神的問題",
+    summary: "アトピー・接触性皮膚炎・乾燥性湿疹などの皮膚疾患が原因になりうる。糖尿病・腎臓病・肝臓病・甲状腺疾患などの内科疾患も全身のかゆみを引き起こす。ストレスや精神的問題もかゆみを悪化させる。",
+    detail: `皮膚疾患がかゆみの原因の場合、どんな皮膚疾患かを正確に診断してきちんと治療すれば、かゆみを治すことができます。
+
+アトピー性皮膚炎は子どもたちにとても多い慢性皮膚疾患で、子ども5人に1人がかかるほどです。皮膚バリアが損傷して肌が乾燥することが主な原因です。接触性皮膚炎は刺激物質やアレルゲンが皮膚に触れて生じ、原因物質を取り除けば改善します。乾燥性湿疹と貨幣状湿疹も皮膚の乾燥が原因です。
+
+内科疾患もかゆみを引き起こします。慢性腎臓病患者の約50パーセントは全身がかゆみます。肝臓病・胆道疾患でもかゆみは多く見られます。糖尿病患者の約3分の1に全身のかゆみが発生し、血糖が高いほど強いかゆみが生じます。甲状腺疾患・血液がんや血液疾患・自己免疫疾患も原因となります。
+
+精神的ストレスもかゆみを起こします。ストレスを受けると脳でオピオイドという物質が増加してかゆみを引き起こし、皮膚細胞でも炎症を引き起こす物質が増加します。かゆみもうつります。誰かが隣で掻いていると、自分もかゆみを感じて掻いてしまうことがあります。
+
+掻き続けるとさらにかゆい皮膚疾患が生じます。慢性単純苔癬は慢性的に掻いて皮膚が厚くなった状態で、1〜2ヶ月だけ掻かなければ完治できます。痒疹は米粒や豆の大きさで皮膚が厚くなる病変が全身に生じる疾患です。
+
+神経疾患も原因となります。肩甲骨付近の背中の皮膚が慢性的にかゆい「感覚異常性背部痛」があり、帯状疱疹の後にかゆみが長く続くことがあります。`,
+    quote: "原因不明のかゆみが数ヶ月続くなら血液検査が必要です。特に水に触れるたびに体がかゆかったり、夜に強いかゆみが繰り返される場合は血液疾患の検査を受けるべきです。 — チョン・ジンホ"
+  },
+  {
+    num: "第3ステップ",
+    tag: "tag-red",
+    tagText: "悪化要因の除去",
+    title: "毎日実践すべき11のこと — 肌乾燥予防法",
+    summary: "垢すりをしない。石鹸泡を長く擦らない。固形石鹸の代わりに弱酸性クレンザーを使う。シャワー時間を短くする。保湿剤を1日2回以上塗る。室内湿度50%以上・温度20〜22℃を維持する。",
+    detail: `かゆみを予防・治療するには毎日11のことを実践しなければなりません。基本原則は「自分の肌の油膜を厚く保つ」という考え方です。
+
+第一に、入浴時に垢すりをしません。垢すりは皮膚の油膜である角質層を削り取る行為です。石鹸泡で洗っていない皮膚からこすれて出てくるものは垢ではなく角質層です。皮膚科医は決して垢すりをしません。
+
+第二に、石鹸泡を長く擦りません。手のひらに石鹸泡を立ててから汚れた部分にだけ軽く当てる程度にします。
+
+第三に、固形石鹸の代わりに弱酸性クレンザーを使います。肌の正常なpHはpH5〜5.5の弱酸性です。固形石鹸はアルカリ性なので肌の健康に良くありません。
+
+第四に、シャワーの回数と時間を減らします。週2〜3回程度、2分以内に短くします。髪は1日1回洗っても、体は週2〜3回だけシャワーします。
+
+第五に、熱いお湯に入りません。熱いお湯は角質層の油膜構造を変化させて水分の損失を増やします。
+
+第六に、シャワー後に水気を拭くとき擦らずに軽く叩いて乾かします。
+
+第七に、保湿剤を1日2回以上塗ります。「肌が油を作れないから代わりに塗ってあげる」と思って毎日塗ります。コレステロール・セラミド・脂肪酸が1:1:1の比率で含まれた保湿剤が良いです。洗い流さずに重ね塗りして肌の油膜を厚く保ちます。
+
+第八に、室内湿度を50パーセント以上に保ちます。マンションの冬の室内湿度は20パーセント以下に下がることもあります。加湿器を各部屋に置いて湿度計で常に確認します。
+
+第九に、室温は20〜22度に保ちます。室温が高いと肌が乾燥し、血管が拡張して炎症が悪化します。
+
+第十に、布団の中の温度も低く保ちます。電気毛布の使用を避け、涼しい環境で睡眠します。
+
+第十一に、かゆみを減らすためにアルコールを塗るのをやめます。アルコールは皮膚の油膜を損傷させてさらに乾燥し、さらにかゆくなります。`,
+    quote: "保湿剤は年を取るほどより頻繁に、より多くの量を塗る必要があり、一生塗り続けなければなりません。べたつく感触を好きになりましょう。1〜2分後には消えて、肌はしっとりなります。 — チョン・ジンホ"
+  },
+  {
+    num: "第3ステップ",
+    tag: "tag-red",
+    tagText: "悪化要因の除去",
+    title: "原因別の生活管理 — 薬・サプリ・食べ物・ストレス",
+    summary: "本当に必要な薬だけ飲み、サプリや健康食品はすべてやめる。食べるたびにかゆくなる食べ物は避ける。1〜2分我慢すればかゆみは消えるので絶対に掻かない。ストレスを避けて精神的安定を保つ。",
+    detail: `かゆみに悩んでいるなら、飲んでいる薬の中で数ヶ月中止しても大きな問題がない薬はやめるのが良いです。ただし、薬を勝手にやめると病状が悪化することがあるので、必ず処方した医師に相談してください。同じ効能の別の成分の薬に替えることも良い方法です。
+
+かゆみに悩んでいる人はかゆみが良くなるまでサプリや健康食品の服用をすべてやめるのが良いです。よく食べてしっかり運動すれば、サプリや健康食品を別に摂る必要はありません。
+
+食べ物については、ある食べ物を食べるたびに例外なく皮膚がかゆくなるなら、その食べ物を避けましょう。同じ食べ物でもあるときは大丈夫であるときはかゆいなら、その食べ物自体よりも調理するときに入れる別の成分が問題かもしれません。
+
+どんなにかゆくても最初の1〜2分だけ掻かずに我慢することが最も重要な生活実践です。かゆみを感じ始めてから1〜2分だけ掻かずに我慢すれば、もうかゆくなくなります。かゆみを感じたら保湿剤を塗ったり、別のことに気を向けたり、我慢したり、指でそっと押しながらその瞬間を乗り越えるよう努力しましょう。
+
+ストレスを避けて精神的安定を保つことも重要です。普段から瞑想・思索・ポジティブな考え方で心を穏やかに保てば、ストレスを受けにくくなります。強迫症状があって手をあまりに頻繁に洗うなら、精神科の治療も並行する必要があります。
+
+皮膚疾患は必ず皮膚科専門医に診断を受けて治療しなければなりません。内科疾患があるかどうか定期的に検査して治療します。健康に問題がなくても1年に1回必ず健康診断を受けることをお勧めします。`,
+    quote: "最初の1〜2分だけ掻かないようにしなければなりません。掻き始めたら終わりです。かゆみが再び現れたら本能を抑えて理性的に行動しなければなりません。掻かずに我慢すれば2分以内にかゆみは消えます。 — チョン・ジンホ"
+  },
+  {
+    num: "第4ステップ",
+    tag: "tag-cream",
+    tagText: "薬物治療",
+    title: "段階的薬物治療 — 塗り薬から注射まで",
+    summary: "塗り薬（ステロイド軟膏・カルシニューリン阻害薬・カプサイシン軟膏）から始める。効果がなければ抗ヒスタミン剤を使い、免疫抑制剤・抗うつ薬・抗けいれん薬・オピオイド受容体調節薬の順に段階的に使用する。",
+    detail: `かゆみ治療の第一目標はかゆみを軽減して掻く行為の悪循環を断つことで、第二目標は原因を見つけて取り除いてかゆみの根を断つことです。
+
+塗り薬が先です。ステロイド軟膏は炎症を抑える強力な効能があります。弱いものから強いものまで種類が豊富で、顔や生殖器周辺には弱いものを、背中や頭皮のように皮膚が厚い部位には強いものを使います。カルシニューリン阻害薬（ピメクロリムス・タクロリムス）はステロイド軟膏の副作用なしに長期的に使用できます。
+
+飲む薬は抗ヒスタミン剤から始めます。抗ヒスタミン剤はかゆみの患者さんに最初に処方する薬です。第2世代抗ヒスタミン剤（アレグラ・ジルテック・ザイザルなど）が第1世代より副作用が少ないです。
+
+抗ヒスタミン剤が効かない場合は免疫抑制剤を使います。シクロスポリンは素早くかゆみを減らす効果があります。次に抗うつ薬を使いますが、脳のセロトニン濃度を高めてかゆみを抑えます。うつ病があるからではなく、かゆみを抑える効果のために使うものです。
+
+抗けいれん薬（ガバペンチン・プレガバリン）は神経の興奮状態を抑制して痛みとかゆみに効果があります。オピオイド受容体調節薬は脳でかゆみを悪化させるμ受容体を阻害したり、かゆみを抑えるκ受容体を刺激して効果を発揮します。
+
+デュピルマブ皮下注射は飲む薬で効果がない場合に使う抗体治療薬で、アトピー性皮膚炎と痒疹に効果的です。
+
+段階的治療の順序：抗ヒスタミン剤 → 免疫抑制剤 → 抗うつ薬 → 抗けいれん薬 → オピオイド受容体調節薬 → デュピルマブ皮下注射。副作用の少ない薬剤を優先選択する原則です。`,
+    quote: "薬を飲まず塗りもしなければ、どうやって病気を治せるのでしょうか。ステロイド軟膏の副作用をあまり怖がる必要はありません。皮膚科専門医の指示に従って塗るなら副作用はあまり心配しなくて大丈夫です。 — チョン・ジンホ"
+  },
+  {
+    num: "第5ステップ",
+    tag: "tag-green",
+    tagText: "再発防止",
+    title: "かゆみの再発防止 — 一生実践すべき12のこと",
+    summary: "かゆみは治療後も簡単に再発する。肌を乾燥させる15の悪い行動を絶対にせず、再発防止のために一生12のことを続けて実践しなければならない。",
+    detail: `かゆみを治療して良くなっても、再発防止のための努力をしなければ再び再発することがよくあります。かゆみの再発防止のために絶対にしてはいけない15のことがあります。
+
+絶対にしてはいけないこと：垢すりをしない。石鹸を頻繁に使わない。固形石鹸は使わない。毎日シャワーをしない。熱いお湯に入らない。水気を拭くときタオルで擦らない。電気毛布を使わない。室内が乾燥しないようにする。皮膚温度が上がらないようにする。かゆいからといってアルコールを塗らない。サプリや健康食品は本当に必要なものだけ飲む。かゆみを引き起こす食べ物は食べない。掻かない。刺激物質に触れない。ストレスを受けないようにする。
+
+一生実践すべき12のこと：固形石鹸の代わりに弱酸性クレンザーを使う。シャワーは短く簡単に済ます。保湿剤を1日2回以上塗る。室内湿度を50パーセント以上に保つ。室温を20〜22度に保つ。布団の中の温度を低く保つ。医師に相談の上、本当に必要な薬だけ飲む。皮膚疾患は皮膚科専門医に治療を受ける。内科疾患があれば症状をしっかり治療する。瞑想・思索などで穏やかな心を保つ。毎年健康診断を受ける。かゆみについての学びを続ける。
+
+「不思議です。先生がおっしゃった通りにしたら、3年間苦しんでいたかゆみが2ヶ月でほぼ良くなりました。お風呂の代わりに3日に1回簡単にシャワーをして、石鹸も汚れた部分だけに使いながら1日3回保湿剤をたっぷり塗りました。加湿器を1日中つけていました。絶対に掻かないよう努力しました。」— 70歳の患者さんの言葉
+
+かゆみの原因を見つけ、自ら努力してかゆみを必ず治すという強い意志を持ち、きちんと治療を受ければ良くなるという希望的でポジティブな考えを持てば、かゆみも軽くなり健康な生活を送ることができるでしょう。`,
+    quote: "かゆみを引き起こす原因は必ずあります。原因を見つけてそれを取り除くことが、成功的にかゆみを治療する方法です。5ステップ原則をよく守れば、必ずかゆみを治療して再発を防ぐことができます。 — チョン・ジンホ"
+  }
+];
+
+const list = document.getElementById('chapterList');
+
+// ── TTS 상태 변수 ──
+let currentTTS = null;       // 재생 중인 챕터 인덱스 (-1 = 전체 듣기)
+let isPaused = false;        // 일시정지 여부
+let sentences = [];          // 문장 배열
+let currentSentenceIdx = 0;  // 현재 문장 인덱스
+let ttsInterval = null;      // 프로그레스 타이머
+let isListenAll = false;     // 전체 듣기 모드 여부
+
+function renderCards() {
+  list.innerHTML = '';
+  chapters.forEach((ch, i) => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <div class="card-header" onclick="toggleCard(${i})">
+        <div class="card-header-main">
+          <div class="card-num">${ch.num}</div>
+          <div class="card-header-text">
+            <span class="card-tag ${ch.tag}">${ch.tagText}</span>
+            <div class="card-title">${ch.title}</div>
+            <div class="card-summary">${ch.summary}</div>
+          </div>
+        </div>
+        <div class="toggle-icon-wrap">
+          <div class="toggle-icon">
+            <svg viewBox="0 0 14 14" fill="none">
+              <path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="toggle-label-open">詳しく見る</span>
+            <span class="toggle-label-close">閉じる</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-detail">
+        <div class="detail-inner">
+          <div class="tts-bar">
+            <button class="btn-tts" id="tts-${i}" onclick="toggleTTS(${i}, event)">
+              <svg class="play-icon" viewBox="0 0 24 24" fill="none">
+                <path d="M3 9v6h4l5 5V4L7 9H3z" fill="currentColor"/>
+                <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z" fill="currentColor"/>
+                <path d="M14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77 0-4.28-2.99-7.86-7-8.77z" fill="currentColor"/>
+              </svg>
+              <svg class="stop-icon" viewBox="0 0 24 24" fill="none">
+                <rect x="6" y="6" width="12" height="12" rx="2" fill="currentColor"/>
+              </svg>
+              <span class="play-icon">詳しく聴く</span>
+              <span class="stop-icon">停止</span>
+            </button>
+          </div>
+          <div class="tts-progress" id="prog-${i}">
+            <div class="tts-progress-fill" id="progfill-${i}"></div>
+          </div>
+          <div class="detail-label">詳細内容</div>
+          <div class="detail-text">${ch.detail.replace(/\n\n/g, '</p><p>').replace(/^/, '<p>').replace(/$/, '</p>')}</div>
+          <div class="detail-quote">${ch.quote}</div>
+        </div>
+      </div>
+    `;
+    list.appendChild(card);
+  });
+}
+
+renderCards();
+
+function toggleCard(i) {
+  const cards = document.querySelectorAll('.card');
+  const card = cards[i];
+  const isActive = card.classList.contains('active');
+  if (isActive) stopTTS();
+  card.classList.toggle('active');
+
+  if (!isActive) {
+    setTimeout(() => {
+      const ttsBtn = document.getElementById('tts-' + i);
+      if (!ttsBtn) return;
+      const btnRect = ttsBtn.getBoundingClientRect();
+      const viewH = window.innerHeight;
+      if (btnRect.bottom > viewH - 20) {
+        const shift = btnRect.bottom - viewH + 60;
+        window.scrollBy({ top: shift, behavior: 'smooth' });
+      }
+    }, 320);
+  }
+}
+
+// ── 문장 분리 (한국어 종결 기준) ──
+function splitSentences(text) {
+  return text.split(/(?<=[.!?。！？다요까죠네군]\s)/).map(s => s.trim()).filter(Boolean);
+}
+
+function buildTTSText(i) {
+  const ch = chapters[i];
+  return `${ch.title}. ${ch.detail} ${ch.quote}`;
+}
+
+// ── 플로팅 바 업데이트 ──
+function updateFloatBar(show, title, pct, paused) {
+  const bar = document.getElementById('float-bar');
+  if (!show) { bar.classList.remove('visible'); return; }
+  bar.classList.add('visible');
+  document.getElementById('float-fill').style.width = (pct || 0) + '%';
+
+  const toggleBtn = document.getElementById('float-toggle-btn');
+  const iconPause = document.getElementById('float-icon-pause');
+  const iconResume = document.getElementById('float-icon-resume');
+  const label = document.getElementById('float-btn-label');
+
+  if (paused) {
+    // 일시정지 상태 → 버튼에 "이어듣기" 표시
+    toggleBtn.classList.add('paused');
+    iconPause.style.display = 'none';
+    iconResume.style.display = 'block';
+    label.textContent = '再生再開';
+  } else {
+    // 재생 중 → 버튼에 "일시정지" 표시
+    toggleBtn.classList.remove('paused');
+    iconPause.style.display = 'block';
+    iconResume.style.display = 'none';
+    label.textContent = '一時停止';
+  }
+}
+
+// ── 문장 하나씩 재생 (재귀) ──
+function speakSentence(idx) {
+  if (idx >= sentences.length) {
+    // 전체 완료
+    const fill = currentTTS !== null ? document.getElementById('progfill-' + currentTTS) : null;
+    if (fill) fill.style.width = '100%';
+    document.getElementById('float-fill').style.width = '100%';
+    setTimeout(stopTTS, 500);
+    return;
+  }
+
+  const utter = new SpeechSynthesisUtterance(sentences[idx]);
+  utter.lang = 'ja-JP';
+  utter.rate = 0.92;
+  utter.pitch = 1.0;
+  const voices = window.speechSynthesis.getVoices();
+  const koVoice = voices.find(v => v.lang.startsWith('ja'));
+  if (koVoice) utter.voice = koVoice;
+
+  utter.onstart = () => {
+    currentSentenceIdx = idx;
+    // 프로그레스 업데이트
+    const pct = Math.round((idx / sentences.length) * 100);
+    if (currentTTS !== null) {
+      const fill = document.getElementById('progfill-' + currentTTS);
+      if (fill) fill.style.width = pct + '%';
+    }
+    document.getElementById('float-fill').style.width = pct + '%';
+    updateFloatBar(true, chapters[currentTTS]?.title, pct, false);
+  };
+
+  utter.onend = () => {
+    if (isPaused) return; // 일시정지 중이면 다음 문장 안 넘어감
+    speakSentence(idx + 1);
+  };
+
+  utter.onerror = (e) => {
+    if (e.error === 'interrupted' || e.error === 'canceled') return;
+    stopTTS();
+  };
+
+  window.speechSynthesis.speak(utter);
+}
+
+// ── 플로팅 바의 일시정지/이어듣기 버튼 ──
+function floatTogglePause() {
+  if (currentTTS === null) return;
+
+  if (!isPaused) {
+    // 일시정지 — isPaused를 먼저 true로 설정해야 onend에서 다음 문장으로 넘어가지 않음
+    isPaused = true;
+    window.speechSynthesis.cancel();
+    const btn = document.getElementById('tts-' + currentTTS);
+    if (btn) { btn.classList.remove('playing'); }
+    const pct = Math.round((currentSentenceIdx / sentences.length) * 100);
+    updateFloatBar(true, null, pct, true);
+    if (isListenAll) updateListenAllBtn('paused');
+  } else {
+    // 이어듣기 — 멈춘 문장부터 재시작
+    isPaused = false;
+    const btn = document.getElementById('tts-' + currentTTS);
+    if (btn) { btn.classList.add('playing'); }
+    const pct = Math.round((currentSentenceIdx / sentences.length) * 100);
+    updateFloatBar(true, null, pct, false);
+    if (isListenAll) updateListenAllBtn('playing');
+    speakSentence(currentSentenceIdx);
+  }
+}
+
+function updateListenAllBtn(state) {
+  // state: 'idle' | 'playing' | 'paused'
+  const btn      = document.getElementById('btn-listen-all');
+  const iconPlay  = document.getElementById('listen-all-icon-play');
+  const iconPause = document.getElementById('listen-all-icon-pause');
+  const iconResume= document.getElementById('listen-all-icon-resume');
+  const label    = document.getElementById('listen-all-label');
+  const sub      = document.getElementById('listen-all-sub');
+
+  btn.classList.remove('playing', 'paused-all');
+  iconPlay.style.display = iconPause.style.display = iconResume.style.display = 'none';
+
+  if (state === 'playing') {
+    btn.classList.add('playing');
+    iconPause.style.display = 'block';
+    label.textContent = '一時停止';
+    sub.textContent   = '再生中 — タップで一時停止';
+  } else if (state === 'paused') {
+    btn.classList.add('paused-all');
+    iconResume.style.display = 'block';
+    label.textContent = '再生再開';
+    sub.textContent   = '一時停止中 — タップで再開';
+  } else {
+    iconPlay.style.display = 'block';
+    label.textContent = '全て聴く';
+    sub.textContent   = 'はじめから第5ステップまで全て再生';
+  }
+}
+
+// ── 완전 정지 ──
+function stopTTS() {
+  if (window.speechSynthesis) window.speechSynthesis.cancel();
+  if (ttsInterval) { clearInterval(ttsInterval); ttsInterval = null; }
+  document.querySelectorAll('.btn-tts').forEach(b => b.classList.remove('playing'));
+  document.querySelectorAll('.tts-progress').forEach(p => p.classList.remove('visible'));
+  document.querySelectorAll('.tts-progress-fill').forEach(f => f.style.width = '0%');
+  updateFloatBar(false);
+  currentTTS = null;
+  isPaused = false;
+  sentences = [];
+  currentSentenceIdx = 0;
+  // 전체 듣기 버튼 초기화
+  isListenAll = false;
+  updateListenAllBtn('idle');
+}
+
+// ── 자세히 듣기 버튼 ──
+function toggleTTS(i, e) {
+  e.stopPropagation();
+  if (!window.speechSynthesis) {
+    const banner = document.getElementById('tts-banner');
+    if (banner) { banner.style.display = 'block'; setTimeout(() => banner.style.display = 'none', 4000); }
+    return;
+  }
+
+  // 같은 챕터 재생 중 → 정지
+  if (currentTTS === i) { stopTTS(); return; }
+
+  stopTTS();
+
+  // 스크롤
+  setTimeout(() => {
+    const bar = document.getElementById('prog-' + i);
+    if (!bar) return;
+    const barRect = bar.getBoundingClientRect();
+    const viewH = window.innerHeight;
+    if (barRect.top > viewH * 0.5) {
+      window.scrollBy({ top: 160, behavior: 'smooth' });
+    }
+  }, 80);
+
+  const text = buildTTSText(i);
+  sentences = splitSentences(text);
+  currentSentenceIdx = 0;
+  currentTTS = i;
+  isPaused = false;
+
+  const prog = document.getElementById('prog-' + i);
+  const btn = document.getElementById('tts-' + i);
+  prog.classList.add('visible');
+  btn.classList.add('playing');
+  updateFloatBar(true, chapters[i].title, 0, false);
+
+  speakSentence(0);
+}
+
+// ── 전체 듣기 ──
+function buildAllText() {
+  return chapters.map(ch => `${ch.title}. ${ch.detail} ${ch.quote}`).join(' ');
+}
+
+function toggleListenAll() {
+  if (!window.speechSynthesis) {
+    const banner = document.getElementById('tts-banner');
+    if (banner) { banner.style.display = 'block'; setTimeout(() => banner.style.display = 'none', 4000); }
+    return;
+  }
+
+  // 이미 전체 듣기 재생 중 → 일시정지 / 이어듣기 토글
+  if (isListenAll && currentTTS === -1) {
+    floatTogglePause();
+    updateListenAllBtn(isPaused ? 'paused' : 'playing');
+    return;
+  }
+
+  // 다른 챕터 재생 중이었으면 정지 후 전체 듣기 시작
+  stopTTS();
+
+  isListenAll = true;
+  currentTTS = -1;  // -1 = 전체 듣기 전용 인덱스
+  sentences = splitSentences(buildAllText());
+  currentSentenceIdx = 0;
+  isPaused = false;
+
+  updateListenAllBtn('playing');
+  updateFloatBar(true, null, 0, false);
+  speakSentence(0);
+}
+
+window.speechSynthesis && window.speechSynthesis.addEventListener
+  && window.speechSynthesis.addEventListener('voiceschanged', () => {});
+
+// 카카오톡 인앱브라우저 감지 → 즉시 크롬으로 강제 이동
+(function() {
+  const ua = navigator.userAgent.toLowerCase();
+  const isInApp = ua.includes('kakaotalk') || ua.includes('naver') ||
+                  ua.includes('instagram') || ua.includes('fbios') || ua.includes('fban');
+  if (isInApp) {
+    const currentUrl = location.href;
+    if (ua.includes('android')) {
+      location.href = 'intent://' + currentUrl.replace(/https?:\/\//, '') +
+        '#Intent;scheme=https;package=com.android.chrome;end';
+    } else if (ua.includes('iphone') || ua.includes('ipad')) {
+      location.href = currentUrl.replace('https://', 'googlechrome://');
+      setTimeout(() => {
+        alert('크롬 앱이 없으면 사파리 주소창에\n' + currentUrl + '\n을 직접 입력해주세요.');
+      }, 1500);
+    }
+  }
+})();
+
+window.addEventListener('scroll', () => {
+  const btn = document.getElementById('scrollTop');
+  btn.classList.toggle('visible', window.scrollY > 400);
+});
+</script>
+</body>
+</html>

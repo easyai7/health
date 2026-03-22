@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>가려워서 미치겠어요</title>
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="가려워서 미치겠어요">
+<meta property="og:description" content=" ">
+<meta property="og:image" content="https://easyai7.github.io/book/itch.png">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="가려워서 미치겠어요">
+<meta name="twitter:description" content=" ">
+<meta name="description" content="정진호 지음 | 서울대학교병원 피부과 교수가 알려주는 가려움증 완치 5단계">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700;900&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #0e1a0e;
+  --surface: #162016;
+  --surface2: #1e2e1e;
+  --border: #2e4a2e;
+  --green: #5a8f5a;
+  --green-light: #88c288;
+  --green-dim: #2a5a2a;
+  --gold: #c9a84c;
+  --gold-light: #e8c870;
+  --red: #8f3a3a;
+  --cream: #f0ecd8;
+  --text: #e8f0e8;
+  --text-muted: #90b890;
+  --text-dim: #486048;
+  --serif: 'Noto Serif KR', serif;
+  --sans: 'Noto Sans KR', sans-serif;
+  --fs: 22px;
+  --fs-sm: 19px;
+  --fs-xs: 16px;
+  --fs-lg: 26px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--serif);
+  font-size: var(--fs);
+  line-height: 1.85;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 15% 20%, rgba(90,143,90,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse at 85% 80%, rgba(201,168,76,0.05) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.wrapper {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 8px 60px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── BOOK COVER ── */
+.book-cover-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 32px 24px 0;
+}
+.book-cover {
+  width: 100%;
+  max-width: 340px;
+  border-radius: 12px;
+  box-shadow:
+    -6px 6px 0 #0a100a,
+    -12px 12px 20px rgba(0,0,0,0.6),
+    4px 4px 30px rgba(90,143,90,0.15);
+  display: block;
+  transform: perspective(800px) rotateY(3deg);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.book-cover:hover {
+  transform: perspective(800px) rotateY(0deg);
+  box-shadow:
+    -3px 3px 0 #0a100a,
+    -8px 8px 20px rgba(0,0,0,0.5),
+    4px 4px 30px rgba(90,143,90,0.2);
+}
+
+/* ── HEADER ── */
+.header {
+  padding: 48px 12px 36px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 24px;
+  text-align: center;
+  position: relative;
+}
+.header::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--green), transparent);
+  margin: 20px auto 0;
+}
+.header-eyebrow {
+  font-family: var(--sans);
+  font-size: var(--fs-xs);
+  letter-spacing: 5px;
+  color: var(--green-light);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  font-weight: 500;
+}
+.header-title {
+  font-size: clamp(28px, 7vw, 48px);
+  font-weight: 900;
+  line-height: 1.25;
+  color: var(--cream);
+  letter-spacing: -0.5px;
+  margin-bottom: 12px;
+}
+.header-title span { color: var(--green-light); }
+.header-author {
+  font-family: var(--sans);
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  line-height: 1.9;
+}
+.header-author strong { color: var(--text); }
+
+/* ── INTRO ── */
+.intro-box {
+  background: var(--surface);
+  border-left: 3px solid var(--green);
+  padding: 20px 22px;
+  margin-bottom: 24px;
+  border-radius: 0 8px 8px 0;
+  font-family: var(--sans);
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  line-height: 1.9;
+}
+.intro-box strong {
+  color: var(--green-light);
+  display: block;
+  margin-bottom: 6px;
+  font-size: var(--fs);
+  font-weight: 700;
+}
+
+
+/* ── 전체 듣기 버튼 ── */
+#btn-listen-all {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  background: linear-gradient(135deg, var(--green-dim) 0%, #1a3a1a 100%);
+  border: 1.5px solid var(--green);
+  border-radius: 14px;
+  padding: 20px 24px;
+  cursor: pointer;
+  color: var(--cream);
+  font-family: var(--sans);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 24px;
+  transition: all 0.25s;
+  -webkit-appearance: none;
+  box-shadow: 0 4px 20px rgba(90,143,90,0.2);
+  position: relative;
+  overflow: hidden;
+}
+#btn-listen-all::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(136,194,136,0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+#btn-listen-all:active {
+  transform: scale(0.98);
+}
+#btn-listen-all.playing {
+  background: linear-gradient(135deg, #1a3a1a 0%, var(--green-dim) 100%);
+  border-color: var(--green-light);
+  box-shadow: 0 4px 28px rgba(90,143,90,0.35);
+}
+#btn-listen-all.paused-all {
+  background: linear-gradient(135deg, rgba(201,168,76,0.15) 0%, #2a2010 100%);
+  border-color: var(--gold);
+  color: var(--gold-light);
+  box-shadow: 0 4px 20px rgba(201,168,76,0.15);
+}
+.listen-all-icon { width: 26px; height: 26px; flex-shrink: 0; }
+.listen-all-sub {
+  display: block;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--green-light);
+  letter-spacing: 0;
+  margin-top: 3px;
+  opacity: 0.85;
+}
+#btn-listen-all.paused-all .listen-all-sub { color: var(--gold); }
+.listen-all-text-wrap { display: flex; flex-direction: column; align-items: flex-start; }
+
+/* ── TTS BANNER ── */
+#tts-banner {
+  display: none;
+  background: var(--red);
+  color: var(--cream);
+  padding: 12px 18px;
+  border-radius: 8px;
+  font-family: var(--sans);
+  font-size: var(--fs-sm);
+  margin-bottom: 18px;
+  text-align: center;
+}
+
+/* ── SECTION LABEL ── */
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 8px 0 16px;
+  font-family: var(--sans);
+  font-size: var(--fs-xs);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+.section-label::before, .section-label::after {
+  content: ''; flex: 1; height: 1px; background: var(--border);
+}
+
+/* ── CARDS ── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 12px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.card.active {
+  border-color: var(--green-dim);
+  box-shadow: 0 4px 24px rgba(90,143,90,0.15);
+}
+
+.card-header {
+  padding: 20px 16px 0px;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+}
+.card-header-main {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+.card-num {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: var(--green-light);
+  text-transform: uppercase;
+  margin-top: 4px;
+  flex-shrink: 0;
+  min-width: 36px;
+}
+.card-header-text { flex: 1; }
+.card-tag {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  margin-bottom: 8px;
+  border-radius: 3px;
+  color: var(--bg);
+}
+.tag-green { background: var(--green-light); }
+.tag-gold { background: var(--gold); }
+.tag-red { background: #b05050; color: white; }
+.tag-cream { background: var(--cream); }
+
+.card-title {
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--cream);
+  margin-bottom: 8px;
+}
+.card-summary {
+  font-family: var(--sans);
+  font-size: var(--fs-sm);
+  color: var(--green-light);
+  line-height: 1.8;
+  font-weight: 500;
+}
+
+/* ── TOGGLE BUTTON (bottom center) ── */
+.toggle-icon-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 10px 0 18px;
+  border-top: 1px solid var(--border);
+  margin-top: 4px;
+}
+.toggle-icon {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--surface2);
+  border: 2px solid var(--green-dim);
+  border-radius: 30px;
+  padding: 10px 22px;
+  color: var(--green-light);
+  font-family: var(--sans);
+  font-size: 18px;
+  font-weight: 700;
+  transition: all 0.25s;
+  letter-spacing: 1px;
+}
+.toggle-icon svg {
+  width: 20px; height: 20px;
+  flex-shrink: 0;
+  transition: transform 0.25s;
+}
+.toggle-label-open  { display: inline; }
+.toggle-label-close { display: none; }
+.card.active .toggle-icon {
+  background: var(--green-dim);
+  border-color: var(--green);
+  color: var(--cream);
+}
+.card.active .toggle-icon svg { transform: rotate(180deg); }
+.card.active .toggle-label-open  { display: none; }
+.card.active .toggle-label-close { display: inline; }
+
+/* ── DETAIL ── */
+.card-detail {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.card.active .card-detail { max-height: 4000px; }
+
+.detail-inner {
+  border-top: 1px solid var(--border);
+  padding: 20px 16px 24px;
+}
+
+/* TTS Bar */
+.tts-bar { margin-bottom: 14px; }
+.btn-tts {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 24px;
+  cursor: pointer;
+  color: var(--text-muted);
+  font-family: var(--sans);
+  font-size: 20px;
+  font-weight: 700;
+  transition: all 0.2s;
+  -webkit-appearance: none;
+  width: 100%;
+}
+.btn-tts:hover { border-color: var(--green-dim); color: var(--green-light); }
+.btn-tts.playing {
+  background: var(--green-dim);
+  border-color: var(--green);
+  color: var(--cream);
+}
+.btn-tts svg { width: 24px; height: 24px; flex-shrink: 0; }
+.btn-tts.playing .play-icon { display: none; }
+.btn-tts:not(.playing) .stop-icon { display: none; }
+
+/* Progress bar */
+.tts-progress {
+  height: 3px;
+  background: var(--border);
+  border-radius: 2px;
+  margin-top: 10px;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.tts-progress.visible { opacity: 1; }
+.tts-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--green), var(--green-light));
+  border-radius: 2px;
+  transition: width 0.3s linear;
+}
+
+/* Detail text */
+.detail-label {
+  font-family: var(--sans);
+  font-size: var(--fs-xs);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+.detail-text {
+  font-family: var(--sans);
+  font-size: var(--fs-sm);
+  line-height: 2;
+  color: var(--green-light);
+  font-weight: 500;
+}
+.detail-text p { margin-bottom: 16px; }
+.detail-text p:last-child { margin-bottom: 0; }
+.detail-text strong { color: var(--gold-light); font-weight: 700; }
+
+.detail-quote {
+  margin-top: 20px;
+  border-left: 3px solid var(--green-dim);
+  padding: 14px 18px;
+  background: var(--surface2);
+  border-radius: 0 8px 8px 0;
+  font-style: italic;
+  color: var(--text-muted);
+  font-size: var(--fs-sm);
+  line-height: 1.85;
+}
+
+/* ── FOOTER ── */
+.footer {
+  margin-top: 48px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-family: var(--sans);
+  font-size: var(--fs-xs);
+  color: var(--text-dim);
+  line-height: 2.2;
+}
+
+/* ── SCROLL TOP ── */
+#scrollTop {
+  position: fixed;
+  bottom: 28px; right: 20px;
+  width: 44px; height: 44px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  color: var(--text-muted);
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.3s;
+  z-index: 100;
+}
+#scrollTop.visible { opacity: 1; pointer-events: auto; }
+#scrollTop svg { width: 18px; height: 18px; }
+
+@media (max-width: 520px) {
+  .card-header { padding: 16px 12px 0px; }
+  .detail-inner { padding: 16px 12px 20px; }
+}
+
+/* ── FLOATING CONTROL BAR ── */
+#float-bar {
+  display: none;
+  position: fixed;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 200;
+  width: calc(100% - 32px);
+  max-width: 680px;
+}
+#float-bar.visible { display: block; }
+.float-inner {
+  background: var(--surface);
+  border: 1.5px solid var(--green);
+  border-radius: 16px;
+  padding: 12px 16px 14px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+}
+.float-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+#float-toggle-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: var(--green-dim);
+  border: 1.5px solid var(--green);
+  border-radius: 10px;
+  padding: 12px 18px;
+  cursor: pointer;
+  color: var(--cream);
+  font-family: var(--sans);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  transition: all 0.2s;
+  -webkit-appearance: none;
+}
+#float-toggle-btn.paused {
+  background: rgba(201,168,76,0.15);
+  border-color: var(--gold);
+  color: var(--gold-light);
+}
+#float-toggle-btn svg { width: 22px; height: 22px; flex-shrink: 0; }
+.float-stop-btn {
+  flex-shrink: 0;
+  background: var(--surface2);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  -webkit-appearance: none;
+}
+.float-stop-btn svg { width: 22px; height: 22px; }
+.float-progress {
+  width: 100%;
+  height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+.float-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--green), var(--green-light));
+  border-radius: 2px;
+  transition: width 0.3s linear;
+}
+</style>
+</head>
+<body>
+<div id="tts-banner">이 브라우저는 음성 읽기를 지원하지 않습니다.</div>
+
+<!-- 플로팅 컨트롤 바 -->
+<div id="float-bar">
+  <div class="float-inner">
+    <div class="float-top">
+      <!-- 일시정지 / 이어듣기 토글 버튼 -->
+      <button id="float-toggle-btn" onclick="floatTogglePause()">
+        <svg id="float-icon-pause" viewBox="0 0 24 24" fill="none">
+          <rect x="6" y="4" width="4" height="16" rx="1" fill="currentColor"/>
+          <rect x="14" y="4" width="4" height="16" rx="1" fill="currentColor"/>
+        </svg>
+        <svg id="float-icon-resume" viewBox="0 0 24 24" fill="none" style="display:none">
+          <path d="M8 5v14l11-7z" fill="currentColor"/>
+        </svg>
+        <span id="float-btn-label">일시정지</span>
+      </button>
+      <!-- 정지(종료) 버튼 -->
+      <button class="float-stop-btn" onclick="stopTTS()">
+        <svg viewBox="0 0 24 24" fill="none">
+          <rect x="5" y="5" width="14" height="14" rx="3" fill="var(--text-muted)"/>
+        </svg>
+      </button>
+    </div>
+    <div class="float-progress">
+      <div class="float-progress-fill" id="float-fill"></div>
+    </div>
+  </div>
+</div>
+
+<div class="wrapper">
+  <div class="book-cover-wrap">
+    <img class="book-cover"
+         src="https://easyai7.github.io/book/itch.png"
+         alt="가려워서 미치겠어요 — 책 표지">
+  </div>
+
+  <div class="header">
+    <div class="header-eyebrow">의학서 · 피부과학 · 가려움증 완치 가이드</div>
+    <h1 class="header-title"><span>가려워서</span><br>미치겠어요</h1>
+    <div class="header-author">
+      <strong>정진호 지음</strong>
+      서울대학교병원 피부과 교수
+    </div>
+  </div>
+
+  <div class="intro-box">
+    <strong>이 책은 무엇을 가르쳐 주는가?</strong>
+    "가려워서 미치겠어요." "가려워서 잠을 잘 수가 없어요." 수년간 가려움증으로 고생하는 환자들의 말이다. 원인을 찾아 제거하고, 나쁜 습관을 바꾸고, 단계적으로 치료하면 가려움증은 반드시 낫는다. 서울대병원 피부과 교수가 5단계 치료 원칙으로 답한다.
+    <div style="text-align:center; margin-top:16px; font-size:var(--fs-xs); color:var(--text-muted);">전승대 선교사 제작<br>(클로드 사용)</div>
+  </div>
+
+  <!-- 전체 듣기 버튼 -->
+  <button id="btn-listen-all" onclick="toggleListenAll()">
+    <!-- 재생 전 / 정지 상태 -->
+    <svg class="listen-all-icon" id="listen-all-icon-play" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
+      <path d="M10 8l6 4-6 4V8z" fill="currentColor"/>
+    </svg>
+    <!-- 재생 중 상태 (일시정지 아이콘) -->
+    <svg class="listen-all-icon" id="listen-all-icon-pause" viewBox="0 0 24 24" fill="none" style="display:none">
+      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
+      <rect x="8" y="7" width="3" height="10" rx="1" fill="currentColor"/>
+      <rect x="13" y="7" width="3" height="10" rx="1" fill="currentColor"/>
+    </svg>
+    <!-- 이어듣기 상태 -->
+    <svg class="listen-all-icon" id="listen-all-icon-resume" viewBox="0 0 24 24" fill="none" style="display:none">
+      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
+      <path d="M10 8l6 4-6 4V8z" fill="currentColor"/>
+    </svg>
+    <div class="listen-all-text-wrap">
+      <span id="listen-all-label">전체 듣기</span>
+      <span class="listen-all-sub" id="listen-all-sub">머리말부터 5단계까지 전체 재생</span>
+    </div>
+  </button>
+
+  <div class="section-label">5단계 원칙 — 듣기</div>
+
+  <div id="chapterList"></div>
+
+  <div class="footer">
+    가려워서 미치겠어요 · 정진호 지음<br>
+    책 요약 앱
+  </div>
+</div>
+
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg viewBox="0 0 24 24" fill="none"><path d="M18 15l-6-6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+
+<script>
+const chapters = [
+  {
+    num: "머리말",
+    tag: "tag-green",
+    tagText: "서론",
+    title: "\"가려워서 미치겠어요\" — 이 책을 쓴 이유",
+    summary: "서울대학교병원 피부과 진료실에서 수년간 가려움증 환자들을 만나면서 느낀 아쉬움. 짧은 진료 시간에 다 설명할 수 없었던 것들을 이 책에 담았다. 원인을 찾아 제거하면 가려움증은 반드시 낫는다.",
+    detail: `가려움증은 매우 흔하고 정말 견디기 힘든 증상입니다. 제가 환자들을 보면서 가장 많이 들은 말이 "가려워서 미치겠어요" 또는 "가려워서 잠을 전혀 잘 수가 없어요"인 것 같습니다.
+
+가려움증을 유발하는 원인은 반드시 있습니다. 의사와 환자가 가장 먼저 해야 할 일은 가려움증의 원인을 찾는 것입니다. 원인을 치료하지 않고 약으로만 가려움증을 누르면 약을 중지했을 때 반드시 재발합니다.
+
+"약을 쓸 때 조금 좋아질 뿐이에요." "자꾸 가렵고 수시로 재발합니다." 왜 환자들 이야기처럼 가려움증은 치료가 어려울까요? 그 이유는 가려움증의 원인을 찾아서 제거하지 않고 가려운 증상만 치료하기 때문입니다.
+
+이 책은 피부가 가려워 고생하는 사람들에게 가려움증에서 벗어날 수 있는 효과적인 방법을 소개하기 위해 쓰기 시작했습니다. 그동안 서울대학교병원에서 가려움증을 호소하는 수많은 환자들을 진료하면서 짧은 진료 시간 동안 모든 것을 설명할 수 없었던 아쉬운 마음을 담아 이 책을 집필했습니다.
+
+한 번 읽어서는 이해가 잘 안 되는 내용도 있을 것입니다. 몇 번 반복해서 꼼꼼히 읽고, 이 책에서 설명하는 방법들을 생활 속에서 철저히 실천하기를 권합니다.`,
+    quote: "가려움증의 원인이 해결되지 않았는데 재발하지 않으면 오히려 이상한 일입니다. 원인을 찾아 제거해야 비로소 가려움증의 뿌리를 뽑을 수 있습니다. — 정진호"
+  },
+  {
+    num: "1단계",
+    tag: "tag-green",
+    tagText: "치료 원칙 이해",
+    title: "가려움증이란 무엇인가 — 왜 긁으면 안 되는가",
+    summary: "가려움증은 피부와 점막에서만 느끼는 감각이다. 긁으면 잠깐 시원하지만 더 가려워지는 악순환이 시작된다. 가려움증이 시작된 후 1~2분만 참으면 저절로 사라진다는 과학적 근거를 이해한다.",
+    detail: `가려움증은 피부를 긁고 싶게 만드는 느낌입니다. 가려움증이 심하면 긁지 않을 재간이 없습니다. 피부를 박박 긁고 나면 잠시라도 시원합니다. 피부를 긁는 이유는 심하게 긁을 때 생기는 아픈 감각이 가려움증보다는 참을 만하기 때문입니다.
+
+가려움증을 유발하는 물질들이 만들어지면 피부에 존재하는 감각신경을 자극하여 뇌로 가려움 신호가 전달됩니다. 결국 피부에서 시작되었지만 궁극적으로 가려움을 느끼는 곳은 뇌입니다.
+
+긁으면 안 되는 이유가 있습니다. 가려움증 자극이 왔을 때 피부에 있는 신경 말단에서 일어나는 생화학 반응은 길어야 1~2분 뒤에 사라집니다. 1~2분만 긁지 않고 참으면 가렵지 않게 된다는 과학적 근거입니다.
+
+그런데 계속해서 가려움증을 느끼는 이유는 무엇일까요? 바로 긁기 때문입니다. 참지 못하고 긁으면 긁는 자극으로 인해서 감각신경섬유가 새롭게 활성화되고, 그래서 계속 가렵고, 그러면 더 긁게 되는 악순환이 시작됩니다.
+
+만성적으로 계속 긁으면 긁는 행위가 피부 속에 존재하는 감각신경의 개수를 증가시키게 됩니다. 감각신경이 많아졌기 때문에 경미한 자극에 의해서도 쉽게 가려워집니다. 따라서 가려움증이 느껴지기 시작하면 긁지 말고 1~2분 정도만 강력한 의지를 갖고 참는 것이 매우 중요합니다.
+
+긁는 행위는 쾌감을 느끼고자 하는 본능적인 행동입니다. 그러나 사람은 이성이 있는 동물이므로 긁고 싶은 본능을 참을 수 있습니다. 이성으로 본능을 이겨야 합니다.`,
+    quote: "1~2분만 참으면 가려움증은 사라집니다. 그러나 참지 못하고 긁으면 긁는 자극으로 인해 감각신경이 다시 활성화되어 더 가려워집니다. 긁는 행위는 결국 가려움증을 더 심하게 만드는 나쁜 선택입니다. — 정진호"
+  },
+  {
+    num: "2단계",
+    tag: "tag-gold",
+    tagText: "원인 규명",
+    title: "가려움증의 원인 1 — 건조한 피부, 약물, 영양제, 음식",
+    summary: "가려움증의 가장 흔한 원인은 건조한 피부다. 때를 밀거나 비누를 많이 쓰면 피부가 건조해진다. 복용 중인 약물, 영양제, 특정 음식도 중요한 원인이다. 원인을 제거하지 않으면 약을 써도 낫지 않는다.",
+    detail: `가려움증의 가장 흔하고 중요한 원인은 건조한 피부입니다. 그러나 대부분의 환자들은 건조한 피부가 자신의 가려움증의 원인이라는 사실을 알지 못합니다.
+
+건조한 피부가 가려운 이유는 네 가지입니다. 첫째, 건조하면 표피 안으로 신경이 뚫고 들어옵니다. 둘째, 건조하면 가려움증 유발물질(TSLP, IL-31)이 증가합니다. 셋째, 망가진 피부장벽 틈으로 자극물질이 침투합니다. 넷째, 피부 산도가 올라가 신경을 자극합니다.
+
+피부가 건조해지는 원인도 다양합니다. 나이가 들면 피부 각질층이 얇아지고 지질 합성 능력이 줄어 건조해집니다. 때를 밀면 피부의 기름막인 각질층을 손상시켜 건조해집니다. 비누를 자주, 오래 사용해도 기름막이 녹아 건조해집니다. 습도가 낮거나 실내 온도가 높아도 건조해집니다. 폐경이 되면 에스트로겐 감소로 지질 합성이 줄어 건조해집니다.
+
+복용 중인 약물도 중요한 원인입니다. 약을 먹기 시작하고 수일, 수주, 또는 1~2개월 내에 가려움증이 발생할 수 있습니다. 이론적으로는 모든 약이 가려움증을 유발할 수 있습니다. 혈압약, 당뇨약, 심장약, 항생제, 소염제, 비타민제 등 거의 모든 약이 가려움증을 유발할 확률이 있습니다.
+
+영양제나 건강기능식품도 가려움증의 원인이 될 수 있습니다. 몸에 좋다는 새싹보리 분말을 먹은 후 가려움증이 생겨 중단했더니 나은 환자가 있었고, 손녀가 사준 건강기능식품을 중단했더니 2주 만에 가려움증이 사라진 할머니도 있었습니다.
+
+특정 음식도 가려움증을 유발할 수 있습니다. 어떤 음식을 먹을 때마다 예외 없이 피부가 가려워진다면 그 음식에 들어 있는 특정 성분이 알레르기 반응을 일으키는 것이므로 피하도록 합니다.`,
+    quote: "건조한 피부는 곧 가려움증이다. 때를 밀면 기름막이 없어지고, 비누를 오래 쓰면 지질이 녹아내립니다. 오래전부터 먹던 혈압약, 매일 먹는 오메가3가 가려움증의 원인일 수 있습니다. — 정진호"
+  },
+  {
+    num: "2단계",
+    tag: "tag-gold",
+    tagText: "원인 규명",
+    title: "가려움증의 원인 2 — 피부질환, 내과질환, 정신적 문제",
+    summary: "아토피, 접촉피부염, 건조성습진 같은 피부질환이 원인이 될 수 있다. 당뇨, 신장질환, 간질환, 갑상선질환 같은 내과질환도 전신 가려움증을 유발한다. 스트레스와 정신적 문제도 가려움증을 악화시킨다.",
+    detail: `피부질환이 가려움증의 원인인 경우에는 어떤 피부질환인지 정확히 진단하고 제대로 치료하면 가려움증을 치료할 수 있습니다.
+
+아토피피부염은 어린이들에게 매우 흔한 만성 피부 질환으로, 어린이 5명 중 1명이 앓을 정도입니다. 피부장벽이 손상되어 피부가 건조해지는 것이 주 원인입니다. 접촉피부염은 자극물질이나 알레르기 유발물질이 피부에 닿아 생기며, 원인 물질을 제거하면 호전됩니다. 건조성습진과 화폐상습진도 피부 건조가 원인입니다.
+
+내과질환도 가려움증을 유발합니다. 만성 신장질환 환자의 약 50퍼센트는 전신이 가렵습니다. 간질환, 담도질환에서도 가려움증이 흔합니다. 당뇨병 환자의 약 3분의 1에서 전신 가려움증이 발생하며, 혈당이 높을수록 더 심한 가려움증이 생깁니다. 갑상선질환, 혈액암이나 혈액질환, 자가면역질환도 원인이 됩니다.
+
+정신적 스트레스도 가려움증을 일으킵니다. 스트레스를 받으면 뇌에서 오피오이드라는 물질이 증가하여 가려움증을 유발하고, 피부 세포에서도 염증 유발물질이 증가합니다. 가려움증도 전염됩니다. 누가 옆에서 긁고 있으면 나도 가려움증을 느껴 긁게 되는 경우가 있습니다.
+
+계속 긁으면 더 가려운 피부질환이 생깁니다. 만성단순태선은 만성적으로 긁어서 피부가 두꺼워진 상태로, 한두 달만 긁지 않으면 완치할 수 있습니다. 양진은 쌀알이나 완두콩 크기로 피부가 두꺼워지는 병변이 전신에 생기는 질환입니다.
+
+신경질환도 원인이 됩니다. 날갯죽지 근처의 등 피부가 만성적으로 가려운 '감각이상성 등통증'이 있고, 대상포진 후에 가려움증이 오래 지속될 수 있습니다.`,
+    quote: "원인 모를 가려움증이 여러 달 지속된다면 혈액검사가 필요합니다. 특히 물에 닿을 때마다 몸이 가렵거나 밤에 심한 가려움증이 반복된다면 혈액질환 검사를 받아보아야 합니다. — 정진호"
+  },
+  {
+    num: "3단계",
+    tag: "tag-red",
+    tagText: "악화 요인 제거",
+    title: "매일 실천해야 할 11가지 — 피부 건조 예방법",
+    summary: "때를 밀지 않는다. 비누 거품을 오래 문지르지 않는다. 고형 비누 대신 약산성 클렌저를 쓴다. 샤워 시간을 줄인다. 보습제를 하루 2회 이상 바른다. 실내 습도 50% 이상, 온도 20~22도를 유지한다.",
+    detail: `가려움증을 예방하고 치료하려면 매일 11가지를 실천해야 합니다. 기본 원칙은 '내 피부에 기름막을 두껍게 유지한다'는 생각입니다.
+
+첫째, 목욕할 때 때를 밀지 않습니다. 때를 미는 것은 피부의 기름막인 각질층을 밀어내는 행위입니다. 비누 거품으로 닦지 않은 피부에서 돌돌 밀려 나오는 것은 때가 아니라 각질층입니다. 피부과 의사들은 결코 때를 밀지 않습니다.
+
+둘째, 비누 거품을 오래 문지르지 않습니다. 손바닥에 비누 거품을 낸 후 더러운 부위에만 살짝 발라주는 정도로 사용합니다.
+
+셋째, 고형 비누 대신 약산성 클렌저를 사용합니다. 피부의 정상 산도는 pH 5~5.5의 약산성입니다. 고형 비누는 알칼리 산도여서 피부 건강에 좋지 않습니다.
+
+넷째, 샤워 횟수와 시간을 줄입니다. 일주일에 2~3회 정도, 2분 내외로 짧게 합니다. 머리는 하루 한 번 감더라도 몸은 주 2~3회만 샤워합니다.
+
+다섯째, 뜨거운 탕 속에 들어가지 않습니다. 뜨거운 물은 각질층의 기름막 구조를 변화시켜 수분 소실을 증가시킵니다.
+
+여섯째, 샤워 후 물기를 닦을 때 문지르지 않고 두드려 말립니다.
+
+일곱째, 보습제를 하루 2회 이상 바릅니다. '피부가 기름을 못 만드니 대신 발라준다'고 생각하고 매일 바릅니다. 콜레스테롤, 세라마이드, 지방산이 1:1:1 비율로 포함된 보습제가 좋습니다. 씻어내지 않고 덧발라 피부의 기름막을 두껍게 유지합니다.
+
+여덟째, 실내 습도를 50퍼센트 이상으로 유지합니다. 아파트의 겨울철 실내 습도는 20퍼센트 이하로 떨어지기도 합니다. 가습기를 방마다 틀어놓고 습도계로 항상 확인합니다.
+
+아홉째, 실내 온도는 섭씨 20~22도로 유지합니다. 실내 온도가 높으면 피부가 건조해지고 혈관이 확장되어 염증이 심해집니다.
+
+열째, 이불 속 온도도 낮게 유지합니다. 전기요 사용을 피하고 시원한 환경에서 수면합니다.
+
+열한째, 가려움을 줄이기 위해 알코올을 바르는 것을 중단합니다. 알코올은 피부 기름막을 손상시켜 더 건조하고 더 가렵게 만듭니다.`,
+    quote: "보습제는 나이가 들수록 더 자주, 더 많은 양을 발라야 하고 평생 발라야 합니다. 끈적거리는 느낌을 좋아해야 합니다. 1~2분 후에는 없어지고 피부는 보들보들해집니다. — 정진호"
+  },
+  {
+    num: "3단계",
+    tag: "tag-red",
+    tagText: "악화 요인 제거",
+    title: "원인 별 생활 관리 — 약물, 영양제, 음식, 스트레스",
+    summary: "꼭 필요한 약만 복용하고, 영양제와 건강기능식품은 모두 중단한다. 먹을 때마다 가려운 음식은 피한다. 1~2분만 참으면 가려움증은 사라지므로 절대 긁지 않는다. 스트레스를 피하고 정신적 안정을 찾는다.",
+    detail: `가려움증으로 고생한다면 복용하는 약물 중에서 몇 달 정도 중단해도 큰 문제가 없을 약물들은 중지하는 것이 좋습니다. 단, 약을 함부로 끊으면 질환이 심해질 수 있으므로 반드시 처방한 의사와 상의해야 합니다. 같은 효능의 다른 성분의 약으로 교체하는 것도 좋은 방법입니다.
+
+가려움증으로 고생하는 사람들은 가려움증이 좋아질 때까지 영양제나 건강기능식품의 복용을 모두 중단하는 것이 좋습니다. 밥 잘 먹고 운동 열심히 하면 영양제나 건강기능식품을 따로 챙겨 먹을 필요가 없습니다.
+
+음식은 어떤 음식을 먹을 때마다 예외 없이 피부가 가려워진다면 그 음식을 피하도록 합니다. 같은 음식인데 어떨 때는 괜찮고 어떨 때는 가렵다면, 그 음식 자체보다 요리할 때 들어가는 다른 성분이 문제일 수 있습니다.
+
+아무리 가려워도 처음 1~2분만 긁지 않고 참는 것이 가장 중요한 생활 실천입니다. 가려움증을 느끼기 시작하고 1~2분 정도만 긁지 않고 참으면 더 이상 가렵지 않게 됩니다. 가려움증이 느껴지면 보습제를 바르거나 다른 곳으로 신경을 돌리거나 억지로 참거나 손가락으로 꾹 누르면서 그 순간을 넘기도록 노력해야 합니다.
+
+스트레스를 피하고 정신적 안정을 찾는 것도 중요합니다. 평소에 명상, 사색, 긍정적 생각으로 마음을 평온하게 유지하면 스트레스를 덜 받을 수 있습니다. 강박 증상이 있어서 손을 너무 자주 씻는다면 정신건강의학과 치료도 병행해야 합니다.
+
+피부질환은 반드시 피부과 전문의에게 진단을 받고 치료해야 합니다. 내과질환이 있는지 주기적으로 검사하고 치료합니다. 건강에 문제가 없더라도 1년에 한 번 건강검진을 꼭 받아보는 것이 좋습니다.`,
+    quote: "처음 1~2분만 긁지 않아야 합니다. 긁기 시작하면 망하는 것입니다. 가려움증이 다시 나타나면 본능을 누르고 이성적으로 행동해야 합니다. 긁지 않고 참으면 2분 내에 가려움증은 없어집니다. — 정진호"
+  },
+  {
+    num: "4단계",
+    tag: "tag-cream",
+    tagText: "약물 치료",
+    title: "단계적 약물 치료 — 바르는 약부터 주사까지",
+    summary: "바르는 약(스테로이드 연고, 칼시뉴린억제제, 캡사이신 연고)으로 시작한다. 효과가 없으면 항히스타민제를 사용하고, 면역억제제, 항우울제, 항경련제, 오피오이드 수용체 조절제 순으로 단계적으로 사용한다.",
+    detail: `가려움증 치료의 첫 번째 목표는 가려움증을 경감시켜 긁는 행위의 악순환을 끊는 것이고, 두 번째 목표는 원인을 찾아 제거하여 가려움증의 뿌리를 뽑는 것입니다.
+
+바르는 약이 먼저입니다. 스테로이드 연고는 염증을 억제하는 강력한 효능이 있습니다. 약한 것부터 강한 것까지 종류가 다양하며, 얼굴이나 생식기 주위에는 약한 것을, 등이나 두피처럼 피부가 두꺼운 부위에는 강한 것을 사용합니다. 칼시뉴린억제제(피메크로리무스, 타크로리무스)는 스테로이드 연고의 부작용 없이 장기적으로 사용할 수 있습니다.
+
+먹는 약은 항히스타민제부터 시작합니다. 항히스타민제는 가려움증 환자에게 가장 먼저 처방하는 약입니다. 2세대 항히스타민제(알레그라, 지르텍, 씨잘 등)가 1세대보다 부작용이 적습니다.
+
+항히스타민제가 효과가 없으면 면역억제제를 사용합니다. 사이클로스포린은 빠르게 가려움증을 줄여주는 효과가 있습니다. 그다음으로 항우울제를 사용하는데, 뇌의 세로토닌 농도를 높여 가려움증을 억제합니다. 우울증이 있어서가 아니라 가려움증 억제 효과 때문에 사용하는 것입니다.
+
+항경련제(가바펜틴, 프레가발린)는 신경의 흥분 상태를 억제하여 통증과 가려움증에 효과가 있습니다. 오피오이드 수용체 조절제는 뇌에서 가려움증을 악화시키는 뮤 수용체를 억제하거나 가려움증을 억제하는 카파 수용체를 자극하여 효과를 냅니다.
+
+두필루맙 피하주사는 먹는 약으로 효과가 없는 경우 사용하는 항체 치료제로, 아토피피부염과 양진에 효과적입니다.
+
+단계적 치료 순서: 항히스타민제 → 면역억제제 → 항우울제 → 항경련제 → 오피오이드 수용체 조절제 → 두필루맙 피하주사. 부작용이 적은 약제를 우선 선택하는 원칙입니다.`,
+    quote: "약을 먹지도 바르지도 않으면 어떻게 병을 고칠 수 있을까요? 스테로이드 연고 부작용을 너무 무서워할 필요는 없습니다. 피부과 전문의의 지시에 따라 도포한다면 부작용은 크게 걱정하지 않아도 됩니다. — 정진호"
+  },
+  {
+    num: "5단계",
+    tag: "tag-green",
+    tagText: "재발 방지",
+    title: "가려움증 재발 방지 — 평생 실천해야 할 12가지",
+    summary: "가려움증은 치료 후에도 쉽게 재발한다. 피부를 건조하게 만드는 15가지 나쁜 행동을 절대 하지 않고, 재발 방지를 위해 평생 12가지를 꾸준히 실천해야 한다.",
+    detail: `가려움증을 치료하여 좋아졌더라도 재발 방지를 위한 노력을 하지 않으면 다시 재발하는 경우가 흔합니다. 가려움증 재발 방지를 위해 절대로 하지 말아야 할 15가지가 있습니다.
+
+절대 하지 말아야 할 것들: 때를 밀지 않습니다. 비누를 자주 사용하지 않습니다. 고형 비누는 사용하지 않습니다. 샤워를 매일 하지 않습니다. 뜨거운 탕 속에 들어가지 않습니다. 물기를 닦을 때 수건으로 문지르지 않습니다. 전기요를 사용하지 않습니다. 실내가 건조하지 않게 합니다. 피부 온도가 올라가지 않게 합니다. 가렵다고 알코올을 바르지 않습니다. 영양제나 건강기능식품은 꼭 필요한 것만 복용합니다. 가려움증 유발 음식은 먹지 않습니다. 긁지 않습니다. 자극물질에 접촉하지 않습니다. 스트레스를 받지 않도록 합니다.
+
+평생 실천해야 하는 12가지: 고형 비누 대신 약산성 클렌저를 사용합니다. 샤워는 짧고 간단하게 합니다. 보습제를 하루 2회 이상 바릅니다. 실내 습도를 50퍼센트 이상으로 유지합니다. 실내 온도는 섭씨 20~22도로 유지합니다. 이불 속 온도를 낮게 유지합니다. 의사와 상담 후 꼭 필요한 약만 복용합니다. 피부질환은 피부과 전문의에게 치료를 받습니다. 내과질환이 있으면 증상을 잘 치료합니다. 명상, 사색 등으로 평온한 마음을 유지합니다. 매년 건강검진을 받습니다. 가려움증에 대한 공부를 계속합니다.
+
+"신기해요. 교수님이 말씀하신 대로 하니까 3년 동안 고생했던 가려움증이 2개월 만에 거의 좋아졌어요. 목욕 대신 샤워를 3일에 1번 간단히 하고 비누도 더러운 곳에만 사용하면서 하루에 3번씩 보습제를 충분히 발랐어요. 가습기를 하루 종일 틀어놓았습니다. 절대로 긁지 않으려고 노력했고요." — 70세 환자의 말
+
+가려움증의 원인을 찾아내고, 스스로 노력해서 가려움증을 반드시 고치고 말겠다는 강한 의지를 갖고, 잘 치료 받으면 좋아질 거라는 희망적이고 긍정적인 생각을 하면 가려움증도 덜 느껴지고 건강한 삶을 살 수 있을 것입니다.`,
+    quote: "가려움증을 유발하는 원인은 반드시 있습니다. 원인을 발견하고 그것을 없애는 것이 성공적으로 가려움증을 치료하는 방법입니다. 5단계 원칙을 잘 따른다면 반드시 가려움증을 치료하고 재발을 막을 수 있습니다. — 정진호"
+  }
+];
+
+const list = document.getElementById('chapterList');
+
+// ── TTS 상태 변수 ──
+let currentTTS = null;       // 재생 중인 챕터 인덱스 (-1 = 전체 듣기)
+let isPaused = false;        // 일시정지 여부
+let sentences = [];          // 문장 배열
+let currentSentenceIdx = 0;  // 현재 문장 인덱스
+let ttsInterval = null;      // 프로그레스 타이머
+let isListenAll = false;     // 전체 듣기 모드 여부
+
+function renderCards() {
+  list.innerHTML = '';
+  chapters.forEach((ch, i) => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <div class="card-header" onclick="toggleCard(${i})">
+        <div class="card-header-main">
+          <div class="card-num">${ch.num}</div>
+          <div class="card-header-text">
+            <span class="card-tag ${ch.tag}">${ch.tagText}</span>
+            <div class="card-title">${ch.title}</div>
+            <div class="card-summary">${ch.summary}</div>
+          </div>
+        </div>
+        <div class="toggle-icon-wrap">
+          <div class="toggle-icon">
+            <svg viewBox="0 0 14 14" fill="none">
+              <path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="toggle-label-open">펼쳐보기</span>
+            <span class="toggle-label-close">접기</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-detail">
+        <div class="detail-inner">
+          <div class="tts-bar">
+            <button class="btn-tts" id="tts-${i}" onclick="toggleTTS(${i}, event)">
+              <svg class="play-icon" viewBox="0 0 24 24" fill="none">
+                <path d="M3 9v6h4l5 5V4L7 9H3z" fill="currentColor"/>
+                <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z" fill="currentColor"/>
+                <path d="M14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77 0-4.28-2.99-7.86-7-8.77z" fill="currentColor"/>
+              </svg>
+              <svg class="stop-icon" viewBox="0 0 24 24" fill="none">
+                <rect x="6" y="6" width="12" height="12" rx="2" fill="currentColor"/>
+              </svg>
+              <span class="play-icon">자세히 듣기</span>
+              <span class="stop-icon">듣기 중지</span>
+            </button>
+          </div>
+          <div class="tts-progress" id="prog-${i}">
+            <div class="tts-progress-fill" id="progfill-${i}"></div>
+          </div>
+          <div class="detail-label">상세 내용</div>
+          <div class="detail-text">${ch.detail.replace(/\n\n/g, '</p><p>').replace(/^/, '<p>').replace(/$/, '</p>')}</div>
+          <div class="detail-quote">${ch.quote}</div>
+        </div>
+      </div>
+    `;
+    list.appendChild(card);
+  });
+}
+
+renderCards();
+
+function toggleCard(i) {
+  const cards = document.querySelectorAll('.card');
+  const card = cards[i];
+  const isActive = card.classList.contains('active');
+  if (isActive) stopTTS();
+  card.classList.toggle('active');
+
+  if (!isActive) {
+    setTimeout(() => {
+      const ttsBtn = document.getElementById('tts-' + i);
+      if (!ttsBtn) return;
+      const btnRect = ttsBtn.getBoundingClientRect();
+      const viewH = window.innerHeight;
+      if (btnRect.bottom > viewH - 20) {
+        const shift = btnRect.bottom - viewH + 60;
+        window.scrollBy({ top: shift, behavior: 'smooth' });
+      }
+    }, 320);
+  }
+}
+
+// ── 문장 분리 (한국어 종결 기준) ──
+function splitSentences(text) {
+  return text.split(/(?<=[.!?。！？다요까죠네군]\s)/).map(s => s.trim()).filter(Boolean);
+}
+
+function buildTTSText(i) {
+  const ch = chapters[i];
+  return `${ch.title}. ${ch.detail} ${ch.quote}`;
+}
+
+// ── 플로팅 바 업데이트 ──
+function updateFloatBar(show, title, pct, paused) {
+  const bar = document.getElementById('float-bar');
+  if (!show) { bar.classList.remove('visible'); return; }
+  bar.classList.add('visible');
+  document.getElementById('float-fill').style.width = (pct || 0) + '%';
+
+  const toggleBtn = document.getElementById('float-toggle-btn');
+  const iconPause = document.getElementById('float-icon-pause');
+  const iconResume = document.getElementById('float-icon-resume');
+  const label = document.getElementById('float-btn-label');
+
+  if (paused) {
+    // 일시정지 상태 → 버튼에 "이어듣기" 표시
+    toggleBtn.classList.add('paused');
+    iconPause.style.display = 'none';
+    iconResume.style.display = 'block';
+    label.textContent = '이어듣기';
+  } else {
+    // 재생 중 → 버튼에 "일시정지" 표시
+    toggleBtn.classList.remove('paused');
+    iconPause.style.display = 'block';
+    iconResume.style.display = 'none';
+    label.textContent = '일시정지';
+  }
+}
+
+// ── 문장 하나씩 재생 (재귀) ──
+function speakSentence(idx) {
+  if (idx >= sentences.length) {
+    // 전체 완료
+    const fill = currentTTS !== null ? document.getElementById('progfill-' + currentTTS) : null;
+    if (fill) fill.style.width = '100%';
+    document.getElementById('float-fill').style.width = '100%';
+    setTimeout(stopTTS, 500);
+    return;
+  }
+
+  const utter = new SpeechSynthesisUtterance(sentences[idx]);
+  utter.lang = 'ko-KR';
+  utter.rate = 0.92;
+  utter.pitch = 1.0;
+  const voices = window.speechSynthesis.getVoices();
+  const koVoice = voices.find(v => v.lang.startsWith('ko'));
+  if (koVoice) utter.voice = koVoice;
+
+  utter.onstart = () => {
+    currentSentenceIdx = idx;
+    // 프로그레스 업데이트
+    const pct = Math.round((idx / sentences.length) * 100);
+    if (currentTTS !== null) {
+      const fill = document.getElementById('progfill-' + currentTTS);
+      if (fill) fill.style.width = pct + '%';
+    }
+    document.getElementById('float-fill').style.width = pct + '%';
+    updateFloatBar(true, chapters[currentTTS]?.title, pct, false);
+  };
+
+  utter.onend = () => {
+    if (isPaused) return; // 일시정지 중이면 다음 문장 안 넘어감
+    speakSentence(idx + 1);
+  };
+
+  utter.onerror = (e) => {
+    if (e.error === 'interrupted' || e.error === 'canceled') return;
+    stopTTS();
+  };
+
+  window.speechSynthesis.speak(utter);
+}
+
+// ── 플로팅 바의 일시정지/이어듣기 버튼 ──
+function floatTogglePause() {
+  if (currentTTS === null) return;
+
+  if (!isPaused) {
+    // 일시정지 — isPaused를 먼저 true로 설정해야 onend에서 다음 문장으로 넘어가지 않음
+    isPaused = true;
+    window.speechSynthesis.cancel();
+    const btn = document.getElementById('tts-' + currentTTS);
+    if (btn) { btn.classList.remove('playing'); }
+    const pct = Math.round((currentSentenceIdx / sentences.length) * 100);
+    updateFloatBar(true, null, pct, true);
+    if (isListenAll) updateListenAllBtn('paused');
+  } else {
+    // 이어듣기 — 멈춘 문장부터 재시작
+    isPaused = false;
+    const btn = document.getElementById('tts-' + currentTTS);
+    if (btn) { btn.classList.add('playing'); }
+    const pct = Math.round((currentSentenceIdx / sentences.length) * 100);
+    updateFloatBar(true, null, pct, false);
+    if (isListenAll) updateListenAllBtn('playing');
+    speakSentence(currentSentenceIdx);
+  }
+}
+
+function updateListenAllBtn(state) {
+  // state: 'idle' | 'playing' | 'paused'
+  const btn      = document.getElementById('btn-listen-all');
+  const iconPlay  = document.getElementById('listen-all-icon-play');
+  const iconPause = document.getElementById('listen-all-icon-pause');
+  const iconResume= document.getElementById('listen-all-icon-resume');
+  const label    = document.getElementById('listen-all-label');
+  const sub      = document.getElementById('listen-all-sub');
+
+  btn.classList.remove('playing', 'paused-all');
+  iconPlay.style.display = iconPause.style.display = iconResume.style.display = 'none';
+
+  if (state === 'playing') {
+    btn.classList.add('playing');
+    iconPause.style.display = 'block';
+    label.textContent = '일시정지';
+    sub.textContent   = '재생 중 — 탭하면 일시정지';
+  } else if (state === 'paused') {
+    btn.classList.add('paused-all');
+    iconResume.style.display = 'block';
+    label.textContent = '이어듣기';
+    sub.textContent   = '일시정지됨 — 탭하면 이어듣기';
+  } else {
+    iconPlay.style.display = 'block';
+    label.textContent = '전체 듣기';
+    sub.textContent   = '머리말부터 5단계까지 전체 재생';
+  }
+}
+
+// ── 완전 정지 ──
+function stopTTS() {
+  if (window.speechSynthesis) window.speechSynthesis.cancel();
+  if (ttsInterval) { clearInterval(ttsInterval); ttsInterval = null; }
+  document.querySelectorAll('.btn-tts').forEach(b => b.classList.remove('playing'));
+  document.querySelectorAll('.tts-progress').forEach(p => p.classList.remove('visible'));
+  document.querySelectorAll('.tts-progress-fill').forEach(f => f.style.width = '0%');
+  updateFloatBar(false);
+  currentTTS = null;
+  isPaused = false;
+  sentences = [];
+  currentSentenceIdx = 0;
+  // 전체 듣기 버튼 초기화
+  isListenAll = false;
+  updateListenAllBtn('idle');
+}
+
+// ── 자세히 듣기 버튼 ──
+function toggleTTS(i, e) {
+  e.stopPropagation();
+  if (!window.speechSynthesis) {
+    const banner = document.getElementById('tts-banner');
+    if (banner) { banner.style.display = 'block'; setTimeout(() => banner.style.display = 'none', 4000); }
+    return;
+  }
+
+  // 같은 챕터 재생 중 → 정지
+  if (currentTTS === i) { stopTTS(); return; }
+
+  stopTTS();
+
+  // 스크롤
+  setTimeout(() => {
+    const bar = document.getElementById('prog-' + i);
+    if (!bar) return;
+    const barRect = bar.getBoundingClientRect();
+    const viewH = window.innerHeight;
+    if (barRect.top > viewH * 0.5) {
+      window.scrollBy({ top: 160, behavior: 'smooth' });
+    }
+  }, 80);
+
+  const text = buildTTSText(i);
+  sentences = splitSentences(text);
+  currentSentenceIdx = 0;
+  currentTTS = i;
+  isPaused = false;
+
+  const prog = document.getElementById('prog-' + i);
+  const btn = document.getElementById('tts-' + i);
+  prog.classList.add('visible');
+  btn.classList.add('playing');
+  updateFloatBar(true, chapters[i].title, 0, false);
+
+  speakSentence(0);
+}
+
+// ── 전체 듣기 ──
+function buildAllText() {
+  return chapters.map(ch => `${ch.title}. ${ch.detail} ${ch.quote}`).join(' ');
+}
+
+function toggleListenAll() {
+  if (!window.speechSynthesis) {
+    const banner = document.getElementById('tts-banner');
+    if (banner) { banner.style.display = 'block'; setTimeout(() => banner.style.display = 'none', 4000); }
+    return;
+  }
+
+  // 이미 전체 듣기 재생 중 → 일시정지 / 이어듣기 토글
+  if (isListenAll && currentTTS === -1) {
+    floatTogglePause();
+    updateListenAllBtn(isPaused ? 'paused' : 'playing');
+    return;
+  }
+
+  // 다른 챕터 재생 중이었으면 정지 후 전체 듣기 시작
+  stopTTS();
+
+  isListenAll = true;
+  currentTTS = -1;  // -1 = 전체 듣기 전용 인덱스
+  sentences = splitSentences(buildAllText());
+  currentSentenceIdx = 0;
+  isPaused = false;
+
+  updateListenAllBtn('playing');
+  updateFloatBar(true, null, 0, false);
+  speakSentence(0);
+}
+
+window.speechSynthesis && window.speechSynthesis.addEventListener
+  && window.speechSynthesis.addEventListener('voiceschanged', () => {});
+
+// 카카오톡 인앱브라우저 감지 → 즉시 크롬으로 강제 이동
+(function() {
+  const ua = navigator.userAgent.toLowerCase();
+  const isInApp = ua.includes('kakaotalk') || ua.includes('naver') ||
+                  ua.includes('instagram') || ua.includes('fbios') || ua.includes('fban');
+  if (isInApp) {
+    const currentUrl = location.href;
+    if (ua.includes('android')) {
+      location.href = 'intent://' + currentUrl.replace(/https?:\/\//, '') +
+        '#Intent;scheme=https;package=com.android.chrome;end';
+    } else if (ua.includes('iphone') || ua.includes('ipad')) {
+      location.href = currentUrl.replace('https://', 'googlechrome://');
+      setTimeout(() => {
+        alert('크롬 앱이 없으면 사파리 주소창에\n' + currentUrl + '\n을 직접 입력해주세요.');
+      }, 1500);
+    }
+  }
+})();
+
+window.addEventListener('scroll', () => {
+  const btn = document.getElementById('scrollTop');
+  btn.classList.toggle('visible', window.scrollY > 400);
+});
+</script>
+</body>
+</html>
