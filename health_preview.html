@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>노인 건강관리 앱 — 미리보기</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@400;500;600&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --green-deep: #085041;
+  --green-mid: #0F6E56;
+  --green-light: #E1F5EE;
+  --green-pale: #9FE1CB;
+  --amber: #FAC775;
+  --amber-pale: #FAEEDA;
+  --amber-dark: #633806;
+  --text: #1a1a1a;
+  --muted: #555;
+}
+
+body {
+  background: #f4f3ee;
+  font-family: 'Noto Sans KR', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px 60px;
+}
+
+/* ── 상단 안내 배너 ── */
+.notice-banner {
+  width: 100%;
+  max-width: 520px;
+  background: var(--green-deep);
+  color: var(--green-pale);
+  border-radius: 14px 14px 0 0;
+  padding: 18px 26px;
+  text-align: center;
+  font-size: 15px;
+  line-height: 1.7;
+}
+.notice-banner strong {
+  display: block;
+  color: #fff;
+  font-size: 17px;
+  margin-bottom: 4px;
+  font-family: 'Noto Serif KR', serif;
+}
+
+/* ── 폰 프레임 ── */
+.phone-frame {
+  width: 100%;
+  max-width: 520px;
+  background: #d0cfc9;
+  border-radius: 0 0 40px 40px;
+  padding: 12px 12px 28px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.18);
+}
+
+.phone-screen {
+  background: #f0f0eb;
+  border-radius: 4px 4px 32px 32px;
+  overflow: hidden;
+}
+
+/* ── 앱 콘텐츠 (원본 인포그래픽 스타일 그대로) ── */
+.app-wrap {
+  background: #fff;
+  overflow: hidden;
+}
+
+.app-header {
+  background: #085041;
+  padding: 34px 28px 26px;
+  text-align: center;
+}
+.app-header h1 {
+  color: #E1F5EE;
+  font-size: clamp(18px, 4.5vw, 22px);
+  font-weight: 600;
+  font-family: 'Noto Serif KR', serif;
+  letter-spacing: -0.5px;
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+.app-header .desc {
+  color: #9FE1CB;
+  font-size: clamp(15px, 3.5vw, 17px);
+  line-height: 1.7;
+}
+.app-header .sub {
+  color: #5DCAA5;
+  font-size: clamp(13px, 3vw, 15px);
+  margin-top: 8px;
+}
+
+.app-body { padding: 22px 22px; }
+
+.intro-box {
+  border: 1.5px solid #9FE1CB;
+  border-radius: 14px;
+  padding: 18px 20px;
+  text-align: center;
+  margin-bottom: 14px;
+}
+.intro-box p { color: #1a1a1a; font-size: clamp(14px, 3.5vw, 17px); line-height: 1.65; }
+.intro-box p.muted { color: #555; font-size: clamp(13px, 3vw, 15px); margin-top: 6px; }
+
+.arrow-down { text-align: center; font-size: 20px; color: #9FE1CB; margin: 4px 0; }
+
+.key-box {
+  background: #E1F5EE;
+  border-radius: 14px;
+  padding: 14px 20px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.key-box p { color: #04342C; font-size: clamp(16px, 4vw, 19px); font-weight: 600; }
+.key-box p.sub { color: #0F6E56; font-size: clamp(14px, 3.5vw, 17px); font-weight: 400; margin-top: 4px; }
+
+.section-label { text-align: center; color: #999; font-size: 13px; margin-bottom: 10px; }
+
+.amber-box {
+  background: #FAEEDA;
+  border: 1.5px solid #FAC775;
+  border-radius: 14px;
+  padding: 18px 20px;
+  margin-bottom: 20px;
+}
+.amber-box p { color: #633806; font-size: clamp(13px, 3.5vw, 16px); line-height: 1.65; }
+.amber-box p.sub { color: #854F0B; font-size: clamp(12px, 3vw, 15px); margin-top: 6px; }
+.amber-result {
+  display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 12px;
+}
+.amber-result .num { font-size: clamp(26px, 7vw, 32px); font-weight: 700; color: #633806; }
+.amber-result .arr { font-size: clamp(20px, 5vw, 24px); color: #BA7517; }
+.amber-result .res { font-size: clamp(16px, 4vw, 20px); font-weight: 600; color: #085041; }
+
+.disease-box {
+  background: #EEEDFE;
+  border: 1.5px solid #AFA9EC;
+  border-radius: 14px;
+  padding: 18px 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.disease-box p { color: #26215C; font-size: clamp(13px, 3.5vw, 16px); line-height: 2.1; font-weight: 500; }
+
+.cards { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+.card { border-radius: 14px; padding: 16px 18px; }
+.card.purple { background: #EEEDFE; border: 1.5px solid #AFA9EC; }
+.card.blue   { background: #E6F1FB; border: 1.5px solid #85B7EB; }
+.card.coral  { background: #FAECE7; border: 1.5px solid #F0997B; }
+.card h3 { font-size: clamp(15px, 4vw, 17px); font-weight: 600; margin-bottom: 6px; }
+.card.purple h3 { color: #26215C; }
+.card.blue   h3 { color: #042C53; }
+.card.coral  h3 { color: #4A1B0C; }
+.card p { font-size: clamp(13px, 3.5vw, 15px); line-height: 1.6; }
+.card.purple p { color: #534AB7; }
+.card.blue   p { color: #185FA5; }
+.card.coral  p { color: #993C1D; }
+
+.green-box {
+  background: #EAF3DE;
+  border: 1.5px solid #97C459;
+  border-radius: 14px;
+  padding: 18px 20px;
+  text-align: center;
+  margin-bottom: 18px;
+}
+.green-box p { color: #173404; font-size: clamp(14px, 3.5vw, 17px); font-weight: 600; line-height: 1.6; }
+.green-box p.sub { color: #3B6D11; font-size: clamp(13px, 3vw, 15px); font-weight: 400; margin-top: 6px; }
+
+.sig { text-align: center; padding: 0 0 22px; }
+.sig hr { border: none; border-top: 1px solid #ddd; margin: 0 60px 12px; }
+.sig p { color: #aaa; font-size: 13px; }
+
+/* ── 하단 CTA ── */
+.cta-area {
+  width: 100%;
+  max-width: 520px;
+  margin-top: 28px;
+  text-align: center;
+}
+.cta-area p.label {
+  color: #777;
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+.cta-btn {
+  display: inline-block;
+  background: var(--green-deep);
+  color: #E1F5EE;
+  text-decoration: none;
+  font-size: 17px;
+  font-weight: 600;
+  padding: 16px 40px;
+  border-radius: 50px;
+  letter-spacing: -0.3px;
+  box-shadow: 0 6px 24px rgba(8,80,65,0.30);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(8,80,65,0.38);
+}
+.cta-btn span { font-size: 13px; display: block; color: #9FE1CB; margin-top: 3px; font-weight: 400; }
+
+.qr-hint {
+  margin-top: 16px;
+  color: #aaa;
+  font-size: 13px;
+}
+.qr-hint a { color: #0F6E56; text-decoration: none; }
+</style>
+</head>
+<body>
+
+<!-- 안내 배너 -->
+<div class="notice-banner">
+  <strong>📱 노인 건강관리 가이드 앱 — 미리보기</strong>
+  아래는 실제 앱 화면입니다. 버튼을 눌러 앱을 열어보세요.
+</div>
+
+<!-- 폰 프레임 -->
+<div class="phone-frame">
+  <div class="phone-screen">
+    <div class="app-wrap">
+
+      <div class="app-header">
+        <h1>노인 건강관리 가이드 앱을 드리며</h1>
+        <p class="desc">하나님께서 맡겨 주신 몸,<br>바르게 알고 꾸준히 돌보는 것도 신앙의 책임입니다.</p>
+        <p class="sub">— 일반은총의 관점에서</p>
+      </div>
+
+      <div class="app-body">
+        <div class="intro-box">
+          <p>노인에게 건강보다 더 감사한 하나님의 선물은 없습니다.</p>
+          <p class="muted">그런데 건강을 지키는 데는 병원이나 약보다 더 근본적인 것이 있습니다.</p>
+        </div>
+        <div class="arrow-down">↓</div>
+        <div class="key-box">
+          <p>올바른 건강 상식</p>
+          <p class="sub">그리고 꾸준한 자기 관리</p>
+        </div>
+
+        <p class="section-label">▸ 제가 직접 경험한 증거입니다</p>
+        <div class="amber-box">
+          <p>당화혈색소(HbA1c) 11.8 — 심각한 수치에서 출발했습니다.</p>
+          <p class="sub">병원이 고쳐준 것이 아니었습니다.<br>제가 알고 실천한 것이 저를 살렸습니다.</p>
+          <div class="amber-result">
+            <span class="num">11.8</span>
+            <span class="arr">→</span>
+            <span class="res">정상 수치 (단 1년)</span>
+          </div>
+        </div>
+
+        <p class="section-label">▸ 이 앱이 다루는 12가지 질환</p>
+        <div class="disease-box">
+          <p>허리통증 · 치매 · 만성피로 · 당뇨<br>눈 건강 · 낙상 예방 · 고혈압 · 무릎관절<br>골다공증 · 불면증 · 뇌졸중 · 가려움증</p>
+        </div>
+
+        <p class="section-label">▸ 이 앱은 그 경험 위에서 만들었습니다</p>
+        <div class="cards">
+          <div class="card purple">
+            <h3>무려 12가지</h3>
+            <p>노년기 주요 질환을 총망라한 실용 건강 안내서</p>
+          </div>
+          <div class="card blue">
+            <h3>언제 어디서나</h3>
+            <p>주머니에 넣고 다니다가 틈날 때마다 꺼내 보고 들을 수 있습니다</p>
+          </div>
+          <div class="card coral">
+            <h3>AI와 함께 제작</h3>
+            <p>수없이 의논하고 다듬으며 만든, 성의와 전문성이 동원된 프로그램입니다</p>
+          </div>
+        </div>
+
+        <div class="green-box">
+          <p>다른 질환이 있으신 분 중에<br>원하시는 분은 카톡으로 연락 주세요.</p>
+          <p class="sub">물론 무료입니다. 이젠 5분이면 만듭니다.</p>
+        </div>
+      </div>
+
+      <div class="sig">
+        <hr>
+        <p>전승대 선교사 제작 · 2026년 3월</p>
+      </div>
+
+    </div><!-- app-wrap -->
+  </div><!-- phone-screen -->
+</div><!-- phone-frame -->
+
+<!-- CTA -->
+<div class="cta-area">
+  <p class="label">앱 바로가기</p>
+  <a class="cta-btn" href="https://easyai7.github.io/health" target="_blank">
+    🌿 노인 건강관리 앱 열기
+    <span>easyai7.github.io/health</span>
+  </a>
+  <p class="qr-hint" style="margin-top:20px;">
+    또는 주소를 직접 입력: <a href="https://easyai7.github.io/health">easyai7.github.io/health</a>
+  </p>
+</div>
+
+</body>
+</html>
