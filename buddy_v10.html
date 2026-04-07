@@ -310,7 +310,7 @@ button{cursor:pointer;}
 
 <script>
 // ── API 키 (앱 설정 탭에서 입력 → localStorage 저장) ──
-let apiKey = 'sk-ant-여기에키입력';
+let apiKey = localStorage.getItem('buddyApiKey') || '';
 let googleTtsKey = localStorage.getItem('buddyGoogleTtsKey') || '';
 
 function saveApiKey() {
