@@ -1,0 +1,1406 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+<title>버디 BUDDY</title>
+<meta property="og:title" content="버디 BUDDY"/>
+<meta property="og:description" content="AI 학습 도우미 버디와 함께 공부해요!"/>
+<meta property="og:image" content="buddy_v10.png"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:type" content="website"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="버디 BUDDY"/>
+<meta name="twitter:description" content="AI 학습 도우미 버디와 함께 공부해요!"/>
+<meta name="twitter:image" content="buddy_v10.png"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+body{background:#080c18;font-family:'Noto Sans KR',sans-serif;color:#f0f4ff;overscroll-behavior:none;}
+::-webkit-scrollbar{display:none;}
+input,textarea,button{font-family:'Noto Sans KR',sans-serif;}
+input::placeholder,textarea::placeholder{color:rgba(136,153,187,0.4);}
+textarea{resize:none;}
+button{cursor:pointer;}
+#app{max-width:480px;margin:0 auto;min-height:100dvh;display:flex;flex-direction:column;background:#080c18;}
+#header{padding:14px 16px 11px;background:rgba(8,12,24,0.98);border-bottom:1px solid rgba(245,166,35,0.1);flex-shrink:0;display:flex;align-items:center;gap:11px;}
+.logo-icon{width:42px;height:42px;background:rgba(245,166,35,0.13);border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:26px;border:1px solid rgba(245,166,35,0.24);flex-shrink:0;}
+.h-title{background:linear-gradient(90deg,#f5a623,#fbbf24);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-size:22px;font-weight:700;}
+.h-sub{font-size:17px;color:#8899bb;}
+.h-badge{font-size:17px;color:#60a5fa;background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.18);padding:3px 9px;border-radius:18px;font-weight:600;margin-left:auto;flex-shrink:0;}
+#tabbar{display:flex;background:rgba(13,20,38,0.95);border-bottom:1px solid rgba(255,255,255,0.07);flex-shrink:0;}
+.tab-btn{flex:1;padding:10px 2px 9px;background:none;border:none;border-bottom:2px solid transparent;display:flex;flex-direction:column;align-items:center;gap:3px;transition:border-color 0.18s;}
+.tab-btn .t-icon{font-size:24px;}
+.tab-btn .t-lbl{font-size:16px;font-weight:400;color:#8899bb;transition:all 0.18s;}
+.tab-btn.active{border-bottom:2px solid #f5a623;}
+.tab-btn.active .t-lbl{font-weight:700;color:#fbbf24;}
+#content{flex:1;overflow-y:auto;padding:0 13px;display:flex;flex-direction:column;min-height:0;}
+.tab-panel{display:none;padding-bottom:24px;}
+.tab-panel.active{display:block;}
+#panel-chat{display:none;flex-direction:column;flex:1;min-height:0;padding:10px 0 14px;}
+#panel-chat.active{display:flex;}
+
+/* WELCOME BANNER */
+.welcome-banner{background:linear-gradient(135deg,rgba(245,166,35,0.12),rgba(251,146,60,0.08));border:1px solid rgba(245,166,35,0.25);border-radius:18px;padding:16px 16px 14px;margin-bottom:12px;margin-top:10px;}
+.welcome-banner h2{font-size:22px;font-weight:700;color:#fbbf24;margin-bottom:6px;}
+.welcome-banner p{font-size:19px;line-height:1.7;color:#c8d5ee;}
+
+/* INFO */
+.ic{background:#131b2e;border:1px solid rgba(255,255,255,0.07);border-radius:20px;margin-bottom:10px;overflow:hidden;}
+.ic-hdr{width:100%;background:none;border:none;display:flex;align-items:center;gap:12px;padding:15px 15px 13px;text-align:left;}
+.ic-icn{width:48px;height:48px;border-radius:14px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:28px;}
+.ic-title{font-size:26px;font-weight:700;color:#f0f4ff;margin-bottom:2px;}
+.ic-sub{font-size:22px;color:#8899bb;}
+.ic-arr{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:17px;transition:all 0.28s;flex-shrink:0;margin-left:auto;background:rgba(255,255,255,0.06);color:#8899bb;}
+.ic-body{padding:0 15px 15px;display:none;}
+.ic-body.open{display:block;}
+.ic-div{height:1px;background:rgba(255,255,255,0.07);margin-bottom:12px;}
+.app-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:11px;}
+.app-tag{padding:6px 12px;border-radius:9px;font-size:22px;font-weight:500;background:#1a2540;border:1px solid rgba(255,255,255,0.07);color:#f0f4ff;display:flex;align-items:center;gap:5px;}
+.app-dot{width:6px;height:6px;border-radius:50%;display:inline-block;}
+.tips{display:flex;flex-direction:column;gap:6px;margin-bottom:10px;}
+.tip-row{display:flex;gap:9px;padding:10px 12px;background:#1a2540;border-radius:12px;border:1px solid rgba(255,255,255,0.07);}
+.tip-n{width:26px;height:26px;border-radius:6px;flex-shrink:0;font-size:21px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:1px;}
+.tip-t{font-size:26px;line-height:1.7;color:#c8d5ee;}
+.tip-detail{font-size:24px;line-height:1.65;color:#8899bb;margin-top:4px;padding-top:4px;border-top:1px solid rgba(255,255,255,0.05);}
+.daegu-tip{display:flex;gap:8px;padding:11px 12px;background:rgba(245,166,35,0.08);border:1px solid rgba(245,166,35,0.18);border-radius:12px;font-size:24px;line-height:1.6;color:#fde68a;margin-bottom:10px;}
+/* TTS 컨트롤 */
+.tts-wrap{margin-top:6px;display:flex;flex-direction:column;gap:6px;}
+.tts-script-status{font-size:22px;color:#8899bb;padding:6px 10px;background:rgba(255,255,255,0.03);border-radius:9px;display:none;line-height:1.5;}
+.tts-controls{display:flex;gap:6px;}
+.tts-play-btn{flex:1;padding:12px 14px;border-radius:12px;font-size:22px;font-weight:700;border:none;color:#fff;display:flex;align-items:center;justify-content:center;gap:6px;transition:all 0.2s;}
+.tts-play-btn.idle{background:linear-gradient(135deg,rgba(245,166,35,0.18),rgba(251,146,60,0.12));border:1px solid rgba(245,166,35,0.3);color:#fcd34d;}
+.tts-play-btn.loading{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:#8899bb;pointer-events:none;}
+.tts-play-btn.playing{background:linear-gradient(135deg,rgba(244,63,94,0.18),rgba(251,113,133,0.12));border:1px solid rgba(244,63,94,0.35);color:#fda4af;animation:tts-pulse 1.6s infinite;}
+.tts-play-btn.paused{background:linear-gradient(135deg,rgba(251,191,36,0.18),rgba(245,166,35,0.12));border:1px solid rgba(251,191,36,0.35);color:#fbbf24;}
+.tts-stop-btn{width:40px;height:40px;border-radius:11px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.04);color:#8899bb;font-size:22px;display:none;align-items:center;justify-content:center;flex-shrink:0;}
+.tts-stop-btn.show{display:flex;}
+.tts-prog{height:3px;border-radius:2px;background:rgba(255,255,255,0.07);overflow:hidden;display:none;}
+.tts-prog.show{display:block;}
+.tts-prog-bar{height:100%;border-radius:2px;background:linear-gradient(90deg,#f5a623,#fb923c);width:0%;transition:width 0.3s;}
+@keyframes tts-pulse{0%,100%{box-shadow:0 0 0 0 rgba(244,63,94,0.2)}50%{box-shadow:0 0 0 7px rgba(244,63,94,0)}}
+.section-lbl{font-size:22px;color:#8899bb;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;margin-bottom:6px;margin-top:10px;}
+
+/* CHAT */
+#chat-quick{display:flex;gap:7px;padding:8px 0 10px;overflow-x:auto;scrollbar-width:none;flex-shrink:0;}
+.qc-btn{flex-shrink:0;display:flex;align-items:center;gap:5px;padding:6px 12px;border-radius:16px;font-size:18px;font-weight:600;background:rgba(245,166,35,0.1);border:1px solid rgba(245,166,35,0.2);color:#fcd34d;white-space:nowrap;}
+#chat-msgs{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:12px;padding-bottom:10px;min-height:0;}
+.msg-r{display:flex;gap:8px;align-items:flex-end;}
+.msg-r.u{justify-content:flex-end;}
+.msg-av{width:30px;height:30px;flex-shrink:0;font-size:22px;background:rgba(245,166,35,0.13);border-radius:10px;border:1px solid rgba(245,166,35,0.18);display:flex;align-items:center;justify-content:center;}
+.bbl{max-width:76%;padding:11px 14px;font-size:21px;line-height:1.75;white-space:pre-wrap;word-break:break-word;}
+.bbl.ai{border-radius:5px 18px 18px 18px;background:rgba(19,27,46,0.95);color:#dce8ff;border:1px solid rgba(255,255,255,0.07);}
+.bbl.usr{border-radius:18px 18px 5px 18px;background:linear-gradient(135deg,#f5a623,#fb923c);color:#fff;}
+.dot{width:7px;height:7px;border-radius:50%;background:#f5a623;animation:blink 1.2s infinite;}
+#chat-iw{flex-shrink:0;padding-bottom:4px;}
+#chat-wrap{display:flex;gap:7px;background:rgba(19,27,46,0.85);border:1px solid rgba(255,255,255,0.07);border-radius:22px;padding:8px 8px 8px 14px;align-items:flex-end;}
+#chat-ta{flex:1;background:none;border:none;outline:none;color:#f0f4ff;font-size:21px;line-height:1.6;overflow:hidden;padding:2px 0;max-height:100px;}
+.icon-btn{width:36px;height:36px;border-radius:50%;flex-shrink:0;font-size:22px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.07);background:rgba(255,255,255,0.07);color:#8899bb;}
+.icon-btn.on{background:rgba(244,63,94,0.28);border:1px solid rgba(244,63,94,0.6);color:#f43f5e;animation:pulse 1s infinite;}
+#send-btn{width:36px;height:36px;border-radius:50%;flex-shrink:0;border:none;color:#fff;font-size:22px;background:rgba(255,255,255,0.06);}
+#send-btn.rdy{background:linear-gradient(135deg,#f5a623,#fb923c);}
+#chat-int{font-size:18px;color:#f43f5e;padding:5px 4px 0;display:none;}
+
+/* TRAFFIC */
+#tf-badge{text-align:center;margin-bottom:13px;}
+#tf-badge span{font-size:18px;padding:5px 14px;border-radius:20px;}
+.rt-grid{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;}
+.rt-btn{padding:5px 12px;border-radius:10px;font-size:19px;font-weight:600;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);color:#8899bb;}
+.rt-btn.sel{background:rgba(245,166,35,0.22);border:1px solid rgba(245,166,35,0.5);color:#fcd34d;}
+#an-btn{width:100%;padding:13px;border-radius:15px;font-size:22px;font-weight:700;border:none;color:#fff;margin-bottom:14px;}
+#an-btn.rdy{background:linear-gradient(135deg,#f5a623,#fb923c);box-shadow:0 3px 14px rgba(245,166,35,0.3);}
+#an-btn.dis{background:rgba(255,255,255,0.05);color:#555;}
+#tf-res{display:none;background:#131b2e;border:1px solid rgba(245,166,35,0.2);border-radius:18px;padding:15px;animation:fadeIn 0.35s ease;}
+.fc-chip{padding:5px 11px;border-radius:12px;font-size:18px;background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.2);color:#93c5fd;cursor:pointer;}
+.tf-loading{display:flex;flex-direction:column;align-items:center;gap:10px;padding:20px 0;color:#8899bb;font-size:20px;}
+.tf-spinner{width:32px;height:32px;border:3px solid rgba(245,166,35,0.15);border-top:3px solid #f5a623;border-radius:50%;animation:spin 0.9s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* MESSAGE */
+#ph-box{border-radius:18px;padding:14px;margin-bottom:13px;background:#131b2e;}
+.qm-btn{padding:7px 13px;border-radius:13px;font-size:19px;background:rgba(244,63,94,0.1);border:1px solid rgba(244,63,94,0.2);color:#fda4af;}
+#mic-btn{width:100%;height:115px;border-radius:22px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;border:1.5px solid rgba(244,63,94,0.28);background:linear-gradient(135deg,rgba(244,63,94,0.15),rgba(251,113,133,0.07));}
+#mic-btn.on{border:2px solid rgba(244,63,94,0.52);background:linear-gradient(135deg,rgba(244,63,94,0.24),rgba(251,113,133,0.1));animation:pulse 1s infinite;}
+#mic-int{font-size:20px;color:#fda4af;padding:8px 13px;background:rgba(244,63,94,0.07);border-radius:11px;margin-bottom:10px;display:none;}
+#rfn-box{height:85px;border-radius:18px;background:#131b2e;border:1px solid rgba(255,255,255,0.07);display:none;align-items:center;justify-content:center;gap:10px;font-size:21px;color:#fcd34d;margin-bottom:13px;}
+#rdy-box{display:none;background:#131b2e;border:1px solid rgba(16,185,129,0.22);border-radius:18px;padding:15px;margin-bottom:11px;}
+#rfn-ta{width:100%;padding:11px 13px;background:rgba(16,185,129,0.07);border:1px solid rgba(16,185,129,0.25);border-radius:12px;color:#a7f3d0;font-size:22px;line-height:1.7;outline:none;min-height:62px;}
+#msg-fb{display:none;padding:12px 15px;background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.28);border-radius:13px;font-size:21px;color:#6ee7b7;text-align:center;}
+
+.card{background:#131b2e;border:1px solid rgba(255,255,255,0.07);border-radius:18px;padding:15px;margin-bottom:10px;}
+.slbl{font-size:18px;color:#8899bb;margin-bottom:8px;}
+.full-g-btn{width:100%;padding:13px;border-radius:13px;font-size:22px;font-weight:700;border:none;color:#fff;}
+.outline-btn{width:100%;padding:11px;border-radius:13px;font-size:21px;font-weight:600;background:rgba(245,166,35,0.1);border:1px solid rgba(245,166,35,0.28);color:#fcd34d;}
+.ghost-btn{width:100%;padding:10px;border-radius:13px;font-size:20px;background:transparent;border:1px solid rgba(255,255,255,0.07);color:#8899bb;}
+
+@keyframes blink{0%,80%,100%{transform:scale(0.7);opacity:0.4}40%{transform:scale(1.15);opacity:1}}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(244,63,94,0.3)}50%{box-shadow:0 0 0 10px rgba(244,63,94,0)}}
+@keyframes bounce2{0%,100%{transform:scale(1)}50%{transform:scale(1.18)}}
+.bnc{animation:bounce2 0.8s infinite;}
+</style>
+</head>
+<body>
+<div id="app">
+  <div id="header">
+    <div class="logo-icon">🚌</div>
+    <div><div class="h-title">버디 BUDDY</div><div class="h-sub">대구 버스 기사님 전용 AI 도우미</div></div>
+    <div class="h-badge">Claude AI</div>
+  </div>
+  <div id="tabbar">
+    <button class="tab-btn active" data-tab="info"><span class="t-icon">📋</span><span class="t-lbl">정보 가이드</span></button>
+    <button class="tab-btn" data-tab="chat"><span class="t-icon">🤖</span><span class="t-lbl">AI 상담</span></button>
+    <button class="tab-btn" data-tab="traffic"><span class="t-icon">🚦</span><span class="t-lbl">교통 정보</span></button>
+    <button class="tab-btn" data-tab="msg"><span class="t-icon">💌</span><span class="t-lbl">아내 문자</span></button>
+    <button class="tab-btn" data-tab="settings"><span class="t-icon">⚙️</span><span class="t-lbl">설정</span></button>
+  </div>
+  <div id="content">
+    <!-- TAB 1: INFO -->
+    <div id="panel-info" class="tab-panel active" style="padding-top:10px;"></div>
+
+    <!-- TAB 2: CHAT -->
+    <div id="panel-chat" class="tab-panel">
+      <div id="chat-quick"></div>
+      <div id="chat-msgs"></div>
+      <div id="chat-iw">
+        <div id="chat-wrap">
+          <textarea id="chat-ta" rows="1" placeholder="타이핑 또는 🎤 말하기 (Enter 전송)"></textarea>
+          <button class="icon-btn" id="mic-chat">🎤</button>
+          <button id="send-btn">➤</button>
+        </div>
+        <div id="chat-int"></div>
+      </div>
+    </div>
+
+    <!-- TAB 3: TRAFFIC -->
+    <div id="panel-traffic" class="tab-panel" style="padding-top:10px;">
+      <div id="tf-badge"><span></span></div>
+      <div class="card">
+        <div class="slbl">노선 선택</div>
+        <div class="rt-grid" id="rt-grid"></div>
+        <input id="rt-custom" placeholder="직접 입력 (예: 349)" type="text"
+          style="width:100%;padding:9px 13px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:11px;color:#f0f4ff;font-size:21px;outline:none;"/>
+      </div>
+      <button id="an-btn" class="dis">🚦 교통상황 분석</button>
+      <div id="tf-res">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:11px;">
+          <span id="res-title" style="font-size:21px;font-weight:700;color:#fcd34d;"></span>
+          <span id="res-time" style="font-size:17px;color:#8899bb;background:rgba(255,255,255,0.05);padding:3px 9px;border-radius:10px;"></span>
+        </div>
+        <div id="res-text" style="font-size:21px;line-height:1.8;color:#dce8ff;white-space:pre-wrap;padding:11px 13px;background:rgba(255,255,255,0.03);border-radius:11px;border:1px solid rgba(255,255,255,0.07);margin-bottom:12px;"></div>
+        <div id="follow-ups"></div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;">
+          <button class="fc-chip" data-q="우회 경로 있어?">우회 경로 있어?</button>
+          <button class="fc-chip" data-q="서문시장 쪽은?">서문시장 쪽은?</button>
+          <button class="fc-chip" data-q="몇 분 더 걸릴까?">몇 분 더 걸릴까?</button>
+        </div>
+        <div style="display:flex;gap:7px;">
+          <input id="fq-input" placeholder="더 궁금한 거 물어보기..." style="flex:1;padding:8px 13px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:11px;color:#f0f4ff;font-size:20px;outline:none;"/>
+          <button id="fq-btn" style="padding:8px 14px;border-radius:11px;background:rgba(255,255,255,0.04);border:1px solid rgba(245,166,35,0.25);color:#fcd34d;font-size:20px;font-weight:600;">전송</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 4: MESSAGE -->
+    <div id="panel-msg" class="tab-panel" style="padding-top:10px;">
+
+      <!-- 전화번호 -->
+      <div id="ph-box" style="background:#131b2e;border:1px solid rgba(244,63,94,0.22);border-radius:18px;padding:14px;margin-bottom:13px;">
+        <div id="ph-lbl" style="font-size:18px;color:#8899bb;margin-bottom:8px;">📱 아내 전화번호 입력 (한 번만)</div>
+        <div id="ph-row" style="display:flex;gap:8px;">
+          <input id="ph-input" type="tel" placeholder="010-0000-0000"
+            style="flex:1;padding:9px 13px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.07);border-radius:11px;color:#f0f4ff;font-size:22px;outline:none;letter-spacing:1px;"/>
+          <button id="ph-save" style="padding:9px 15px;border-radius:11px;background:rgba(16,185,129,0.18);border:1px solid rgba(16,185,129,0.3);color:#6ee7b7;font-size:20px;font-weight:700;">저장</button>
+        </div>
+        <button id="ph-chg" style="display:none;margin-top:8px;font-size:18px;color:#8899bb;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:9px;padding:5px 12px;">번호 변경</button>
+      </div>
+
+      <!-- ① 안심 체크인 -->
+      <div style="background:#131b2e;border:1px solid rgba(244,63,94,0.18);border-radius:18px;padding:15px;margin-bottom:12px;">
+        <div style="font-size:18px;color:#fda4af;font-weight:700;margin-bottom:10px;">❤️ 안심 체크인</div>
+        <button id="checkin-btn"
+          style="width:100%;padding:18px;border-radius:16px;font-size:22px;font-weight:700;border:none;color:#fff;background:linear-gradient(135deg,#f43f5e,#fb7185);box-shadow:0 4px 16px rgba(244,63,94,0.35);letter-spacing:0.5px;">
+          나 잘 있어 ❤️ — 문자 바로 보내기
+        </button>
+        <div style="font-size:17px;color:#8899bb;margin-top:8px;text-align:center;">현재 시각이 자동으로 포함돼요</div>
+      </div>
+
+      <!-- ② 원터치 상황 버튼 -->
+      <div style="background:#131b2e;border:1px solid rgba(245,166,35,0.18);border-radius:18px;padding:15px;margin-bottom:12px;">
+        <div style="font-size:18px;color:#fcd34d;font-weight:700;margin-bottom:10px;">⚡ 원터치 상황 전송</div>
+        <div id="situation-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;"></div>
+      </div>
+
+      <!-- ③ AI 하루 요약 -->
+      <div style="background:#131b2e;border:1px solid rgba(96,165,250,0.18);border-radius:18px;padding:15px;margin-bottom:12px;">
+        <div style="font-size:18px;color:#93c5fd;font-weight:700;margin-bottom:6px;">✨ AI 하루 요약 문자</div>
+        <div style="font-size:17px;color:#8899bb;margin-bottom:10px;">오늘 어땠는지 키워드 골라주세요</div>
+        <div id="kw-grid" style="display:flex;flex-wrap:wrap;gap:7px;margin-bottom:12px;"></div>
+        <div id="ai-msg-box" style="display:none;margin-bottom:10px;">
+          <textarea id="ai-msg-ta" rows="4"
+            style="width:100%;padding:11px 13px;background:rgba(96,165,250,0.07);border:1px solid rgba(96,165,250,0.25);border-radius:12px;color:#dce8ff;font-size:22px;line-height:1.7;outline:none;resize:none;"></textarea>
+          <div style="font-size:17px;color:#6b7a99;margin-top:3px;">↑ 직접 수정도 가능해요</div>
+        </div>
+        <div style="display:flex;gap:8px;">
+          <button id="ai-gen-btn"
+            style="flex:1;padding:13px;border-radius:13px;font-size:20px;font-weight:700;border:none;color:#fff;background:linear-gradient(135deg,rgba(96,165,250,0.3),rgba(59,130,246,0.2));border:1px solid rgba(96,165,250,0.4);color:#93c5fd;">
+            🤖 AI가 문자 만들기
+          </button>
+          <button id="ai-sms-btn"
+            style="display:none;flex:1;padding:13px;border-radius:13px;font-size:20px;font-weight:700;border:none;color:#fff;background:linear-gradient(135deg,#10b981,#059669);box-shadow:0 3px 12px rgba(16,185,129,0.3);">
+            📱 문자 보내기
+          </button>
+        </div>
+      </div>
+
+      <div id="msg-fb" style="display:none;padding:12px 15px;background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.28);border-radius:13px;font-size:20px;color:#6ee7b7;text-align:center;margin-bottom:10px;"></div>
+    </div>
+
+    <!-- TAB 5: SETTINGS -->
+    <div id="panel-settings" class="tab-panel" style="padding-top:14px;">
+      <div style="background:#131b2e;border:1px solid rgba(245,166,35,0.18);border-radius:18px;padding:16px;margin-bottom:12px;">
+        <div style="font-size:21px;font-weight:700;color:#fbbf24;margin-bottom:4px;">🔑 Claude API 키</div>
+        <div style="font-size:18px;color:#8899bb;margin-bottom:10px;line-height:1.6;">AI 상담·교통 분석·TTS 스크립트 생성에 사용됩니다.<br>키는 이 기기에만 저장되며 외부로 전송되지 않아요.</div>
+        <div style="display:flex;gap:8px;margin-bottom:6px;">
+          <input type="password" id="apiKeyInput" placeholder="sk-ant-api03-..."
+            style="flex:1;padding:10px 13px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:11px;color:#f0f4ff;font-size:20px;outline:none;font-family:'Noto Sans KR',sans-serif;"/>
+          <button onclick="saveApiKey()"
+            style="padding:10px 16px;border-radius:11px;background:linear-gradient(135deg,rgba(245,166,35,0.22),rgba(251,146,60,0.15));border:1px solid rgba(245,166,35,0.4);color:#fcd34d;font-size:20px;font-weight:700;white-space:nowrap;">저장</button>
+        </div>
+        <div id="apiKeyStatus" style="font-size:18px;color:#8899bb;padding:0 2px;"></div>
+      </div>
+
+      <div style="background:#131b2e;border:1px solid rgba(74,144,226,0.25);border-radius:18px;padding:16px;margin-bottom:12px;">
+        <div style="font-size:21px;font-weight:700;color:#93c5fd;margin-bottom:4px;">🎙️ Google TTS API 키</div>
+        <div style="font-size:18px;color:#8899bb;margin-bottom:10px;line-height:1.6;">자연스러운 한국어 음성 읽기에 사용됩니다 (Wavenet 고품질).<br>키는 이 기기에만 저장되며 외부로 전송되지 않아요.</div>
+        <div style="display:flex;gap:8px;margin-bottom:6px;">
+          <input type="password" id="googleTtsKeyInput" placeholder="AIzaSy..."
+            style="flex:1;padding:10px 13px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:11px;color:#f0f4ff;font-size:20px;outline:none;font-family:'Noto Sans KR',sans-serif;"/>
+          <button onclick="saveGoogleTtsKey()"
+            style="padding:10px 16px;border-radius:11px;background:linear-gradient(135deg,rgba(74,144,226,0.22),rgba(96,165,250,0.15));border:1px solid rgba(74,144,226,0.4);color:#93c5fd;font-size:20px;font-weight:700;white-space:nowrap;">저장</button>
+        </div>
+        <div id="googleTtsKeyStatus" style="font-size:18px;color:#8899bb;padding:0 2px;"></div>
+      </div>
+
+      <div style="background:#131b2e;border:1px solid rgba(255,255,255,0.07);border-radius:18px;padding:16px;margin-bottom:12px;">
+        <div style="font-size:20px;font-weight:700;color:#c8d5ee;margin-bottom:10px;">📖 API 키 발급 방법</div>
+        <div style="font-size:19px;color:#8899bb;line-height:1.9;">
+          <span style="color:#fcd34d;font-weight:600;">Claude 키</span><br>
+          1. <span style="color:#93c5fd;">console.anthropic.com</span> 접속 → 회원가입<br>
+          2. API Keys → Create Key → <span style="color:#a7f3d0;">sk-ant-...</span> 복사<br><br>
+          <span style="color:#93c5fd;font-weight:600;">Google TTS 키</span><br>
+          1. <span style="color:#93c5fd;">console.cloud.google.com</span> 접속<br>
+          2. Cloud Text-to-Speech API 사용 설정<br>
+          3. 사용자 인증 정보 → API 키 만들기 → <span style="color:#a7f3d0;">AIzaSy...</span> 복사
+        </div>
+      </div>
+
+      <div style="background:#131b2e;border:1px solid rgba(255,255,255,0.07);border-radius:18px;padding:16px;">
+        <div style="font-size:20px;font-weight:700;color:#c8d5ee;margin-bottom:8px;">💰 요금 안내</div>
+        <div style="font-size:19px;color:#8899bb;line-height:1.8;">
+          · Claude 신규 가입 시 <span style="color:#6ee7b7;">$5 무료 크레딧</span> 제공<br>
+          · Google TTS 월 <span style="color:#6ee7b7;">100만 자 무료</span> (Wavenet 기준 100만 자 $16)<br>
+          · 개인 사용 수준에서 실질적으로 <span style="color:#6ee7b7;">무료</span>에 가까워요
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── API 키 (앱 설정 탭에서 입력 → localStorage 저장) ──
+let apiKey = 'sk-ant-여기에키입력';
+let googleTtsKey = localStorage.getItem('buddyGoogleTtsKey') || '';
+
+function saveApiKey() {
+  const val = document.getElementById('apiKeyInput').value.trim();
+  if(!val) { showApiKeyStatus('❌ 키를 입력해 주세요.', '#fda4af'); return; }
+  if(!val.startsWith('sk-ant-')) { showApiKeyStatus('❌ 형식이 맞지 않아요. sk-ant-로 시작해야 해요.', '#fda4af'); return; }
+  apiKey = val;
+  localStorage.setItem('buddyApiKey', apiKey);
+  showApiKeyStatus('✅ 저장 완료! AI 기능을 사용할 수 있어요.', '#6ee7b7');
+}
+
+function saveGoogleTtsKey() {
+  const val = document.getElementById('googleTtsKeyInput').value.trim();
+  if(!val) { showGoogleTtsStatus('❌ 키를 입력해 주세요.', '#fda4af'); return; }
+  if(!val.startsWith('AIza')) { showGoogleTtsStatus('❌ 형식이 맞지 않아요. AIzaSy...로 시작해야 해요.', '#fda4af'); return; }
+  googleTtsKey = val;
+  localStorage.setItem('buddyGoogleTtsKey', googleTtsKey);
+  showGoogleTtsStatus('✅ 저장 완료! 자연스러운 음성이 활성화됐어요.', '#6ee7b7');
+}
+
+function showApiKeyStatus(msg, color) {
+  const el = document.getElementById('apiKeyStatus');
+  if(el){ el.textContent = msg; el.style.color = color; setTimeout(()=>{ el.textContent = apiKey ? '✅ API 키가 저장되어 있어요.' : ''; el.style.color='#6ee7b7'; }, 3000); }
+}
+
+function showGoogleTtsStatus(msg, color) {
+  const el = document.getElementById('googleTtsKeyStatus');
+  if(el){ el.textContent = msg; el.style.color = color; setTimeout(()=>{ el.textContent = googleTtsKey ? '✅ Google TTS 키가 저장되어 있어요.' : '키가 없으면 브라우저 기본 음성으로 재생돼요.'; el.style.color = googleTtsKey ? '#6ee7b7' : '#8899bb'; }, 3000); }
+}
+
+// 페이지 로드 시 저장된 키 표시
+window.addEventListener('DOMContentLoaded', ()=>{
+  const inp = document.getElementById('apiKeyInput');
+  if(inp && apiKey) { inp.value = apiKey; showApiKeyStatus('✅ API 키가 저장되어 있어요.', '#6ee7b7'); }
+  const gInp = document.getElementById('googleTtsKeyInput');
+  if(gInp && googleTtsKey) { gInp.value = googleTtsKey; showGoogleTtsStatus('✅ Google TTS 키가 저장되어 있어요.', '#6ee7b7'); }
+  else if(gInp) { showGoogleTtsStatus('키가 없으면 브라우저 기본 음성으로 재생돼요.', '#8899bb'); }
+});
+
+// ── AI ──────────────────────────────────────────────────
+const BUDDY_SYS=`당신은 "버디(BUDDY)"라는 대구 시내버스 기사 전용 AI 어시스턴트입니다.
+핵심 역할: 버스 기사님의 든든한 동료. 짧고 실용적이며 따뜻하게.
+잘 아는 분야: 대구 교통 혼잡 구간(동대구역,서문시장 사거리,달구벌대로,수성못,범어네거리), 버스 기사 노동법·교통법규, 허리·어깨 스트레칭 루틴, 승객 갈등 대응(항의,취객,어르신,외국인), 교대 근무 수면·건강 관리, 세금 환급·저축 플랜, 접촉사고 처리·차내 응급 상황.
+롤플레이 요청 시 완전히 그 캐릭터에 몰입하고 [코치] 팁도 제공. 응답은 이모지 포함, 핵심만, 2~4문장 이내.`;
+
+const TF_SYS=`당신은 대구 시내버스 기사를 위한 교통상황 분석 전문가입니다.
+노선과 시간대를 입력받아 아래 형식으로 정확하게 응답하세요.
+
+응답 형식 (반드시 이 구조로):
+🚦 현재 구간별 상황
+• [구간명]: 🔴정체 / 🟡서행 / 🟢원활 — 간략한 이유
+(3~5개 구간)
+
+⏱️ 예상 추가 소요시간: X~Y분 (시간대 요인 명시)
+
+💡 기사님 팁: (실용적인 대처 한 줄)
+
+⚠️ 주의구간: (가장 조심해야 할 곳 한 곳)
+
+대구 실제 패턴 반영: 출퇴근(7-9시, 17-20시)은 동대구역·달구벌대로·수성못 심각 정체, 점심(11-13시)은 서문시장·동성로 혼잡, 그 외 시간은 전반적 원활.`;
+
+const MSG_SYS=`대구 버스 기사가 운전 중 아내에게 보내는 짧은 음성 메시지를 자연스럽게 다듬어 줍니다.
+원래 의미 유지, 2~3문장 이내, 이모지 1~2개 추가.
+JSON으로만 응답(preamble 없이): {"refined":"정리된 메시지"}`;
+
+async function ai(sys, msgs, model="claude-haiku-4-5-20251001") {
+  if(!apiKey) throw new Error('API 키가 설정되지 않았습니다. ⚙️ 설정 탭에서 키를 입력해 주세요.');
+  const timeout = new Promise((_, reject) =>
+    setTimeout(() => reject(new Error('응답 시간 초과 (30초). 다시 시도해 주세요.')), 30000)
+  );
+  const fetchPromise = fetch("https://api.anthropic.com/v1/messages", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "x-api-key": apiKey,
+      "anthropic-version": "2023-06-01",
+      "anthropic-dangerous-direct-browser-access": "true"
+    },
+    body: JSON.stringify({
+      model: model,
+      max_tokens: 1000,
+      system: sys,
+      messages: msgs
+    })
+  });
+  const r = await Promise.race([fetchPromise, timeout]);
+  if(!r.ok){ const e=await r.json().catch(()=>({})); throw new Error(e?.error?.message||`HTTP ${r.status}`); }
+  const d = await r.json();
+  return d.content?.[0]?.text || "";
+}
+
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+
+// ── TABS ──────────────────────────────────────────────
+document.querySelectorAll(".tab-btn").forEach(b=>{
+  b.addEventListener("click",()=>{
+    document.querySelectorAll(".tab-btn").forEach(x=>x.classList.remove("active"));
+    b.classList.add("active");
+    document.querySelectorAll(".tab-panel").forEach(x=>x.classList.remove("active"));
+    document.getElementById("panel-"+b.dataset.tab).classList.add("active");
+  });
+});
+
+// ── TAB 1: INFO GUIDE ─────────────────────────────────
+const TIP_SCRIPTS=[
+  [
+    `접촉사고가 생기면 당황하지 마시고 이 순서 꼭 기억하세요. 제일 먼저 비상등 켜고 안전한 곳에 차 세우세요. 그 다음 부상자 있는지 확인하고 119 신고. 스마트폰으로 현장 사진 전방위로 찍어두세요. 이게 보험 처리에서 정말 결정적이에요. 목격자 연락처도 챙기시고요. 절대로 그 자리에서 상대방과 합의하시면 안 돼요. 반드시 회사랑 보험사에 먼저 알리셔야 해요.`,
+    `차 안에서 승객이 쓰러지면 즉시 정차하고 비상등 켜고 119 신고부터 하세요. 주변 승객한테 도움도 요청하시고요. 어깨 두드리며 괜찮으세요 하고 의식 확인해보시고, 숨을 안 쉬면 CPR 시작하세요. 분당 백 회 흉부 압박이에요. AED는 터미널이나 환승센터에 있으니 기억해두세요. 절대로 혼자 승객을 차 밖으로 이동시키시면 안 돼요.`,
+    `차에서 연기나 불이 나면 즉시 갓길에 세우고 엔진 끄세요. 모든 문 열고 승객 하차 유도하시고요. 소화기는 운전석 좌측 하단에 있어요. 초기 화재면 진압 시도해보시되 불이 번지면 즉시 대피하셔야 해요. 119 신고하고 회사 무전도 꼭 하세요.`,
+    `취객이나 난동 승객 만나면 목소리 낮추고 제가 도와드릴게요 하고 공감부터 하세요. 절대 자극하시면 안 돼요. 다음 정류장에 세우시고 심한 경우엔 112 신고하세요. 신체 접촉은 절대 하시면 안 돼요. 나중에 법적 분쟁으로 이어질 수 있어요.`,
+  ],
+  [
+    `종점 도착하면 딱 5분만 투자해보세요. 목 좌우로 천천히 기울이기 다섯 번씩, 어깨 크게 돌리기 앞뒤 열 번, 양팔 뒤로 깍지 끼고 가슴 쫙 펴서 3초 유지 다섯 번. 허리는 등받이 잡고 좌우로 비틀기 열 번, 발목 양쪽 열 번씩 돌려주세요. 하지 정맥류 예방에 정말 좋아요. 이게 쌓이면 10년 후가 달라져요.`,
+    `운전 자세 한번 점검해보세요. 허리를 등받이에 완전히 붙이시고 엉덩이 깊숙이 밀착해서 앉으세요. 핸들은 팔꿈치가 약간 굽혀지는 거리가 맞아요. 발은 페달 밟을 때 무릎이 살짝 굽혀지는 위치에 두시고요. 허리 쿠션 받침대 하나 쓰시면 확실히 달라져요. 강력 추천드려요.`,
+    `교대 근무하시면 잠이 제일 문제잖아요. 퇴근하고 나서 강한 빛은 차단하세요. 주무시기 한 시간 전에는 핸드폰 멀리 두시고요. 아침에 일어나면 15분 햇빛 쬐시면 생체리듬이 리셋돼요. 낮잠은 30분 이내로 제한하시고 카페인은 주무시기 6시간 전부터 끊으세요.`,
+    `운전하다 보면 눈도 많이 피로해지죠. 신호 볼 때 의식적으로 자주 깜빡여주세요. 터널 들어갈 때 눈 비비시면 안 돼요. 낮 운행에는 선글라스 꼭 쓰세요. 종점마다 멀리 보기 1분만 해도 눈 근육이 많이 풀려요.`,
+  ],
+  [
+    `하루 운전 가능 시간은 최대 아홉 시간이에요. 네 시간 연속 운전하면 삼십 분 이상 반드시 쉬셔야 해요, 법으로 정해진 거예요. 여덟 시간 넘으면 통상임금 오십 퍼센트 가산이고요. 야간 근무도 마찬가지예요. 회사에서 이걸 어기면 고용노동부 1350에 신고하실 수 있어요.`,
+    `정류장 아닌 곳에서 승객이 내려달라고 해도 절대 안 돼요. 과태료가 기사님한테 나와요. 신호 위반하면 벌점 열다섯 점에 범칙금 칠만원이에요. 어린이보호구역에서는 무조건 삼십 킬로 지켜야 하고 사고 나면 형사처벌까지 받을 수 있어요. 운행 중 핸드폰 사용도 범칙금 칠만원이에요.`,
+    `승객한테 폭언이나 폭행 당하면 증거 먼저 확보하시고 경찰 신고하세요. 회사에서 과로운전 지시하면 노동조합이나 고용노동부에 신고하실 수 있어요. 운전 중 다치시면 산업재해 대상이에요. 대구시 버스 민원은 053-120이에요.`,
+    `1년 이상 일하셨으면 퇴직금 받으실 수 있어요. 퇴직하시면 14일 이내에 정산 요구할 수 있고요. 건강보험료 많이 내신 분들은 연말정산 때 환급받으실 수 있어요. 퇴직연금 가입 여부도 회사에 꼭 확인해보세요.`,
+  ],
+  [
+    `요금 때문에 따지는 승객 만나면 이 세 단계만 기억하세요. 고객님 저도 도와드리고 싶은데 규정상 제가 임의로 처리할 수가 없어요. 회사 고객센터에 말씀하시면 바로 해결해 드린다고 안내해주세요. 공감하고 절차 안내하고 연락처 드리는 거예요. 목소리 낮추고 차분하게 하시는 게 제일 중요해요.`,
+    `어르신 승객은 완전히 자리 잡으실 때까지 절대 출발하시면 안 돼요. 어르신 자리 잡으셨나요 방송 한 번 해주시는 습관만 들여도 민원이 확 줄어요. 보청기 착용하신 분들한테는 조금 더 크게 천천히 말씀해주시고요. 죄송합니다 한 마디가 민원의 구십 퍼센트를 막아줘요.`,
+    `외국인 승객 만나면 This bus goes to, Please transfer at 이 두 문장만 알아도 돼요. 스마트폰 구글 번역 앱 카메라 기능 쓰시면 외국어 표지판도 즉석 번역돼요. 대구 버스 앱에 영문 노선도도 있으니 활용해보세요.`,
+    `하루 종일 운전하고 나서 감정이 쌓이면 그날 털어내셔야 해요. 종점에 도착하면 차 안에서 2분만 심호흡하세요. 4초 들이쉬고 4초 내쉬고요. 오늘 잘한 일 한 가지만 떠올려보세요. 퇴근 후 30분 걷기가 스트레스 호르몬을 진짜로 줄여줘요. 너무 힘드시면 버디 AI 상담탭에 털어놓으세요.`,
+  ],
+  [
+    `세금 환급 꼭 챙기세요. 삼쩜삼 앱 설치하시고 로그인만 하면 자동으로 얼마 돌려받을 수 있는지 나와요. 5분이면 돼요. 연말정산 때 교통비 통신비 의료비 빠짐없이 신고하시고요. 평균적으로 연 오십에서 팔십만원씩 안 찾아간 세금이 있어요. 오늘 삼쩜삼 앱 하나만 설치해보세요.`,
+    `월급 받는 날 바로 자동이체로 먼저 저축부터 해두세요. 남은 돈으로 생활하는 강제 저축이 제일 잘 돼요. 비상금 통장 따로 만들어두시고 월급 석 달치 쌓아두세요. 퇴직연금 추가 납입하시면 세액공제 16.5퍼센트 받으실 수 있어요. ISA 계좌도 5년 후 비과세 혜택 있으니 알아보세요.`,
+    `개인 차량 있으시면 대중교통비 신용카드 공제 활용하세요. 업무용 차량 유류비는 회사 부담이 원칙이에요. 스마트폰 요금 회사 지원 여부도 한번 확인해보시고요. 카드 포인트도 현금화하시면 연에 3만원에서 5만원 추가 수입이 생겨요.`,
+    `국민연금 예상 수령액은 내 연금 알아보기 앱으로 지금 확인하실 수 있어요. 퇴직연금에 개인연금까지 더하면 3층 연금 구조가 완성돼요. 55세 이후 조기 수령하시면 금액이 줄어드니 주의하세요. 배우자 연금 수급 여부도 함께 확인해두세요.`,
+  ],
+  [
+    `카카오맵 즐겨찾기에 노선 주요 우회로 미리 저장해두세요. 날씨 앱 알림 설정하시면 비나 눈 오기 두 시간 전에 미리 알 수 있어요. 구글 포토 켜두시면 사고 현장 사진 자동 백업돼요. 대구 버스 앱으로 실시간 배차 노선 변경 민원 접수도 한 번에 할 수 있어요.`,
+    `이 버디 앱 AI 상담탭 적극 활용해보세요. 24시간 언제든 털어놓을 수 있어요. ChatGPT에 시내버스 기사 스트레칭 루틴 요청하면 맞춤으로 만들어줘요. AI로 민원 답변 초안도 작성할 수 있고 외국인 승객 안내문도 5초면 번역할 수 있어요.`,
+    `자율주행이 기사님을 완전히 대체하는 건 2030년대에도 어렵다고 전문가들이 봐요. 변수가 너무 많거든요. 오히려 자율주행 모니터링이나 관제 분야 새 직군이 생길 거예요. 클래스101이나 유튜브 무료 강의로 디지털 공부하시면 변화에 훨씬 잘 적응하실 수 있어요.`,
+    `대구 도로 수십 년 노하우를 유튜브나 블로그 콘텐츠로 만들어보시는 건 어떨까요. 신입 기사 멘토링 프로그램 참여하시면 부수입도 생기고 보람도 있어요. 지역 카페나 밴드에서 기사님들끼리 정보 교류하시는 것도 큰 힘이 돼요. 동서님 이야기가 누군가한테 정말 큰 힘이 될 수 있어요.`,
+  ],
+];
+
+const CARDS=[
+  {
+    ic:"🚨",cl:"#f43f5e",bg:"rgba(244,63,94,0.15)",
+    t:"사고·위기 상황 대처 매뉴얼",
+    s:"접촉사고부터 차내 응급까지 — 단계별 행동 요령",
+    apps:["대구 버스조합 긴급연락","보험사 긴급출동","119","112"],
+    script:`동서님, 이건 정말 꼭 알아두셔야 하는 얘기예요. 운전하다 보면 언제 어떤 상황이 생길지 모르잖아요. 미리 머릿속에 넣어두면 막상 그 순간에 당황하지 않을 수 있어요.
+
+접촉사고가 생기면 제일 먼저 비상등부터 켜세요. 그리고 안전한 곳에 차를 세운 다음, 부상자가 있는지 먼저 확인하고 119에 신고해야 해요. 이때 스마트폰으로 현장 사진을 꼭 찍어두세요. 전방위로 여러 장. 이게 나중에 보험 처리할 때 정말 결정적인 역할을 해요. 그리고 목격자 연락처도 챙겨두시고요. 한 가지 절대로 하면 안 되는 게 있어요. 상대방과 그 자리에서 임의로 합의하는 거예요. 반드시 회사랑 보험사에 먼저 알린 뒤에 처리하셔야 해요.
+
+차 안에서 승객이 갑자기 쓰러지면, 즉시 정차하고 비상등 켜고 119 신고부터 하세요. 주변 승객한테도 도움을 요청하시고요. 의식이 없어 보이면 어깨를 두드리며 괜찮으세요 하고 확인해보시고, 숨을 안 쉬면 CPR을 시작하셔야 해요. 분당 100회 정도 흉부 압박이에요. AED는 터미널이나 환승센터에 있으니 기억해두세요.
+
+블랙박스 영상은 사고 직후 반드시 따로 저장해 두세요. 덮어쓰이면 복구가 어려워요. 동서님, 이 내용 꼭 한 번 더 읽어두시고요. 만약의 상황에 동서님을 지켜주는 정보예요.`,
+    tips:[
+      {m:"접촉사고 발생 즉시 대처",d:"① 비상등 켜고 안전한 곳 정차 ② 부상자 확인 후 119 먼저 ③ 스마트폰으로 현장·손상 부위 사진 촬영(전방위) ④ 목격자 연락처 확보 ⑤ 상대방과 임의 합의 절대 금지 — 반드시 회사·보험사 통보 후 처리"},
+      {m:"차내 승객 쓰러짐·응급",d:"① 즉시 정차 후 비상등 ② 119 신고 & 주변 승객에게 도움 요청 ③ 의식 확인: 어깨 두드리며 '괜찮으세요?' ④ 무호흡이면 CPR 시작(분당 100회 압박) ⑤ AED는 터미널·환승센터 비치 ⑥ 절대 혼자 차 밖으로 이동 안 됨"},
+      {m:"화재·연기 발생",d:"① 즉시 갓길 정차 후 엔진 정지 ② 모든 문 열고 승객 하차 유도 ③ 소화기 위치: 운전석 좌측 하단 ④ 초기 화재만 진압 시도, 확산 시 즉시 대피 ⑤ 대구 버스 화재 신고: 119 + 회사 무전"},
+      {m:"취객·난동 승객 대응",d:"① 목소리 낮추고 '제가 도와드릴게요' 공감 접근 ② 절대 자극하지 말고 다음 정류장 정차 ③ 심한 경우 112 신고 + 종점 안내 방송 ④ 대화 시도 실패 시 다른 승객에게 협조 요청 ⑤ 신체 접촉 절대 금지 — 법적 분쟁 방지"},
+    ],
+    dg:"교통사고 처리 시 '현장 보존'이 핵심입니다. 사진만 잘 찍어도 보험 처리가 훨씬 쉬워져요. 블랙박스 영상은 반드시 따로 저장하세요."
+  },
+  {
+    ic:"💪",cl:"#10b981",bg:"rgba(16,185,129,0.15)",
+    t:"허리·어깨·목 건강 지키기",
+    s:"버스 기사님 맞춤 스트레칭 & 직업병 예방",
+    apps:["Samsung Health","네이버 건강","유튜브 스트레칭","정형외과 예약앱"],
+    script:`동서님, 저도 오래 운전하다 보니까 허리가 제일 먼저 망가지더라고요. 이거 나중에 후회하면 소용없어요. 지금 조금만 신경 쓰면 10년 뒤가 완전히 달라져요.
+
+종점에 도착해서 5분만 시간 내보세요. 목을 좌우로 천천히 기울이기 다섯 번씩, 어깨 크게 돌리기 앞뒤로 열 번, 그리고 양팔 뒤로 깍지 끼고 가슴 쫙 펴서 3초 유지 다섯 번. 허리도 등받이 잡고 좌우로 비틀어주시고요. 발목도 양쪽 열 번씩 돌려주세요. 이게 하지 정맥류 예방에 정말 좋아요.
+
+운전 자세도 중요해요. 허리를 등받이에 완전히 붙이고 엉덩이를 깊숙이 밀착해서 앉으세요. 허리 쿠션 받침대 하나 쓰시면 확실히 달라요. 강력 추천드려요.
+
+교대 근무라 잠을 제대로 못 주무시는 분들 많잖아요. 퇴근하고 나서 강한 빛은 차단하시고, 주무시기 한 시간 전에는 핸드폰을 멀리 두세요. 카페인은 주무시기 여섯 시간 전부터는 끊으셔야 해요.
+
+동서님 몸이 제일 소중한 재산이에요. 버스는 회사 거지만 몸은 동서님 거잖아요. 오늘 종점에서 딱 5분만 투자해 보세요.`,
+    tips:[
+      {m:"종점 대기 5분 스트레칭 루틴",d:"① 목 좌우 천천히 기울이기 5회씩 ② 어깨 크게 돌리기 앞뒤 10회 ③ 가슴 쫙 펴고 양팔 뒤로 깍지 끼어 3초 유지×5 ④ 허리 좌우 비틀기 10회 (등받이 잡고) ⑤ 발목 돌리기 양쪽 10회 — 하지 정맥류 예방"},
+      {m:"허리 디스크 예방 운전자세",d:"① 등받이에 허리 완전히 붙이기 ② 시트와 엉덩이 깊숙이 밀착 ③ 핸들까지 팔꿈치 약간 굽히는 거리 ④ 발은 페달 밟을 때 무릎이 약간 굽혀지는 위치 ⑤ 쿠션 허리 받침대 사용 강력 추천"},
+      {m:"교대 근무 수면 전략",d:"① 퇴근 후 강한 빛 차단 (선글라스·암막커튼) ② 수면 전 핸드폰 1시간 전 멀리 ③ 기상 후 15분 햇빛 쬐기 — 생체리듬 리셋 ④ 낮잠은 30분 이내로 제한 ⑤ 카페인은 수면 6시간 전 이후 금지"},
+      {m:"눈의 피로 & 두통 예방",d:"① 전방 신호·표지판 볼 때 눈 잠깐 깜빡이기 의식적으로 ② 터널 진출입 시 눈 비비지 말고 천천히 깜빡임 ③ 선글라스로 자외선·눈부심 차단 (낮 운행 필수) ④ 종점마다 멀리 보기 1분 — 눈 근육 이완"},
+    ],
+    dg:"버스 기사님의 평균 근속 연수는 15년 이상. 허리와 무릎은 나중에 돈 주고도 못 사요. 지금 5분 스트레칭이 10년 후를 바꿉니다!"
+  },
+  {
+    ic:"⚖️",cl:"#a78bfa",bg:"rgba(167,139,250,0.15)",
+    t:"노동법·교통법규 핵심 정리",
+    s:"알아야 지킬 수 있는 권리와 의무",
+    apps:["고용노동부 앱","노동OK","도로교통공단","민원24"],
+    script:`동서님, 이거 모르면 진짜 손해예요. 내 권리를 내가 알아야 지킬 수 있거든요. 불합리한 일이 생겨도 법을 모르면 그냥 참고 넘어가게 되더라고요.
+
+먼저 근로시간 얘기부터 할게요. 하루에 운전할 수 있는 시간은 최대 아홉 시간이에요. 네 시간 연속 운전하면 반드시 삼십 분 이상 쉬어야 해요, 이건 법으로 정해진 거예요. 여덟 시간 넘어가면 연장근로라서 통상임금의 오십 퍼센트를 더 받아야 하고, 밤 열시에서 새벽 여섯시 사이 야간 근무도 마찬가지예요. 만약 회사에서 이걸 어기면 고용노동부에 신고할 수 있어요.
+
+교통법규도 꼭 알아두셔야 해요. 정류장 아닌 곳에서 승객이 내려달라고 해도 절대 안 돼요. 과태료가 기사님한테 나와요. 어린이보호구역에서는 무조건 삼십 킬로 지켜야 하고요. 사고 나면 형사처벌까지 받을 수 있어요.
+
+억울한 일이 생기면 참지 마시고요. 노동부 전화번호 1350이에요. 전화 한 통으로 무료 상담받을 수 있어요. 동서님 권리 꼭 챙기세요.`,
+    tips:[
+      {m:"버스 기사 근로시간 법정 기준",d:"① 1일 운전 가능 시간: 최대 9시간 (연장 시 합의 필요) ② 4시간 연속 운전 후 30분 이상 휴식 의무 ③ 1일 8시간 초과 = 연장근로 → 통상임금 50% 가산 ④ 야간 근무(22시~06시) 50% 가산 ⑤ 무단 초과 운전 지시 시 고용노동부 신고 가능"},
+      {m:"교통법규 — 버스 운전 특별 주의",d:"① 정류장 외 승하차: 승객 요구해도 불가 (과태료 기사 귀책) ② 신호 위반: 점수 15점 + 범칙금 7만원 ③ 버스전용차로 위반 승용차: 신고 가능 (공익신고) ④ 어린이보호구역 30km 엄수 — 사고 시 형사처벌 ⑤ 운행 중 휴대폰 사용: 범칙금 7만원 + 점수 15점"},
+      {m:"부당대우·갑질 대응 방법",d:"① 승객 폭언·폭행: 증거 확보 후 경찰 신고 (기사 보호 의무 있음) ② 회사의 부당지시(과로운전 등): 노동조합 또는 고용노동부 신고 ③ 산재 신고: 운전 중 부상은 산업재해 대상 ④ 대구시 버스 민원: 053-120 (대구시 콜센터)"},
+      {m:"퇴직금·4대보험 챙기기",d:"① 계속 근로 1년 이상 = 퇴직금 의무 발생 ② 퇴직 시 14일 이내 정산 요구 가능 ③ 건강보험료 과다 납부 시 연말정산 환급 대상 ④ 고용보험 가입 = 실업급여 수급 가능 ⑤ 퇴직연금(DC/DB형) 가입 여부 회사에 확인"},
+    ],
+    dg:"모르면 당하는 법이에요. 하나씩 읽어두면 내 권리를 지킬 수 있어요. 억울한 일 생기면 참지 말고 상담받으세요! 노동부 1350"
+  },
+  {
+    ic:"💬",cl:"#60a5fa",bg:"rgba(96,165,250,0.15)",
+    t:"승객 갈등 & 감정 대처법",
+    s:"20년 베테랑도 어려운 상황, AI가 미리 연습해드려요",
+    apps:["버디 AI상담탭","마음이음 (심리상담)","마보 (명상앱)","정신건강위기상담 1577-0199"],
+    script:`동서님, 하루에 수백 명 만나다 보면 진짜 별의별 분들이 다 계시잖아요. 그게 제일 힘들더라고요. 몸이 힘든 것보다 마음이 더 지칠 때가 많아요.
+
+요금 때문에 따지는 승객 만나면, 목소리 낮추고 고객님 저도 도와드리고 싶은데 규정상 제가 임의로 처리할 수가 없어요, 회사 고객센터에 말씀하시면 바로 해결해 드린다고 안내해 주세요. 공감하고 절차 안내하고 연락처 드리는 이 세 단계만 기억하시면 돼요.
+
+어르신 승객은 완전히 자리 잡으실 때까지 절대 출발하시면 안 돼요. 어르신 자리 잡으셨나요 하고 방송 한 번 해주시는 습관만 들여도 민원이 확 줄어요.
+
+그리고 동서님, 힘든 감정은 그날 털어내셔야 해요. 종점 도착하면 차 안에서 2분만 심호흡해보세요. 4초 들이쉬고 4초 내쉬고. 퇴근 후 30분 걷기도 스트레스 호르몬이 진짜로 줄어요. 너무 힘드실 때는 버디 AI 상담탭에 털어놓으세요. 판단 없이 다 들어줄게요.
+
+동서님이 매일 만나는 분들이 대구 시민 수백 명이에요. 그분들을 안전하게 모시는 일, 정말 대단한 거예요.`,
+    tips:[
+      {m:"요금 분쟁 승객 대응 스크립트",d:"'고객님, 저도 도와드리고 싶어요. 규정상 제가 임의로 처리할 수 없고, 회사 고객센터(053-○○○○)로 문의해 주시면 바로 해결해 드립니다.' → 공감 → 절차 안내 → 핫라인 제공의 3단계"},
+      {m:"어르신 승객 배려 요령",d:"① 정류장 완전 정차 후 안전 확인 전까지 출발 금지 ② '어르신, 자리 잡으셨나요?' 방송 습관화 ③ 저상버스 경사판 작동 익히기 ④ 보청기 착용자엔 조금 더 크게, 천천히 ⑤ '죄송합니다' 한 마디가 민원 90%를 막아요"},
+      {m:"외국인 승객 필수 영어 안내",d:"'This bus goes to [목적지]. / Please transfer at [환승지].' / 스마트폰 Google 번역 앱 → 카메라 번역 기능으로 외국어 간판·표지 즉석 번역 가능 / 대구 외국인 관광 안내 영문 노선도 앱 '대구 버스' 제공"},
+      {m:"힘든 감정 털어내는 루틴",d:"① 종점 도착 후 차 안에서 2분 심호흡 (4초 들숨-4초 날숨) ② 오늘 가장 잘한 일 한 가지 떠올리기 ③ '저 승객도 힘든 하루였겠지' 리프레이밍 ④ 퇴근 후 30분 걷기 — 스트레스 호르몬 70% 감소 ⑤ AI 상담탭에 털어놓기 — 판단 없이 들어줘요"},
+    ],
+    dg:"대구 시내버스 하루 이용객 약 30만 명. 기사님 한 분이 하루에 만나는 분들이 수백 명이에요. 이 많은 분들을 안전하게 모시는 일, 정말 대단한 거예요."
+  },
+  {
+    ic:"💰",cl:"#fbbf24",bg:"rgba(251,191,36,0.15)",
+    t:"재무·세금·저축 실전 가이드",
+    s:"버스 기사님도 세금 환급 받고 목돈 만들 수 있어요",
+    apps:["삼쩜삼 (세금환급)","뱅크샐러드","토스","국세청 홈택스"],
+    script:`동서님, 혹시 세금 환급 받아보신 적 있어요? 모르고 그냥 넘어가는 분들이 엄청 많은데, 평균적으로 연 오십에서 팔십만원씩 안 찾아간 세금이 있어요. 삼쩜삼 앱 설치하시고 로그인만 하면 자동으로 얼마 돌려받을 수 있는지 바로 나와요. 5분이면 돼요.
+
+저축도 방법이 있어요. 월급 받는 날 바로 자동이체로 먼저 저축부터 해두세요. 남은 돈으로 생활하는 강제 저축 방식이 제일 잘 돼요. 비상금 통장도 따로 만들어두시고, 월급 석 달치 정도는 거기 쌓아두세요. 갑자기 차 수리비나 병원비 생겨도 당황 안 해도 되거든요.
+
+퇴직연금 추가 납입하시면 세액공제도 받을 수 있어요. 16.5퍼센트나 돌려받을 수 있어서 진짜 남는 장사예요. ISA 계좌도 한번 알아보세요. 5년 후에 비과세 혜택이 있어요.
+
+동서님, 열심히 일한 만큼 내 돈 꼭 챙기셔야 해요. 오늘 삼쩜삼 앱 하나만 설치해보세요.`,
+    tips:[
+      {m:"버스 기사 세금 환급 방법",d:"① 삼쩜삼 앱 설치 → 공인인증서 로그인 → 자동 환급액 계산 ② 근로소득세 연말정산 시 교통비·통신비·의료비 빠짐없이 신고 ③ 대중교통 이용 시 신용카드 공제 최대 80만원 ④ 본인·배우자·부양가족 인적공제 꼼꼼히 체크 ⑤ 평균 환급액: 직장인 기준 연 50~80만원"},
+      {m:"교대 근무자 맞춤 저축 전략",d:"① 월급 받는 날 자동이체로 먼저 저축 (강제 저축) ② 비상금 통장 별도 운영: 최소 월급 3개월치 ③ 퇴직연금 추가 납입 → 세액공제 16.5% ④ ISA 계좌: 5년 후 비과세 혜택 (연 2천만원 한도) ⑤ 사학·공무원 아니어도 개인연금 가입 가능"},
+      {m:"차량 관련 비용 절감 팁",d:"① 개인 차량 있다면 대중교통비 신용카드 공제 활용 ② 업무용 차량 유류비는 회사 부담이 원칙 ③ 스마트폰 요금 회사 지원 여부 확인 ④ 직장인 우대 금리 대출 활용 (신용대출 vs 담보대출 비교) ⑤ 카드 포인트 현금화 — 연 3~5만원 추가 수입"},
+      {m:"노후 준비 — 지금 시작하면 늦지 않아요",d:"① 국민연금 예상 수령액 확인: '내 연금 알아보기' 앱 ② 퇴직연금 + 개인연금 = 3층 연금 구조 완성 ③ 55세 이후 국민연금 조기 수령 시 감액 주의 ④ 노후 준비 부족하면 버스 기사 재취업도 방법 ⑤ 배우자 연금 수급 여부도 함께 확인"},
+    ],
+    dg:"삼쩜삼 앱으로 지금 당장 내 환급액 확인해보세요. 5분이면 돼요. 평균 수십만원씩 안 찾아간 세금이 있을 수 있어요!"
+  },
+  {
+    ic:"🚀",cl:"#14b8a6",bg:"rgba(20,184,166,0.15)",
+    t:"디지털 도구 & 미래 준비",
+    s:"AI 시대에도 경험 많은 기사님이 답입니다",
+    apps:["ChatGPT","Claude AI","YouTube","카카오맵"],
+    script:`동서님, AI 시대라고 해서 걱정되시는 분들 많은데요. 솔직히 말씀드리면 자율주행 버스가 기사님을 완전히 대체하는 건 2030년대에도 어렵다고 전문가들이 봐요. 변수가 너무 많거든요. 대구 도로 구석구석 아는 기사님의 경험과 판단력, 그건 AI가 절대 따라올 수 없어요.
+
+오히려 스마트폰이랑 앱을 잘 활용하시면 일이 훨씬 편해져요. 카카오맵 즐겨찾기에 노선 우회로 미리 저장해두시고, 날씨 앱 알림 설정해두시면 비나 눈 오기 두 시간 전에 미리 알 수 있어요. 구글 포토 켜두시면 사고 현장 사진이 자동으로 백업돼서 나중에 찾기도 쉬워요.
+
+이 버디 앱 AI 상담탭도 활용해보세요. 힘든 일 있을 때 24시간 언제든 털어놓을 수 있어요. 판단 없이 들어줘요.
+
+동서님, 기술이 아무리 발전해도 수십 년간 대구 시민을 안전하게 모셔온 경험과 책임감은 대체할 수 없어요. 자랑스러운 일 하고 계신 거 잊지 마세요.`,
+    tips:[
+      {m:"스마트폰으로 업무 효율 올리기",d:"① 카카오맵 즐겨찾기에 노선 주요 우회로 저장 ② 날씨앱 알림 설정 — 비·눈 예보 2시간 전 미리 확인 ③ 대구 버스 앱: 실시간 배차·노선 변경·민원 접수 한 번에 ④ 티맵 버스 모드: 버스 전용 경로·정류장 정보 제공 ⑤ 구글 포토: 사고 현장 자동 백업 & 날짜별 정리"},
+      {m:"AI를 동료처럼 활용하기",d:"① 이 앱(버디)의 AI 상담 탭: 24시간 언제든 털어놓기 가능 ② ChatGPT에 '시내버스 기사 스트레칭 루틴' 요청 → 맞춤 제작 ③ AI로 민원 답변 초안 작성 → 직접 수정해서 사용 ④ 신입 기사 교육자료도 AI로 쉽게 만들 수 있어요 ⑤ 언어 장벽 없는 번역: 외국인 승객 안내문 5초 제작"},
+      {m:"자율주행 시대 — 두려움 대신 기회로",d:"① 자율주행 버스는 2030년대에도 '보조' 수준 예상 (완전 대체 아님) ② 기사님의 경험·판단력은 AI가 대체 불가능한 영역 ③ 자율주행 모니터링·관제 분야 새 직군 등장 예정 ④ 디지털 리터러시 향상 → 클래스101, 유튜브 무료 강의 활용 ⑤ 변화에 적응하는 사람이 결국 살아남아요"},
+      {m:"소중한 경험을 가치로 만들기",d:"① 대구 도로 20년 노하우 → 유튜브·블로그 콘텐츠로 ② 신입 기사 멘토링 프로그램 참여 → 부수입 + 보람 ③ 지역 커뮤니티(카페, 밴드)에서 정보 교류 ④ 버스기사 협동조합, 사회적기업 참여 가능 ⑤ 내 이야기가 누군가에게 힘이 될 수 있어요"},
+    ],
+    dg:"기술이 아무리 발전해도 수십 년간 대구 시민을 안전하게 모셔온 기사님의 경험과 책임감은 대체할 수 없어요. 자랑스러운 일을 하고 계세요!"
+  }
+];
+
+// ── TTS ENGINE (Google Cloud TTS → MP3 재생, pause/resume 지원) ──
+const TTS_SYS=`당신은 대구 시내버스 기사님 곁에서 직접 이야기해주는 든든한 선배 동료입니다.
+
+말투와 태도: 경험 많은 선배가 후배에게 진심으로 조언해주는 따뜻하고 구체적인 말투. 기사님 또는 동서님이라고 부르며 진심 어린 공감부터 시작. 딱딱한 안내문이 아니라 실제 대화처럼, 살짝 걱정해주는 느낌으로. 현장에서 실제로 겪을 수 있는 상황 예시를 들어서 설명.
+
+구성: 도입부에서 이거 정말 중요한 얘기인데요 처럼 관심을 끌고, 핵심 내용은 번호 목록 대신 먼저, 그리고 꼭, 특히 이 부분은 처럼 자연스럽게 이어서 설명. 왜 중요한지 이유도 한 마디 덧붙이고, 대구 현장 상황에 맞는 구체적인 예시 포함. 마지막엔 진심 어린 격려 한 마디로 마무리.
+
+형식: 전체 500자에서 700자. 이모지 특수기호 마크다운 완전 제외. 순수 텍스트만.`;
+
+// 전역 TTS 상태
+let ttsState = {
+  audio: null,        // Google TTS → Audio 객체
+  isPaused: false,
+  isActive: false,
+  playBtn: null,
+  stopBtn: null,
+  progBar: null,
+  progTimer: null,
+  scriptCache: {}     // cardId → 생성된 스크립트 텍스트 캐시
+};
+
+function cleanTextForTTS(text){
+  return text
+    .replace(/[\u{1F300}-\u{1FFFF}]/gu, '')
+    .replace(/[①②③④⑤]/g, '')
+    .replace(/[•·]/g, '')
+    .replace(/\*\*/g, '')
+    .replace(/#+\s/g, '')
+    .replace(/\n+/g, ' ')
+    .trim();
+}
+
+function ttsSetUI(state){
+  const {playBtn, stopBtn, progBar} = ttsState;
+  if(!playBtn) return;
+  if(state === "idle"){
+    playBtn.className="tts-play-btn idle"; playBtn.innerHTML='🔊 음성으로 듣기';
+    if(stopBtn) stopBtn.className="tts-stop-btn";
+    if(progBar && progBar.parentElement){ progBar.parentElement.className="tts-prog"; progBar.style.width="0%"; }
+    if(ttsState.progTimer){ clearInterval(ttsState.progTimer); ttsState.progTimer=null; }
+  } else if(state === "loading"){
+    playBtn.className="tts-play-btn loading"; playBtn.innerHTML='⏳ AI 설명 생성 중...';
+  } else if(state === "tts-loading"){
+    playBtn.className="tts-play-btn loading"; playBtn.innerHTML='⏳ 음성 변환 중...';
+  } else if(state === "playing"){
+    playBtn.className="tts-play-btn playing"; playBtn.innerHTML='⏸ 일시정지';
+    if(stopBtn) stopBtn.className="tts-stop-btn show";
+    if(progBar && progBar.parentElement) progBar.parentElement.className="tts-prog show";
+  } else if(state === "paused"){
+    playBtn.className="tts-play-btn paused"; playBtn.innerHTML='▶ 이어 듣기';
+    if(stopBtn) stopBtn.className="tts-stop-btn show";
+  }
+}
+
+function ttsStartProgressTimer(){
+  if(ttsState.progTimer) clearInterval(ttsState.progTimer);
+  const audio = ttsState.audio;
+  if(!audio || !ttsState.progBar) return;
+  ttsState.progTimer = setInterval(()=>{
+    if(!ttsState.progBar || !audio.duration) return;
+    ttsState.progBar.style.width = (audio.currentTime / audio.duration * 100) + "%";
+  }, 200);
+}
+
+async function ttsPlayWithGoogle(text){
+  const clean = cleanTextForTTS(text);
+  ttsSetUI("tts-loading");
+  try {
+    const res = await fetch(
+      `https://texttospeech.googleapis.com/v1/text:synthesize?key=${googleTtsKey}`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          input: { text: clean },
+          voice: { languageCode: 'ko-KR', name: 'ko-KR-Wavenet-B', ssmlGender: 'MALE' },
+          audioConfig: { audioEncoding: 'MP3', speakingRate: 1.0, pitch: -1.0 }
+        })
+      }
+    );
+    if(!res.ok){ const err=await res.json(); throw new Error(err.error?.message||'Google TTS 오류'); }
+    const data = await res.json();
+    const audio = new Audio('data:audio/mp3;base64,' + data.audioContent);
+    ttsState.audio = audio;
+    ttsState.isActive = true;
+    ttsState.isPaused = false;
+    ttsSetUI("playing");
+    ttsStartProgressTimer();
+    audio.onended = ()=>{ ttsStop(); };
+    audio.onerror = ()=>{ ttsStop(); };
+    audio.play();
+  } catch(e) {
+    throw e;
+  }
+}
+
+function ttsPlayFallback(text){
+  // Google TTS 키 없을 때 브라우저 내장 TTS 사용
+  const sentences = text.split(/(?<=[.!?。！？다요까죠네군요]\s)/).map(s=>s.trim()).filter(Boolean);
+  let idx = 0;
+  ttsState.isActive = true; ttsState.isPaused = false;
+  ttsSetUI("playing");
+  const speak = (i)=>{
+    if(i >= sentences.length || ttsState.isPaused){ if(i>=sentences.length) ttsStop(); return; }
+    const utter = new SpeechSynthesisUtterance(sentences[i]);
+    utter.lang="ko-KR"; utter.rate=0.90; utter.pitch=1.0;
+    const voices=window.speechSynthesis.getVoices();
+    const v=voices.find(v=>v.lang==="ko-KR")||voices.find(v=>v.lang.startsWith("ko"));
+    if(v) utter.voice=v;
+    if(ttsState.progBar) ttsState.progBar.style.width=(i/sentences.length*100)+"%";
+    utter.onend=()=>{ if(!ttsState.isPaused) speak(i+1); };
+    utter.onerror=(e)=>{ if(e.error==="interrupted"||e.error==="canceled") return; ttsStop(); };
+    window.speechSynthesis.speak(utter);
+  };
+  ttsState.audio = { _fallback: true, sentences, idx: 0 };
+  if(window.speechSynthesis) window.speechSynthesis.cancel();
+  setTimeout(()=>speak(0), 80);
+}
+
+function ttsPause(){
+  ttsState.isPaused = true;
+  if(ttsState.audio && !ttsState.audio._fallback){
+    ttsState.audio.pause();
+    if(ttsState.progTimer){ clearInterval(ttsState.progTimer); ttsState.progTimer=null; }
+  } else {
+    window.speechSynthesis.cancel();
+  }
+  ttsSetUI("paused");
+}
+
+function ttsResume(){
+  ttsState.isPaused = false;
+  if(ttsState.audio && !ttsState.audio._fallback){
+    ttsState.audio.play();
+    ttsStartProgressTimer();
+  } else if(ttsState.audio && ttsState.audio._fallback){
+    const {sentences, idx} = ttsState.audio;
+    ttsSetUI("playing");
+    // fallback은 처음부터 재시작
+    ttsPlayFallback(sentences.join(' '));
+    return;
+  }
+  ttsSetUI("playing");
+}
+
+function ttsStop(){
+  ttsState.isActive = false; ttsState.isPaused = false;
+  if(ttsState.audio && !ttsState.audio._fallback){
+    ttsState.audio.pause(); ttsState.audio.currentTime=0;
+  } else {
+    if(window.speechSynthesis) window.speechSynthesis.cancel();
+  }
+  ttsState.audio = null;
+  if(ttsState.progTimer){ clearInterval(ttsState.progTimer); ttsState.progTimer=null; }
+  ttsSetUI("idle");
+}
+
+function goToSettings(){
+  document.querySelectorAll(".tab-btn").forEach(x=>x.classList.remove("active"));
+  document.querySelectorAll(".tab-panel").forEach(x=>x.classList.remove("active"));
+  document.querySelector('[data-tab="settings"]').classList.add("active");
+  document.getElementById("panel-settings").classList.add("active");
+}
+
+async function handleTtsClick(card, cardId, playBtn, stopBtn, progBar, statusEl){
+  // 다른 카드 재생 중이면 먼저 정지
+  if(ttsState.playBtn && ttsState.playBtn !== playBtn){
+    ttsStop();
+    ttsState.playBtn=null; ttsState.stopBtn=null; ttsState.progBar=null;
+  }
+  ttsState.playBtn=playBtn; ttsState.stopBtn=stopBtn; ttsState.progBar=progBar;
+
+  // 재생 중 → 일시정지
+  if(ttsState.isActive && !ttsState.isPaused){ ttsPause(); return; }
+  // 일시정지 → 이어듣기
+  if(ttsState.isPaused){ ttsResume(); return; }
+
+  // 캐시된 스크립트 있으면 바로 음성 변환
+  if(ttsState.scriptCache[cardId]){
+    const script = ttsState.scriptCache[cardId];
+    if(googleTtsKey){
+      try{ await ttsPlayWithGoogle(script); }
+      catch(e){ ttsStop(); if(statusEl){statusEl.style.display="block"; statusEl.textContent="⚠️ Google TTS 오류: "+e.message; setTimeout(()=>{if(statusEl)statusEl.style.display="none";},3000);} }
+    } else {
+      ttsPlayFallback(script);
+    }
+    return;
+  }
+
+  // 카드에 내장된 스크립트 바로 사용 (API 호출 없음)
+  const script = card.script || card.tips.map(t => t.m + ". " + t.d).join(" ");
+  ttsState.scriptCache[cardId] = script;
+
+  if(googleTtsKey){
+    ttsSetUI("tts-loading");
+    if(statusEl){statusEl.style.display="block"; statusEl.textContent="🎙️ 음성으로 변환하고 있어요...";}
+    try{
+      await ttsPlayWithGoogle(script);
+      if(statusEl) statusEl.style.display="none";
+    }catch(e){
+      ttsSetUI("idle");
+      if(statusEl){statusEl.style.display="block"; statusEl.textContent="⚠️ Google TTS 오류: "+e.message;}
+      setTimeout(()=>{if(statusEl)statusEl.style.display="none";}, 3000);
+    }
+  } else {
+    if(statusEl){statusEl.style.display="block"; statusEl.textContent="⚙️ Google TTS 키를 설정 탭에서 입력하면 더 자연스러운 음성으로 들을 수 있어요.";}
+    setTimeout(()=>{if(statusEl)statusEl.style.display="none";}, 3000);
+    ttsPlayFallback(script);
+  }
+}
+
+(function(){
+  const p=document.getElementById("panel-info");
+
+  // 환영 배너
+  const banner=document.createElement("div");
+  banner.className="welcome-banner";
+  banner.innerHTML=`<h2>👋 동서님, 오늘도 수고 많으세요!</h2><p>대구 시내버스를 운행하며 매일 수백 명의 시민을 안전하게 모시는 일, 쉽지 않다는 거 잘 알아요. 버디가 옆에서 항상 응원할게요. 아래 가이드를 꼭 활용해 보세요! 🚌💛</p>`;
+  p.appendChild(banner);
+
+  CARDS.forEach((c,ci)=>{
+    const cardId="card_"+ci;
+    const el=document.createElement("div"); el.className="ic";
+    const tipsHTML=c.tips.map((t,j)=>`
+      <div class="tip-row">
+        <span class="tip-n" style="background:${c.cl}28;color:${c.cl};">${j+1}</span>
+        <div style="flex:1;">
+          <div class="tip-t" style="font-weight:600;color:#f0f4ff;">${t.m}</div>
+          <div class="tip-detail">${t.d}</div>
+          <button class="tip-tts-btn" data-tip-idx="${j}"
+            style="margin-top:8px;padding:5px 12px;border-radius:9px;font-size:22px;font-weight:600;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:#8899bb;display:flex;align-items:center;gap:5px;">
+            🔊 이 항목 듣기
+          </button>
+        </div>
+      </div>`).join("");
+    el.innerHTML=`
+      <button class="ic-hdr">
+        <div class="ic-icn" style="background:${c.bg};">${c.ic}</div>
+        <div><div class="ic-title">${c.t}</div><div class="ic-sub">${c.s}</div></div>
+        <div class="ic-arr">▼</div>
+      </button>
+      <div class="ic-body">
+        <div class="ic-div"></div>
+        <div class="app-tags">${c.apps.map(a=>`<span class="app-tag"><span class="app-dot" style="background:${c.cl};"></span>${a}</span>`).join("")}</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;margin-top:10px;">
+          <div class="section-lbl" style="margin:0;">📌 상세 가이드</div>
+          <div class="tts-wrap" style="margin:0;flex-direction:row;gap:6px;align-items:center;">
+            <div class="tts-script-status"></div>
+            <div class="tts-prog" style="display:none;width:80px;"><div class="tts-prog-bar"></div></div>
+            <button class="tts-play-btn idle" style="white-space:nowrap;padding:7px 14px;font-size:22px;">🔊 전체 듣기</button>
+            <button class="tts-stop-btn" title="정지">⏹</button>
+          </div>
+        </div>
+        <div class="tips">${tipsHTML}</div>
+        <div class="daegu-tip"><span style="font-size:22px;flex-shrink:0;">🏙️</span><span><strong style="color:#fbbf24;">대구 팁</strong> — ${c.dg}</span></div>
+      </div>`;
+    const hdr=el.querySelector(".ic-hdr"), body=el.querySelector(".ic-body"), arr=el.querySelector(".ic-arr");
+    const playBtn=el.querySelector(".tts-play-btn");
+    const stopBtn=el.querySelector(".tts-stop-btn");
+    const progEl=el.querySelector(".tts-prog");
+    const progBar=el.querySelector(".tts-prog-bar");
+    const statusEl=el.querySelector(".tts-script-status");
+    hdr.addEventListener("click",()=>{
+      const o=body.classList.toggle("open");
+      el.style.border=`1px solid ${o?c.cl+"44":"rgba(255,255,255,0.07)"}`;
+      arr.style.cssText=o?`transform:rotate(180deg);background:${c.cl}28;color:${c.cl};`:"transform:none;background:rgba(255,255,255,0.06);color:#8899bb;";
+      if(!o && ttsState.playBtn===playBtn) ttsStop();
+    });
+    playBtn.addEventListener("click",(e)=>{
+      e.stopPropagation();
+      handleTtsClick(c, cardId, playBtn, stopBtn, progBar, statusEl);
+    });
+    stopBtn.addEventListener("click",(e)=>{
+      e.stopPropagation();
+      if(ttsState.playBtn===playBtn) ttsStop();
+    });
+
+    // 개별 항목 TTS 버튼
+    el.querySelectorAll(".tip-tts-btn").forEach(btn=>{
+      btn.addEventListener("click", async (e)=>{
+        e.stopPropagation();
+        const tipIdx = parseInt(btn.dataset.tipIdx);
+        const tip = c.tips[tipIdx];
+        if(!tip) return;
+        // 스크립트: tipScript 우선, 없으면 m + d 그대로
+        const script = (TIP_SCRIPTS[ci] && TIP_SCRIPTS[ci][tipIdx]) ? TIP_SCRIPTS[ci][tipIdx]
+          : tip.m + ". " + tip.d;
+        const tipCardId = cardId + "_tip_" + tipIdx;
+
+        // 재생 중인 같은 버튼이면 정지
+        if(ttsState.playBtn === btn){
+          if(ttsState.isActive && !ttsState.isPaused){ ttsPause(); return; }
+          if(ttsState.isPaused){ ttsResume(); return; }
+        }
+        // 다른 버튼 재생 중이면 정지
+        if(ttsState.playBtn && ttsState.playBtn !== btn) ttsStop();
+
+        ttsState.playBtn = btn;
+        ttsState.stopBtn = stopBtn;
+        ttsState.progBar = progBar;
+
+        btn.style.color="#fcd34d"; btn.style.borderColor="rgba(245,166,35,0.4)";
+        btn.textContent="⏳ 변환 중...";
+
+        if(googleTtsKey){
+          try{
+            await ttsPlayWithGoogle(script);
+            btn.textContent="⏸ 일시정지";
+            const origStyle = ()=>{ btn.style.color="#8899bb"; btn.style.borderColor="rgba(255,255,255,0.12)"; btn.textContent="🔊 이 항목 듣기"; ttsState.playBtn=null; };
+            const origAudio = ttsState.audio;
+            if(origAudio) origAudio.onended = ()=>{ ttsStop(); origStyle(); };
+          }catch(e){
+            btn.style.color="#fda4af"; btn.textContent="⚠️ 오류";
+            setTimeout(()=>{ btn.style.color="#8899bb"; btn.textContent="🔊 이 항목 듣기"; },2500);
+          }
+        } else {
+          ttsPlayFallback(script);
+          btn.textContent="🔊 이 항목 듣기";
+        }
+      });
+    });
+
+    p.appendChild(el);
+  });
+  // 음성 목록 미리 로드
+  if(window.speechSynthesis){
+    window.speechSynthesis.getVoices();
+    window.speechSynthesis.onvoiceschanged=()=>window.speechSynthesis.getVoices();
+  }
+})();
+
+// ── TAB 2: CHAT ───────────────────────────────────────
+const QC=[
+  {ic:"🎭",l:"화난 승객 롤플레이",m:"화난 승객이 요금 환불 요구하며 따지는 롤플레이 해줘."},
+  {ic:"💪",l:"스트레칭 루틴",m:"종점 대기 5분 허리·어깨 스트레칭 루틴 만들어줘."},
+  {ic:"🚨",l:"응급 상황 대처",m:"운행 중 승객이 갑자기 쓰러졌어. 어떻게 해야 해?"},
+  {ic:"😤",l:"힘든 마음 털기",m:"오늘 진짜 힘들었어. 승객한테 욕도 먹고..."},
+  {ic:"💰",l:"세금 환급",m:"버스 기사도 세금 환급 받을 수 있어? 어떻게 해?"},
+  {ic:"🤝",l:"외국인 안내",m:"외국인 승객이 환승 방법을 물어봤는데 영어로 뭐라고 해?"},
+];
+let cMsgs=[{role:"assistant",content:"안녕하세요! 저는 버디예요 🚌\n아래 버튼을 누르거나, 타이핑하거나, 🎤 버튼으로 말해도 됩니다!\n\n승객 대응 롤플레이 · 스트레칭 루틴 · 응급 대처\n세금 질문 · 힘든 마음 털어놓기 모두 OK 😊"}];
+let cBusy=false;
+(function(){
+  const q=document.getElementById("chat-quick");
+  QC.forEach(p=>{
+    const b=document.createElement("button"); b.className="qc-btn";
+    b.innerHTML=`<span style="font-size:20px;">${p.ic}</span>${p.l}`;
+    b.addEventListener("click",()=>sendChat(p.m)); q.appendChild(b);
+  });
+  renderChat();
+})();
+function renderChat(){
+  const box=document.getElementById("chat-msgs"); box.innerHTML="";
+  // 화면에는 마지막 Q&A 쌍만 표시 (히스토리는 cMsgs에 유지)
+  const display=[];
+  for(let i=cMsgs.length-1;i>=0;i--){
+    display.unshift(cMsgs[i]);
+    if(display.length>=2 && display[0].role==="assistant") break;
+    if(display.length>=2) break;
+  }
+  // 첫 번째 인사 메시지는 항상 표시
+  const showMsgs = cMsgs.length<=1 ? cMsgs : display;
+  showMsgs.forEach(m=>{
+    const r=document.createElement("div"); r.className="msg-r"+(m.role==="user"?" u":"");
+    r.innerHTML=m.role==="assistant"?`<div class="msg-av">🚌</div><div class="bbl ai">${esc(m.content)}</div>`:`<div class="bbl usr">${esc(m.content)}</div>`;
+    box.appendChild(r);
+  });
+  box.scrollTop=0;
+}
+function addTyping(){
+  const box=document.getElementById("chat-msgs");
+  const r=document.createElement("div"); r.className="msg-r"; r.id="typing";
+  r.innerHTML=`<div class="msg-av">🚌</div><div class="bbl ai" style="padding:11px 15px;"><div style="display:flex;gap:5px;align-items:center;"><div class="dot" style="animation-delay:0s;"></div><div class="dot" style="animation-delay:0.25s;"></div><div class="dot" style="animation-delay:0.5s;"></div></div></div>`;
+  box.appendChild(r); box.scrollTop=box.scrollHeight;
+}
+async function sendChat(text){
+  const ta=document.getElementById("chat-ta");
+  const msg=(text||ta.value).trim(); if(!msg||cBusy)return;
+  ta.value=""; ta.style.height="auto";
+  cMsgs.push({role:"user",content:msg}); cBusy=true;
+  renderChat(); addTyping(); updSend();
+  document.querySelectorAll(".qc-btn").forEach(b=>b.style.opacity="0.5");
+  try{
+    const rep=await ai(BUDDY_SYS,cMsgs,"claude-sonnet-4-20250514");
+    document.getElementById("typing")?.remove();
+    cMsgs.push({role:"assistant",content:rep||"잠시 오류가 났어요. 다시 시도해 주세요."});
+  }catch(e){
+    document.getElementById("typing")?.remove();
+    if(e.message && e.message.includes('API 키가 설정되지 않았습니다')){
+      cMsgs.push({role:"assistant",content:"🔑 API 키가 없어요. ⚙️ 설정 탭에서 키를 입력하고 저장해 주세요!"});
+      setTimeout(()=>{
+        document.querySelectorAll(".tab-btn").forEach(x=>x.classList.remove("active"));
+        document.querySelectorAll(".tab-panel").forEach(x=>x.classList.remove("active"));
+        document.querySelector('[data-tab="settings"]').classList.add("active");
+        document.getElementById("panel-settings").classList.add("active");
+      }, 1500);
+    } else {
+      cMsgs.push({role:"assistant",content:`⚠️ 연결 오류: ${e.message||'다시 시도해 주세요.'}`});
+    }
+  }
+  cBusy=false; renderChat(); updSend();
+  document.querySelectorAll(".qc-btn").forEach(b=>b.style.opacity="1");
+}
+function updSend(){
+  const ta=document.getElementById("chat-ta"),b=document.getElementById("send-btn");
+  b.className=ta.value.trim()&&!cBusy?"rdy":"";
+}
+document.getElementById("chat-ta").addEventListener("input",function(){
+  this.style.height="auto"; this.style.height=Math.min(this.scrollHeight,100)+"px"; updSend();
+});
+document.getElementById("chat-ta").addEventListener("keydown",e=>{if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();sendChat();}});
+document.getElementById("send-btn").addEventListener("click",()=>sendChat());
+
+let cSR=null;
+function micReset(micBtn, ta, ci){
+  micBtn.classList.remove("on");
+  ta.placeholder="타이핑 또는 🎤 말하기 (Enter 전송)";
+  cSR=null;
+}
+function showMicError(msg){
+  const ci=document.getElementById("chat-int");
+  ci.style.display="block";
+  ci.style.color="#f43f5e";
+  ci.textContent="🎤 "+msg;
+  setTimeout(()=>{ci.style.display="none";ci.style.color="#f43f5e";ci.textContent="";},4000);
+}
+document.getElementById("mic-chat").addEventListener("click",async function(){
+  const micBtn=this;
+  if(cSR){cSR.stop();return;}
+
+  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(!SR){
+    showMicError("이 브라우저는 음성 인식을 지원하지 않아요. Chrome을 사용해 주세요.");
+    return;
+  }
+
+  try{
+    const stream=await navigator.mediaDevices.getUserMedia({audio:true});
+    stream.getTracks().forEach(t=>t.stop());
+  }catch(permErr){
+    if(permErr.name==="NotAllowedError"||permErr.name==="PermissionDeniedError"){
+      showMicError("마이크 권한이 거부됐어요. 브라우저 주소창 왼쪽 🔒 아이콘 → 마이크 허용으로 바꿔 주세요.");
+    }else if(permErr.name==="NotFoundError"){
+      showMicError("마이크를 찾을 수 없어요. 마이크가 연결돼 있는지 확인해 주세요.");
+    }else{
+      showMicError("마이크 오류: "+permErr.message);
+    }
+    return;
+  }
+
+  const ta=document.getElementById("chat-ta"), ci=document.getElementById("chat-int");
+  cSR=new SR(); cSR.lang="ko-KR"; cSR.interimResults=true; cSR.continuous=false;
+  micBtn.classList.add("on");
+  ta.placeholder="🎤 듣고 있어요...";
+  ci.style.color="#fda4af";
+  let ft="";
+
+  cSR.onresult=e=>{
+    let t="";
+    for(let i=e.resultIndex;i<e.results.length;i++) t+=e.results[i][0].transcript;
+    ci.textContent="💬 "+t; ci.style.display="block"; ft=t;
+  };
+  cSR.onend=()=>{
+    if(ft){ta.value+=ft; updSend();}
+    ci.style.display="none"; ci.textContent="";
+    micReset(micBtn, ta, ci);
+  };
+  cSR.onerror=e=>{
+    micReset(micBtn, ta, ci);
+    const errMap={
+      "not-allowed":"마이크 권한이 거부됐어요. 브라우저 설정에서 마이크를 허용해 주세요.",
+      "no-speech":"말소리가 인식되지 않았어요. 다시 버튼을 눌러 말해 주세요.",
+      "audio-capture":"마이크를 찾을 수 없어요. 연결 상태를 확인해 주세요.",
+      "network":"네트워크 오류로 음성 인식이 안 돼요. 인터넷 연결을 확인해 주세요.",
+      "aborted":null,
+    };
+    const msg=errMap[e.error];
+    if(msg) showMicError(msg);
+  };
+
+  try{
+    cSR.start();
+  }catch(startErr){
+    showMicError("음성 인식 시작 실패: "+startErr.message);
+    micReset(micBtn, ta, ci);
+  }
+});
+
+// ── TAB 3: TRAFFIC ────────────────────────────────────
+const ROUTES=["101","109","156","204","250","300","349","401","427","503","564","600","618","650","706","724","840","909","980","990"];
+const SEGS={
+  "101":["동대구역 앞","신천대로","범어네거리","수성못입구","황금네거리"],
+  "109":["칠곡지구","팔달교","침산네거리","중앙로","동대구역"],
+  "156":["서문시장 사거리","달구벌대로","반고개네거리","동성로","남산네거리"],
+  "204":["칠성시장","동대구역 환승센터","신천동로","수성구민운동장","범물동"],
+  "250":["북구청","태전동","대구역","중앙로","반월당"],
+  "300":["성서산업단지","달서구청","본리네거리","내당네거리","반월당"],
+  "349":["월성동","성서네거리","감삼네거리","두류공원","내당네거리"],
+  "401":["북구청","칠곡네거리","팔달교","침산네거리","서문시장"],
+  "427":["동천동","읍내동","팔달교","대구역","중앙로"],
+  "503":["수성구청","범어네거리","황금동","만촌네거리","동촌유원지"],
+  "564":["수성구청","황금네거리","신천네거리","동대구역","효목네거리"],
+  "600":["성서공단","월배역","상인네거리","대명네거리","명덕네거리"],
+  "618":["월성2동","대천동","죽전네거리","대명네거리","반월당"],
+  "650":["혁신도시","대구공항","동촌유원지","아양교","동대구역"],
+  "706":["용계동","팔공산입구","공산터널","해안동","동촌"],
+  "724":["안심역","혁신도시","동구청","효목네거리","동대구역"],
+  "840":["앞산공원","대명네거리","남산네거리","중앙로","동대구역"],
+  "909":["수성못","황금네거리","범어네거리","동대구역","신서혁신도시"],
+  "980":["달성군","화원읍","이곡역","성서네거리","내당네거리"],
+  "990":["달성군","옥포읍","유통단지","이곡역","성서산업단지"],
+  "def":["시내 주요 구간","환승센터 인근","도심 구간","외곽 구간"]
+};
+let selR="", tfConv=[], tfBusy=false;
+
+function getTime(){
+  const n=new Date(),h=n.getHours(),m=n.getMinutes();
+  const ts=`${h}:${String(m).padStart(2,"0")}`;
+  const rush=(h>=7&&h<=9)||(h>=17&&h<=20),lunch=h>=11&&h<=13;
+  const tag=rush?"🔴 출퇴근 혼잡":lunch?"🟡 점심 혼잡":"🟢 한산한 시간대";
+  const bg=rush?"rgba(244,63,94,0.1)":lunch?"rgba(245,166,35,0.1)":"rgba(16,185,129,0.1)";
+  const bd=rush?"rgba(244,63,94,0.25)":lunch?"rgba(245,166,35,0.25)":"rgba(16,185,129,0.25)";
+  const col=rush?"#fda4af":lunch?"#fcd34d":"#6ee7b7";
+  return{ts,tag,bg,bd,col,rush,lunch};
+}
+
+(function(){
+  const{ts,tag,bg,bd,col}=getTime();
+  const sp=document.querySelector("#tf-badge span");
+  sp.textContent=`현재 ${ts} · ${tag}`;
+  sp.style.cssText=`background:${bg};border:1px solid ${bd};color:${col};`;
+  const g=document.getElementById("rt-grid");
+  ROUTES.forEach(r=>{
+    const b=document.createElement("button"); b.className="rt-btn"; b.textContent=r+"번"; b.dataset.r=r;
+    b.addEventListener("click",()=>{
+      document.querySelectorAll(".rt-btn").forEach(x=>x.classList.remove("sel"));
+      b.classList.add("sel"); selR=r;
+      document.getElementById("rt-custom").value="";
+      updAn();
+    });
+    g.appendChild(b);
+  });
+  document.getElementById("rt-custom").addEventListener("input",function(){
+    document.querySelectorAll(".rt-btn").forEach(x=>x.classList.remove("sel"));
+    selR=""; updAn();
+  });
+})();
+
+function updAn(){
+  const btn=document.getElementById("an-btn"),r=document.getElementById("rt-custom").value.trim()||selR;
+  if(r&&!tfBusy){btn.className="rdy";btn.textContent=`🚦 ${r}번 교통상황 분석`;}
+  else if(tfBusy){btn.className="dis";btn.textContent="🤖 AI 분석 중...";}
+  else{btn.className="dis";btn.textContent="🚦 교통상황 분석";}
+}
+
+document.getElementById("an-btn").addEventListener("click",async function(){
+  const r=document.getElementById("rt-custom").value.trim()||selR;
+  if(!r||tfBusy)return;
+  const{ts,tag,rush,lunch}=getTime();
+  tfBusy=true; updAn();
+
+  // 결과 영역 숨기고 로딩 표시
+  const resEl=document.getElementById("tf-res");
+  resEl.style.display="block";
+  resEl.innerHTML=`<div class="tf-loading"><div class="tf-spinner"></div><div>🤖 AI가 ${r}번 노선 교통상황을 분석 중...</div><div style="font-size:17px;color:#6b7a99;">잠시만 기다려주세요 (3~8초)</div></div>`;
+
+  tfConv=[];
+  const segs=(SEGS[r]||SEGS["def"]);
+  const timeDetail=rush?"출퇴근 극혼잡 시간대":lunch?"점심 혼잡 시간대":"비혼잡 한산 시간대";
+  const q=`현재 시각 ${ts}, 대구 ${r}번 버스 노선 교통상황 분석 요청.
+주요 경유 구간: ${segs.join(" → ")}
+현재 시간대: ${tag} (${timeDetail})
+위 정보를 바탕으로 구간별 교통상황을 분석해주세요.`;
+
+  try{
+    const rep=await ai(TF_SYS,[{role:"user",content:q}]);
+    tfConv=[{role:"user",content:q},{role:"assistant",content:rep}];
+    resEl.innerHTML=`
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:11px;">
+        <span style="font-size:21px;font-weight:700;color:#fcd34d;">🚌 ${esc(r)}번 분석 결과</span>
+        <span style="font-size:17px;color:#8899bb;background:rgba(255,255,255,0.05);padding:3px 9px;border-radius:10px;">${ts} 기준</span>
+      </div>
+      <div id="res-text" style="font-size:21px;line-height:1.85;color:#dce8ff;white-space:pre-wrap;padding:11px 13px;background:rgba(255,255,255,0.03);border-radius:11px;border:1px solid rgba(255,255,255,0.07);margin-bottom:12px;">${esc(rep)}</div>
+      <div id="follow-ups"></div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;">
+        <button class="fc-chip" data-q="우회 경로 있어?">우회 경로 있어?</button>
+        <button class="fc-chip" data-q="서문시장 쪽은?">서문시장 쪽은?</button>
+        <button class="fc-chip" data-q="몇 분 더 걸릴까?">몇 분 더 걸릴까?</button>
+        <button class="fc-chip" data-q="가장 막히는 구간이 어디야?">가장 막히는 구간?</button>
+      </div>
+      <div style="display:flex;gap:7px;">
+        <input id="fq-input" placeholder="더 궁금한 거 물어보기..." style="flex:1;padding:8px 13px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:11px;color:#f0f4ff;font-size:20px;outline:none;"/>
+        <button id="fq-btn" style="padding:8px 14px;border-radius:11px;background:rgba(255,255,255,0.04);border:1px solid rgba(245,166,35,0.25);color:#fcd34d;font-size:20px;font-weight:600;">전송</button>
+      </div>`;
+    // 이벤트 재등록
+    resEl.querySelectorAll(".fc-chip").forEach(c=>c.addEventListener("click",()=>askFQ(c.dataset.q)));
+    const fqBtn=resEl.querySelector("#fq-btn");
+    const fqInput=resEl.querySelector("#fq-input");
+    if(fqBtn)fqBtn.addEventListener("click",()=>askFQ(fqInput.value.trim()));
+    if(fqInput)fqInput.addEventListener("keydown",e=>{if(e.key==="Enter")askFQ(e.target.value.trim());});
+  }catch(e){
+    const isNoKey = e.message && e.message.includes('API 키가 설정되지 않았습니다');
+    resEl.innerHTML=`
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:11px;">
+        <span style="font-size:21px;font-weight:700;color:#fcd34d;">🚌 ${esc(r)}번</span>
+        <span style="font-size:17px;color:#8899bb;background:rgba(255,255,255,0.05);padding:3px 9px;border-radius:10px;">${ts} 기준</span>
+      </div>
+      <div style="font-size:20px;color:#fda4af;padding:12px;background:rgba(244,63,94,0.07);border-radius:11px;text-align:center;">
+        ${isNoKey ? "🔑 API 키가 없어요. ⚙️ 설정 탭에서 키를 입력해 주세요." : e?.name==="AbortError"?"⏱️ 응답 시간 초과. 다시 시도해 주세요.":"⚠️ 분석 오류: "+esc(e.message||'다시 시도해 주세요.')}
+      </div>`;
+    if(isNoKey){
+      setTimeout(()=>{
+        document.querySelectorAll(".tab-btn").forEach(x=>x.classList.remove("active"));
+        document.querySelectorAll(".tab-panel").forEach(x=>x.classList.remove("active"));
+        document.querySelector('[data-tab="settings"]').classList.add("active");
+        document.getElementById("panel-settings").classList.add("active");
+      }, 1800);
+    }
+  }
+  tfBusy=false; updAn();
+});
+
+async function askFQ(q){
+  if(!q||!tfConv.length)return;
+  const fqBtn=document.querySelector("#fq-btn");
+  if(fqBtn){fqBtn.textContent="..."; fqBtn.disabled=true;}
+  const nxt=[...tfConv,{role:"user",content:q}];
+  try{
+    const rep=await ai(TF_SYS,nxt);
+    tfConv=[...nxt,{role:"assistant",content:rep}];
+    const box=document.getElementById("follow-ups");
+    if(box){
+      const d=document.createElement("div"); d.style.marginBottom="9px";
+      d.innerHTML=`<div style="font-size:18px;color:#f5a623;margin-bottom:5px;">💬 ${esc(q)}</div><div style="font-size:20px;line-height:1.75;color:#c8d5ee;padding:10px 13px;background:rgba(245,166,35,0.05);border-radius:11px;white-space:pre-wrap;">${esc(rep)}</div>`;
+      box.appendChild(d);
+    }
+    const fqInput=document.querySelector("#fq-input");
+    if(fqInput)fqInput.value="";
+  }catch(e){
+    const box=document.getElementById("follow-ups");
+    if(box){const d=document.createElement("div");d.style.color="#fda4af";d.style.fontSize="12px";d.style.padding="6px";d.textContent="⚠️ 오류가 발생했어요. 다시 시도해 주세요.";box.appendChild(d);}
+  }
+  if(fqBtn){fqBtn.textContent="전송"; fqBtn.disabled=false;}
+}
+
+// ── TAB 4: MESSAGE ────────────────────────────────────
+let phone=localStorage.getItem("wife_phone")||"";
+function fmtP(p){return p.replace(/(\d{3})(\d{4})(\d{4})/,"$1-$2-$3");}
+function nowStr(){
+  const d=new Date();
+  const h=d.getHours(), m=String(d.getMinutes()).padStart(2,"0");
+  return `${h}시 ${m}분`;
+}
+function sendSMS(msg){
+  if(!phone){showFB("📱 먼저 아내 전화번호를 저장해 주세요.");return;}
+  showSendSheet(msg);
+}
+function showSendSheet(msg){
+  // 기존 시트 제거
+  const old=document.getElementById("send-sheet");
+  if(old) old.remove();
+
+  const sheet=document.createElement("div");
+  sheet.id="send-sheet";
+  sheet.style.cssText="position:fixed;inset:0;background:rgba(0,0,0,0.65);z-index:9999;display:flex;align-items:flex-end;justify-content:center;";
+
+  const enc=encodeURIComponent(msg);
+  const fmtPhone=fmtP(phone);
+
+  sheet.innerHTML=`
+    <div style="width:100%;max-width:480px;background:#131b2e;border-radius:24px 24px 0 0;padding:20px 16px 32px;border-top:1px solid rgba(245,166,35,0.2);">
+      <div style="width:40px;height:4px;background:rgba(255,255,255,0.15);border-radius:2px;margin:0 auto 18px;"></div>
+      <div style="font-size:20px;font-weight:700;color:#fbbf24;margin-bottom:6px;">📱 문자 보내기</div>
+      <div style="font-size:17px;color:#8899bb;margin-bottom:14px;">받는 사람: ${fmtPhone}</div>
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:13px;padding:12px 14px;font-size:20px;line-height:1.7;color:#dce8ff;margin-bottom:16px;white-space:pre-wrap;">${esc(msg)}</div>
+
+      <a href="sms:${phone}?body=${enc}"
+        style="display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:15px;border-radius:14px;font-size:21px;font-weight:700;color:#fff;background:linear-gradient(135deg,#10b981,#059669);margin-bottom:10px;text-decoration:none;box-sizing:border-box;">
+        💬 기본 문자 앱으로 보내기
+      </a>
+
+      <a href="kakaotalk://send?text=${enc}"
+        style="display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:15px;border-radius:14px;font-size:21px;font-weight:700;color:#181600;background:#FEE500;margin-bottom:10px;text-decoration:none;box-sizing:border-box;">
+        💛 카카오톡으로 보내기
+      </a>
+
+      <button onclick="document.getElementById('send-sheet').remove();"
+        style="width:100%;padding:13px;border-radius:14px;font-size:20px;font-weight:600;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.05);color:#8899bb;">
+        취소
+      </button>
+    </div>
+  `;
+
+  // 배경 터치 시 닫기
+  sheet.addEventListener("click",(e)=>{
+    if(e.target===sheet) sheet.remove();
+  });
+
+  document.body.appendChild(sheet);
+}
+function showFB(t){
+  const el=document.getElementById("msg-fb");
+  el.textContent=t; el.style.display="block";
+  setTimeout(()=>el.style.display="none",3500);
+}
+function updPhone(){
+  const box=document.getElementById("ph-box"),lbl=document.getElementById("ph-lbl"),
+        row=document.getElementById("ph-row"),chg=document.getElementById("ph-chg");
+  if(phone){
+    box.style.border="1px solid rgba(16,185,129,0.3)";
+    lbl.textContent=`✅ 아내 번호 저장됨: ${fmtP(phone)}`;
+    row.style.display="none"; chg.style.display="inline-block";
+  } else {
+    box.style.border="1px solid rgba(244,63,94,0.22)";
+    lbl.textContent="📱 아내 전화번호 입력 (한 번만)";
+    row.style.display="flex"; chg.style.display="none";
+  }
+}
+document.getElementById("ph-save").addEventListener("click",()=>{
+  const p=document.getElementById("ph-input").value.replace(/[^0-9]/g,"");
+  if(p.length<10)return;
+  localStorage.setItem("wife_phone",p); phone=p; updPhone();
+});
+document.getElementById("ph-chg").addEventListener("click",()=>{
+  phone=""; localStorage.removeItem("wife_phone"); updPhone();
+});
+
+// ① 안심 체크인
+document.getElementById("checkin-btn").addEventListener("click",()=>{
+  const msg=`여보, 나 잘 있어 ❤️ 지금 ${nowStr()}이야. 걱정 마!`;
+  sendSMS(msg);
+});
+
+// ② 원터치 상황 버튼
+const SITUATIONS=[
+  {ic:"🏠", lbl:"곧 들어가",      msg:`여보, 나 곧 들어가~ 지금 ${nowStr()}이야 ❤️`},
+  {ic:"🚌", lbl:"지금 출발",      msg:`여보, 나 지금 출발해! ${nowStr()}에 출발했어 😊`},
+  {ic:"⏰", lbl:"조금 늦어",      msg:`여보, 나 오늘 좀 늦을 것 같아. 걱정 마, 연락할게 💛`},
+  {ic:"🍚", lbl:"밥 먹는 중",     msg:`여보, 나 지금 밥 먹는 중이야~ ${nowStr()} 😊`},
+  {ic:"😴", lbl:"잠깐 쉬는 중",  msg:`여보, 나 종점에서 잠깐 쉬고 있어. 금방 출발해 💛`},
+  {ic:"💪", lbl:"오늘 잘 됐어",  msg:`여보, 오늘 운행 잘 끝냈어! 곧 들어갈게 😊❤️`},
+];
+(function(){
+  updPhone();
+  const g=document.getElementById("situation-grid");
+  SITUATIONS.forEach(s=>{
+    const b=document.createElement("button");
+    b.style.cssText="padding:14px 10px;border-radius:13px;font-size:20px;font-weight:600;border:1px solid rgba(245,166,35,0.2);background:rgba(245,166,35,0.08);color:#fcd34d;display:flex;align-items:center;justify-content:center;gap:6px;";
+    b.innerHTML=`<span style="font-size:22px;">${s.ic}</span>${s.lbl}`;
+    b.addEventListener("click",()=>{
+      const t=nowStr();
+      const msg=s.ic==="🏠"?`여보, 나 곧 들어가~ 지금 ${t}이야 ❤️`
+               :s.ic==="🚌"?`여보, 나 지금 출발해! ${t}에 출발했어 😊`
+               :s.ic==="⏰"?`여보, 나 오늘 좀 늦을 것 같아. 걱정 마, 연락할게 💛`
+               :s.ic==="🍚"?`여보, 나 지금 밥 먹는 중이야~ ${t} 😊`
+               :s.ic==="😴"?`여보, 나 종점에서 잠깐 쉬고 있어. 금방 출발해 💛`
+               :`여보, 오늘 운행 잘 끝냈어! 곧 들어갈게 😊❤️`;
+      sendSMS(msg);
+    });
+    g.appendChild(b);
+  });
+})();
+
+// ③ AI 하루 요약
+const KEYWORDS=[
+  {t:"힘들었어 😔",v:"오늘 정말 힘들었어"},
+  {t:"좋았어 😊",v:"오늘 운행이 괜찮았어"},
+  {t:"승객 민원 있었어",v:"승객 민원이 있었어"},
+  {t:"사고 날 뻔했어",v:"위험한 상황이 있었어"},
+  {t:"몸이 피곤해",v:"몸이 많이 피곤해"},
+  {t:"배고파 🍚",v:"밥도 못 먹었어"},
+  {t:"늦게 들어가",v:"퇴근이 늦을 것 같아"},
+  {t:"보고 싶어 ❤️",v:"당신이 보고 싶어"},
+  {t:"오늘 좋은 일 있었어",v:"오늘 기분 좋은 일이 있었어"},
+  {t:"날씨가 힘들었어",v:"날씨 때문에 운행이 힘들었어"},
+];
+let selKws=new Set();
+(function(){
+  const g=document.getElementById("kw-grid");
+  KEYWORDS.forEach((k,i)=>{
+    const b=document.createElement("button");
+    b.style.cssText="padding:8px 14px;border-radius:20px;font-size:19px;border:1px solid rgba(96,165,250,0.2);background:rgba(96,165,250,0.07);color:#93c5fd;transition:all 0.15s;";
+    b.textContent=k.t; b.dataset.idx=i;
+    b.addEventListener("click",()=>{
+      if(selKws.has(i)){
+        selKws.delete(i);
+        b.style.background="rgba(96,165,250,0.07)"; b.style.borderColor="rgba(96,165,250,0.2)"; b.style.color="#93c5fd";
+      } else {
+        selKws.add(i);
+        b.style.background="rgba(96,165,250,0.22)"; b.style.borderColor="rgba(96,165,250,0.6)"; b.style.color="#dbeafe"; b.style.fontWeight="700";
+      }
+    });
+    g.appendChild(b);
+  });
+})();
+
+document.getElementById("ai-gen-btn").addEventListener("click", async ()=>{
+  if(!selKws.size){ showFB("💡 키워드를 하나 이상 골라주세요."); return; }
+  const btn=document.getElementById("ai-gen-btn");
+  btn.textContent="⏳ 만드는 중..."; btn.style.pointerEvents="none";
+  const kwText=[...selKws].map(i=>KEYWORDS[i].v).join(", ");
+  const sys=`당신은 대구 시내버스 기사가 아내에게 보내는 따뜻한 문자 메시지를 써주는 도우미입니다.
+3문장 이내, 현재 시각(${nowStr()}) 자연스럽게 포함, 이모지 1~2개, 진심 어린 말투.
+순수 텍스트로만 응답하세요. JSON이나 따옴표 없이.`;
+  try{
+    const msg=await ai(sys,[{role:"user",content:`오늘 상황: ${kwText}`}]);
+    document.getElementById("ai-msg-ta").value=msg.trim();
+    document.getElementById("ai-msg-box").style.display="block";
+    document.getElementById("ai-sms-btn").style.display="block";
+  } catch(e){
+    showFB("⚠️ AI 오류: "+e.message);
+  }
+  btn.textContent="🤖 AI가 문자 만들기"; btn.style.pointerEvents="auto";
+});
+
+document.getElementById("ai-sms-btn").addEventListener("click",()=>{
+  const msg=document.getElementById("ai-msg-ta").value.trim();
+  if(!msg) return;
+  sendSMS(msg);
+});
+</script>
+</body>
+</html>
