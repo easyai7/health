@@ -309,16 +309,21 @@ button{cursor:pointer;}
 </div>
 
 <script>
+// ── localStorage 안전 헬퍼 ──
+function lsGet(k){try{return localStorage.getItem(k)||"";}catch(e){return "";}}
+function lsSet(k,v){try{localStorage.setItem(k,v);}catch(e){}}
+function lsDel(k){try{localStorage.removeItem(k);}catch(e){}}
+
 // ── API 키 (앱 설정 탭에서 입력 → localStorage 저장) ──
-let apiKey = localStorage.getItem('buddyApiKey') || '';
-let googleTtsKey = localStorage.getItem('buddyGoogleTtsKey') || '';
+let apiKey = lsGet('buddyApiKey');
+let googleTtsKey = lsGet('buddyGoogleTtsKey');
 
 function saveApiKey() {
   const val = document.getElementById('apiKeyInput').value.trim();
   if(!val) { showApiKeyStatus('❌ 키를 입력해 주세요.', '#fda4af'); return; }
   if(!val.startsWith('sk-ant-')) { showApiKeyStatus('❌ 형식이 맞지 않아요. sk-ant-로 시작해야 해요.', '#fda4af'); return; }
   apiKey = val;
-  localStorage.setItem('buddyApiKey', apiKey);
+  lsSet('buddyApiKey', apiKey);
   showApiKeyStatus('✅ 저장 완료! AI 기능을 사용할 수 있어요.', '#6ee7b7');
 }
 
@@ -327,7 +332,7 @@ function saveGoogleTtsKey() {
   if(!val) { showGoogleTtsStatus('❌ 키를 입력해 주세요.', '#fda4af'); return; }
   if(!val.startsWith('AIza')) { showGoogleTtsStatus('❌ 형식이 맞지 않아요. AIzaSy...로 시작해야 해요.', '#fda4af'); return; }
   googleTtsKey = val;
-  localStorage.setItem('buddyGoogleTtsKey', googleTtsKey);
+  lsSet('buddyGoogleTtsKey', googleTtsKey);
   showGoogleTtsStatus('✅ 저장 완료! 자연스러운 음성이 활성화됐어요.', '#6ee7b7');
 }
 
@@ -353,6 +358,7 @@ window.addEventListener('DOMContentLoaded', ()=>{
 // ── AI ──────────────────────────────────────────────────
 const BUDDY_SYS=`당신은 "버디(BUDDY)"라는 대구 시내버스 기사 전용 AI 어시스턴트입니다.
 핵심 역할: 버스 기사님의 든든한 동료. 짧고 실용적이며 따뜻하게.
+사용자 이름: 이규 씨 (성이 이씨, 이름이 규). 항상 "이규 씨"라고 불러주세요. "동서님"이나 "기사님" 대신 반드시 "이규 씨"를 사용하세요.
 잘 아는 분야: 대구 교통 혼잡 구간(동대구역,서문시장 사거리,달구벌대로,수성못,범어네거리), 버스 기사 노동법·교통법규, 허리·어깨 스트레칭 루틴, 승객 갈등 대응(항의,취객,어르신,외국인), 교대 근무 수면·건강 관리, 세금 환급·저축 플랜, 접촉사고 처리·차내 응급 상황.
 롤플레이 요청 시 완전히 그 캐릭터에 몰입하고 [코치] 팁도 제공. 응답은 이모지 포함, 핵심만, 2~4문장 이내.`;
 
@@ -450,7 +456,7 @@ const TIP_SCRIPTS=[
     `카카오맵 즐겨찾기에 노선 주요 우회로 미리 저장해두세요. 날씨 앱 알림 설정하시면 비나 눈 오기 두 시간 전에 미리 알 수 있어요. 구글 포토 켜두시면 사고 현장 사진 자동 백업돼요. 대구 버스 앱으로 실시간 배차 노선 변경 민원 접수도 한 번에 할 수 있어요.`,
     `이 버디 앱 AI 상담탭 적극 활용해보세요. 24시간 언제든 털어놓을 수 있어요. ChatGPT에 시내버스 기사 스트레칭 루틴 요청하면 맞춤으로 만들어줘요. AI로 민원 답변 초안도 작성할 수 있고 외국인 승객 안내문도 5초면 번역할 수 있어요.`,
     `자율주행이 기사님을 완전히 대체하는 건 2030년대에도 어렵다고 전문가들이 봐요. 변수가 너무 많거든요. 오히려 자율주행 모니터링이나 관제 분야 새 직군이 생길 거예요. 클래스101이나 유튜브 무료 강의로 디지털 공부하시면 변화에 훨씬 잘 적응하실 수 있어요.`,
-    `대구 도로 수십 년 노하우를 유튜브나 블로그 콘텐츠로 만들어보시는 건 어떨까요. 신입 기사 멘토링 프로그램 참여하시면 부수입도 생기고 보람도 있어요. 지역 카페나 밴드에서 기사님들끼리 정보 교류하시는 것도 큰 힘이 돼요. 동서님 이야기가 누군가한테 정말 큰 힘이 될 수 있어요.`,
+    `대구 도로 수십 년 노하우를 유튜브나 블로그 콘텐츠로 만들어보시는 건 어떨까요. 신입 기사 멘토링 프로그램 참여하시면 부수입도 생기고 보람도 있어요. 지역 카페나 밴드에서 기사님들끼리 정보 교류하시는 것도 큰 힘이 돼요. 이규 씨 이야기가 누군가한테 정말 큰 힘이 될 수 있어요.`,
   ],
 ];
 
@@ -460,13 +466,13 @@ const CARDS=[
     t:"사고·위기 상황 대처 매뉴얼",
     s:"접촉사고부터 차내 응급까지 — 단계별 행동 요령",
     apps:["대구 버스조합 긴급연락","보험사 긴급출동","119","112"],
-    script:`동서님, 이건 정말 꼭 알아두셔야 하는 얘기예요. 운전하다 보면 언제 어떤 상황이 생길지 모르잖아요. 미리 머릿속에 넣어두면 막상 그 순간에 당황하지 않을 수 있어요.
+    script:`이규 씨, 이건 정말 꼭 알아두셔야 하는 얘기예요. 운전하다 보면 언제 어떤 상황이 생길지 모르잖아요. 미리 머릿속에 넣어두면 막상 그 순간에 당황하지 않을 수 있어요.
 
 접촉사고가 생기면 제일 먼저 비상등부터 켜세요. 그리고 안전한 곳에 차를 세운 다음, 부상자가 있는지 먼저 확인하고 119에 신고해야 해요. 이때 스마트폰으로 현장 사진을 꼭 찍어두세요. 전방위로 여러 장. 이게 나중에 보험 처리할 때 정말 결정적인 역할을 해요. 그리고 목격자 연락처도 챙겨두시고요. 한 가지 절대로 하면 안 되는 게 있어요. 상대방과 그 자리에서 임의로 합의하는 거예요. 반드시 회사랑 보험사에 먼저 알린 뒤에 처리하셔야 해요.
 
 차 안에서 승객이 갑자기 쓰러지면, 즉시 정차하고 비상등 켜고 119 신고부터 하세요. 주변 승객한테도 도움을 요청하시고요. 의식이 없어 보이면 어깨를 두드리며 괜찮으세요 하고 확인해보시고, 숨을 안 쉬면 CPR을 시작하셔야 해요. 분당 100회 정도 흉부 압박이에요. AED는 터미널이나 환승센터에 있으니 기억해두세요.
 
-블랙박스 영상은 사고 직후 반드시 따로 저장해 두세요. 덮어쓰이면 복구가 어려워요. 동서님, 이 내용 꼭 한 번 더 읽어두시고요. 만약의 상황에 동서님을 지켜주는 정보예요.`,
+블랙박스 영상은 사고 직후 반드시 따로 저장해 두세요. 덮어쓰이면 복구가 어려워요. 이규 씨, 이 내용 꼭 한 번 더 읽어두시고요. 만약의 상황에 이규 씨을 지켜주는 정보예요.`,
     tips:[
       {m:"접촉사고 발생 즉시 대처",d:"① 비상등 켜고 안전한 곳 정차 ② 부상자 확인 후 119 먼저 ③ 스마트폰으로 현장·손상 부위 사진 촬영(전방위) ④ 목격자 연락처 확보 ⑤ 상대방과 임의 합의 절대 금지 — 반드시 회사·보험사 통보 후 처리"},
       {m:"차내 승객 쓰러짐·응급",d:"① 즉시 정차 후 비상등 ② 119 신고 & 주변 승객에게 도움 요청 ③ 의식 확인: 어깨 두드리며 '괜찮으세요?' ④ 무호흡이면 CPR 시작(분당 100회 압박) ⑤ AED는 터미널·환승센터 비치 ⑥ 절대 혼자 차 밖으로 이동 안 됨"},
@@ -480,7 +486,7 @@ const CARDS=[
     t:"허리·어깨·목 건강 지키기",
     s:"버스 기사님 맞춤 스트레칭 & 직업병 예방",
     apps:["Samsung Health","네이버 건강","유튜브 스트레칭","정형외과 예약앱"],
-    script:`동서님, 저도 오래 운전하다 보니까 허리가 제일 먼저 망가지더라고요. 이거 나중에 후회하면 소용없어요. 지금 조금만 신경 쓰면 10년 뒤가 완전히 달라져요.
+    script:`이규 씨, 저도 오래 운전하다 보니까 허리가 제일 먼저 망가지더라고요. 이거 나중에 후회하면 소용없어요. 지금 조금만 신경 쓰면 10년 뒤가 완전히 달라져요.
 
 종점에 도착해서 5분만 시간 내보세요. 목을 좌우로 천천히 기울이기 다섯 번씩, 어깨 크게 돌리기 앞뒤로 열 번, 그리고 양팔 뒤로 깍지 끼고 가슴 쫙 펴서 3초 유지 다섯 번. 허리도 등받이 잡고 좌우로 비틀어주시고요. 발목도 양쪽 열 번씩 돌려주세요. 이게 하지 정맥류 예방에 정말 좋아요.
 
@@ -488,7 +494,7 @@ const CARDS=[
 
 교대 근무라 잠을 제대로 못 주무시는 분들 많잖아요. 퇴근하고 나서 강한 빛은 차단하시고, 주무시기 한 시간 전에는 핸드폰을 멀리 두세요. 카페인은 주무시기 여섯 시간 전부터는 끊으셔야 해요.
 
-동서님 몸이 제일 소중한 재산이에요. 버스는 회사 거지만 몸은 동서님 거잖아요. 오늘 종점에서 딱 5분만 투자해 보세요.`,
+이규 씨 몸이 제일 소중한 재산이에요. 버스는 회사 거지만 몸은 이규 씨 거잖아요. 오늘 종점에서 딱 5분만 투자해 보세요.`,
     tips:[
       {m:"종점 대기 5분 스트레칭 루틴",d:"① 목 좌우 천천히 기울이기 5회씩 ② 어깨 크게 돌리기 앞뒤 10회 ③ 가슴 쫙 펴고 양팔 뒤로 깍지 끼어 3초 유지×5 ④ 허리 좌우 비틀기 10회 (등받이 잡고) ⑤ 발목 돌리기 양쪽 10회 — 하지 정맥류 예방"},
       {m:"허리 디스크 예방 운전자세",d:"① 등받이에 허리 완전히 붙이기 ② 시트와 엉덩이 깊숙이 밀착 ③ 핸들까지 팔꿈치 약간 굽히는 거리 ④ 발은 페달 밟을 때 무릎이 약간 굽혀지는 위치 ⑤ 쿠션 허리 받침대 사용 강력 추천"},
@@ -502,13 +508,13 @@ const CARDS=[
     t:"노동법·교통법규 핵심 정리",
     s:"알아야 지킬 수 있는 권리와 의무",
     apps:["고용노동부 앱","노동OK","도로교통공단","민원24"],
-    script:`동서님, 이거 모르면 진짜 손해예요. 내 권리를 내가 알아야 지킬 수 있거든요. 불합리한 일이 생겨도 법을 모르면 그냥 참고 넘어가게 되더라고요.
+    script:`이규 씨, 이거 모르면 진짜 손해예요. 내 권리를 내가 알아야 지킬 수 있거든요. 불합리한 일이 생겨도 법을 모르면 그냥 참고 넘어가게 되더라고요.
 
 먼저 근로시간 얘기부터 할게요. 하루에 운전할 수 있는 시간은 최대 아홉 시간이에요. 네 시간 연속 운전하면 반드시 삼십 분 이상 쉬어야 해요, 이건 법으로 정해진 거예요. 여덟 시간 넘어가면 연장근로라서 통상임금의 오십 퍼센트를 더 받아야 하고, 밤 열시에서 새벽 여섯시 사이 야간 근무도 마찬가지예요. 만약 회사에서 이걸 어기면 고용노동부에 신고할 수 있어요.
 
 교통법규도 꼭 알아두셔야 해요. 정류장 아닌 곳에서 승객이 내려달라고 해도 절대 안 돼요. 과태료가 기사님한테 나와요. 어린이보호구역에서는 무조건 삼십 킬로 지켜야 하고요. 사고 나면 형사처벌까지 받을 수 있어요.
 
-억울한 일이 생기면 참지 마시고요. 노동부 전화번호 1350이에요. 전화 한 통으로 무료 상담받을 수 있어요. 동서님 권리 꼭 챙기세요.`,
+억울한 일이 생기면 참지 마시고요. 노동부 전화번호 1350이에요. 전화 한 통으로 무료 상담받을 수 있어요. 이규 씨 권리 꼭 챙기세요.`,
     tips:[
       {m:"버스 기사 근로시간 법정 기준",d:"① 1일 운전 가능 시간: 최대 9시간 (연장 시 합의 필요) ② 4시간 연속 운전 후 30분 이상 휴식 의무 ③ 1일 8시간 초과 = 연장근로 → 통상임금 50% 가산 ④ 야간 근무(22시~06시) 50% 가산 ⑤ 무단 초과 운전 지시 시 고용노동부 신고 가능"},
       {m:"교통법규 — 버스 운전 특별 주의",d:"① 정류장 외 승하차: 승객 요구해도 불가 (과태료 기사 귀책) ② 신호 위반: 점수 15점 + 범칙금 7만원 ③ 버스전용차로 위반 승용차: 신고 가능 (공익신고) ④ 어린이보호구역 30km 엄수 — 사고 시 형사처벌 ⑤ 운행 중 휴대폰 사용: 범칙금 7만원 + 점수 15점"},
@@ -522,15 +528,15 @@ const CARDS=[
     t:"승객 갈등 & 감정 대처법",
     s:"20년 베테랑도 어려운 상황, AI가 미리 연습해드려요",
     apps:["버디 AI상담탭","마음이음 (심리상담)","마보 (명상앱)","정신건강위기상담 1577-0199"],
-    script:`동서님, 하루에 수백 명 만나다 보면 진짜 별의별 분들이 다 계시잖아요. 그게 제일 힘들더라고요. 몸이 힘든 것보다 마음이 더 지칠 때가 많아요.
+    script:`이규 씨, 하루에 수백 명 만나다 보면 진짜 별의별 분들이 다 계시잖아요. 그게 제일 힘들더라고요. 몸이 힘든 것보다 마음이 더 지칠 때가 많아요.
 
 요금 때문에 따지는 승객 만나면, 목소리 낮추고 고객님 저도 도와드리고 싶은데 규정상 제가 임의로 처리할 수가 없어요, 회사 고객센터에 말씀하시면 바로 해결해 드린다고 안내해 주세요. 공감하고 절차 안내하고 연락처 드리는 이 세 단계만 기억하시면 돼요.
 
 어르신 승객은 완전히 자리 잡으실 때까지 절대 출발하시면 안 돼요. 어르신 자리 잡으셨나요 하고 방송 한 번 해주시는 습관만 들여도 민원이 확 줄어요.
 
-그리고 동서님, 힘든 감정은 그날 털어내셔야 해요. 종점 도착하면 차 안에서 2분만 심호흡해보세요. 4초 들이쉬고 4초 내쉬고. 퇴근 후 30분 걷기도 스트레스 호르몬이 진짜로 줄어요. 너무 힘드실 때는 버디 AI 상담탭에 털어놓으세요. 판단 없이 다 들어줄게요.
+그리고 이규 씨, 힘든 감정은 그날 털어내셔야 해요. 종점 도착하면 차 안에서 2분만 심호흡해보세요. 4초 들이쉬고 4초 내쉬고. 퇴근 후 30분 걷기도 스트레스 호르몬이 진짜로 줄어요. 너무 힘드실 때는 버디 AI 상담탭에 털어놓으세요. 판단 없이 다 들어줄게요.
 
-동서님이 매일 만나는 분들이 대구 시민 수백 명이에요. 그분들을 안전하게 모시는 일, 정말 대단한 거예요.`,
+이규 씨이 매일 만나는 분들이 대구 시민 수백 명이에요. 그분들을 안전하게 모시는 일, 정말 대단한 거예요.`,
     tips:[
       {m:"요금 분쟁 승객 대응 스크립트",d:"'고객님, 저도 도와드리고 싶어요. 규정상 제가 임의로 처리할 수 없고, 회사 고객센터(053-○○○○)로 문의해 주시면 바로 해결해 드립니다.' → 공감 → 절차 안내 → 핫라인 제공의 3단계"},
       {m:"어르신 승객 배려 요령",d:"① 정류장 완전 정차 후 안전 확인 전까지 출발 금지 ② '어르신, 자리 잡으셨나요?' 방송 습관화 ③ 저상버스 경사판 작동 익히기 ④ 보청기 착용자엔 조금 더 크게, 천천히 ⑤ '죄송합니다' 한 마디가 민원 90%를 막아요"},
@@ -544,13 +550,13 @@ const CARDS=[
     t:"재무·세금·저축 실전 가이드",
     s:"버스 기사님도 세금 환급 받고 목돈 만들 수 있어요",
     apps:["삼쩜삼 (세금환급)","뱅크샐러드","토스","국세청 홈택스"],
-    script:`동서님, 혹시 세금 환급 받아보신 적 있어요? 모르고 그냥 넘어가는 분들이 엄청 많은데, 평균적으로 연 오십에서 팔십만원씩 안 찾아간 세금이 있어요. 삼쩜삼 앱 설치하시고 로그인만 하면 자동으로 얼마 돌려받을 수 있는지 바로 나와요. 5분이면 돼요.
+    script:`이규 씨, 혹시 세금 환급 받아보신 적 있어요? 모르고 그냥 넘어가는 분들이 엄청 많은데, 평균적으로 연 오십에서 팔십만원씩 안 찾아간 세금이 있어요. 삼쩜삼 앱 설치하시고 로그인만 하면 자동으로 얼마 돌려받을 수 있는지 바로 나와요. 5분이면 돼요.
 
 저축도 방법이 있어요. 월급 받는 날 바로 자동이체로 먼저 저축부터 해두세요. 남은 돈으로 생활하는 강제 저축 방식이 제일 잘 돼요. 비상금 통장도 따로 만들어두시고, 월급 석 달치 정도는 거기 쌓아두세요. 갑자기 차 수리비나 병원비 생겨도 당황 안 해도 되거든요.
 
 퇴직연금 추가 납입하시면 세액공제도 받을 수 있어요. 16.5퍼센트나 돌려받을 수 있어서 진짜 남는 장사예요. ISA 계좌도 한번 알아보세요. 5년 후에 비과세 혜택이 있어요.
 
-동서님, 열심히 일한 만큼 내 돈 꼭 챙기셔야 해요. 오늘 삼쩜삼 앱 하나만 설치해보세요.`,
+이규 씨, 열심히 일한 만큼 내 돈 꼭 챙기셔야 해요. 오늘 삼쩜삼 앱 하나만 설치해보세요.`,
     tips:[
       {m:"버스 기사 세금 환급 방법",d:"① 삼쩜삼 앱 설치 → 공인인증서 로그인 → 자동 환급액 계산 ② 근로소득세 연말정산 시 교통비·통신비·의료비 빠짐없이 신고 ③ 대중교통 이용 시 신용카드 공제 최대 80만원 ④ 본인·배우자·부양가족 인적공제 꼼꼼히 체크 ⑤ 평균 환급액: 직장인 기준 연 50~80만원"},
       {m:"교대 근무자 맞춤 저축 전략",d:"① 월급 받는 날 자동이체로 먼저 저축 (강제 저축) ② 비상금 통장 별도 운영: 최소 월급 3개월치 ③ 퇴직연금 추가 납입 → 세액공제 16.5% ④ ISA 계좌: 5년 후 비과세 혜택 (연 2천만원 한도) ⑤ 사학·공무원 아니어도 개인연금 가입 가능"},
@@ -564,13 +570,13 @@ const CARDS=[
     t:"디지털 도구 & 미래 준비",
     s:"AI 시대에도 경험 많은 기사님이 답입니다",
     apps:["ChatGPT","Claude AI","YouTube","카카오맵"],
-    script:`동서님, AI 시대라고 해서 걱정되시는 분들 많은데요. 솔직히 말씀드리면 자율주행 버스가 기사님을 완전히 대체하는 건 2030년대에도 어렵다고 전문가들이 봐요. 변수가 너무 많거든요. 대구 도로 구석구석 아는 기사님의 경험과 판단력, 그건 AI가 절대 따라올 수 없어요.
+    script:`이규 씨, AI 시대라고 해서 걱정되시는 분들 많은데요. 솔직히 말씀드리면 자율주행 버스가 기사님을 완전히 대체하는 건 2030년대에도 어렵다고 전문가들이 봐요. 변수가 너무 많거든요. 대구 도로 구석구석 아는 기사님의 경험과 판단력, 그건 AI가 절대 따라올 수 없어요.
 
 오히려 스마트폰이랑 앱을 잘 활용하시면 일이 훨씬 편해져요. 카카오맵 즐겨찾기에 노선 우회로 미리 저장해두시고, 날씨 앱 알림 설정해두시면 비나 눈 오기 두 시간 전에 미리 알 수 있어요. 구글 포토 켜두시면 사고 현장 사진이 자동으로 백업돼서 나중에 찾기도 쉬워요.
 
 이 버디 앱 AI 상담탭도 활용해보세요. 힘든 일 있을 때 24시간 언제든 털어놓을 수 있어요. 판단 없이 들어줘요.
 
-동서님, 기술이 아무리 발전해도 수십 년간 대구 시민을 안전하게 모셔온 경험과 책임감은 대체할 수 없어요. 자랑스러운 일 하고 계신 거 잊지 마세요.`,
+이규 씨, 기술이 아무리 발전해도 수십 년간 대구 시민을 안전하게 모셔온 경험과 책임감은 대체할 수 없어요. 자랑스러운 일 하고 계신 거 잊지 마세요.`,
     tips:[
       {m:"스마트폰으로 업무 효율 올리기",d:"① 카카오맵 즐겨찾기에 노선 주요 우회로 저장 ② 날씨앱 알림 설정 — 비·눈 예보 2시간 전 미리 확인 ③ 대구 버스 앱: 실시간 배차·노선 변경·민원 접수 한 번에 ④ 티맵 버스 모드: 버스 전용 경로·정류장 정보 제공 ⑤ 구글 포토: 사고 현장 자동 백업 & 날짜별 정리"},
       {m:"AI를 동료처럼 활용하기",d:"① 이 앱(버디)의 AI 상담 탭: 24시간 언제든 털어놓기 가능 ② ChatGPT에 '시내버스 기사 스트레칭 루틴' 요청 → 맞춤 제작 ③ AI로 민원 답변 초안 작성 → 직접 수정해서 사용 ④ 신입 기사 교육자료도 AI로 쉽게 만들 수 있어요 ⑤ 언어 장벽 없는 번역: 외국인 승객 안내문 5초 제작"},
@@ -584,7 +590,7 @@ const CARDS=[
 // ── TTS ENGINE (Google Cloud TTS → MP3 재생, pause/resume 지원) ──
 const TTS_SYS=`당신은 대구 시내버스 기사님 곁에서 직접 이야기해주는 든든한 선배 동료입니다.
 
-말투와 태도: 경험 많은 선배가 후배에게 진심으로 조언해주는 따뜻하고 구체적인 말투. 기사님 또는 동서님이라고 부르며 진심 어린 공감부터 시작. 딱딱한 안내문이 아니라 실제 대화처럼, 살짝 걱정해주는 느낌으로. 현장에서 실제로 겪을 수 있는 상황 예시를 들어서 설명.
+말투와 태도: 경험 많은 선배가 후배에게 진심으로 조언해주는 따뜻하고 구체적인 말투. 기사님 또는 이규 씨이라고 부르며 진심 어린 공감부터 시작. 딱딱한 안내문이 아니라 실제 대화처럼, 살짝 걱정해주는 느낌으로. 현장에서 실제로 겪을 수 있는 상황 예시를 들어서 설명.
 
 구성: 도입부에서 이거 정말 중요한 얘기인데요 처럼 관심을 끌고, 핵심 내용은 번호 목록 대신 먼저, 그리고 꼭, 특히 이 부분은 처럼 자연스럽게 이어서 설명. 왜 중요한지 이유도 한 마디 덧붙이고, 대구 현장 상황에 맞는 구체적인 예시 포함. 마지막엔 진심 어린 격려 한 마디로 마무리.
 
@@ -645,36 +651,68 @@ function ttsStartProgressTimer(){
   }, 200);
 }
 
+// 텍스트를 문단 단위로 분할
+function splitChunks(text){
+  return text.split(/\n\n+/).map(s=>s.trim()).filter(Boolean);
+}
+
+// 청크 하나를 Google TTS로 변환 -> base64 반환
+async function fetchTtsChunk(chunkText){
+  const res = await fetch(
+    `https://texttospeech.googleapis.com/v1/text:synthesize?key=${googleTtsKey}`,
+    {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        input: { text: cleanTextForTTS(chunkText) },
+        voice: { languageCode: 'ko-KR', name: 'ko-KR-Wavenet-B', ssmlGender: 'MALE' },
+        audioConfig: { audioEncoding: 'MP3', speakingRate: 1.0, pitch: -1.0 }
+      })
+    }
+  );
+  if(!res.ok){ const err=await res.json(); throw new Error(err.error?.message||'Google TTS 오류'); }
+  const data = await res.json();
+  return data.audioContent;
+}
+
 async function ttsPlayWithGoogle(text){
-  const clean = cleanTextForTTS(text);
   ttsSetUI("tts-loading");
-  try {
-    const res = await fetch(
-      `https://texttospeech.googleapis.com/v1/text:synthesize?key=${googleTtsKey}`,
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          input: { text: clean },
-          voice: { languageCode: 'ko-KR', name: 'ko-KR-Wavenet-B', ssmlGender: 'MALE' },
-          audioConfig: { audioEncoding: 'MP3', speakingRate: 1.0, pitch: -1.0 }
-        })
-      }
-    );
-    if(!res.ok){ const err=await res.json(); throw new Error(err.error?.message||'Google TTS 오류'); }
-    const data = await res.json();
-    const audio = new Audio('data:audio/mp3;base64,' + data.audioContent);
+  const chunks = splitChunks(text);
+  if(!chunks.length) return;
+
+  ttsState.isActive = true;
+  ttsState.isPaused = false;
+  const prefetched = new Array(chunks.length).fill(null);
+
+  async function playChunk(idx){
+    if(idx >= chunks.length || !ttsState.isActive){ ttsStop(); return; }
+    if(ttsState.isPaused){ ttsState._pendingChunkIdx = idx; return; }
+
+    if(!prefetched[idx]) prefetched[idx] = await fetchTtsChunk(chunks[idx]);
+
+    // 다음 청크 미리 백그라운드 패치
+    if(idx+1 < chunks.length && !prefetched[idx+1]){
+      fetchTtsChunk(chunks[idx+1]).then(d=>{ prefetched[idx+1]=d; }).catch(()=>{});
+    }
+
+    const audio = new Audio('data:audio/mp3;base64,' + prefetched[idx]);
     ttsState.audio = audio;
-    ttsState.isActive = true;
-    ttsState.isPaused = false;
-    ttsSetUI("playing");
-    ttsStartProgressTimer();
-    audio.onended = ()=>{ ttsStop(); };
+
+    if(idx === 0){ ttsSetUI("playing"); ttsStartProgressTimer(); }
+    if(ttsState.progBar){
+      ttsState.progBar.style.width = (idx / chunks.length * 100) + "%";
+    }
+
+    audio.onended = ()=>{
+      if(!ttsState.isActive) return;
+      if(ttsState.isPaused){ ttsState._pendingChunkIdx = idx+1; return; }
+      playChunk(idx+1);
+    };
     audio.onerror = ()=>{ ttsStop(); };
     audio.play();
-  } catch(e) {
-    throw e;
   }
+
+  await playChunk(0);
 }
 
 function ttsPlayFallback(text){
@@ -714,13 +752,20 @@ function ttsPause(){
 function ttsResume(){
   ttsState.isPaused = false;
   if(ttsState.audio && !ttsState.audio._fallback){
+    // 청크 재생 중 일시정지했다면 다음 청크부터 이어서 재생
+    if(ttsState._pendingChunkIdx != null){
+      const idx = ttsState._pendingChunkIdx;
+      ttsState._pendingChunkIdx = null;
+      ttsSetUI("playing");
+      // 현재 audio가 끝났으니 다음 청크 재생 (ttsPlayWithGoogle 내부 playChunk 재호출)
+      ttsState.audio.dispatchEvent(new Event('ended'));
+      return;
+    }
     ttsState.audio.play();
     ttsStartProgressTimer();
   } else if(ttsState.audio && ttsState.audio._fallback){
-    const {sentences, idx} = ttsState.audio;
     ttsSetUI("playing");
-    // fallback은 처음부터 재시작
-    ttsPlayFallback(sentences.join(' '));
+    ttsPlayFallback(ttsState.audio.sentences.join(' '));
     return;
   }
   ttsSetUI("playing");
@@ -798,7 +843,7 @@ async function handleTtsClick(card, cardId, playBtn, stopBtn, progBar, statusEl)
   // 환영 배너
   const banner=document.createElement("div");
   banner.className="welcome-banner";
-  banner.innerHTML=`<h2>👋 동서님, 오늘도 수고 많으세요!</h2><p>대구 시내버스를 운행하며 매일 수백 명의 시민을 안전하게 모시는 일, 쉽지 않다는 거 잘 알아요. 버디가 옆에서 항상 응원할게요. 아래 가이드를 꼭 활용해 보세요! 🚌💛</p>`;
+  banner.innerHTML=`<h2>👋 이규 씨, 오늘도 수고 많으세요!</h2><p>대구 시내버스를 운행하며 매일 수백 명의 시민을 안전하게 모시는 일, 쉽지 않다는 거 잘 알아요. 버디가 옆에서 항상 응원할게요. 아래 가이드를 꼭 활용해 보세요! 🚌💛</p>`;
   p.appendChild(banner);
 
   CARDS.forEach((c,ci)=>{
@@ -1227,7 +1272,7 @@ async function askFQ(q){
 }
 
 // ── TAB 4: MESSAGE ────────────────────────────────────
-let phone=localStorage.getItem("wife_phone")||"";
+let phone=lsGet("wife_phone");
 function fmtP(p){return p.replace(/(\d{3})(\d{4})(\d{4})/,"$1-$2-$3");}
 function nowStr(){
   const d=new Date();
@@ -1282,9 +1327,16 @@ function showSendSheet(msg){
   document.body.appendChild(sheet);
 }
 function showFB(t){
-  const el=document.getElementById("msg-fb");
-  el.textContent=t; el.style.display="block";
-  setTimeout(()=>el.style.display="none",3500);
+  let el=document.getElementById("toast-fb");
+  if(!el){
+    el=document.createElement("div");
+    el.id="toast-fb";
+    el.style.cssText="position:fixed;top:70px;left:50%;transform:translateX(-50%);z-index:99999;padding:12px 20px;background:rgba(30,40,70,0.97);border:1px solid rgba(245,166,35,0.5);border-radius:14px;font-size:19px;color:#fcd34d;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,0.5);pointer-events:none;white-space:nowrap;transition:opacity 0.3s;";
+    document.body.appendChild(el);
+  }
+  el.textContent=t; el.style.opacity="1"; el.style.display="block";
+  clearTimeout(el._t);
+  el._t=setTimeout(()=>{el.style.opacity="0";setTimeout(()=>el.style.display="none",300);},3000);
 }
 function updPhone(){
   const box=document.getElementById("ph-box"),lbl=document.getElementById("ph-lbl"),
@@ -1302,10 +1354,10 @@ function updPhone(){
 document.getElementById("ph-save").addEventListener("click",()=>{
   const p=document.getElementById("ph-input").value.replace(/[^0-9]/g,"");
   if(p.length<10)return;
-  localStorage.setItem("wife_phone",p); phone=p; updPhone();
+  lsSet("wife_phone",p); phone=p; updPhone();
 });
 document.getElementById("ph-chg").addEventListener("click",()=>{
-  phone=""; localStorage.removeItem("wife_phone"); updPhone();
+  phone=""; lsDel("wife_phone"); updPhone();
 });
 
 // ① 안심 체크인
