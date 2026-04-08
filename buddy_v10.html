@@ -81,7 +81,7 @@ button{cursor:pointer;}
 .tts-prog-bar{height:100%;border-radius:2px;background:linear-gradient(90deg,#f5a623,#fb923c);width:0%;transition:width 0.3s;}
 @keyframes tts-pulse{0%,100%{box-shadow:0 0 0 0 rgba(244,63,94,0.2)}50%{box-shadow:0 0 0 7px rgba(244,63,94,0)}}
 /* KARAOKE */
-.karaoke-box{display:none;background:rgba(8,14,28,0.75);border:1px solid rgba(245,166,35,0.18);border-radius:14px;padding:12px 14px;margin-top:8px;margin-bottom:4px;font-size:20px;line-height:1.9;max-height:200px;overflow-y:auto;scroll-behavior:smooth;color:#4a5a78;}
+.karaoke-box{display:none;background:rgba(8,14,28,0.75);border:1px solid rgba(245,166,35,0.18);border-radius:14px;padding:14px 16px;margin-top:8px;margin-bottom:4px;font-size:20px;line-height:1.9;max-height:360px;overflow-y:auto;scroll-behavior:smooth;color:#4a5a78;width:100%;}
 .karaoke-box.show{display:block;animation:fadeIn 0.3s ease;}
 .k-para{margin-bottom:8px;padding:6px 10px;border-radius:9px;border-left:3px solid transparent;transition:all 0.3s;}
 .k-para:last-child{margin-bottom:0;}
@@ -855,10 +855,12 @@ async function handleTtsClick(card, cardId, playBtn, stopBtn, progBar, statusEl,
     const script = ttsState.scriptCache[cardId];
     if(googleTtsKey){
       karaokeSetup(script, karaokeEl, true);
+      setTimeout(()=>{ if(karaokeEl) karaokeEl.scrollIntoView({behavior:'smooth',block:'center'}); },200);
       try{ await ttsPlayWithGoogle(script); }
       catch(e){ ttsStop(); if(statusEl){statusEl.style.display="block"; statusEl.textContent="⚠️ Google TTS 오류: "+e.message; setTimeout(()=>{if(statusEl)statusEl.style.display="none";},3000);} }
     } else {
       karaokeSetup(script, karaokeEl, false);
+      setTimeout(()=>{ if(karaokeEl) karaokeEl.scrollIntoView({behavior:'smooth',block:'center'}); },200);
       ttsPlayFallback(script);
     }
     return;
@@ -872,6 +874,7 @@ async function handleTtsClick(card, cardId, playBtn, stopBtn, progBar, statusEl,
     ttsSetUI("tts-loading");
     if(statusEl){statusEl.style.display="block"; statusEl.textContent="🎙️ 음성으로 변환하고 있어요...";}
     karaokeSetup(script, karaokeEl, true);
+    setTimeout(()=>{ if(karaokeEl) karaokeEl.scrollIntoView({behavior:'smooth',block:'center'}); },200);
     try{
       await ttsPlayWithGoogle(script);
       if(statusEl) statusEl.style.display="none";
@@ -884,6 +887,7 @@ async function handleTtsClick(card, cardId, playBtn, stopBtn, progBar, statusEl,
     if(statusEl){statusEl.style.display="block"; statusEl.textContent="⚙️ Google TTS 키를 설정 탭에서 입력하면 더 자연스러운 음성으로 들을 수 있어요.";}
     setTimeout(()=>{if(statusEl)statusEl.style.display="none";}, 3000);
     karaokeSetup(script, karaokeEl, false);
+    setTimeout(()=>{ if(karaokeEl) karaokeEl.scrollIntoView({behavior:'smooth',block:'center'}); },200);
     ttsPlayFallback(script);
   }
 }
