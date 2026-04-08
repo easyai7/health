@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -29,8 +30,8 @@ button{cursor:pointer;}
 .h-title{background:linear-gradient(90deg,#f5a623,#fbbf24);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-size:22px;font-weight:700;}
 .h-sub{font-size:17px;color:#8899bb;}
 .h-badge{font-size:17px;color:#60a5fa;background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.18);padding:3px 9px;border-radius:18px;font-weight:600;margin-left:auto;flex-shrink:0;}
-#tabbar{display:flex;background:rgba(13,20,38,0.95);border-bottom:1px solid rgba(255,255,255,0.07);flex-shrink:0;}
-.tab-btn{flex:1;padding:10px 2px 9px;background:none;border:none;border-bottom:2px solid transparent;display:flex;flex-direction:column;align-items:center;gap:3px;transition:border-color 0.18s;}
+#tabbar{display:flex;background:rgba(13,20,38,0.95);border-bottom:1px solid rgba(255,255,255,0.07);flex-shrink:0;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;}
+.tab-btn{flex:0 0 auto;min-width:72px;padding:10px 6px 9px;background:none;border:none;border-bottom:2px solid transparent;display:flex;flex-direction:column;align-items:center;gap:3px;transition:border-color 0.18s;}
 .tab-btn .t-icon{font-size:24px;}
 .tab-btn .t-lbl{font-size:16px;font-weight:400;color:#8899bb;transition:all 0.18s;}
 .tab-btn.active{border-bottom:2px solid #f5a623;}
@@ -53,7 +54,7 @@ button{cursor:pointer;}
 .ic-title{font-size:26px;font-weight:700;color:#f0f4ff;margin-bottom:2px;}
 .ic-sub{font-size:22px;color:#8899bb;}
 .ic-arr{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:17px;transition:all 0.28s;flex-shrink:0;margin-left:auto;background:rgba(255,255,255,0.06);color:#8899bb;}
-.ic-body{padding:0 15px 15px;display:none;}
+.ic-body{padding:0 8px 15px;display:none;}
 .ic-body.open{display:block;}
 .ic-div{height:1px;background:rgba(255,255,255,0.07);margin-bottom:12px;}
 .app-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:11px;}
@@ -81,7 +82,7 @@ button{cursor:pointer;}
 .tts-prog-bar{height:100%;border-radius:2px;background:linear-gradient(90deg,#f5a623,#fb923c);width:0%;transition:width 0.3s;}
 @keyframes tts-pulse{0%,100%{box-shadow:0 0 0 0 rgba(244,63,94,0.2)}50%{box-shadow:0 0 0 7px rgba(244,63,94,0)}}
 /* KARAOKE */
-.karaoke-box{display:none;background:rgba(8,14,28,0.75);border:1px solid rgba(245,166,35,0.18);border-radius:14px;padding:14px 16px;margin-top:8px;margin-bottom:4px;font-size:20px;line-height:1.9;max-height:360px;overflow-y:auto;scroll-behavior:smooth;color:#4a5a78;width:100%;}
+.karaoke-box{display:none;background:rgba(8,14,28,0.75);border:1px solid rgba(245,166,35,0.18);border-radius:14px;padding:14px 12px;margin-top:8px;margin-bottom:4px;font-size:20px;line-height:1.9;max-height:480px;overflow-y:auto;scroll-behavior:smooth;color:#4a5a78;width:calc(100% + 30px);margin-left:-15px;margin-right:-15px;border-radius:0;}
 .karaoke-box.show{display:block;animation:fadeIn 0.3s ease;}
 .k-para{margin-bottom:8px;padding:6px 10px;border-radius:9px;border-left:3px solid transparent;transition:all 0.3s;}
 .k-para:last-child{margin-bottom:0;}
@@ -158,6 +159,7 @@ button{cursor:pointer;}
     <button class="tab-btn active" data-tab="info"><span class="t-icon">📋</span><span class="t-lbl">정보 가이드</span></button>
     <button class="tab-btn" data-tab="chat"><span class="t-icon">🤖</span><span class="t-lbl">AI 상담</span></button>
     <button class="tab-btn" data-tab="traffic"><span class="t-icon">🚦</span><span class="t-lbl">교통 정보</span></button>
+    <button class="tab-btn" data-tab="memo"><span class="t-icon">📝</span><span class="t-lbl">메모</span></button>
     <button class="tab-btn" data-tab="msg"><span class="t-icon">💌</span><span class="t-lbl">아내 문자</span></button>
     <button class="tab-btn" data-tab="settings"><span class="t-icon">⚙️</span><span class="t-lbl">설정</span></button>
   </div>
@@ -205,6 +207,40 @@ button{cursor:pointer;}
           <input id="fq-input" placeholder="더 궁금한 거 물어보기..." style="flex:1;padding:8px 13px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:11px;color:#f0f4ff;font-size:20px;outline:none;"/>
           <button id="fq-btn" style="padding:8px 14px;border-radius:11px;background:rgba(255,255,255,0.04);border:1px solid rgba(245,166,35,0.25);color:#fcd34d;font-size:20px;font-weight:600;">전송</button>
         </div>
+      </div>
+    </div>
+
+
+    <!-- TAB MEMO -->
+    <div id="panel-memo" class="tab-panel" style="padding-top:12px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+        <div style="font-size:24px;font-weight:700;color:#fbbf24;">📝 운행 메모</div>
+        <div style="font-size:17px;color:#8899bb;" id="memo-count"></div>
+      </div>
+
+      <!-- 입력 영역 -->
+      <div style="background:#131b2e;border:1px solid rgba(245,166,35,0.22);border-radius:18px;padding:15px;margin-bottom:14px;">
+        <div style="font-size:18px;color:#8899bb;margin-bottom:10px;">새 메모 작성</div>
+        <textarea id="memo-ta" rows="4" placeholder="여기에 메모를 입력하거나 🎤 버튼으로 말하세요..."
+          style="width:100%;padding:12px 14px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:13px;color:#f0f4ff;font-size:22px;line-height:1.7;outline:none;resize:none;margin-bottom:10px;"></textarea>
+        <div id="memo-interim" style="display:none;font-size:20px;color:#8899bb;padding:6px 10px;background:rgba(255,255,255,0.03);border-radius:9px;margin-bottom:8px;font-style:italic;"></div>
+        <div style="display:flex;gap:8px;">
+          <button id="memo-mic-btn"
+            style="flex:0 0 auto;width:52px;height:52px;border-radius:15px;font-size:26px;border:1.5px solid rgba(244,63,94,0.35);background:rgba(244,63,94,0.12);color:#fda4af;display:flex;align-items:center;justify-content:center;">
+            🎤
+          </button>
+          <button id="memo-save-btn"
+            style="flex:1;padding:13px;border-radius:15px;font-size:22px;font-weight:700;border:none;color:#fff;background:linear-gradient(135deg,#f5a623,#fb923c);box-shadow:0 3px 14px rgba(245,166,35,0.3);">
+            💾 저장
+          </button>
+        </div>
+        <div id="memo-mic-status" style="display:none;font-size:18px;color:#f43f5e;padding:5px 4px 0;text-align:center;">🔴 듣고 있어요... (말씀하세요)</div>
+      </div>
+
+      <!-- 메모 목록 -->
+      <div id="memo-list"></div>
+      <div id="memo-empty" style="text-align:center;padding:30px 0;color:#4a5a78;font-size:20px;display:none;">
+        아직 저장된 메모가 없어요<br><span style="font-size:28px;margin-top:8px;display:block;">📝</span>
       </div>
     </div>
 
@@ -855,12 +891,28 @@ async function handleTtsClick(card, cardId, playBtn, stopBtn, progBar, statusEl,
     const script = ttsState.scriptCache[cardId];
     if(googleTtsKey){
       karaokeSetup(script, karaokeEl, true);
-      setTimeout(()=>{ if(karaokeEl) karaokeEl.scrollIntoView({behavior:'smooth',block:'center'}); },200);
+      setTimeout(()=>{
+      const contentEl = document.getElementById('content');
+      if(ttsState.playBtn && contentEl){
+        const btnRect = ttsState.playBtn.getBoundingClientRect();
+        const contRect = contentEl.getBoundingClientRect();
+        const scrollOffset = contentEl.scrollTop + (btnRect.top - contRect.top) - 16;
+        contentEl.scrollTo({top: scrollOffset, behavior:'smooth'});
+      }
+    },200);
       try{ await ttsPlayWithGoogle(script); }
       catch(e){ ttsStop(); if(statusEl){statusEl.style.display="block"; statusEl.textContent="⚠️ Google TTS 오류: "+e.message; setTimeout(()=>{if(statusEl)statusEl.style.display="none";},3000);} }
     } else {
       karaokeSetup(script, karaokeEl, false);
-      setTimeout(()=>{ if(karaokeEl) karaokeEl.scrollIntoView({behavior:'smooth',block:'center'}); },200);
+      setTimeout(()=>{
+      const contentEl = document.getElementById('content');
+      if(ttsState.playBtn && contentEl){
+        const btnRect = ttsState.playBtn.getBoundingClientRect();
+        const contRect = contentEl.getBoundingClientRect();
+        const scrollOffset = contentEl.scrollTop + (btnRect.top - contRect.top) - 16;
+        contentEl.scrollTo({top: scrollOffset, behavior:'smooth'});
+      }
+    },200);
       ttsPlayFallback(script);
     }
     return;
@@ -874,7 +926,15 @@ async function handleTtsClick(card, cardId, playBtn, stopBtn, progBar, statusEl,
     ttsSetUI("tts-loading");
     if(statusEl){statusEl.style.display="block"; statusEl.textContent="🎙️ 음성으로 변환하고 있어요...";}
     karaokeSetup(script, karaokeEl, true);
-    setTimeout(()=>{ if(karaokeEl) karaokeEl.scrollIntoView({behavior:'smooth',block:'center'}); },200);
+    setTimeout(()=>{
+      const contentEl = document.getElementById('content');
+      if(ttsState.playBtn && contentEl){
+        const btnRect = ttsState.playBtn.getBoundingClientRect();
+        const contRect = contentEl.getBoundingClientRect();
+        const scrollOffset = contentEl.scrollTop + (btnRect.top - contRect.top) - 16;
+        contentEl.scrollTo({top: scrollOffset, behavior:'smooth'});
+      }
+    },200);
     try{
       await ttsPlayWithGoogle(script);
       if(statusEl) statusEl.style.display="none";
@@ -887,7 +947,15 @@ async function handleTtsClick(card, cardId, playBtn, stopBtn, progBar, statusEl,
     if(statusEl){statusEl.style.display="block"; statusEl.textContent="⚙️ Google TTS 키를 설정 탭에서 입력하면 더 자연스러운 음성으로 들을 수 있어요.";}
     setTimeout(()=>{if(statusEl)statusEl.style.display="none";}, 3000);
     karaokeSetup(script, karaokeEl, false);
-    setTimeout(()=>{ if(karaokeEl) karaokeEl.scrollIntoView({behavior:'smooth',block:'center'}); },200);
+    setTimeout(()=>{
+      const contentEl = document.getElementById('content');
+      if(ttsState.playBtn && contentEl){
+        const btnRect = ttsState.playBtn.getBoundingClientRect();
+        const contRect = contentEl.getBoundingClientRect();
+        const scrollOffset = contentEl.scrollTop + (btnRect.top - contRect.top) - 16;
+        contentEl.scrollTo({top: scrollOffset, behavior:'smooth'});
+      }
+    },200);
     ttsPlayFallback(script);
   }
 }
@@ -1512,6 +1580,137 @@ document.getElementById("ai-sms-btn").addEventListener("click",()=>{
   if(!msg) return;
   sendSMS(msg);
 });
+
+// ═══════════════════════════════════════
+// MEMO 기능
+// ═══════════════════════════════════════
+(function(){
+  const MEMO_KEY = 'buddy_memos';
+
+  function loadMemos(){
+    try{ return JSON.parse(localStorage.getItem(MEMO_KEY)||'[]'); }
+    catch(e){ return []; }
+  }
+  function saveMemos(arr){
+    localStorage.setItem(MEMO_KEY, JSON.stringify(arr));
+  }
+  function formatDate(ts){
+    const d = new Date(ts);
+    const mm = d.getMonth()+1, dd = d.getDate();
+    const hh = String(d.getHours()).padStart(2,'0'), min = String(d.getMinutes()).padStart(2,'0');
+    return `${mm}/${dd} ${hh}:${min}`;
+  }
+
+  function renderMemos(){
+    const memos = loadMemos();
+    const list = document.getElementById('memo-list');
+    const empty = document.getElementById('memo-empty');
+    const count = document.getElementById('memo-count');
+    if(!list) return;
+    count.textContent = memos.length ? `총 ${memos.length}개` : '';
+    if(!memos.length){ list.innerHTML=''; empty.style.display='block'; return; }
+    empty.style.display='none';
+    list.innerHTML = memos.slice().reverse().map((m,ri)=>{
+      const i = memos.length - 1 - ri; // real index
+      return `<div style="background:#131b2e;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:14px 15px;margin-bottom:9px;animation:fadeIn 0.3s ease;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:7px;">
+          <span style="font-size:17px;color:#8899bb;">🕐 ${formatDate(m.ts)}</span>
+          <button onclick="deleteMemo(${i})" style="padding:3px 10px;border-radius:8px;font-size:17px;background:rgba(244,63,94,0.1);border:1px solid rgba(244,63,94,0.2);color:#fda4af;">삭제</button>
+        </div>
+        <div style="font-size:22px;line-height:1.75;color:#dce8ff;white-space:pre-wrap;word-break:break-word;">${m.text.replace(/</g,'&lt;')}</div>
+      </div>`;
+    }).join('');
+  }
+
+  window.deleteMemo = function(idx){
+    const memos = loadMemos();
+    memos.splice(idx,1);
+    saveMemos(memos);
+    renderMemos();
+  };
+
+  function addMemo(text){
+    if(!text.trim()) return false;
+    const memos = loadMemos();
+    memos.push({ text: text.trim(), ts: Date.now() });
+    saveMemos(memos);
+    renderMemos();
+    return true;
+  }
+
+  // 저장 버튼
+  document.getElementById('memo-save-btn').addEventListener('click',()=>{
+    const ta = document.getElementById('memo-ta');
+    if(addMemo(ta.value)){
+      ta.value='';
+      ta.style.height='';
+    } else {
+      ta.placeholder='내용을 입력하거나 말씀해 주세요!';
+    }
+  });
+
+  // 음성 입력
+  let memoRecog = null;
+  const micBtn = document.getElementById('memo-mic-btn');
+  const micStatus = document.getElementById('memo-mic-status');
+  const memoInterim = document.getElementById('memo-interim');
+
+  if('webkitSpeechRecognition' in window || 'SpeechRecognition' in window){
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    memoRecog = new SR();
+    memoRecog.lang = 'ko-KR';
+    memoRecog.continuous = true;
+    memoRecog.interimResults = true;
+
+    let isListening = false;
+
+    memoRecog.onresult = (e)=>{
+      let interim = '', final = '';
+      for(let i = e.resultIndex; i < e.results.length; i++){
+        const t = e.results[i][0].transcript;
+        if(e.results[i].isFinal) final += t;
+        else interim += t;
+      }
+      if(final){
+        const ta = document.getElementById('memo-ta');
+        ta.value += (ta.value ? ' ' : '') + final;
+      }
+      memoInterim.textContent = interim;
+      memoInterim.style.display = interim ? 'block' : 'none';
+    };
+    memoRecog.onerror = ()=>{ stopListening(); };
+    memoRecog.onend = ()=>{ if(isListening) memoRecog.start(); };
+
+    function startListening(){
+      isListening = true;
+      micBtn.style.background='rgba(244,63,94,0.28)';
+      micBtn.style.borderColor='rgba(244,63,94,0.6)';
+      micBtn.textContent='⏹';
+      micStatus.style.display='block';
+      memoRecog.start();
+    }
+    function stopListening(){
+      isListening = false;
+      micBtn.style.background='rgba(244,63,94,0.12)';
+      micBtn.style.borderColor='rgba(244,63,94,0.35)';
+      micBtn.textContent='🎤';
+      micStatus.style.display='none';
+      memoInterim.style.display='none';
+      memoInterim.textContent='';
+      memoRecog.stop();
+    }
+    micBtn.addEventListener('click',()=>{
+      if(isListening) stopListening(); else startListening();
+    });
+  } else {
+    micBtn.style.opacity='0.4';
+    micBtn.title='이 브라우저는 음성 입력을 지원하지 않아요';
+  }
+
+  // 메모 탭 열릴 때 렌더
+  document.querySelector('[data-tab="memo"]').addEventListener('click', renderMemos);
+  renderMemos();
+})();
 </script>
 </body>
 </html>
