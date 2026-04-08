@@ -1717,13 +1717,8 @@ document.getElementById("ai-sms-btn").addEventListener("click",()=>{
     };
 
     recog.onend = ()=>{
-      // continuous:false 이므로 발화 끝나면 자동 종료 — 버튼 상태만 리셋
-      if(isListening){
-        // 아직 듣기 모드면 바로 재시작 (연속 입력 지원)
-        try{ recog.start(); }catch(e){ stopListening(); }
-      } else {
-        setMicUI(false);
-      }
+      // 발화 완료 or 중단 — 항상 종료 상태로
+      stopListening();
     };
 
     activeRecog = recog;
