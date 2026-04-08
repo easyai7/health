@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -1606,7 +1605,7 @@ document.getElementById("ai-sms-btn").addEventListener("click",()=>{
     const list = document.getElementById('memo-list');
     const empty = document.getElementById('memo-empty');
     const count = document.getElementById('memo-count');
-    if(!list) return;
+    if(!list || !empty || !count) return;  // 패널 미표시 시 조용히 종료
     count.textContent = memos.length ? `총 ${memos.length}개` : '';
     if(!memos.length){ list.innerHTML=''; empty.style.display='block'; return; }
     empty.style.display='none';
@@ -1649,56 +1648,91 @@ document.getElementById("ai-sms-btn").addEventListener("click",()=>{
     }
   });
 
-  // 음성 입력
-  let memoRecog = null;
+  // 음성 입력 — 매번 새 인스턴스 생성 방식 (중복/충돌 방지)
   const micBtn = document.getElementById('memo-mic-btn');
   const micStatus = document.getElementById('memo-mic-status');
   const memoInterim = document.getElementById('memo-interim');
+  const hasSR = ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window);
 
-  if('webkitSpeechRecognition' in window || 'SpeechRecognition' in window){
-    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-    memoRecog = new SR();
-    memoRecog.lang = 'ko-KR';
-    memoRecog.continuous = true;
-    memoRecog.interimResults = true;
+  let isListening = false;
+  let activeRecog = null;
 
-    let isListening = false;
-
-    memoRecog.onresult = (e)=>{
-      let interim = '', final = '';
-      for(let i = e.resultIndex; i < e.results.length; i++){
-        const t = e.results[i][0].transcript;
-        if(e.results[i].isFinal) final += t;
-        else interim += t;
-      }
-      if(final){
-        const ta = document.getElementById('memo-ta');
-        ta.value += (ta.value ? ' ' : '') + final;
-      }
-      memoInterim.textContent = interim;
-      memoInterim.style.display = interim ? 'block' : 'none';
-    };
-    memoRecog.onerror = ()=>{ stopListening(); };
-    memoRecog.onend = ()=>{ if(isListening) memoRecog.start(); };
-
-    function startListening(){
-      isListening = true;
+  function setMicUI(on){
+    if(on){
       micBtn.style.background='rgba(244,63,94,0.28)';
       micBtn.style.borderColor='rgba(244,63,94,0.6)';
       micBtn.textContent='⏹';
       micStatus.style.display='block';
-      memoRecog.start();
-    }
-    function stopListening(){
-      isListening = false;
+    } else {
       micBtn.style.background='rgba(244,63,94,0.12)';
       micBtn.style.borderColor='rgba(244,63,94,0.35)';
       micBtn.textContent='🎤';
       micStatus.style.display='none';
       memoInterim.style.display='none';
       memoInterim.textContent='';
-      memoRecog.stop();
     }
+  }
+
+  function stopListening(){
+    isListening = false;
+    setMicUI(false);
+    if(activeRecog){
+      try{ activeRecog.onresult=null; activeRecog.onerror=null; activeRecog.onend=null; activeRecog.abort(); }catch(e){}
+      activeRecog = null;
+    }
+  }
+
+  function startListening(){
+    if(!hasSR) return;
+    // 혹시 남은 인스턴스 완전 정리
+    if(activeRecog){
+      try{ activeRecog.onresult=null; activeRecog.onerror=null; activeRecog.onend=null; activeRecog.abort(); }catch(e){}
+      activeRecog = null;
+    }
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const recog = new SR();
+    recog.lang = 'ko-KR';
+    recog.continuous = false;      // 한 발화 단위로만 — 중복 방지 핵심
+    recog.interimResults = true;
+    recog.maxAlternatives = 1;
+
+    recog.onresult = (e)=>{
+      let interim = '', finalText = '';
+      for(let i = 0; i < e.results.length; i++){
+        const t = e.results[i][0].transcript;
+        if(e.results[i].isFinal) finalText += t;
+        else interim += t;
+      }
+      if(finalText){
+        const ta = document.getElementById('memo-ta');
+        ta.value = (ta.value ? ta.value.trimEnd() + ' ' : '') + finalText.trim();
+      }
+      memoInterim.textContent = interim;
+      memoInterim.style.display = interim ? 'block' : 'none';
+    };
+
+    recog.onerror = (e)=>{
+      if(e.error === 'aborted') return;   // 사용자가 직접 중단한 경우 무시
+      stopListening();
+    };
+
+    recog.onend = ()=>{
+      // continuous:false 이므로 발화 끝나면 자동 종료 — 버튼 상태만 리셋
+      if(isListening){
+        // 아직 듣기 모드면 바로 재시작 (연속 입력 지원)
+        try{ recog.start(); }catch(e){ stopListening(); }
+      } else {
+        setMicUI(false);
+      }
+    };
+
+    activeRecog = recog;
+    isListening = true;
+    setMicUI(true);
+    try{ recog.start(); }catch(e){ stopListening(); }
+  }
+
+  if(hasSR){
     micBtn.addEventListener('click',()=>{
       if(isListening) stopListening(); else startListening();
     });
